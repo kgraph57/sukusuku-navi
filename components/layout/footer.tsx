@@ -1,0 +1,69 @@
+import Link from "next/link"
+import { Baby } from "lucide-react"
+
+const FOOTER_LINKS = {
+  コンテンツ: [
+    { href: "/articles", label: "記事一覧" },
+    { href: "/simulator", label: "給付金シミュレーター" },
+    { href: "/triage", label: "受診判断ガイド" },
+    { href: "/clinics", label: "小児科マップ" },
+  ],
+  サイトについて: [
+    { href: "/about", label: "すくすくナビとは" },
+    { href: "/contact", label: "お問い合わせ" },
+    { href: "/privacy", label: "プライバシーポリシー" },
+  ],
+} as const
+
+export function Footer() {
+  return (
+    <footer className="border-t border-border bg-white">
+      <div className="mx-auto max-w-6xl px-4 py-12">
+        <div className="grid gap-8 sm:grid-cols-3">
+          <div>
+            <Link href="/" className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-teal-600">
+                <Baby className="h-4 w-4 text-white" />
+              </div>
+              <span className="font-heading text-lg font-bold text-teal-800">
+                すくすくナビ
+              </span>
+            </Link>
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              愛育病院の小児科医おかもんが、エビデンスに基づく子育て・医療情報をお届けします。
+            </p>
+          </div>
+
+          {Object.entries(FOOTER_LINKS).map(([category, links]) => (
+            <div key={category}>
+              <h3 className="font-heading text-sm font-bold text-foreground">
+                {category}
+              </h3>
+              <ul className="mt-3 space-y-2">
+                {links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-muted transition-colors hover:text-teal-600"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 border-t border-border pt-6">
+          <p className="text-center text-xs text-muted">
+            本サイトの情報は一般的な医学知識の提供を目的としており、個別の診断・治療を行うものではありません。お子さんの症状についてはかかりつけ医にご相談ください。
+          </p>
+          <p className="mt-2 text-center text-xs text-muted">
+            &copy; {new Date().getFullYear()} すくすくナビ. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  )
+}

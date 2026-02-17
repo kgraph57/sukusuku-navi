@@ -1,0 +1,376 @@
+[
+  {
+    "slug": "child-medical-subsidy",
+    "name": "子ども医療費助成",
+    "description": "港区に住所がある0歳から高校3年生（18歳に達する日以後最初の3月31日まで）のお子さんの医療費の自己負担分を助成します。所得制限はありません。",
+    "category": "medical",
+    "eligibility": {
+      "minAge": 0,
+      "maxAge": 18,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": ["港区に住所があること", "健康保険に加入していること"]
+    },
+    "amount": {
+      "type": "subsidy",
+      "value": null,
+      "unit": "yen",
+      "description": "医療費の自己負担分を全額助成（入院・通院・調剤・訪問看護）"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/kodomo-iryohi",
+    "deadline": null,
+    "notes": "医療証（マル乳・マル子・マル青）を医療機関の窓口で提示してください。"
+  },
+  {
+    "slug": "child-allowance",
+    "name": "児童手当",
+    "description": "0歳から高校卒業まで（18歳に達する日以後最初の3月31日まで）のお子さんを養育している方に支給されます。所得制限はありません（2024年10月改正）。",
+    "category": "financial",
+    "eligibility": {
+      "minAge": 0,
+      "maxAge": 18,
+      "incomeLimit": null,
+      "residency": "japan",
+      "conditions": ["お子さんを養育していること"]
+    },
+    "amount": {
+      "type": "variable",
+      "value": 10000,
+      "unit": "yen-per-month",
+      "description": "3歳未満: 月額15,000円、3歳〜高校卒業: 第1子・第2子 月額10,000円、第3子以降 月額30,000円"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/jidou-teate",
+    "deadline": "出生日・転入日の翌日から15日以内",
+    "notes": "年3回（6月・10月・2月）にまとめて支給されます。"
+  },
+  {
+    "slug": "birth-childcare-grant",
+    "name": "出産・子育て応援交付金",
+    "description": "妊娠届出時に5万円相当、出産後に5万円相当、合計10万円相当の支援を受けられます。",
+    "category": "financial",
+    "eligibility": {
+      "minAge": null,
+      "maxAge": 0,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": ["妊娠届出をした方", "出産した方"]
+    },
+    "amount": {
+      "type": "fixed",
+      "value": 100000,
+      "unit": "yen",
+      "description": "妊娠届出時5万円相当 + 出産後5万円相当 = 計10万円相当"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/shussan-ouen",
+    "deadline": null,
+    "notes": "面談（妊娠届出時・出産後）を受けた後に交付されます。"
+  },
+  {
+    "slug": "childbirth-lump-sum",
+    "name": "出産育児一時金",
+    "description": "出産にかかる費用の負担を軽減するため、健康保険から50万円が支給されます。",
+    "category": "financial",
+    "eligibility": {
+      "minAge": null,
+      "maxAge": 0,
+      "incomeLimit": null,
+      "residency": "japan",
+      "conditions": ["健康保険に加入していること", "妊娠4ヶ月（85日）以上の出産"]
+    },
+    "amount": {
+      "type": "fixed",
+      "value": 500000,
+      "unit": "yen",
+      "description": "1児につき50万円"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/shussan-ikuji-ichijikin",
+    "deadline": "出産日の翌日から2年以内",
+    "notes": "直接支払制度を利用すると、医療機関への直接支払いが可能です。"
+  },
+  {
+    "slug": "mumps-vaccine-subsidy",
+    "name": "おたふくかぜワクチン助成",
+    "description": "1歳から小学校就学前のお子さんを対象に、おたふくかぜ（ムンプス）ワクチンの接種費用を全額助成します。",
+    "category": "medical",
+    "eligibility": {
+      "minAge": 1,
+      "maxAge": 6,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": ["1歳〜小学校就学前", "港区に住所があること"]
+    },
+    "amount": {
+      "type": "subsidy",
+      "value": null,
+      "unit": "yen",
+      "description": "接種費用の全額を助成"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/mumps-vaccine",
+    "deadline": null,
+    "notes": "港区指定の医療機関で接種してください。"
+  },
+  {
+    "slug": "influenza-vaccine-subsidy",
+    "name": "インフルエンザワクチン助成",
+    "description": "生後6ヶ月から中学3年生までのお子さんを対象に、インフルエンザワクチン接種費用の一部を助成します。",
+    "category": "medical",
+    "eligibility": {
+      "minAge": 0,
+      "maxAge": 15,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": ["生後6ヶ月〜中学3年生", "港区に住所があること"]
+    },
+    "amount": {
+      "type": "subsidy",
+      "value": null,
+      "unit": "yen",
+      "description": "1回あたり接種費用の一部を助成"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/influenza-vaccine",
+    "deadline": "毎年10月〜翌年1月頃",
+    "notes": "接種期間は例年10月〜翌年1月頃。13歳未満は2回接種が推奨されます。"
+  },
+  {
+    "slug": "postnatal-care-stay",
+    "name": "産後ケア（宿泊型）",
+    "description": "出産後4ヶ月までのお母さんが、医療機関等に宿泊して育児支援や休息を受けられるサービスです。",
+    "category": "support",
+    "eligibility": {
+      "minAge": null,
+      "maxAge": 0,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": ["出産後4ヶ月まで", "港区に住所があること", "育児支援が必要な方"]
+    },
+    "amount": {
+      "type": "variable",
+      "value": null,
+      "unit": "yen",
+      "description": "自己負担あり（世帯の所得に応じて変動）。住民税非課税世帯は無料。"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/sango-care",
+    "deadline": null,
+    "notes": "事前申請が必要です。利用可能な施設に空きがある場合に利用できます。"
+  },
+  {
+    "slug": "postnatal-care-day",
+    "name": "産後ケア（デイサービス型）",
+    "description": "出産後4ヶ月までのお母さんが、日帰りで育児相談や授乳指導、休息などのサポートを受けられます。",
+    "category": "support",
+    "eligibility": {
+      "minAge": null,
+      "maxAge": 0,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": ["出産後4ヶ月まで", "港区に住所があること"]
+    },
+    "amount": {
+      "type": "variable",
+      "value": null,
+      "unit": "yen",
+      "description": "自己負担あり（世帯の所得に応じて変動）"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/sango-care-day",
+    "deadline": null,
+    "notes": "事前申請が必要です。"
+  },
+  {
+    "slug": "postnatal-care-visit",
+    "name": "産後ケア（訪問型）",
+    "description": "出産後4ヶ月までのお母さんの自宅に助産師等が訪問し、授乳指導や育児相談を行います。",
+    "category": "support",
+    "eligibility": {
+      "minAge": null,
+      "maxAge": 0,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": ["出産後4ヶ月まで", "港区に住所があること"]
+    },
+    "amount": {
+      "type": "variable",
+      "value": null,
+      "unit": "yen",
+      "description": "自己負担あり（世帯の所得に応じて変動）"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/sango-care-visit",
+    "deadline": null,
+    "notes": "事前申請が必要です。"
+  },
+  {
+    "slug": "temporary-childcare",
+    "name": "一時保育",
+    "description": "生後4ヶ月から就学前のお子さんを、保護者のリフレッシュや就労等の理由で一時的に預けることができます。",
+    "category": "childcare",
+    "eligibility": {
+      "minAge": 0,
+      "maxAge": 6,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": ["生後4ヶ月〜就学前", "港区に住所があること"]
+    },
+    "amount": {
+      "type": "variable",
+      "value": null,
+      "unit": "yen",
+      "description": "利用料は施設により異なる"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/ichiji-hoiku",
+    "deadline": null,
+    "notes": "利用には事前登録が必要です。施設ごとに定員があります。"
+  },
+  {
+    "slug": "child-short-stay",
+    "name": "子どもショートステイ",
+    "description": "2歳から小学6年生までのお子さんを、保護者の病気や出産、介護などの理由で短期間（原則7日以内）預けることができます。",
+    "category": "childcare",
+    "eligibility": {
+      "minAge": 2,
+      "maxAge": 12,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": ["2歳〜小学6年生", "保護者の病気・出産・介護等の理由"]
+    },
+    "amount": {
+      "type": "variable",
+      "value": null,
+      "unit": "yen",
+      "description": "1泊あたりの利用料が発生（所得に応じて変動）"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/short-stay",
+    "deadline": null,
+    "notes": "原則7日以内の利用。事前申請が必要です。"
+  },
+  {
+    "slug": "family-support",
+    "name": "ファミリーサポート",
+    "description": "0歳から小学6年生までのお子さんの送迎や預かりなどを、地域の支援会員が行う相互援助活動です。",
+    "category": "childcare",
+    "eligibility": {
+      "minAge": 0,
+      "maxAge": 12,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": ["0歳〜小学6年生", "港区に住所があること"]
+    },
+    "amount": {
+      "type": "variable",
+      "value": null,
+      "unit": "yen",
+      "description": "1時間あたり800円〜900円（時間帯により異なる）"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/family-support",
+    "deadline": null,
+    "notes": "利用には事前に会員登録が必要です。"
+  },
+  {
+    "slug": "komusubi-project",
+    "name": "子むすびプロジェクト",
+    "description": "妊娠中から3歳までの子育て家庭を対象に、地域のつながりづくりや子育て支援を行うプロジェクトです。",
+    "category": "support",
+    "eligibility": {
+      "minAge": null,
+      "maxAge": 3,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": ["妊娠中〜3歳のお子さんがいる家庭"]
+    },
+    "amount": {
+      "type": "variable",
+      "value": null,
+      "unit": "yen",
+      "description": "各種イベント・サービスにより異なる"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/komusubi",
+    "deadline": null,
+    "notes": "妊娠中の方も参加可能。地域の子育て仲間とつながれます。"
+  },
+  {
+    "slug": "unlicensed-nursery-subsidy",
+    "name": "認可外保育施設保育料助成",
+    "description": "認可外保育施設を利用している世帯に対し、認可保育所との保育料の差額を助成します。",
+    "category": "childcare",
+    "eligibility": {
+      "minAge": 0,
+      "maxAge": 6,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": ["認可外保育施設を利用していること", "港区に住所があること", "認可保育所に入所できなかった等の事情"]
+    },
+    "amount": {
+      "type": "variable",
+      "value": null,
+      "unit": "yen",
+      "description": "認可保育所との保育料の差額（月額上限あり）"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/ninkagai-josei",
+    "deadline": null,
+    "notes": "助成額は認可保育所の保育料との差額が上限です。"
+  },
+  {
+    "slug": "multi-child-nursery-reduction",
+    "name": "多子世帯保育料軽減",
+    "description": "第2子以降のお子さんの保育料を軽減します。第2子は半額、第3子以降は無料になります。",
+    "category": "financial",
+    "eligibility": {
+      "minAge": 0,
+      "maxAge": 6,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": ["第2子以降のお子さん", "認可保育所等を利用していること"]
+    },
+    "amount": {
+      "type": "variable",
+      "value": null,
+      "unit": "yen",
+      "description": "第2子: 保育料半額、第3子以降: 保育料無料"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/tashi-keigen",
+    "deadline": null,
+    "notes": "きょうだいの年齢に関わらず、生計を同一にする子どもの数でカウントされます。"
+  },
+  {
+    "slug": "private-kindergarten-subsidy",
+    "name": "私立幼稚園補助金",
+    "description": "私立幼稚園に通うお子さんの保護者に対し、入園料や保育料の一部を補助します。",
+    "category": "financial",
+    "eligibility": {
+      "minAge": 3,
+      "maxAge": 6,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": ["私立幼稚園に在園していること", "港区に住所があること"]
+    },
+    "amount": {
+      "type": "variable",
+      "value": null,
+      "unit": "yen",
+      "description": "入園料補助・保育料補助（金額は園や所得に応じて変動）"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/shiritsu-youchien",
+    "deadline": "在園する幼稚園を通じて申請",
+    "notes": "無償化（月額25,700円）に加えて港区独自の上乗せ補助があります。"
+  },
+  {
+    "slug": "infant-health-checkup",
+    "name": "乳幼児健診",
+    "description": "お子さんの成長・発達を確認する健康診査です。1ヶ月、3-4ヶ月、6-7ヶ月、9-10ヶ月、1歳6ヶ月、3歳の6回、無料で受けられます。",
+    "category": "medical",
+    "eligibility": {
+      "minAge": 0,
+      "maxAge": 3,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": ["港区に住所があること"]
+    },
+    "amount": {
+      "type": "fixed",
+      "value": 0,
+      "unit": "yen",
+      "description": "無料（1ヶ月、3-4ヶ月、6-7ヶ月、9-10ヶ月、1歳6ヶ月、3歳の計6回）"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/nyuyoji-kenshin",
+    "deadline": null,
+    "notes": "対象時期になると受診票が届きます。指定医療機関または保健センターで受診してください。"
+  }
+]

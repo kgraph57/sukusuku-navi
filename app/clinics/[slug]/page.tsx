@@ -1,0 +1,261 @@
+import type { Metadata } from "next"
+import Link from "next/link"
+import { notFound } from "next/navigation"
+import {
+  ArrowLeft,
+  ExternalLink,
+  MapPin,
+  Phone,
+  Clock,
+  Building2,
+  Stethoscope,
+  AlertTriangle,
+} from "lucide-react"
+import {
+  getAllClinics,
+  getClinicBySlug,
+  CLINIC_TYPE_LABELS,
+} from "@/lib/clinics"
+import type { Clinic } from "@/lib/clinics"
+
+interface PageProps {
+  readonly params: Promise<{ slug: string }>
+}
+
+export async function generateStaticParams() {
+  const clinics = getAllClinics()
+  return clinics.map((clinic) => ({
+    slug: clinic.slug,
+  }))
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params
+  const clinic = getClinicBySlug(slug)
+  if (!clinic) return { title: "医療機関が見つかりません" }
+
+  return {
+    title: `${clinic.name} - 港区の小児科`,
+    description: `${clinic.name}（${clinic.address}）の診療時間、対応科目、アクセス情報。`,
+  }
+}
+
+const TYPE_ICON_MAP: Record<string, typeof Building2> = {
+  hospital: Building2,
+  clinic: Stethoscope,
+}
+
+const TYPE_COLOR_MAP: Record<string, string> = {
+  hospital: "bg-red-50 text-red-600 border-red-200",
+  clinic: "bg-teal-50 text-teal-600 border-teal-200",
+}
+
+function HoursRow({
+  label,
+  value,
+}: {
+  readonly label: string
+  readonly value: string | null
+}) {
+  return (
+    <div className="flex items-center justify-between border-b border-border py-2 last:border-0">
+      <span className="text-sm font-medium text-muted">{label}</span>
+      <span className="text-sm text-card-foreground">{value ?? "休診"}</span>
+    </div>
+  )
+}
+
+export default async function ClinicDetailPage({ params }: PageProps) {
+  const { slug } = await params
+  const clinic = getClinicBySlug(slug)
+
+  if (!clinic) {
+    notFound()
+  }
+
+  const colorClass =
+    TYPE_COLOR_MAP[clinic.type] ?? "bg-gray-50 text-gray-600 border-gray-200"
+  const IconComponent = TYPE_ICON_MAP[clinic.type] ?? Stethoscope
+
+  const allClinics = getAllClinics()
+  const relatedClinics = allClinics
+    .filter((c) => c.slug !== clinic.slug && c.type === clinic.type)
+    .slice(0, 3)
+
+  return (
+    <>
+      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
+        <div className="mx-auto max-w-3xl">
+          <Link
+            href="/clinics"
+            className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            小児科一覧に戻る
+          </Link>
+
+          <div className="mt-4 flex items-start gap-4">
+            <div
+              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border ${colorClass}`}
+            >
+              <IconComponent className="h-6 w-6" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span
+                  className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium ${colorClass}`}
+                >
+                  {CLINIC_TYPE_LABELS[clinic.type]}
+                </span>
+                {clinic.emergencyAvailable && (
+                  <span className="inline-flex rounded-full border border-red-200 bg-red-50 px-2.5 py-0.5 text-xs font-medium text-red-600">
+                    救急対応
+                  </span>
+                )}
+              </div>
+              <h1 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">
+                {clinic.name}
+              </h1>
+            </div>
+          </div>
+
+          {clinic.notes && (
+            <p className="mt-4 text-base leading-relaxed text-muted">
+              {clinic.notes}
+            </p>
+          )}
+        </div>
+      </section>
+
+      <section className="px-4 py-8 sm:py-12">
+        <div className="mx-auto max-w-3xl space-y-6">
+          {clinic.emergencyAvailable && (
+            <div className="rounded-xl border border-red-200 bg-red-50 p-6">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-red-700">
+                <AlertTriangle className="h-5 w-5" />
+                救急対応あり
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-red-800">
+                この病院は救急対応を行っています。夜間・休日の急な症状にも対応可能です。受診前にお電話でご確認ください。
+              </p>
+            </div>
+          )}
+
+          <div className="rounded-xl border border-border bg-card p-6">
+            <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+              <MapPin className="h-5 w-5 text-teal-600" />
+              基本情報
+            </h2>
+            <div className="mt-4 space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="shrink-0 text-sm font-medium text-muted">
+                  住所
+                </span>
+                <span className="text-sm text-card-foreground">
+                  {clinic.address}
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="shrink-0 text-sm font-medium text-muted">
+                  電話
+                </span>
+                <a
+                  href={`tel:${clinic.phone}`}
+                  className="flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-700"
+                >
+                  <Phone className="h-3.5 w-3.5" />
+                  {clinic.phone}
+                </a>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="shrink-0 text-sm font-medium text-muted">
+                  Web
+                </span>
+                <a
+                  href={clinic.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-700"
+                >
+                  ウェブサイトを開く
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-border bg-card p-6">
+            <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+              <Clock className="h-5 w-5 text-teal-600" />
+              診療時間
+            </h2>
+            <div className="mt-4">
+              <HoursRow label="平日" value={clinic.hours.weekday} />
+              <HoursRow label="土曜" value={clinic.hours.saturday} />
+              <HoursRow label="日曜" value={clinic.hours.sunday} />
+              <HoursRow label="祝日" value={clinic.hours.holiday} />
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-border bg-card p-6">
+            <h2 className="font-heading text-lg font-bold text-card-foreground">
+              対応科目・特徴
+            </h2>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {clinic.features.map((feature) => (
+                <span
+                  key={feature}
+                  className="rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-sm font-medium text-teal-700"
+                >
+                  {feature}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-border bg-warm-50 p-6 text-center">
+            <MapPin className="mx-auto h-8 w-8 text-muted" />
+            <p className="mt-2 text-sm text-muted">地図は準備中です</p>
+          </div>
+
+          {relatedClinics.length > 0 && (
+            <div>
+              <h2 className="font-heading text-lg font-bold text-foreground">
+                同じタイプの医療機関
+              </h2>
+              <div className="mt-3 space-y-2">
+                {relatedClinics.map((related) => (
+                  <Link
+                    key={related.slug}
+                    href={`/clinics/${related.slug}`}
+                    className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-teal-200"
+                  >
+                    <Stethoscope className="h-4 w-4 shrink-0 text-teal-600" />
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-card-foreground">
+                        {related.name}
+                      </p>
+                      <p className="text-xs text-muted">{related.address}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="pt-4">
+            <Link
+              href="/clinics"
+              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              小児科一覧に戻る
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
