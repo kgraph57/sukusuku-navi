@@ -1,6 +1,6 @@
-import type { Metadata } from "next"
-import Link from "next/link"
-import { notFound } from "next/navigation"
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import {
   ArrowLeft,
   ExternalLink,
@@ -10,79 +10,79 @@ import {
   Building2,
   Stethoscope,
   AlertTriangle,
-} from "lucide-react"
+} from "lucide-react";
 import {
   getAllClinics,
   getClinicBySlug,
   CLINIC_TYPE_LABELS,
-} from "@/lib/clinics"
-import type { Clinic } from "@/lib/clinics"
+} from "@/lib/clinics";
+import type { Clinic } from "@/lib/clinics";
 
 interface PageProps {
-  readonly params: Promise<{ slug: string }>
+  readonly params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const clinics = getAllClinics()
+  const clinics = getAllClinics();
   return clinics.map((clinic) => ({
     slug: clinic.slug,
-  }))
+  }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await params
-  const clinic = getClinicBySlug(slug)
-  if (!clinic) return { title: "医療機関が見つかりません" }
+  const { slug } = await params;
+  const clinic = getClinicBySlug(slug);
+  if (!clinic) return { title: "医療機関が見つかりません" };
 
   return {
     title: `${clinic.name} - 港区の小児科`,
     description: `${clinic.name}（${clinic.address}）の診療時間、対応科目、アクセス情報。`,
-  }
+  };
 }
 
 const TYPE_ICON_MAP: Record<string, typeof Building2> = {
   hospital: Building2,
   clinic: Stethoscope,
-}
+};
 
 const TYPE_COLOR_MAP: Record<string, string> = {
   hospital: "bg-red-50 text-red-600 border-red-200",
   clinic: "bg-teal-50 text-teal-600 border-teal-200",
-}
+};
 
 function HoursRow({
   label,
   value,
 }: {
-  readonly label: string
-  readonly value: string | null
+  readonly label: string;
+  readonly value: string | null;
 }) {
   return (
     <div className="flex items-center justify-between border-b border-border py-2 last:border-0">
       <span className="text-sm font-medium text-muted">{label}</span>
       <span className="text-sm text-card-foreground">{value ?? "休診"}</span>
     </div>
-  )
+  );
 }
 
 export default async function ClinicDetailPage({ params }: PageProps) {
-  const { slug } = await params
-  const clinic = getClinicBySlug(slug)
+  const { slug } = await params;
+  const clinic = getClinicBySlug(slug);
 
   if (!clinic) {
-    notFound()
+    notFound();
   }
 
   const colorClass =
-    TYPE_COLOR_MAP[clinic.type] ?? "bg-gray-50 text-gray-600 border-gray-200"
-  const IconComponent = TYPE_ICON_MAP[clinic.type] ?? Stethoscope
+    TYPE_COLOR_MAP[clinic.type] ?? "bg-gray-50 text-gray-600 border-gray-200";
+  const IconComponent = TYPE_ICON_MAP[clinic.type] ?? Stethoscope;
 
-  const allClinics = getAllClinics()
+  const allClinics = getAllClinics();
   const relatedClinics = allClinics
     .filter((c) => c.slug !== clinic.slug && c.type === clinic.type)
-    .slice(0, 3)
+    .slice(0, 3);
 
   return (
     <>
@@ -215,9 +215,29 @@ export default async function ClinicDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-warm-50 p-6 text-center">
-            <MapPin className="mx-auto h-8 w-8 text-muted" />
-            <p className="mt-2 text-sm text-muted">地図は準備中です</p>
+          <div className="overflow-hidden rounded-xl border border-border">
+            <iframe
+              src={`https://maps.google.com/maps?q=${clinic.lat},${clinic.lng}&z=16&output=embed&hl=ja`}
+              className="h-64 w-full sm:h-80"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title={`${clinic.name}の地図`}
+            />
+            <div className="flex items-center justify-between border-t border-border bg-card px-4 py-3">
+              <p className="text-sm text-muted">
+                <MapPin className="mr-1 inline-block h-3.5 w-3.5" />
+                {clinic.address}
+              </p>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${clinic.lat},${clinic.lng}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-700"
+              >
+                Googleマップで開く
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            </div>
           </div>
 
           {relatedClinics.length > 0 && (
@@ -257,5 +277,5 @@ export default async function ClinicDetailPage({ params }: PageProps) {
         </div>
       </section>
     </>
-  )
+  );
 }

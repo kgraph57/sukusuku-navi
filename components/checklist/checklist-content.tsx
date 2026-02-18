@@ -3,21 +3,50 @@
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import {
-  CheckCircle2,
+  Check,
   Circle,
+  FileText,
   MapPin,
   Calendar,
-  FileText,
   Lightbulb,
-  Link as LinkIcon,
+  ArrowRight,
+  Users,
 } from "lucide-react"
-import type { Checklist, ChecklistItem } from "@/lib/checklists"
+import type { ChecklistItem } from "@/lib/checklists"
+import {
+  getFamilyProfile,
+  saveFamilyProfile,
+  toggleChecklistItem,
+  getChildAge,
+} from "@/lib/family-store"
+import type { FamilyProfile, ChildProfile } from "@/lib/family-store"
+
+// ---------------------------------------------------------------------------
+// Props
+// ---------------------------------------------------------------------------
 
 interface ChecklistContentProps {
-  readonly checklist: Checklist
+  readonly slug: string
+  readonly items: readonly ChecklistItem[]
 }
 
-function useCheckedItems(slug: string) {
+// ---------------------------------------------------------------------------
+// Stamp animation style (injected once via inline <style>)
+// ---------------------------------------------------------------------------
+
+const STAMP_KEYFRAMES = `
+@keyframes stamp {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+`
+
+// ---------------------------------------------------------------------------
+// Local-only checked items hook (fallback when no family profile)
+// ---------------------------------------------------------------------------
+
+function useLocalCheckedItems(slug: string) {
   const [checkedItems, setCheckedItems] = useState<ReadonlySet<string>>(
     new Set()
   )
@@ -36,7 +65,7 @@ function useCheckedItems(slug: string) {
     setIsLoaded(true)
   }, [slug])
 
-  const toggleItem = useCallback(
+  const toggle = useCallback(
     (itemId: string) => {
       setCheckedItems((prev) => {
         const next = new Set(prev)
@@ -59,7 +88,7 @@ function useCheckedItems(slug: string) {
     [slug]
   )
 
-  const setAllItems = useCallback(
+  const setAll = useCallback(
     (itemIds: readonly string[]) => {
       const next = new Set(itemIds)
       setCheckedItems(next)
@@ -84,37 +113,91 @@ function useCheckedItems(slug: string) {
     }
   }, [slug])
 
-  return { checkedItems, isLoaded, toggleItem, setAllItems, clearAll }
+  return { checkedItems, isLoaded, toggle, setAll, clearAll }
 }
 
-function ChecklistItemCard({
+// ---------------------------------------------------------------------------
+// Format child age as readable string
+// ---------------------------------------------------------------------------
+
+function formatAge(birthDate: string): string {
+  const { years, months } = getChildAge(birthDate)
+  if (years === 0) {
+    return `${months}ヶ月`
+  }
+  if (months === 0) {
+    return `${years}歳`
+  }
+  return `${years}歳${months}ヶ月`
+}
+
+// ---------------------------------------------------------------------------
+// Stamp circle component
+// ---------------------------------------------------------------------------
+
+function StampCircle({
+  isChecked,
+  justStamped,
+  onToggle,
+}: {
+  readonly isChecked: boolean
+  readonly justStamped: boolean
+  readonly onToggle: () => void
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      className="mt-0.5 shrink-0"
+      aria-label={isChecked ? "チェックを外す" : "スタンプを押す"}
+    >
+      {isChecked ? (
+        <div
+          className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-teal-500 bg-teal-500 text-white"
+          style={
+            justStamped
+              ? { animation: "stamp 0.4s ease-out forwards" }
+              : undefined
+          }
+        >
+          <Check className="h-5 w-5" />
+        </div>
+      ) : (
+        <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-white">
+          <Circle className="h-5 w-5 text-gray-300" />
+        </div>
+      )}
+    </button>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Stamp-style item card
+// ---------------------------------------------------------------------------
+
+function StampItemCard({
   item,
   isChecked,
+  justStamped,
   onToggle,
 }: {
   readonly item: ChecklistItem
   readonly isChecked: boolean
+  readonly justStamped: boolean
   readonly onToggle: () => void
 }) {
   return (
     <div
-      className={`rounded-xl border bg-card p-5 transition-all ${
+      className={`rounded-xl border bg-card p-4 transition-all ${
         isChecked ? "border-teal-200 bg-teal-50/50" : "border-border"
       }`}
     >
       <div className="flex gap-3">
-        <button
-          type="button"
-          onClick={onToggle}
-          className="mt-0.5 shrink-0 text-teal-600 transition-colors hover:text-teal-700"
-          aria-label={isChecked ? "チェックを外す" : "チェックする"}
-        >
-          {isChecked ? (
-            <CheckCircle2 className="h-6 w-6" />
-          ) : (
-            <Circle className="h-6 w-6 text-warm-300" />
-          )}
-        </button>
+        <StampCircle
+          isChecked={isChecked}
+          justStamped={justStamped}
+          onToggle={onToggle}
+        />
 
         <div className="min-w-0 flex-1">
           <h3
@@ -163,7 +246,7 @@ function ChecklistItemCard({
 
             {item.relatedProgram && (
               <div className="flex items-center gap-2 text-sm">
-                <LinkIcon className="h-3.5 w-3.5 shrink-0 text-teal-600" />
+                <ArrowRight className="h-3.5 w-3.5 shrink-0 text-teal-600" />
                 <Link
                   href={`/programs/${item.relatedProgram}`}
                   className="font-medium text-teal-600 hover:text-teal-700 hover:underline"
@@ -188,27 +271,227 @@ function ChecklistItemCard({
   )
 }
 
-export function ChecklistContent({ checklist }: ChecklistContentProps) {
-  const { checkedItems, isLoaded, toggleItem, setAllItems, clearAll } =
-    useCheckedItems(checklist.slug)
+// ---------------------------------------------------------------------------
+// Celebration banner
+// ---------------------------------------------------------------------------
 
-  const checkedCount = checkedItems.size
-  const totalCount = checklist.items.length
-  const progress =
-    totalCount > 0 ? Math.round((checkedCount / totalCount) * 100) : 0
+function CelebrationBanner() {
+  return (
+    <div className="relative overflow-hidden rounded-xl border-2 border-teal-300 bg-gradient-to-r from-teal-50 via-white to-teal-50 p-6 text-center">
+      {/* CSS confetti dots */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {[
+          { top: "10%", left: "5%", bg: "bg-teal-400", delay: "0s" },
+          { top: "20%", left: "85%", bg: "bg-coral-400", delay: "0.2s" },
+          { top: "60%", left: "15%", bg: "bg-yellow-400", delay: "0.4s" },
+          { top: "30%", left: "70%", bg: "bg-teal-300", delay: "0.1s" },
+          { top: "70%", left: "80%", bg: "bg-coral-300", delay: "0.3s" },
+          { top: "15%", left: "45%", bg: "bg-yellow-300", delay: "0.5s" },
+          { top: "80%", left: "35%", bg: "bg-teal-500", delay: "0.15s" },
+          { top: "50%", left: "92%", bg: "bg-coral-500", delay: "0.35s" },
+        ].map((dot, i) => (
+          <div
+            key={i}
+            className={`absolute h-2 w-2 rounded-full ${dot.bg}`}
+            style={{
+              top: dot.top,
+              left: dot.left,
+              animation: `stamp 0.6s ease-out ${dot.delay} forwards`,
+              opacity: 0,
+            }}
+          />
+        ))}
+      </div>
 
-  const handleToggleAll = () => {
-    if (checkedCount === totalCount) {
-      clearAll()
-    } else {
-      setAllItems(checklist.items.map((item) => item.id))
+      <p className="relative text-lg font-bold text-teal-700">
+        おめでとうございます！すべての手続きが完了しました 🎉
+      </p>
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Child selector tabs
+// ---------------------------------------------------------------------------
+
+function ChildSelector({
+  children,
+  selectedChildId,
+  onSelect,
+}: {
+  readonly children: readonly ChildProfile[]
+  readonly selectedChildId: string
+  readonly onSelect: (childId: string) => void
+}) {
+  return (
+    <div className="mb-4 flex gap-2 overflow-x-auto pb-1">
+      {children.map((child) => {
+        const isActive = child.id === selectedChildId
+        return (
+          <button
+            key={child.id}
+            type="button"
+            onClick={() => onSelect(child.id)}
+            className={`flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+              isActive
+                ? "bg-teal-500 text-white"
+                : "bg-warm-100 text-muted hover:bg-warm-200"
+            }`}
+          >
+            <Users className="h-3.5 w-3.5" />
+            <span>{child.nickname}</span>
+            <span className="text-xs opacity-80">
+              ({formatAge(child.birthDate)})
+            </span>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Progress bar
+// ---------------------------------------------------------------------------
+
+function ProgressBar({
+  completed,
+  total,
+}: {
+  readonly completed: number
+  readonly total: number
+}) {
+  const percent = total > 0 ? Math.round((completed / total) * 100) : 0
+
+  return (
+    <div>
+      <div className="flex items-center justify-between text-sm">
+        <span className="font-medium text-card-foreground">
+          進捗: {completed}/{total}項目完了
+        </span>
+        <span className="font-medium text-teal-600">{percent}%</span>
+      </div>
+      <div className="mt-2 h-3 overflow-hidden rounded-full bg-warm-100">
+        <div
+          className="h-full rounded-full bg-teal-500 transition-all duration-300"
+          style={{ width: `${percent}%` }}
+        />
+      </div>
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Main component
+// ---------------------------------------------------------------------------
+
+export function ChecklistContent({ slug, items }: ChecklistContentProps) {
+  // Family profile state
+  const [familyProfile, setFamilyProfile] = useState<FamilyProfile | null>(
+    null
+  )
+  const [selectedChildId, setSelectedChildId] = useState<string | null>(null)
+  const [profileLoaded, setProfileLoaded] = useState(false)
+
+  // Track recently stamped items for animation
+  const [justStampedId, setJustStampedId] = useState<string | null>(null)
+
+  // Local-only fallback
+  const localStore = useLocalCheckedItems(slug)
+
+  // Load family profile on mount
+  useEffect(() => {
+    const profile = getFamilyProfile()
+    setFamilyProfile(profile)
+
+    if (profile && profile.children.length > 0) {
+      setSelectedChildId(profile.children[0].id)
     }
-  }
 
+    setProfileLoaded(true)
+  }, [])
+
+  // Clear animation after delay
+  useEffect(() => {
+    if (justStampedId === null) {
+      return
+    }
+
+    const timer = setTimeout(() => {
+      setJustStampedId(null)
+    }, 500)
+
+    return () => clearTimeout(timer)
+  }, [justStampedId])
+
+  // Determine which child is selected
+  const selectedChild =
+    familyProfile?.children.find((c) => c.id === selectedChildId) ?? null
+
+  // Build the set of completed item IDs
+  const checkedItems: ReadonlySet<string> = selectedChild
+    ? new Set(selectedChild.completedItems)
+    : localStore.checkedItems
+
+  const isLoaded = profileLoaded && (selectedChild ? true : localStore.isLoaded)
+
+  // Toggle handler
+  const handleToggle = useCallback(
+    (itemId: string) => {
+      setJustStampedId(itemId)
+
+      if (familyProfile && selectedChildId) {
+        const updated = toggleChecklistItem(
+          familyProfile,
+          selectedChildId,
+          itemId
+        )
+        setFamilyProfile(updated)
+        saveFamilyProfile(updated)
+      } else {
+        localStore.toggle(itemId)
+      }
+    },
+    [familyProfile, selectedChildId, localStore]
+  )
+
+  // Toggle all handler
+  const handleToggleAll = useCallback(() => {
+    const allIds = items.map((item) => item.id)
+    const allCompleted = allIds.every((id) => checkedItems.has(id))
+
+    if (familyProfile && selectedChildId) {
+      let updated = familyProfile
+
+      for (const id of allIds) {
+        const isCompleted = checkedItems.has(id)
+        // If all are completed, we uncomplete everything; otherwise complete everything
+        if (allCompleted ? isCompleted : !isCompleted) {
+          updated = toggleChecklistItem(updated, selectedChildId, id)
+        }
+      }
+
+      setFamilyProfile(updated)
+      saveFamilyProfile(updated)
+    } else {
+      if (allCompleted) {
+        localStore.clearAll()
+      } else {
+        localStore.setAll(allIds)
+      }
+    }
+  }, [items, checkedItems, familyProfile, selectedChildId, localStore])
+
+  // Computed values
+  const checkedCount = items.filter((item) => checkedItems.has(item.id)).length
+  const totalCount = items.length
+  const allCompleted = checkedCount === totalCount && totalCount > 0
+
+  // Loading skeleton
   if (!isLoaded) {
     return (
       <div className="space-y-4">
-        {checklist.items.map((item) => (
+        {items.map((item) => (
           <div
             key={item.id}
             className="h-40 animate-pulse rounded-xl border border-border bg-warm-50"
@@ -220,36 +503,65 @@ export function ChecklistContent({ checklist }: ChecklistContentProps) {
 
   return (
     <div>
+      {/* Inject stamp animation keyframes */}
+      <style dangerouslySetInnerHTML={{ __html: STAMP_KEYFRAMES }} />
+
+      {/* Family profile banner (no profile) */}
+      {!familyProfile && (
+        <div className="mb-4 rounded-xl border border-teal-200 bg-teal-50/60 p-4">
+          <div className="flex items-center gap-2">
+            <Users className="h-5 w-5 text-teal-600" />
+            <p className="text-sm text-teal-800">
+              お子さんを登録すると、進捗を保存できます
+            </p>
+          </div>
+          <Link
+            href="/my"
+            className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-700 hover:underline"
+          >
+            登録はこちら
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+      )}
+
+      {/* Child selector */}
+      {familyProfile &&
+        familyProfile.children.length > 0 &&
+        selectedChildId && (
+          <ChildSelector
+            children={familyProfile.children}
+            selectedChildId={selectedChildId}
+            onSelect={setSelectedChildId}
+          />
+        )}
+
+      {/* Progress bar + toggle all */}
       <div className="mb-6 rounded-xl border border-border bg-card p-4">
-        <div className="flex items-center justify-between">
-          <span className="text-sm font-medium text-card-foreground">
-            進捗: {checkedCount}/{totalCount}項目完了
-          </span>
+        <ProgressBar completed={checkedCount} total={totalCount} />
+        <div className="mt-3 flex justify-end">
           <button
             type="button"
             onClick={handleToggleAll}
             className="text-xs font-medium text-teal-600 hover:text-teal-700"
           >
-            {checkedCount === totalCount
-              ? "すべてのチェックを外す"
-              : "すべてチェックする"}
+            {allCompleted ? "すべてリセット" : "すべて完了"}
           </button>
-        </div>
-        <div className="mt-2 h-2 overflow-hidden rounded-full bg-warm-100">
-          <div
-            className="h-full rounded-full bg-teal-500 transition-all duration-300"
-            style={{ width: `${progress}%` }}
-          />
         </div>
       </div>
 
-      <div className="space-y-4">
-        {checklist.items.map((item) => (
-          <ChecklistItemCard
+      {/* Celebration banner */}
+      {allCompleted && <CelebrationBanner />}
+
+      {/* Checklist items */}
+      <div className={`space-y-4 ${allCompleted ? "mt-4" : ""}`}>
+        {items.map((item) => (
+          <StampItemCard
             key={item.id}
             item={item}
             isChecked={checkedItems.has(item.id)}
-            onToggle={() => toggleItem(item.id)}
+            justStamped={justStampedId === item.id && checkedItems.has(item.id)}
+            onToggle={() => handleToggle(item.id)}
           />
         ))}
       </div>
