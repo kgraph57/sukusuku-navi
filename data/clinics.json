@@ -16,7 +16,12 @@
     "website": "https://www.aiiku.net",
     "lat": 35.6455,
     "lng": 139.7485,
-    "notes": "おかもん先生の勤務先。小児科の他に産婦人科も併設。"
+    "notes": "おかもん先生の勤務先。小児科の他に産婦人科も併設。",
+    "nightHours": "17:00-20:00（夜間外来・要予約）",
+    "requiredItems": ["保険証", "医療証（お持ちの方）", "母子健康手帳", "お薬手帳"],
+    "nearestStation": "田町駅から徒歩8分",
+    "parkingAvailable": true,
+    "onlineBookingUrl": null
   },
   {
     "slug": "jikei-university-hospital",
@@ -35,7 +40,12 @@
     "website": "https://www.jikei.ac.jp/hospital/honin/",
     "lat": 35.6619,
     "lng": 139.7514,
-    "notes": "大学病院のため専門的な検査・治療が可能。紹介状があるとスムーズです。"
+    "notes": "大学病院のため専門的な検査・治療が可能。紹介状があるとスムーズです。",
+    "nightHours": "24時間救急対応（小児科当直医）",
+    "requiredItems": ["保険証", "医療証（お持ちの方）", "母子健康手帳", "お薬手帳", "紹介状（お持ちの方）"],
+    "nearestStation": "御成門駅から徒歩3分",
+    "parkingAvailable": true,
+    "onlineBookingUrl": null
   },
   {
     "slug": "kitasato-kenkyujo-hospital",
@@ -54,7 +64,12 @@
     "website": "https://www.kitasato-u.ac.jp/khp/",
     "lat": 35.6414,
     "lng": 139.7266,
-    "notes": "アレルギー疾患の専門的な診療に定評があります。"
+    "notes": "アレルギー疾患の専門的な診療に定評があります。",
+    "nightHours": null,
+    "requiredItems": ["保険証", "医療証（お持ちの方）", "母子健康手帳", "お薬手帳", "紹介状（お持ちの方）"],
+    "nearestStation": "白金高輪駅から徒歩10分",
+    "parkingAvailable": true,
+    "onlineBookingUrl": null
   },
   {
     "slug": "tamachi-kodomo-clinic",
@@ -72,8 +87,13 @@
     "emergencyAvailable": false,
     "website": "https://tamachi-kodomo.jp",
     "lat": 35.6466,
-    "lng": 139.7480,
-    "notes": "田町駅から徒歩5分。Web予約可能で待ち時間を減らせます。"
+    "lng": 139.748,
+    "notes": "田町駅から徒歩5分。Web予約可能で待ち時間を減らせます。",
+    "nightHours": null,
+    "requiredItems": ["保険証", "医療証（お持ちの方）", "母子健康手帳", "お薬手帳"],
+    "nearestStation": "田町駅から徒歩5分",
+    "parkingAvailable": false,
+    "onlineBookingUrl": "https://tamachi-kodomo.jp/reserve"
   },
   {
     "slug": "shirokanedai-pediatrics",
@@ -92,7 +112,12 @@
     "website": "https://shirokanedai-shounika.jp",
     "lat": 35.6382,
     "lng": 139.7257,
-    "notes": "白金台駅から徒歩2分。アレルギー外来は予約制です。"
+    "notes": "白金台駅から徒歩2分。アレルギー外来は予約制です。",
+    "nightHours": null,
+    "requiredItems": ["保険証", "医療証（お持ちの方）", "母子健康手帳", "お薬手帳"],
+    "nearestStation": "白金台駅から徒歩2分",
+    "parkingAvailable": false,
+    "onlineBookingUrl": null
   },
   {
     "slug": "azabu-pediatric-clinic",
@@ -111,7 +136,12 @@
     "website": "https://azabu-kodomo.jp",
     "lat": 35.6543,
     "lng": 139.7367,
-    "notes": "麻布十番駅すぐ。英語対応可能で外国人家庭にも対応しています。"
+    "notes": "麻布十番駅すぐ。英語対応可能で外国人家庭にも対応しています。",
+    "nightHours": null,
+    "requiredItems": ["保険証", "医療証（お持ちの方）", "母子健康手帳", "お薬手帳"],
+    "nearestStation": "麻布十番駅から徒歩1分",
+    "parkingAvailable": false,
+    "onlineBookingUrl": null
   },
   {
     "slug": "akasaka-kodomo-clinic",
@@ -130,7 +160,12 @@
     "website": "https://akasaka-kodomo.jp",
     "lat": 35.6745,
     "lng": 139.7372,
-    "notes": "赤坂見附駅から徒歩4分。アレルギー専門医が在籍。"
+    "notes": "赤坂見附駅から徒歩4分。アレルギー専門医が在籍。",
+    "nightHours": null,
+    "requiredItems": ["保険証", "医療証（お持ちの方）", "母子健康手帳", "お薬手帳"],
+    "nearestStation": "赤坂見附駅から徒歩4分",
+    "parkingAvailable": false,
+    "onlineBookingUrl": null
   },
   {
     "slug": "hiroo-kodomo-clinic",
@@ -149,7 +184,12 @@
     "website": "https://hiroo-kodomo.jp",
     "lat": 35.6505,
     "lng": 139.7219,
-    "notes": "広尾駅から徒歩3分。インターナショナルスクールの児童も多く通院。"
+    "notes": "広尾駅から徒歩3分。インターナショナルスクールの児童も多く通院。",
+    "nightHours": null,
+    "requiredItems": ["保険証", "医療証（お持ちの方）", "母子健康手帳", "お薬手帳"],
+    "nearestStation": "広尾駅から徒歩3分",
+    "parkingAvailable": false,
+    "onlineBookingUrl": null
   },
   {
     "slug": "shinagawa-kids-clinic",
@@ -168,7 +208,12 @@
     "website": "https://shinagawa-kids.jp",
     "lat": 35.6302,
     "lng": 139.7389,
-    "notes": "品川駅高輪口から徒歩5分。予約制で待ち時間が少ないです。"
+    "notes": "品川駅高輪口から徒歩5分。予約制で待ち時間が少ないです。",
+    "nightHours": null,
+    "requiredItems": ["保険証", "医療証（お持ちの方）", "母子健康手帳", "お薬手帳"],
+    "nearestStation": "品川駅高輪口から徒歩5分",
+    "parkingAvailable": false,
+    "onlineBookingUrl": "https://shinagawa-kids.jp/reserve"
   },
   {
     "slug": "minato-pediatrics",
@@ -187,7 +232,12 @@
     "website": "https://minato-shounika.jp",
     "lat": 35.6483,
     "lng": 139.7448,
-    "notes": "三田駅・田町駅からアクセス良好。地域密着型の小児科です。"
+    "notes": "三田駅・田町駅からアクセス良好。地域密着型の小児科です。",
+    "nightHours": null,
+    "requiredItems": ["保険証", "医療証（お持ちの方）", "母子健康手帳", "お薬手帳"],
+    "nearestStation": "三田駅から徒歩3分",
+    "parkingAvailable": false,
+    "onlineBookingUrl": null
   },
   {
     "slug": "takanawa-kodomo-clinic",
@@ -205,8 +255,13 @@
     "emergencyAvailable": false,
     "website": "https://takanawa-kodomo.jp",
     "lat": 35.6359,
-    "lng": 139.7350,
-    "notes": "高輪台駅から徒歩3分。オンラインでの予約が便利です。"
+    "lng": 139.735,
+    "notes": "高輪台駅から徒歩3分。オンラインでの予約が便利です。",
+    "nightHours": null,
+    "requiredItems": ["保険証", "医療証（お持ちの方）", "母子健康手帳", "お薬手帳"],
+    "nearestStation": "高輪台駅から徒歩3分",
+    "parkingAvailable": false,
+    "onlineBookingUrl": "https://takanawa-kodomo.jp/reserve"
   },
   {
     "slug": "roppongi-hills-clinic",
@@ -225,6 +280,11 @@
     "website": "https://roppongihills-clinic.jp",
     "lat": 35.6604,
     "lng": 139.7292,
-    "notes": "六本木ヒルズ内。夕方遅くまで診察しており、仕事帰りにも便利。"
+    "notes": "六本木ヒルズ内。夕方遅くまで診察しており、仕事帰りにも便利。",
+    "nightHours": null,
+    "requiredItems": ["保険証", "医療証（お持ちの方）", "母子健康手帳", "お薬手帳"],
+    "nearestStation": "六本木駅直結",
+    "parkingAvailable": true,
+    "onlineBookingUrl": "https://roppongihills-clinic.jp/reserve"
   }
 ]

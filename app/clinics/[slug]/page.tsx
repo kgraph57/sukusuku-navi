@@ -1,6 +1,6 @@
-import type { Metadata } from "next"
-import Link from "next/link"
-import { notFound } from "next/navigation"
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import {
   ArrowLeft,
   ExternalLink,
@@ -10,79 +10,77 @@ import {
   Building2,
   Stethoscope,
   AlertTriangle,
-} from "lucide-react"
+  Navigation2,
+  Moon,
+  Briefcase,
+  CheckSquare,
+  Train,
+  Car,
+  Calendar,
+} from "lucide-react";
 import {
   getAllClinics,
   getClinicBySlug,
   CLINIC_TYPE_LABELS,
-} from "@/lib/clinics"
-import type { Clinic } from "@/lib/clinics"
+} from "@/lib/clinics";
+import type { Clinic } from "@/lib/clinics";
+import { TYPE_ICON_MAP, TYPE_COLOR_MAP } from "@/lib/clinic-constants";
 
 interface PageProps {
-  readonly params: Promise<{ slug: string }>
+  readonly params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const clinics = getAllClinics()
+  const clinics = getAllClinics();
   return clinics.map((clinic) => ({
     slug: clinic.slug,
-  }))
+  }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await params
-  const clinic = getClinicBySlug(slug)
-  if (!clinic) return { title: "医療機関が見つかりません" }
+  const { slug } = await params;
+  const clinic = getClinicBySlug(slug);
+  if (!clinic) return { title: "医療機関が見つかりません" };
 
   return {
     title: `${clinic.name} - 港区の小児科`,
     description: `${clinic.name}（${clinic.address}）の診療時間、対応科目、アクセス情報。`,
-  }
-}
-
-const TYPE_ICON_MAP: Record<string, typeof Building2> = {
-  hospital: Building2,
-  clinic: Stethoscope,
-}
-
-const TYPE_COLOR_MAP: Record<string, string> = {
-  hospital: "bg-red-50 text-red-600 border-red-200",
-  clinic: "bg-teal-50 text-teal-600 border-teal-200",
+  };
 }
 
 function HoursRow({
   label,
   value,
 }: {
-  readonly label: string
-  readonly value: string | null
+  readonly label: string;
+  readonly value: string | null;
 }) {
   return (
     <div className="flex items-center justify-between border-b border-border py-2 last:border-0">
       <span className="text-sm font-medium text-muted">{label}</span>
       <span className="text-sm text-card-foreground">{value ?? "休診"}</span>
     </div>
-  )
+  );
 }
 
 export default async function ClinicDetailPage({ params }: PageProps) {
-  const { slug } = await params
-  const clinic = getClinicBySlug(slug)
+  const { slug } = await params;
+  const clinic = getClinicBySlug(slug);
 
   if (!clinic) {
-    notFound()
+    notFound();
   }
 
   const colorClass =
-    TYPE_COLOR_MAP[clinic.type] ?? "bg-gray-50 text-gray-600 border-gray-200"
-  const IconComponent = TYPE_ICON_MAP[clinic.type] ?? Stethoscope
+    TYPE_COLOR_MAP[clinic.type] ?? "bg-gray-50 text-gray-600 border-gray-200";
+  const IconComponent = TYPE_ICON_MAP[clinic.type] ?? Stethoscope;
 
-  const allClinics = getAllClinics()
+  const allClinics = getAllClinics();
   const relatedClinics = allClinics
     .filter((c) => c.slug !== clinic.slug && c.type === clinic.type)
-    .slice(0, 3)
+    .slice(0, 3);
 
   return (
     <>
@@ -171,17 +169,21 @@ export default async function ClinicDetailPage({ params }: PageProps) {
               </div>
               <div className="flex items-start gap-3">
                 <span className="shrink-0 text-sm font-medium text-muted">
-                  Web
+                  最寄駅
                 </span>
-                <a
-                  href={clinic.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-700"
-                >
-                  ウェブサイトを開く
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </a>
+                <span className="flex items-center gap-1 text-sm text-card-foreground">
+                  <Train className="h-3.5 w-3.5 shrink-0 text-teal-600" />
+                  {clinic.nearestStation}
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="shrink-0 text-sm font-medium text-muted">
+                  駐車場
+                </span>
+                <span className="flex items-center gap-1 text-sm text-card-foreground">
+                  <Car className="h-3.5 w-3.5 shrink-0 text-teal-600" />
+                  {clinic.parkingAvailable ? "あり" : "なし"}
+                </span>
               </div>
             </div>
           </div>
@@ -215,9 +217,95 @@ export default async function ClinicDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-warm-50 p-6 text-center">
-            <MapPin className="mx-auto h-8 w-8 text-muted" />
-            <p className="mt-2 text-sm text-muted">地図は準備中です</p>
+          <div className="overflow-hidden rounded-xl border border-border">
+            <iframe
+              src={`https://maps.google.com/maps?q=${clinic.lat},${clinic.lng}&z=16&output=embed&hl=ja`}
+              className="h-64 w-full sm:h-80"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title={`${clinic.name}の地図`}
+              sandbox="allow-scripts allow-same-origin"
+            />
+            <div className="flex items-center justify-between border-t border-border bg-card px-4 py-3">
+              <p className="text-sm text-muted">
+                <MapPin className="mr-1 inline-block h-3.5 w-3.5" />
+                {clinic.address}
+              </p>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${clinic.lat},${clinic.lng}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-700"
+              >
+                Googleマップで開く
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            </div>
+          </div>
+
+          <a
+            href={`https://www.google.com/maps/dir/?api=1&destination=${clinic.lat},${clinic.lng}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-teal-600 px-6 py-3.5 text-base font-bold text-white shadow-sm transition-colors hover:bg-teal-700"
+          >
+            <Navigation2 className="h-5 w-5" />
+            現在地からルート案内
+          </a>
+
+          {clinic.nightHours !== null && (
+            <div className="rounded-xl border border-indigo-200 bg-indigo-50 p-6">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-indigo-700">
+                <Moon className="h-5 w-5" />
+                夜間診療
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-indigo-700">
+                {clinic.nightHours}
+              </p>
+            </div>
+          )}
+
+          {clinic.requiredItems.length > 0 && (
+            <div className="rounded-xl border border-amber-200 bg-amber-50 p-6">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-amber-700">
+                <Briefcase className="h-5 w-5" />
+                受診に必要な持ち物
+              </h2>
+              <ul className="mt-4 space-y-2">
+                {clinic.requiredItems.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-center gap-2 text-sm text-amber-800"
+                  >
+                    <CheckSquare className="h-4 w-4 shrink-0 text-amber-600" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div className="flex flex-col gap-3">
+            {clinic.onlineBookingUrl !== null && (
+              <a
+                href={clinic.onlineBookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-teal-600 px-6 py-3.5 text-base font-bold text-white shadow-sm transition-colors hover:bg-teal-700"
+              >
+                <Calendar className="h-5 w-5" />
+                Web予約する
+              </a>
+            )}
+            <a
+              href={clinic.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-teal-200 bg-white px-6 py-3.5 text-base font-bold text-teal-600 shadow-sm transition-colors hover:bg-teal-50"
+            >
+              <ExternalLink className="h-5 w-5" />
+              病院のウェブサイトを開く
+            </a>
           </div>
 
           {relatedClinics.length > 0 && (
@@ -257,5 +345,5 @@ export default async function ClinicDetailPage({ params }: PageProps) {
         </div>
       </section>
     </>
-  )
+  );
 }

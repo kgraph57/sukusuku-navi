@@ -1,5 +1,5 @@
-import type { Metadata } from "next"
-import Link from "next/link"
+import type { Metadata } from "next";
+import Link from "next/link";
 import {
   MapPin,
   Clock,
@@ -7,34 +7,26 @@ import {
   ArrowRight,
   Building2,
   Stethoscope,
-} from "lucide-react"
+  Train,
+} from "lucide-react";
 import {
   getAllClinics,
   getEmergencyClinics,
   CLINIC_TYPE_LABELS,
-} from "@/lib/clinics"
-import type { Clinic } from "@/lib/clinics"
+} from "@/lib/clinics";
+import type { Clinic } from "@/lib/clinics";
+import { TYPE_ICON_MAP, TYPE_COLOR_MAP } from "@/lib/clinic-constants";
 
 export const metadata: Metadata = {
   title: "港区の小児科マップ",
   description:
     "港区の小児科クリニック・病院の一覧。夜間・休日対応の医療機関、予防接種、アレルギー外来など12の医療機関をまとめて確認できます。",
-}
-
-const TYPE_ICON_MAP: Record<string, typeof Building2> = {
-  hospital: Building2,
-  clinic: Stethoscope,
-}
-
-const TYPE_COLOR_MAP: Record<string, string> = {
-  hospital: "bg-red-50 text-red-600 border-red-200",
-  clinic: "bg-teal-50 text-teal-600 border-teal-200",
-}
+};
 
 function ClinicCard({ clinic }: { readonly clinic: Clinic }) {
   const colorClass =
-    TYPE_COLOR_MAP[clinic.type] ?? "bg-gray-50 text-gray-600 border-gray-200"
-  const IconComponent = TYPE_ICON_MAP[clinic.type] ?? Stethoscope
+    TYPE_COLOR_MAP[clinic.type] ?? "bg-gray-50 text-gray-600 border-gray-200";
+  const IconComponent = TYPE_ICON_MAP[clinic.type] ?? Stethoscope;
 
   return (
     <Link
@@ -62,12 +54,21 @@ function ClinicCard({ clinic }: { readonly clinic: Clinic }) {
               救急対応
             </span>
           )}
+          {clinic.nightHours != null && (
+            <span className="inline-flex rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-medium text-indigo-600">
+              夜間対応
+            </span>
+          )}
         </div>
 
         <div className="mt-2 space-y-1">
           <p className="flex items-center gap-1.5 text-sm text-muted">
             <MapPin className="h-3.5 w-3.5 shrink-0" />
             {clinic.address}
+          </p>
+          <p className="flex items-center gap-1.5 text-sm text-muted">
+            <Train className="h-3.5 w-3.5 shrink-0" />
+            {clinic.nearestStation}
           </p>
           <p className="flex items-center gap-1.5 text-sm text-muted">
             <Clock className="h-3.5 w-3.5 shrink-0" />
@@ -92,13 +93,13 @@ function ClinicCard({ clinic }: { readonly clinic: Clinic }) {
         </span>
       </div>
     </Link>
-  )
+  );
 }
 
 export default function ClinicsPage() {
-  const allClinics = getAllClinics()
-  const emergencyClinics = getEmergencyClinics()
-  const regularClinics = allClinics.filter((c) => !c.emergencyAvailable)
+  const allClinics = getAllClinics();
+  const emergencyClinics = getEmergencyClinics();
+  const regularClinics = allClinics.filter((c) => !c.emergencyAvailable);
 
   return (
     <>
@@ -113,7 +114,33 @@ export default function ClinicsPage() {
             {allClinics.length}
             施設を確認できます。
           </p>
-          <p className="mt-2 text-sm text-muted">※ 地図機能は準備中です</p>
+        </div>
+      </section>
+
+      <section className="border-b border-border px-4 py-6">
+        <div className="mx-auto max-w-4xl">
+          <div className="overflow-hidden rounded-xl border border-border">
+            <iframe
+              src="https://maps.google.com/maps?q=港区+小児科&z=13&output=embed&hl=ja"
+              className="h-64 w-full sm:h-80"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="港区の小児科マップ"
+              sandbox="allow-scripts allow-same-origin"
+            />
+            <div className="flex items-center justify-between border-t border-border bg-card px-4 py-3">
+              <p className="text-sm text-muted">港区エリアの小児科</p>
+              <a
+                href="https://www.google.com/maps/search/港区+小児科"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-700"
+              >
+                Googleマップで開く
+                <ArrowRight className="h-3.5 w-3.5" />
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -189,5 +216,5 @@ export default function ClinicsPage() {
         </div>
       </section>
     </>
-  )
+  );
 }
