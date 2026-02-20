@@ -184,6 +184,7 @@ export interface Vaccine {
   readonly contraindications: string;
   readonly relatedArticleSlug: string | null;
   readonly relatedProgramSlug: string | null;
+  readonly faq?: ReadonlyArray<VaccinationFaq>;
 }
 
 export interface VaccinationStep {

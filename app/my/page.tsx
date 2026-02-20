@@ -10,20 +10,14 @@ import {
   Calculator,
   ClipboardList,
   User,
+  Syringe,
 } from "lucide-react";
 import { FamilyProfileSetup } from "@/components/family/family-profile-setup";
-import {
-  getFamilyProfile,
-  getChildAge,
-} from "@/lib/family-store";
+import { getFamilyProfile, getChildAge } from "@/lib/family-store";
 import type { FamilyProfile, ChildProfile } from "@/lib/family-store";
 import { getAllChecklists } from "@/lib/checklists";
 
-function ChecklistProgressCard({
-  child,
-}: {
-  readonly child: ChildProfile;
-}) {
+function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
   const checklists = getAllChecklists();
   const { years, months } = getChildAge(child.birthDate);
 
@@ -47,7 +41,7 @@ function ChecklistProgressCard({
         {checklists.map((checklist) => {
           const totalItems = checklist.items.length;
           const completedCount = checklist.items.filter((item) =>
-            child.completedItems.includes(item.id)
+            child.completedItems.includes(item.id),
           ).length;
           const percentage =
             totalItems > 0
@@ -120,6 +114,20 @@ function QuickActions() {
             手続きガイド
           </h3>
           <p className="text-xs text-muted">やることを確認する</p>
+        </div>
+      </Link>
+      <Link
+        href="/vaccines"
+        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+      >
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blue-200 bg-blue-50">
+          <Syringe className="h-5 w-5 text-blue-600" />
+        </div>
+        <div>
+          <h3 className="font-heading text-sm font-bold text-card-foreground">
+            予防接種
+          </h3>
+          <p className="text-xs text-muted">接種スケジュールを確認する</p>
         </div>
       </Link>
     </div>

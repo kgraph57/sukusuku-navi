@@ -6,6 +6,7 @@ import { getAllPrograms } from "@/lib/programs";
 import { getAllClinics } from "@/lib/clinics";
 import { getAllChecklists } from "@/lib/checklists";
 import { getAllSymptoms } from "@/lib/triage/engine";
+import { getAllVaccines } from "@/lib/vaccines";
 
 const BASE_URL = "https://kgraph57.github.io/sukusuku-navi";
 
@@ -15,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const clinics = getAllClinics();
   const checklists = getAllChecklists();
   const symptoms = getAllSymptoms();
+  const vaccines = getAllVaccines();
 
   const staticPages = [
     {
@@ -58,6 +60,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/vaccines`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     },
     {
       url: `${BASE_URL}/about`,
@@ -114,6 +122,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  const vaccinePages = vaccines.map((v) => ({
+    url: `${BASE_URL}/vaccines/${v.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   return [
     ...staticPages,
     ...articlePages,
@@ -121,5 +136,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...clinicPages,
     ...checklistPages,
     ...symptomPages,
+    ...vaccinePages,
   ];
 }

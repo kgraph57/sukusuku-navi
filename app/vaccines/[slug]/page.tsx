@@ -10,6 +10,7 @@ import {
   ExternalLink,
   CheckCircle2,
   ShieldCheck,
+  HelpCircle,
 } from "lucide-react";
 import {
   getAllVaccines,
@@ -29,7 +30,9 @@ export async function generateStaticParams() {
   return vaccines.map((v) => ({ slug: v.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const vaccine = getVaccineBySlug(slug);
   if (!vaccine) return { title: "ワクチンが見つかりません" };
@@ -48,7 +51,8 @@ export default async function VaccineDetailPage({ params }: PageProps) {
   }
 
   const colorClass =
-    VACCINE_TYPE_COLORS[vaccine.type] ?? "bg-gray-50 text-gray-700 border-gray-200";
+    VACCINE_TYPE_COLORS[vaccine.type] ??
+    "bg-gray-50 text-gray-700 border-gray-200";
   const relatedProgram = vaccine.relatedProgramSlug
     ? getProgramBySlug(vaccine.relatedProgramSlug)
     : null;
@@ -123,8 +127,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
                       </span>
                       {dose.ageMonthsMax < 999 && (
                         <span className="inline-flex items-center gap-1 rounded-md bg-warm-100 px-2 py-0.5 text-xs text-muted">
-                          接種可能期間:{" "}
-                          {formatAgeMonths(dose.ageMonthsMin)}〜
+                          接種可能期間: {formatAgeMonths(dose.ageMonthsMin)}〜
                           {formatAgeMonths(dose.ageMonthsMax)}
                         </span>
                       )}
@@ -177,6 +180,27 @@ export default async function VaccineDetailPage({ params }: PageProps) {
             </div>
           )}
 
+          {vaccine.faq && vaccine.faq.length > 0 && (
+            <div className="rounded-xl border border-border bg-card p-6">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+                <HelpCircle className="h-5 w-5 text-teal-600" />
+                よくある質問
+              </h2>
+              <div className="mt-4 space-y-5">
+                {vaccine.faq.map((item, i) => (
+                  <div key={i}>
+                    <p className="text-sm font-medium text-card-foreground">
+                      Q. {item.question}
+                    </p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                      A. {item.answer}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {vaccine.relatedArticleSlug && (
             <div className="rounded-xl border border-border bg-card p-6">
               <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
@@ -216,7 +240,8 @@ export default async function VaccineDetailPage({ params }: PageProps) {
 
           <div className="rounded-xl border border-border bg-warm-50 p-4">
             <p className="text-xs leading-relaxed text-muted">
-              ※ この情報は一般的な医学情報の提供を目的としており、個別の診断・治療を行うものではありません。
+              ※
+              この情報は一般的な医学情報の提供を目的としており、個別の診断・治療を行うものではありません。
               接種時期や可否についてはかかりつけの小児科医にご相談ください。
             </p>
           </div>
