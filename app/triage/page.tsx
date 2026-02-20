@@ -20,11 +20,12 @@ import {
 } from "lucide-react";
 import { getAllSymptoms } from "@/lib/triage/engine";
 import type { TriageSymptom } from "@/lib/triage/engine";
+import { GuidedTriageFlow } from "@/components/triage/guided-triage-flow";
 
 export const metadata: Metadata = {
   title: "症状チェック（トリアージ）",
   description:
-    "お子さんの症状から受診の緊急度を判断します。発熱・嘔吐・咳・発疹・腹痛・頭部外傷・呼吸困難・けいれん・誤飲・鼻血など17症状に対応。",
+    "お子さんの症状から受診の緊急度を判断します。質問に答えていくだけで、受診の目安がわかります。発熱・嘔吐・咳・発疹・腹痛・頭部外傷・呼吸困難・けいれん・誤飲・鼻血など17症状に対応。",
 };
 
 const ICON_MAP: Record<string, typeof Thermometer> = {
@@ -100,7 +101,7 @@ export default function TriagePage() {
             症状チェック
           </h1>
           <p className="mt-4 text-base leading-relaxed text-muted">
-            お子さんの症状から、受診の緊急度を判断するお手伝いをします。
+            質問に答えていくだけで、受診の緊急度を判断します。
           </p>
         </div>
       </section>
@@ -121,11 +122,30 @@ export default function TriagePage() {
         </div>
       </section>
 
+      {/* Guided Triage Flow - Primary UX */}
       <section className="px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-heading text-xl font-bold text-foreground">
-            症状を選んでください
+            質問に答えて症状をチェック
           </h2>
+          <p className="mt-2 text-sm text-muted">
+            緊急性の確認 → 年齢の選択 → 症状の選択の順にご案内します
+          </p>
+          <div className="mt-6">
+            <GuidedTriageFlow />
+          </div>
+        </div>
+      </section>
+
+      {/* Existing Symptom List - Alternative/Direct Access */}
+      <section className="border-t border-border bg-warm-50 px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="font-heading text-xl font-bold text-foreground">
+            症状から直接選ぶ
+          </h2>
+          <p className="mt-2 text-sm text-muted">
+            チェックしたい症状がわかっている方はこちらからどうぞ
+          </p>
           <div className="mt-6 space-y-3">
             {symptoms.map((symptom, index) => (
               <SymptomCard key={symptom.slug} symptom={symptom} index={index} />

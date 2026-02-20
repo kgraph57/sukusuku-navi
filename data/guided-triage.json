@@ -1,0 +1,131 @@
+{
+  "emergencyScreening": [
+    {
+      "id": "es-1",
+      "text": "意識がない、けいれんしている、または呼吸をしていないですか？",
+      "helpText": "呼びかけに反応しない、体が硬直してガクガク震えている、胸やお腹の動きがない場合です。",
+      "yesResult": {
+        "severity": "emergency",
+        "title": "今すぐ119番に電話してください",
+        "description": "意識障害・けいれん・呼吸停止は命に関わる緊急事態です。一刻も早く救急車を呼んでください。",
+        "actions": [
+          "119番に電話して救急車を呼んでください",
+          "けいれん中は体を横向きにして、口の中に物を入れないでください",
+          "呼吸がない場合は心肺蘇生（胸骨圧迫）を開始してください",
+          "嘔吐がある場合は窒息しないよう横向きに寝かせてください"
+        ]
+      }
+    },
+    {
+      "id": "es-2",
+      "text": "ぐったりして反応が弱い、顔色が悪い（青白い・土色）、唇が紫色ですか？",
+      "helpText": "普段と明らかに違ってぐったりしている、呼びかけへの反応が鈍い、顔色が蒼白や灰色がかっている状態です。",
+      "yesResult": {
+        "severity": "emergency",
+        "title": "すぐに救急受診してください",
+        "description": "全身状態の著しい悪化は、重症感染症やショック状態の可能性があります。",
+        "actions": [
+          "すぐに救急病院を受診してください",
+          "迷ったら#7119（救急相談）に電話してください",
+          "横向きに寝かせて楽な姿勢をとらせてください",
+          "体温・呼吸の回数を確認して記録してください"
+        ]
+      }
+    }
+  ],
+  "ageGroups": [
+    {
+      "id": "0-3mo",
+      "label": "0〜3ヶ月",
+      "description": "新生児〜生後3ヶ月"
+    },
+    {
+      "id": "3-12mo",
+      "label": "3〜12ヶ月",
+      "description": "生後3ヶ月〜1歳"
+    },
+    {
+      "id": "1-3yr",
+      "label": "1〜3歳",
+      "description": "1歳〜3歳"
+    },
+    {
+      "id": "3yr-plus",
+      "label": "3歳以上",
+      "description": "3歳以上のお子さん"
+    }
+  ],
+  "symptomGroups": [
+    {
+      "id": "fever",
+      "label": "熱がある",
+      "icon": "Thermometer",
+      "description": "38℃以上の発熱",
+      "symptomSlugs": ["fever"]
+    },
+    {
+      "id": "vomiting-diarrhea",
+      "label": "吐いた・下痢",
+      "icon": "Droplets",
+      "description": "嘔吐や下痢の症状",
+      "symptomSlugs": ["vomiting", "diarrhea"]
+    },
+    {
+      "id": "breathing-cough",
+      "label": "咳・息がしんどそう",
+      "icon": "Wind",
+      "description": "咳が止まらない、呼吸が苦しそう",
+      "symptomSlugs": ["cough", "breathing-difficulty"]
+    },
+    {
+      "id": "rash-skin",
+      "label": "発疹・皮膚の異常",
+      "icon": "CircleDot",
+      "description": "ブツブツ、赤み、かゆみなど",
+      "symptomSlugs": ["rash", "allergic-reaction"]
+    },
+    {
+      "id": "injury-accident",
+      "label": "ケガ・やけど・誤飲",
+      "icon": "AlertTriangle",
+      "description": "外傷、やけど、物を飲み込んだ",
+      "symptomSlugs": ["head-injury", "burn", "accidental-ingestion"]
+    },
+    {
+      "id": "other",
+      "label": "その他の症状",
+      "icon": "Stethoscope",
+      "description": "腹痛・頭痛・耳・目・のど・鼻血など",
+      "symptomSlugs": ["abdominal-pain", "headache", "ear-pain", "sore-throat", "eye-symptoms", "seizure", "nosebleed"]
+    }
+  ],
+  "ageOverrides": {
+    "0-3mo": {
+      "fever": {
+        "severity": "emergency",
+        "title": "すぐに救急受診してください",
+        "description": "生後3ヶ月未満の発熱（38℃以上）は、重症細菌感染症の可能性があり、月齢に関わらず緊急対応が必要です。",
+        "actions": [
+          "すぐに救急病院を受診してください",
+          "体温と測定時刻を記録してください",
+          "哺乳量・尿の量・機嫌を確認してください",
+          "解熱剤は使用せず、そのまま受診してください"
+        ]
+      }
+    },
+    "3-12mo": {
+      "fever": {
+        "severity": "call-8000",
+        "title": "小児救急電話相談（#8000）に電話してください",
+        "description": "生後3〜12ヶ月の発熱は注意が必要です。特に39℃以上、ぐったりしている、水分が取れない場合はすぐに相談してください。",
+        "actions": [
+          "#8000（小児救急電話相談）に電話してください",
+          "体温と哺乳量を記録してください",
+          "水分をこまめに与えてください",
+          "薄着にして涼しく保ってください",
+          "状態が悪化したら迷わず救急受診してください"
+        ]
+      }
+    }
+  }
+}
