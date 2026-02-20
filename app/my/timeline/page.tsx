@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   AlertTriangle,
   Clock,
@@ -14,14 +14,16 @@ import {
   Heart,
   Lightbulb,
   Baby,
-} from "lucide-react"
-import { getFamilyProfile, getChildAge } from "@/lib/family-store"
-import type { FamilyProfile, ChildProfile } from "@/lib/family-store"
+  List,
+} from "lucide-react";
+import { getFamilyProfile, getChildAge } from "@/lib/family-store";
+import type { FamilyProfile, ChildProfile } from "@/lib/family-store";
 import {
   generateTimeline,
   groupTimelineByUrgency,
-} from "@/lib/timeline-engine"
-import type { TimelineItem, TimelineUrgency } from "@/lib/timeline-engine"
+} from "@/lib/timeline-engine";
+import type { TimelineItem, TimelineUrgency } from "@/lib/timeline-engine";
+import { CalendarView } from "@/components/timeline/calendar-view";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -30,10 +32,10 @@ import type { TimelineItem, TimelineUrgency } from "@/lib/timeline-engine"
 const URGENCY_STYLES: Record<
   TimelineUrgency,
   {
-    readonly accentBar: string
-    readonly headerBg: string
-    readonly badgeBg: string
-    readonly badgeText: string
+    readonly accentBar: string;
+    readonly headerBg: string;
+    readonly badgeBg: string;
+    readonly badgeText: string;
   }
 > = {
   overdue: {
@@ -66,7 +68,7 @@ const URGENCY_STYLES: Record<
     badgeBg: "bg-gray-100",
     badgeText: "text-gray-600",
   },
-} as const
+} as const;
 
 // ---------------------------------------------------------------------------
 // Category icon component
@@ -75,17 +77,17 @@ const URGENCY_STYLES: Record<
 function CategoryIcon({
   category,
 }: {
-  readonly category: TimelineItem["category"]
+  readonly category: TimelineItem["category"];
 }) {
   switch (category) {
     case "admin":
-      return <Building2 className="h-5 w-5 text-blue-600" />
+      return <Building2 className="h-5 w-5 text-blue-600" />;
     case "medical":
-      return <Stethoscope className="h-5 w-5 text-teal-600" />
+      return <Stethoscope className="h-5 w-5 text-teal-600" />;
     case "vaccination":
-      return <Syringe className="h-5 w-5 text-purple-600" />
+      return <Syringe className="h-5 w-5 text-purple-600" />;
     case "support":
-      return <Heart className="h-5 w-5 text-rose-500" />
+      return <Heart className="h-5 w-5 text-rose-500" />;
   }
 }
 
@@ -93,22 +95,19 @@ function CategoryIcon({
 // Deadline badge helper
 // ---------------------------------------------------------------------------
 
-function computeDeadlineDays(
-  item: TimelineItem,
-  today: Date
-): number | null {
+function computeDeadlineDays(item: TimelineItem, today: Date): number | null {
   if (
     item.deadlineDaysFromBirth == null ||
     !["overdue", "urgent", "soon"].includes(item.urgency)
   ) {
-    return null
+    return null;
   }
   // We cannot know the exact birth date here, so we rely on the engine having
   // already placed the item in the correct urgency bucket. We expose the raw
   // deadline field and let the card show a generic "期限あり" badge if we
   // cannot compute it precisely. Since `generateTimeline` receives the birth
   // date we expose the deadline as a formatted label using the field directly.
-  return item.deadlineDaysFromBirth
+  return item.deadlineDaysFromBirth;
 }
 
 // ---------------------------------------------------------------------------
@@ -116,14 +115,14 @@ function computeDeadlineDays(
 // ---------------------------------------------------------------------------
 
 function TimelineItemCard({ item }: { readonly item: TimelineItem }) {
-  const styles = URGENCY_STYLES[item.urgency]
+  const styles = URGENCY_STYLES[item.urgency];
   const isExternal =
     item.actionUrl.startsWith("https://") ||
-    item.actionUrl.startsWith("http://")
+    item.actionUrl.startsWith("http://");
 
   const showDeadlineBadge =
     item.deadlineDaysFromBirth != null &&
-    ["overdue", "urgent", "soon"].includes(item.urgency)
+    ["overdue", "urgent", "soon"].includes(item.urgency);
 
   return (
     <div
@@ -185,22 +184,22 @@ function TimelineItemCard({ item }: { readonly item: TimelineItem }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 // ---------------------------------------------------------------------------
 // Section header types
 // ---------------------------------------------------------------------------
 
-type SectionKey = "overdueUrgent" | "soon" | "upcoming" | "future"
+type SectionKey = "overdueUrgent" | "soon" | "upcoming" | "future";
 
 interface SectionConfig {
-  readonly key: SectionKey
-  readonly label: string
-  readonly icon: React.ReactNode
-  readonly headerTextColor: string
-  readonly headerBg: string
-  readonly collapsible: boolean
+  readonly key: SectionKey;
+  readonly label: string;
+  readonly icon: React.ReactNode;
+  readonly headerTextColor: string;
+  readonly headerBg: string;
+  readonly collapsible: boolean;
 }
 
 const SECTIONS: readonly SectionConfig[] = [
@@ -236,7 +235,7 @@ const SECTIONS: readonly SectionConfig[] = [
     headerBg: "bg-gray-50",
     collapsible: true,
   },
-] as const
+] as const;
 
 // ---------------------------------------------------------------------------
 // Grouped items type (mirrors what groupTimelineByUrgency returns, plus a
@@ -244,23 +243,20 @@ const SECTIONS: readonly SectionConfig[] = [
 // ---------------------------------------------------------------------------
 
 interface GroupedSections {
-  readonly overdueUrgent: readonly TimelineItem[]
-  readonly soon: readonly TimelineItem[]
-  readonly upcoming: readonly TimelineItem[]
-  readonly future: readonly TimelineItem[]
+  readonly overdueUrgent: readonly TimelineItem[];
+  readonly soon: readonly TimelineItem[];
+  readonly upcoming: readonly TimelineItem[];
+  readonly future: readonly TimelineItem[];
 }
 
 function buildGroupedSections(items: readonly TimelineItem[]): GroupedSections {
-  const grouped = groupTimelineByUrgency(items)
+  const grouped = groupTimelineByUrgency(items);
   return {
-    overdueUrgent: [
-      ...(grouped.overdue ?? []),
-      ...(grouped.urgent ?? []),
-    ],
+    overdueUrgent: [...(grouped.overdue ?? []), ...(grouped.urgent ?? [])],
     soon: grouped.soon ?? [],
     upcoming: grouped.upcoming ?? [],
     future: grouped.future ?? [],
-  }
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -271,13 +267,13 @@ function TimelineSection({
   config,
   items,
 }: {
-  readonly config: SectionConfig
-  readonly items: readonly TimelineItem[]
+  readonly config: SectionConfig;
+  readonly items: readonly TimelineItem[];
 }) {
-  const [isExpanded, setIsExpanded] = useState(!config.collapsible)
+  const [isExpanded, setIsExpanded] = useState(!config.collapsible);
 
   if (items.length === 0) {
-    return null
+    return null;
   }
 
   return (
@@ -322,7 +318,7 @@ function TimelineSection({
         </div>
       )}
     </div>
-  )
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -334,18 +330,18 @@ function ChildTabs({
   selectedId,
   onSelect,
 }: {
-  readonly children: readonly ChildProfile[]
-  readonly selectedId: string
-  readonly onSelect: (id: string) => void
+  readonly children: readonly ChildProfile[];
+  readonly selectedId: string;
+  readonly onSelect: (id: string) => void;
 }) {
   if (children.length <= 1) {
-    return null
+    return null;
   }
 
   return (
     <div className="flex gap-2 overflow-x-auto pb-1">
       {children.map((child) => {
-        const isSelected = child.id === selectedId
+        const isSelected = child.id === selectedId;
         return (
           <button
             key={child.id}
@@ -360,10 +356,10 @@ function ChildTabs({
             <Baby className="h-3.5 w-3.5" />
             {child.nickname}
           </button>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -371,10 +367,9 @@ function ChildTabs({
 // ---------------------------------------------------------------------------
 
 function ChildAgeBadge({ child }: { readonly child: ChildProfile }) {
-  const { years, months } = getChildAge(child.birthDate)
+  const { years, months } = getChildAge(child.birthDate);
 
-  const ageLabel =
-    years === 0 ? `${months}ヶ月` : `${years}歳${months}ヶ月`
+  const ageLabel = years === 0 ? `${months}ヶ月` : `${years}歳${months}ヶ月`;
 
   return (
     <div className="flex items-center gap-3">
@@ -390,7 +385,7 @@ function ChildAgeBadge({ child }: { readonly child: ChildProfile }) {
         </span>
       </div>
     </div>
-  )
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -418,7 +413,7 @@ function NoProfileCTA() {
         プロフィールを設定する
       </Link>
     </div>
-  )
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -434,38 +429,43 @@ function LoadingSkeleton() {
       <div className="h-28 w-full animate-pulse rounded-xl bg-warm-200" />
       <div className="h-28 w-full animate-pulse rounded-xl bg-warm-200" />
     </div>
-  )
+  );
 }
 
 // ---------------------------------------------------------------------------
 // Main page
 // ---------------------------------------------------------------------------
 
+type ViewMode = "list" | "calendar";
+
 export default function TimelinePage() {
-  const [profile, setProfile] = useState<FamilyProfile | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [selectedChildId, setSelectedChildId] = useState<string | null>(null)
+  const [profile, setProfile] = useState<FamilyProfile | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedChildId, setSelectedChildId] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<ViewMode>("list");
 
   useEffect(() => {
-    const loaded = getFamilyProfile()
-    setProfile(loaded)
+    const loaded = getFamilyProfile();
+    setProfile(loaded);
     if (loaded && loaded.children.length > 0) {
-      setSelectedChildId(loaded.children[0].id)
+      setSelectedChildId(loaded.children[0].id);
     }
-    setIsLoading(false)
-  }, [])
+    setIsLoading(false);
+  }, []);
 
-  const hasChildren = profile != null && profile.children.length > 0
+  const hasChildren = profile != null && profile.children.length > 0;
 
   const selectedChild =
     hasChildren && selectedChildId != null
-      ? (profile.children.find((c) => c.id === selectedChildId) ?? profile.children[0])
-      : null
+      ? (profile.children.find((c) => c.id === selectedChildId) ??
+        profile.children[0])
+      : null;
+
+  const timelineItems: readonly TimelineItem[] | null =
+    selectedChild != null ? generateTimeline(selectedChild.birthDate) : null;
 
   const groupedSections: GroupedSections | null =
-    selectedChild != null
-      ? buildGroupedSections(generateTimeline(selectedChild.birthDate))
-      : null
+    timelineItems != null ? buildGroupedSections(timelineItems) : null;
 
   return (
     <>
@@ -503,12 +503,50 @@ export default function TimelinePage() {
               )}
 
               {/* Child name + age */}
+              {selectedChild != null && <ChildAgeBadge child={selectedChild} />}
+
+              {/* View mode toggle */}
               {selectedChild != null && (
-                <ChildAgeBadge child={selectedChild} />
+                <div className="flex gap-1 rounded-lg border border-border bg-warm-50 p-1">
+                  <button
+                    type="button"
+                    onClick={() => setViewMode("list")}
+                    className={`flex flex-1 items-center justify-center gap-1.5 rounded-md py-1.5 text-sm font-medium transition-colors ${
+                      viewMode === "list"
+                        ? "bg-white text-teal-700 shadow-sm"
+                        : "text-muted hover:text-foreground"
+                    }`}
+                  >
+                    <List className="h-4 w-4" />
+                    リスト
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setViewMode("calendar")}
+                    className={`flex flex-1 items-center justify-center gap-1.5 rounded-md py-1.5 text-sm font-medium transition-colors ${
+                      viewMode === "calendar"
+                        ? "bg-white text-teal-700 shadow-sm"
+                        : "text-muted hover:text-foreground"
+                    }`}
+                  >
+                    <Calendar className="h-4 w-4" />
+                    カレンダー
+                  </button>
+                </div>
               )}
 
-              {/* Timeline sections */}
-              {groupedSections != null && (
+              {/* Calendar view */}
+              {viewMode === "calendar" &&
+                timelineItems != null &&
+                selectedChild != null && (
+                  <CalendarView
+                    items={timelineItems}
+                    birthDate={selectedChild.birthDate}
+                  />
+                )}
+
+              {/* List view (timeline sections) */}
+              {viewMode === "list" && groupedSections != null && (
                 <div className="space-y-6">
                   {SECTIONS.map((sectionConfig) => (
                     <TimelineSection
@@ -524,5 +562,5 @@ export default function TimelinePage() {
         </div>
       </section>
     </>
-  )
+  );
 }
