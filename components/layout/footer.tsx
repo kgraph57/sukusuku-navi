@@ -1,9 +1,11 @@
-import Link from "next/link"
-import { Baby } from "lucide-react"
+import Link from "next/link";
+import { Baby } from "lucide-react";
 
 const FOOTER_LINKS = {
   コンテンツ: [
     { href: "/articles", label: "記事一覧" },
+    { href: "/vaccines", label: "予防接種ガイド" },
+    { href: "/programs", label: "支援制度一覧" },
     { href: "/simulator", label: "給付金シミュレーター" },
     { href: "/triage", label: "受診判断ガイド" },
     { href: "/clinics", label: "小児科マップ" },
@@ -13,7 +15,7 @@ const FOOTER_LINKS = {
     { href: "/contact", label: "お問い合わせ" },
     { href: "/privacy", label: "プライバシーポリシー" },
   ],
-} as const
+} as const;
 
 export function Footer() {
   return (
@@ -65,5 +67,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

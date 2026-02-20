@@ -16,6 +16,7 @@ import {
 } from "@/lib/clinics";
 import type { Clinic } from "@/lib/clinics";
 import { TYPE_ICON_MAP, TYPE_COLOR_MAP } from "@/lib/clinic-constants";
+import { ClinicMap } from "@/components/clinic/clinic-map";
 
 export const metadata: Metadata = {
   title: "港区の小児科マップ",
@@ -119,28 +120,7 @@ export default function ClinicsPage() {
 
       <section className="border-b border-border px-4 py-6">
         <div className="mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-xl border border-border">
-            <iframe
-              src="https://maps.google.com/maps?q=港区+小児科&z=13&output=embed&hl=ja"
-              className="h-64 w-full sm:h-80"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="港区の小児科マップ"
-              sandbox="allow-scripts allow-same-origin"
-            />
-            <div className="flex items-center justify-between border-t border-border bg-card px-4 py-3">
-              <p className="text-sm text-muted">港区エリアの小児科</p>
-              <a
-                href="https://www.google.com/maps/search/港区+小児科"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-700"
-              >
-                Googleマップで開く
-                <ArrowRight className="h-3.5 w-3.5" />
-              </a>
-            </div>
-          </div>
+          <ClinicMap clinics={allClinics} />
         </div>
       </section>
 
