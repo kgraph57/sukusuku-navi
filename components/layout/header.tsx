@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { href: "/articles", label: "記事一覧" },
   { href: "/vaccines", label: "予防接種" },
   { href: "/checkups", label: "健診ガイド" },
+  { href: "/programs", label: "制度一覧" },
   { href: "/simulator", label: "給付金シミュレーター" },
   { href: "/triage", label: "受診判断" },
   { href: "/clinics", label: "小児科マップ" },
