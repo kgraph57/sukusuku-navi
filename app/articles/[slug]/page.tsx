@@ -18,6 +18,7 @@ import { CitationList } from "@/components/article/citation-list";
 import { ArticleCard } from "@/components/article/article-card";
 import { CategoryBadge } from "@/components/article/article-card";
 import { DoctorByline } from "@/components/article/doctor-byline";
+import { BookmarkButton } from "@/components/article/bookmark-button";
 
 interface ArticlePageProps {
   readonly params: Promise<{ slug: string }>;
@@ -124,6 +125,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               {ageGroups.map((ag) => AGE_GROUP_LABELS[ag]).join("・")}
             </span>
           </div>
+          <BookmarkButton articleSlug={frontmatter.slug} />
         </div>
       </header>
 

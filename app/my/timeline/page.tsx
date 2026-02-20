@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import {
   AlertTriangle,
@@ -15,8 +15,15 @@ import {
   Lightbulb,
   Baby,
   List,
+  CheckCircle2,
+  Circle,
 } from "lucide-react";
-import { getFamilyProfile, getChildAge } from "@/lib/family-store";
+import {
+  getFamilyProfile,
+  getChildAge,
+  toggleChecklistItem,
+  saveFamilyProfile,
+} from "@/lib/family-store";
 import type { FamilyProfile, ChildProfile } from "@/lib/family-store";
 import {
   generateTimeline,
@@ -92,54 +99,66 @@ function CategoryIcon({
 }
 
 // ---------------------------------------------------------------------------
-// Deadline badge helper
-// ---------------------------------------------------------------------------
-
-function computeDeadlineDays(item: TimelineItem, today: Date): number | null {
-  if (
-    item.deadlineDaysFromBirth == null ||
-    !["overdue", "urgent", "soon"].includes(item.urgency)
-  ) {
-    return null;
-  }
-  // We cannot know the exact birth date here, so we rely on the engine having
-  // already placed the item in the correct urgency bucket. We expose the raw
-  // deadline field and let the card show a generic "期限あり" badge if we
-  // cannot compute it precisely. Since `generateTimeline` receives the birth
-  // date we expose the deadline as a formatted label using the field directly.
-  return item.deadlineDaysFromBirth;
-}
-
-// ---------------------------------------------------------------------------
 // TimelineItemCard
 // ---------------------------------------------------------------------------
 
-function TimelineItemCard({ item }: { readonly item: TimelineItem }) {
+function TimelineItemCard({
+  item,
+  onToggleComplete,
+}: {
+  readonly item: TimelineItem;
+  readonly onToggleComplete: (itemId: string) => void;
+}) {
   const styles = URGENCY_STYLES[item.urgency];
   const isExternal =
     item.actionUrl.startsWith("https://") ||
     item.actionUrl.startsWith("http://");
 
   const showDeadlineBadge =
+    !item.completed &&
     item.deadlineDaysFromBirth != null &&
     ["overdue", "urgent", "soon"].includes(item.urgency);
 
   return (
     <div
-      className={`flex gap-0 rounded-xl border border-border bg-card shadow-sm overflow-hidden border-l-4 ${styles.accentBar}`}
+      className={`flex gap-0 rounded-xl border border-border shadow-sm overflow-hidden border-l-4 ${
+        item.completed
+          ? "border-l-gray-200 bg-warm-50 opacity-70"
+          : `bg-card ${styles.accentBar}`
+      }`}
     >
       <div className="flex-1 p-4">
         {/* Header row */}
         <div className="flex items-start gap-3">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-warm-100">
-            <CategoryIcon category={item.category} />
-          </div>
+          <button
+            type="button"
+            onClick={() => onToggleComplete(item.id)}
+            className="mt-0.5 shrink-0 transition-colors"
+            aria-label={item.completed ? "未完了に戻す" : "完了にする"}
+          >
+            {item.completed ? (
+              <CheckCircle2 className="h-6 w-6 text-teal-500" />
+            ) : (
+              <Circle className="h-6 w-6 text-gray-300 hover:text-teal-400" />
+            )}
+          </button>
 
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
-              <h3 className="font-heading text-sm font-bold text-card-foreground">
+              <h3
+                className={`font-heading text-sm font-bold ${
+                  item.completed
+                    ? "text-muted line-through"
+                    : "text-card-foreground"
+                }`}
+              >
                 {item.title}
               </h3>
+              {item.completed && (
+                <span className="inline-flex shrink-0 items-center rounded-full bg-teal-100 px-2 py-0.5 text-xs font-medium text-teal-700">
+                  完了
+                </span>
+              )}
               {showDeadlineBadge && (
                 <span
                   className={`inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-xs font-medium ${styles.badgeBg} ${styles.badgeText}`}
@@ -153,7 +172,7 @@ function TimelineItemCard({ item }: { readonly item: TimelineItem }) {
               {item.description}
             </p>
 
-            {item.tip != null && (
+            {!item.completed && item.tip != null && (
               <p className="mt-2 flex items-start gap-1 text-xs italic text-teal-600">
                 <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0" />
                 <span>{item.tip}</span>
@@ -163,25 +182,27 @@ function TimelineItemCard({ item }: { readonly item: TimelineItem }) {
         </div>
 
         {/* Action button */}
-        <div className="mt-3 flex justify-end">
-          {isExternal ? (
-            <a
-              href={item.actionUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full bg-teal-600 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-teal-700"
-            >
-              {item.actionLabel}
-            </a>
-          ) : (
-            <Link
-              href={item.actionUrl}
-              className="inline-flex items-center rounded-full bg-teal-600 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-teal-700"
-            >
-              {item.actionLabel}
-            </Link>
-          )}
-        </div>
+        {!item.completed && (
+          <div className="mt-3 flex justify-end">
+            {isExternal ? (
+              <a
+                href={item.actionUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-full bg-teal-600 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-teal-700"
+              >
+                {item.actionLabel}
+              </a>
+            ) : (
+              <Link
+                href={item.actionUrl}
+                className="inline-flex items-center rounded-full bg-teal-600 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-teal-700"
+              >
+                {item.actionLabel}
+              </Link>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -266,11 +287,15 @@ function buildGroupedSections(items: readonly TimelineItem[]): GroupedSections {
 function TimelineSection({
   config,
   items,
+  onToggleComplete,
 }: {
   readonly config: SectionConfig;
   readonly items: readonly TimelineItem[];
+  readonly onToggleComplete: (itemId: string) => void;
 }) {
   const [isExpanded, setIsExpanded] = useState(!config.collapsible);
+
+  const pendingCount = items.filter((item) => !item.completed).length;
 
   if (items.length === 0) {
     return null;
@@ -291,7 +316,9 @@ function TimelineSection({
           >
             {config.icon}
             <span className="flex-1 text-left">{config.label}</span>
-            <span className="text-xs opacity-70">{items.length}件</span>
+            <span className="text-xs opacity-70">
+              {pendingCount}/{items.length}件
+            </span>
             {isExpanded ? (
               <ChevronUp className="h-4 w-4" />
             ) : (
@@ -304,7 +331,9 @@ function TimelineSection({
             <span className="font-heading text-sm font-bold flex-1">
               {config.label}
             </span>
-            <span className="text-xs opacity-70">{items.length}件</span>
+            <span className="text-xs opacity-70">
+              {pendingCount}/{items.length}件
+            </span>
           </div>
         )}
       </div>
@@ -313,7 +342,11 @@ function TimelineSection({
       {isExpanded && (
         <div className="space-y-3 pl-0">
           {items.map((item) => (
-            <TimelineItemCard key={item.id} item={item} />
+            <TimelineItemCard
+              key={item.id}
+              item={item}
+              onToggleComplete={onToggleComplete}
+            />
           ))}
         </div>
       )}
@@ -461,8 +494,21 @@ export default function TimelinePage() {
         profile.children[0])
       : null;
 
+  const handleToggleComplete = useCallback(
+    (itemId: string) => {
+      if (profile == null || selectedChild == null) return;
+
+      const updated = toggleChecklistItem(profile, selectedChild.id, itemId);
+      setProfile(updated);
+      saveFamilyProfile(updated);
+    },
+    [profile, selectedChild],
+  );
+
   const timelineItems: readonly TimelineItem[] | null =
-    selectedChild != null ? generateTimeline(selectedChild.birthDate) : null;
+    selectedChild != null
+      ? generateTimeline(selectedChild.birthDate, selectedChild.completedItems)
+      : null;
 
   const groupedSections: GroupedSections | null =
     timelineItems != null ? buildGroupedSections(timelineItems) : null;
@@ -542,6 +588,7 @@ export default function TimelinePage() {
                   <CalendarView
                     items={timelineItems}
                     birthDate={selectedChild.birthDate}
+                    onToggleComplete={handleToggleComplete}
                   />
                 )}
 
@@ -553,6 +600,7 @@ export default function TimelinePage() {
                       key={sectionConfig.key}
                       config={sectionConfig}
                       items={groupedSections[sectionConfig.key]}
+                      onToggleComplete={handleToggleComplete}
                     />
                   ))}
                 </div>

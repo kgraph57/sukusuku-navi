@@ -12,6 +12,8 @@ import {
   User,
   Syringe,
   Calendar,
+  Bookmark,
+  FileText,
 } from "lucide-react";
 import { FamilyProfileSetup } from "@/components/family/family-profile-setup";
 import { getFamilyProfile, getChildAge } from "@/lib/family-store";
@@ -81,6 +83,49 @@ function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
             </Link>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+function formatSlugTitle(slug: string): string {
+  return slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function SavedArticlesSection({
+  savedSlugs,
+}: {
+  readonly savedSlugs: readonly string[];
+}) {
+  if (savedSlugs.length === 0) {
+    return null;
+  }
+
+  return (
+    <div>
+      <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-foreground">
+        <Bookmark className="h-5 w-5 text-teal-600" />
+        保存した記事
+        <span className="rounded-full bg-teal-100 px-2 py-0.5 text-xs font-medium text-teal-700">
+          {savedSlugs.length}件
+        </span>
+      </h2>
+      <div className="mt-4 space-y-2">
+        {savedSlugs.map((slug) => (
+          <Link
+            key={slug}
+            href={`/articles/${slug}`}
+            className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-teal-200 hover:bg-teal-50/50"
+          >
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-teal-50">
+              <FileText className="h-4 w-4 text-teal-600" />
+            </div>
+            <p className="min-w-0 flex-1 truncate text-sm font-medium text-card-foreground">
+              {formatSlugTitle(slug)}
+            </p>
+            <ArrowRight className="h-4 w-4 shrink-0 text-muted" />
+          </Link>
+        ))}
       </div>
     </div>
   );
@@ -221,6 +266,10 @@ export default function MyPage() {
                 ))}
               </div>
             </div>
+          )}
+
+          {profile != null && profile.savedArticles.length > 0 && (
+            <SavedArticlesSection savedSlugs={profile.savedArticles} />
           )}
 
           <div>

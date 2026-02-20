@@ -1,142 +1,163 @@
 export interface ChildProfile {
-  readonly id: string
-  readonly nickname: string
-  readonly birthDate: string
-  readonly completedItems: readonly string[]
+  readonly id: string;
+  readonly nickname: string;
+  readonly birthDate: string;
+  readonly completedItems: readonly string[];
 }
 
 export interface FamilyProfile {
-  readonly id: string
-  readonly children: readonly ChildProfile[]
-  readonly createdAt: string
-  readonly updatedAt: string
+  readonly id: string;
+  readonly children: readonly ChildProfile[];
+  readonly savedArticles: readonly string[];
+  readonly createdAt: string;
+  readonly updatedAt: string;
 }
 
-const STORAGE_KEY = "sukusuku-family"
+const STORAGE_KEY = "sukusuku-family";
 
 export function generateId(): string {
-  return crypto.randomUUID()
+  return crypto.randomUUID();
 }
 
 function isSSR(): boolean {
-  return typeof window === "undefined"
+  return typeof window === "undefined";
 }
 
 function now(): string {
-  return new Date().toISOString()
+  return new Date().toISOString();
 }
 
 export function getFamilyProfile(): FamilyProfile | null {
   if (isSSR()) {
-    return null
+    return null;
   }
 
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
+    const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) {
-      return null
+      return null;
     }
-    return JSON.parse(raw) as FamilyProfile
+    const parsed = JSON.parse(raw) as FamilyProfile;
+    return {
+      ...parsed,
+      savedArticles: parsed.savedArticles ?? [],
+    };
   } catch {
-    return null
+    return null;
   }
 }
 
 export function saveFamilyProfile(profile: FamilyProfile): void {
   if (isSSR()) {
-    return
+    return;
   }
 
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(profile))
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
   } catch {
     // Ignore localStorage errors (quota exceeded, private browsing, etc.)
   }
 }
 
 export function createFamilyProfile(): FamilyProfile {
-  const timestamp = now()
+  const timestamp = now();
   return {
     id: generateId(),
     children: [],
+    savedArticles: [],
     createdAt: timestamp,
     updatedAt: timestamp,
-  }
+  };
 }
 
 export function addChild(
   profile: FamilyProfile,
   nickname: string,
-  birthDate: string
+  birthDate: string,
 ): FamilyProfile {
   const child: ChildProfile = {
     id: generateId(),
     nickname,
     birthDate,
     completedItems: [],
-  }
+  };
 
   return {
     ...profile,
     children: [...profile.children, child],
     updatedAt: now(),
-  }
+  };
 }
 
 export function removeChild(
   profile: FamilyProfile,
-  childId: string
+  childId: string,
 ): FamilyProfile {
   return {
     ...profile,
     children: profile.children.filter((child) => child.id !== childId),
     updatedAt: now(),
-  }
+  };
 }
 
 export function toggleChecklistItem(
   profile: FamilyProfile,
   childId: string,
-  itemId: string
+  itemId: string,
 ): FamilyProfile {
   return {
     ...profile,
     children: profile.children.map((child) => {
       if (child.id !== childId) {
-        return child
+        return child;
       }
 
-      const hasItem = child.completedItems.includes(itemId)
+      const hasItem = child.completedItems.includes(itemId);
 
       return {
         ...child,
         completedItems: hasItem
           ? child.completedItems.filter((id) => id !== itemId)
           : [...child.completedItems, itemId],
-      }
+      };
     }),
     updatedAt: now(),
-  }
+  };
+}
+
+export function toggleSavedArticle(
+  profile: FamilyProfile,
+  articleSlug: string,
+): FamilyProfile {
+  const hasSaved = profile.savedArticles.includes(articleSlug);
+
+  return {
+    ...profile,
+    savedArticles: hasSaved
+      ? profile.savedArticles.filter((slug) => slug !== articleSlug)
+      : [...profile.savedArticles, articleSlug],
+    updatedAt: now(),
+  };
 }
 
 export function getChildAge(birthDate: string): {
-  years: number
-  months: number
+  years: number;
+  months: number;
 } {
-  const birth = new Date(birthDate)
-  const today = new Date()
+  const birth = new Date(birthDate);
+  const today = new Date();
 
-  let years = today.getFullYear() - birth.getFullYear()
-  let months = today.getMonth() - birth.getMonth()
+  let years = today.getFullYear() - birth.getFullYear();
+  let months = today.getMonth() - birth.getMonth();
 
   if (today.getDate() < birth.getDate()) {
-    months -= 1
+    months -= 1;
   }
 
   if (months < 0) {
-    years -= 1
-    months += 12
+    years -= 1;
+    months += 12;
   }
 
-  return { years, months }
+  return { years, months };
 }

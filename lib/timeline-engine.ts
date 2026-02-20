@@ -1,31 +1,28 @@
-export type TimelineCategory =
-  | 'admin'
-  | 'medical'
-  | 'vaccination'
-  | 'support'
+export type TimelineCategory = "admin" | "medical" | "vaccination" | "support";
 
 export type TimelineUrgency =
-  | 'overdue'
-  | 'urgent'
-  | 'soon'
-  | 'upcoming'
-  | 'future'
+  | "overdue"
+  | "urgent"
+  | "soon"
+  | "upcoming"
+  | "future";
 
 export interface TimelineItem {
-  readonly id: string
-  readonly title: string
-  readonly description: string
-  readonly category: TimelineCategory
-  readonly urgency: TimelineUrgency
-  readonly daysFromBirth: number
-  readonly deadlineDaysFromBirth?: number
-  readonly expiryDaysFromBirth?: number
-  readonly actionUrl: string
-  readonly actionLabel: string
-  readonly tip?: string
+  readonly id: string;
+  readonly title: string;
+  readonly description: string;
+  readonly category: TimelineCategory;
+  readonly urgency: TimelineUrgency;
+  readonly daysFromBirth: number;
+  readonly deadlineDaysFromBirth?: number;
+  readonly expiryDaysFromBirth?: number;
+  readonly actionUrl: string;
+  readonly actionLabel: string;
+  readonly tip?: string;
+  readonly completed: boolean;
 }
 
-type Def = Omit<TimelineItem, 'urgency'>
+type Def = Omit<TimelineItem, "urgency" | "completed">;
 
 // prettier-ignore
 const DEFINITIONS: readonly Def[] = [
@@ -43,15 +40,22 @@ const DEFINITIONS: readonly Def[] = [
   { id: 'checkup-18month',          category: 'medical',    daysFromBirth: 540,  deadlineDaysFromBirth: 570,  expiryDaysFromBirth: 600,  actionUrl: '/programs/infant-health-checkup',                  actionLabel: '健診について確認',       title: '1歳6ヶ月健診',                      description: '区が実施する乳幼児健診です。' },
   { id: 'checkup-3year',            category: 'medical',    daysFromBirth: 1080, deadlineDaysFromBirth: 1110, expiryDaysFromBirth: 1140, actionUrl: '/programs/infant-health-checkup',                  actionLabel: '健診について確認',       title: '3歳健診',                           description: '区が実施する幼児健診です。' },
   // ワクチン
-  { id: 'vaccine-bcg',              category: 'vaccination', daysFromBirth: 60,  deadlineDaysFromBirth: 365,  expiryDaysFromBirth: 365,  actionUrl: '/articles/vaccination',                            actionLabel: '接種について確認',       title: 'BCGワクチン（結核）',              description: '結核予防のための定期接種です。',                                                tip: '生後2〜6ヶ月が推奨。港区指定医療機関で接種。' },
-  { id: 'vaccine-hepb-1',           category: 'vaccination', daysFromBirth: 60,  deadlineDaysFromBirth: 90,   expiryDaysFromBirth: 365,  actionUrl: '/articles/vaccination',                            actionLabel: '接種スケジュール確認',   title: 'B型肝炎ワクチン1回目',             description: 'B型肝炎予防のための定期接種です。',                                            tip: '2・3・7ヶ月の3回接種が基本スケジュール。' },
-  { id: 'vaccine-rotavirus-1',      category: 'vaccination', daysFromBirth: 60,  deadlineDaysFromBirth: 90,   expiryDaysFromBirth: 150,  actionUrl: '/articles/vaccination',                            actionLabel: '接種について確認',       title: 'ロタウイルスワクチン1回目',        description: 'ロタウイルス感染症予防のための定期接種です。',                                  tip: '接種できる期間が短いので早めに。生後2ヶ月〜5ヶ月以内。' },
-  { id: 'vaccine-hib-pcv-dtap',     category: 'vaccination', daysFromBirth: 60,  deadlineDaysFromBirth: 90,   expiryDaysFromBirth: 365,  actionUrl: '/articles/vaccination',                            actionLabel: '接種スケジュール確認',   title: 'ヒブ・肺炎球菌・4種混合ワクチン', description: 'ヒブ・肺炎球菌・ジフテリア・百日咳・破傷風・ポリオの定期接種です。',            tip: '同時接種可能。2・3・4ヶ月・1歳の4回。' },
-  { id: 'vaccine-mr',               category: 'vaccination', daysFromBirth: 365, deadlineDaysFromBirth: 730,  expiryDaysFromBirth: 730,  actionUrl: '/articles/vaccination',                            actionLabel: '接種について確認',       title: 'MRワクチン（麻しん・風しん）',     description: '麻しん・風しん混合の定期接種です。',                                            tip: '1歳になったら早めに接種を。' },
-  { id: 'vaccine-varicella',        category: 'vaccination', daysFromBirth: 365, deadlineDaysFromBirth: 548,  expiryDaysFromBirth: 730,  actionUrl: '/articles/vaccination',                            actionLabel: '接種について確認',       title: '水痘ワクチン',                      description: '水痘（みずぼうそう）予防のための定期接種です。',                                tip: '1歳〜3歳未満に2回接種。' },
+  { id: 'vaccine-bcg',              category: 'vaccination', daysFromBirth: 60,  deadlineDaysFromBirth: 365,  expiryDaysFromBirth: 365,  actionUrl: '/vaccines/bcg',                                    actionLabel: '接種について確認',       title: 'BCGワクチン（結核）',              description: '結核予防のための定期接種です。',                                                tip: '生後2〜6ヶ月が推奨。港区指定医療機関で接種。' },
+  { id: 'vaccine-hepb-1',           category: 'vaccination', daysFromBirth: 60,  deadlineDaysFromBirth: 90,   expiryDaysFromBirth: 365,  actionUrl: '/vaccines/hepatitis-b',                            actionLabel: '接種スケジュール確認',   title: 'B型肝炎ワクチン1回目',             description: 'B型肝炎予防のための定期接種です。',                                            tip: '2・3・7ヶ月の3回接種が基本スケジュール。' },
+  { id: 'vaccine-rotavirus-1',      category: 'vaccination', daysFromBirth: 60,  deadlineDaysFromBirth: 90,   expiryDaysFromBirth: 150,  actionUrl: '/vaccines/rotavirus',                              actionLabel: '接種について確認',       title: 'ロタウイルスワクチン1回目',        description: 'ロタウイルス感染症予防のための定期接種です。',                                  tip: '接種できる期間が短いので早めに。生後2ヶ月〜5ヶ月以内。' },
+  { id: 'vaccine-hib-pcv-dtap',     category: 'vaccination', daysFromBirth: 60,  deadlineDaysFromBirth: 90,   expiryDaysFromBirth: 365,  actionUrl: '/vaccines/pentavalent',                            actionLabel: '接種スケジュール確認',   title: 'ヒブ・肺炎球菌・4種混合ワクチン', description: 'ヒブ・肺炎球菌・ジフテリア・百日咳・破傷風・ポリオの定期接種です。',            tip: '同時接種可能。2・3・4ヶ月・1歳の4回。' },
+  { id: 'vaccine-mr-1',             category: 'vaccination', daysFromBirth: 365, deadlineDaysFromBirth: 730,  expiryDaysFromBirth: 730,  actionUrl: '/vaccines/mmr',                                    actionLabel: '接種について確認',       title: 'MRワクチン1期（麻しん・風しん）',  description: '麻しん・風しん混合の定期接種1期です。',                                         tip: '1歳になったら早めに接種を。' },
+  { id: 'vaccine-varicella',        category: 'vaccination', daysFromBirth: 365, deadlineDaysFromBirth: 548,  expiryDaysFromBirth: 730,  actionUrl: '/vaccines/varicella',                              actionLabel: '接種について確認',       title: '水痘ワクチン',                      description: '水痘（みずぼうそう）予防のための定期接種です。',                                tip: '1歳〜3歳未満に2回接種。' },
   { id: 'vaccine-mumps-1',          category: 'vaccination', daysFromBirth: 365, deadlineDaysFromBirth: 730,  expiryDaysFromBirth: 2190, actionUrl: '/programs/mumps-vaccine-subsidy',                  actionLabel: '港区の助成を確認',       title: 'おたふくかぜワクチン1回目',        description: '流行性耳下腺炎（おたふくかぜ）予防ワクチンです。港区は全額助成。',              tip: '港区は全額助成。かかりつけ小児科で接種できます。' },
   { id: 'vaccine-influenza',        category: 'vaccination', daysFromBirth: 180, deadlineDaysFromBirth: 1825, expiryDaysFromBirth: 5475, actionUrl: '/programs/influenza-vaccine-subsidy',               actionLabel: '港区の助成を確認',       title: 'インフルエンザワクチン',            description: '毎年秋冬に接種推奨。港区の助成を確認しましょう。',                              tip: '毎年10月〜翌年1月。13歳未満は2回接種推奨。' },
   { id: 'vaccine-mumps-2',          category: 'vaccination', daysFromBirth: 1460, deadlineDaysFromBirth: 2190, expiryDaysFromBirth: 2190, actionUrl: '/programs/mumps-vaccine-subsidy',                 actionLabel: '港区の助成を確認',       title: 'おたふくかぜワクチン2回目（就学前）', description: '就学前（5〜6歳）に2回目接種。港区は全額助成。',                               tip: '就学前（5〜6歳）に2回目接種。' },
+  // 3歳以降のワクチン・健診
+  { id: 'vaccine-je-1',             category: 'vaccination', daysFromBirth: 1095, deadlineDaysFromBirth: 1460, expiryDaysFromBirth: 2555, actionUrl: '/vaccines/japanese-encephalitis',                 actionLabel: '接種について確認',       title: '日本脳炎ワクチン1期（3歳〜）',     description: '日本脳炎予防の定期接種。1期は3回接種（3歳で2回、4歳で追加1回）。',             tip: '3歳になったら開始。1期は3回接種が必要です。' },
+  { id: 'vaccine-mr-2',             category: 'vaccination', daysFromBirth: 1825, deadlineDaysFromBirth: 2555, expiryDaysFromBirth: 2555, actionUrl: '/vaccines/mmr',                                   actionLabel: '接種について確認',       title: 'MRワクチン2期（就学前年度）',       description: '小学校入学前年度（5〜7歳未満）に接種する麻しん・風しんの2期接種です。',        tip: '年長クラスの4月〜3月が対象期間。忘れずに。' },
+  { id: 'school-health-check',      category: 'medical',    daysFromBirth: 2040, deadlineDaysFromBirth: 2190, expiryDaysFromBirth: 2190, actionUrl: 'https://www.city.minato.tokyo.jp/kyouiku/shugakuji-kenkou-shindan', actionLabel: '日程を確認', title: '就学時健康診断',            description: '小学校入学前に区が実施する健康診断です。',                                      tip: '10〜11月頃に実施。通知が届いたら日程を確認。' },
+  { id: 'vaccine-je-2',             category: 'vaccination', daysFromBirth: 3285, deadlineDaysFromBirth: 3650, expiryDaysFromBirth: 4745, actionUrl: '/vaccines/japanese-encephalitis',                 actionLabel: '接種について確認',       title: '日本脳炎ワクチン2期（9歳〜）',     description: '日本脳炎予防の定期接種2期。9〜13歳未満に1回接種。',                             tip: '9歳になったら2期接種を。' },
+  { id: 'vaccine-dt-2',             category: 'vaccination', daysFromBirth: 4015, deadlineDaysFromBirth: 4380, expiryDaysFromBirth: 4745, actionUrl: '/vaccines/pentavalent',                           actionLabel: '接種について確認',       title: 'DT（ジフテリア・破傷風）2期',      description: '11歳で接種するジフテリア・破傷風の2期接種です。',                               tip: '11歳で2期接種。通知が届いたらかかりつけ医へ。' },
+  { id: 'vaccine-hpv',              category: 'vaccination', daysFromBirth: 4380, deadlineDaysFromBirth: 5840, expiryDaysFromBirth: 5840, actionUrl: '/vaccines/hpv',                                   actionLabel: '接種について確認',       title: 'HPVワクチン（小6〜高1）',           description: '子宮頸がん予防のHPVワクチン。小学6年〜高校1年相当の女子に定期接種。',          tip: '小6〜高1が定期接種対象。男子も任意接種として推奨。' },
   // サポートサービス
   { id: 'postnatal-care',           category: 'support',    daysFromBirth: 0,    deadlineDaysFromBirth: 120,  expiryDaysFromBirth: 120,  actionUrl: '/programs/postnatal-care-stay',                    actionLabel: '産後ケアを申請する',     title: '産後ケア（宿泊・デイ・訪問）申請', description: '出産後4ヶ月以内に利用できる産後ケアサービスです。',                             tip: '出産後4ヶ月以内。体が辛い・育児が不安なら早めに相談を。' },
   { id: 'family-support',           category: 'support',    daysFromBirth: 90,                               expiryDaysFromBirth: 3650, actionUrl: '/programs/family-support',                         actionLabel: '登録方法を確認',         title: 'ファミリーサポート登録',            description: '子どもの一時預かりを地域住民が助け合う会員組織です。',                          tip: '登録は無料。急に預けたいときに備えて早めの登録を。' },
@@ -63,57 +67,65 @@ const DEFINITIONS: readonly Def[] = [
 function calculateUrgency(
   ageInDays: number,
   daysFromBirth: number,
-  deadlineDaysFromBirth: number | undefined
+  deadlineDaysFromBirth: number | undefined,
 ): TimelineUrgency {
   if (deadlineDaysFromBirth !== undefined) {
-    const daysRemaining = deadlineDaysFromBirth - ageInDays
-    if (daysRemaining < 0) return 'overdue'
-    if (daysRemaining <= 7) return 'urgent'
-    if (daysRemaining <= 30) return 'soon'
-    if (daysRemaining <= 90) return 'upcoming'
-    return 'future'
+    const daysRemaining = deadlineDaysFromBirth - ageInDays;
+    if (daysRemaining < 0) return "overdue";
+    if (daysRemaining <= 7) return "urgent";
+    if (daysRemaining <= 30) return "soon";
+    if (daysRemaining <= 90) return "upcoming";
+    return "future";
   }
 
-  return ageInDays >= daysFromBirth ? 'upcoming' : 'future'
+  return ageInDays >= daysFromBirth ? "upcoming" : "future";
 }
 
-export function generateTimeline(birthDate: string): readonly TimelineItem[] {
-  const today = new Date()
-  const birthDay = new Date(birthDate)
+export function generateTimeline(
+  birthDate: string,
+  completedItems: readonly string[] = [],
+): readonly TimelineItem[] {
+  const today = new Date();
+  const birthDay = new Date(birthDate);
   const ageInDays = Math.floor(
-    (today.getTime() - birthDay.getTime()) / 86400000
-  )
+    (today.getTime() - birthDay.getTime()) / 86400000,
+  );
+
+  const completedSet = new Set(completedItems);
 
   return DEFINITIONS.flatMap((def) => {
+    const isCompleted = completedSet.has(def.id);
+
     if (
+      !isCompleted &&
       def.expiryDaysFromBirth !== undefined &&
       ageInDays > def.expiryDaysFromBirth
     ) {
-      return []
+      return [];
     }
 
     const urgency = calculateUrgency(
       ageInDays,
       def.daysFromBirth,
-      def.deadlineDaysFromBirth
-    )
+      def.deadlineDaysFromBirth,
+    );
 
-    return [{ ...def, urgency }]
-  })
+    return [{ ...def, urgency, completed: isCompleted }];
+  });
 }
 
 export function groupTimelineByUrgency(items: readonly TimelineItem[]): {
-  readonly overdue: readonly TimelineItem[]
-  readonly urgent: readonly TimelineItem[]
-  readonly soon: readonly TimelineItem[]
-  readonly upcoming: readonly TimelineItem[]
-  readonly future: readonly TimelineItem[]
+  readonly overdue: readonly TimelineItem[];
+  readonly urgent: readonly TimelineItem[];
+  readonly soon: readonly TimelineItem[];
+  readonly upcoming: readonly TimelineItem[];
+  readonly future: readonly TimelineItem[];
 } {
   return {
-    overdue: items.filter((item) => item.urgency === 'overdue'),
-    urgent: items.filter((item) => item.urgency === 'urgent'),
-    soon: items.filter((item) => item.urgency === 'soon'),
-    upcoming: items.filter((item) => item.urgency === 'upcoming'),
-    future: items.filter((item) => item.urgency === 'future'),
-  }
+    overdue: items.filter((item) => item.urgency === "overdue"),
+    urgent: items.filter((item) => item.urgency === "urgent"),
+    soon: items.filter((item) => item.urgency === "soon"),
+    upcoming: items.filter((item) => item.urgency === "upcoming"),
+    future: items.filter((item) => item.urgency === "future"),
+  };
 }

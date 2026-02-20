@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { useState, useMemo } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import type { TimelineItem, TimelineUrgency } from "@/lib/timeline-engine"
+import { useState, useMemo } from "react";
+import { ChevronLeft, ChevronRight, CheckCircle2, Circle } from "lucide-react";
+import type { TimelineItem, TimelineUrgency } from "@/lib/timeline-engine";
 
 // ---------------------------------------------------------------------------
 // Constants
 // ---------------------------------------------------------------------------
 
-const DAY_LABELS = ["日", "月", "火", "水", "木", "金", "土"] as const
+const DAY_LABELS = ["日", "月", "火", "水", "木", "金", "土"] as const;
 
 const URGENCY_DOT: Record<TimelineUrgency, string> = {
   overdue: "bg-red-500",
@@ -16,7 +16,7 @@ const URGENCY_DOT: Record<TimelineUrgency, string> = {
   soon: "bg-amber-400",
   upcoming: "bg-teal-400",
   future: "bg-gray-300",
-}
+};
 
 const URGENCY_LABEL: Record<TimelineUrgency, string> = {
   overdue: "期限超過",
@@ -24,15 +24,15 @@ const URGENCY_LABEL: Record<TimelineUrgency, string> = {
   soon: "今月中",
   upcoming: "3ヶ月以内",
   future: "今後",
-}
+};
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
 function getItemDate(birthDate: string, daysFromBirth: number): Date {
-  const birth = new Date(birthDate)
-  return new Date(birth.getTime() + daysFromBirth * 86400000)
+  const birth = new Date(birthDate);
+  return new Date(birth.getTime() + daysFromBirth * 86400000);
 }
 
 function isSameDay(a: Date, b: Date): boolean {
@@ -40,18 +40,18 @@ function isSameDay(a: Date, b: Date): boolean {
     a.getFullYear() === b.getFullYear() &&
     a.getMonth() === b.getMonth() &&
     a.getDate() === b.getDate()
-  )
+  );
 }
 
 function buildCalendarGrid(year: number, month: number): (Date | null)[] {
-  const firstDay = new Date(year, month, 1)
-  const lastDay = new Date(year, month + 1, 0)
-  const startDow = firstDay.getDay()
-  const grid: (Date | null)[] = Array.from({ length: startDow }, () => null)
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const startDow = firstDay.getDay();
+  const grid: (Date | null)[] = Array.from({ length: startDow }, () => null);
   for (let d = 1; d <= lastDay.getDate(); d++) {
-    grid.push(new Date(year, month, d))
+    grid.push(new Date(year, month, d));
   }
-  return grid
+  return grid;
 }
 
 // ---------------------------------------------------------------------------
@@ -59,15 +59,20 @@ function buildCalendarGrid(year: number, month: number): (Date | null)[] {
 // ---------------------------------------------------------------------------
 
 interface CalendarViewProps {
-  readonly items: readonly TimelineItem[]
-  readonly birthDate: string
+  readonly items: readonly TimelineItem[];
+  readonly birthDate: string;
+  readonly onToggleComplete?: (itemId: string) => void;
 }
 
-export function CalendarView({ items, birthDate }: CalendarViewProps) {
-  const today = new Date()
-  const [viewYear, setViewYear] = useState(today.getFullYear())
-  const [viewMonth, setViewMonth] = useState(today.getMonth())
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+export function CalendarView({
+  items,
+  birthDate,
+  onToggleComplete,
+}: CalendarViewProps) {
+  const today = new Date();
+  const [viewYear, setViewYear] = useState(today.getFullYear());
+  const [viewMonth, setViewMonth] = useState(today.getMonth());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const itemsWithDates = useMemo(
     () =>
@@ -76,41 +81,41 @@ export function CalendarView({ items, birthDate }: CalendarViewProps) {
         date: getItemDate(birthDate, item.daysFromBirth),
       })),
     [items, birthDate],
-  )
+  );
 
   const grid = useMemo(
     () => buildCalendarGrid(viewYear, viewMonth),
     [viewYear, viewMonth],
-  )
+  );
 
   function getItemsForDate(date: Date): readonly TimelineItem[] {
     return itemsWithDates
       .filter(({ date: d }) => isSameDay(d, date))
-      .map(({ item }) => item)
+      .map(({ item }) => item);
   }
 
   function prevMonth() {
     if (viewMonth === 0) {
-      setViewYear((y) => y - 1)
-      setViewMonth(11)
+      setViewYear((y) => y - 1);
+      setViewMonth(11);
     } else {
-      setViewMonth((m) => m - 1)
+      setViewMonth((m) => m - 1);
     }
-    setSelectedDate(null)
+    setSelectedDate(null);
   }
 
   function nextMonth() {
     if (viewMonth === 11) {
-      setViewYear((y) => y + 1)
-      setViewMonth(0)
+      setViewYear((y) => y + 1);
+      setViewMonth(0);
     } else {
-      setViewMonth((m) => m + 1)
+      setViewMonth((m) => m + 1);
     }
-    setSelectedDate(null)
+    setSelectedDate(null);
   }
 
   const selectedItems =
-    selectedDate != null ? getItemsForDate(selectedDate) : []
+    selectedDate != null ? getItemsForDate(selectedDate) : [];
 
   return (
     <div className="space-y-4">
@@ -166,16 +171,21 @@ export function CalendarView({ items, birthDate }: CalendarViewProps) {
                   key={`empty-${idx}`}
                   className="min-h-[52px] border-b border-r border-border/40 last:border-r-0"
                 />
-              )
+              );
             }
 
-            const dayItems = getItemsForDate(date)
-            const hasItems = dayItems.length > 0
-            const isToday = isSameDay(date, today)
+            const dayItems = getItemsForDate(date);
+            const hasItems = dayItems.length > 0;
+            const isToday = isSameDay(date, today);
             const isSelected =
-              selectedDate != null && isSameDay(date, selectedDate)
-            const topUrgencies = dayItems.slice(0, 3).map((item) => item.urgency)
-            const dow = date.getDay()
+              selectedDate != null && isSameDay(date, selectedDate);
+            const pendingItems = dayItems.filter((item) => !item.completed);
+            const allCompleted =
+              dayItems.length > 0 && pendingItems.length === 0;
+            const topUrgencies = pendingItems
+              .slice(0, 3)
+              .map((item) => item.urgency);
+            const dow = date.getDay();
 
             return (
               <button
@@ -205,32 +215,38 @@ export function CalendarView({ items, birthDate }: CalendarViewProps) {
                 >
                   {date.getDate()}
                 </span>
-                {hasItems && (
-                  <div className="flex flex-wrap justify-center gap-0.5 px-0.5">
-                    {topUrgencies.map((urgency, i) => (
-                      <span
-                        key={i}
-                        className={`h-1.5 w-1.5 rounded-full ${URGENCY_DOT[urgency]}`}
-                      />
-                    ))}
-                  </div>
-                )}
+                {hasItems &&
+                  (allCompleted ? (
+                    <CheckCircle2 className="h-3 w-3 text-teal-400" />
+                  ) : (
+                    <div className="flex flex-wrap justify-center gap-0.5 px-0.5">
+                      {topUrgencies.map((urgency, i) => (
+                        <span
+                          key={i}
+                          className={`h-1.5 w-1.5 rounded-full ${URGENCY_DOT[urgency]}`}
+                        />
+                      ))}
+                    </div>
+                  ))}
               </button>
-            )
+            );
           })}
         </div>
       </div>
 
       {/* Legend */}
       <div className="flex flex-wrap gap-3 px-1">
-        {(
-          ["overdue", "urgent", "soon", "upcoming", "future"] as const
-        ).map((u) => (
-          <span key={u} className="flex items-center gap-1 text-xs text-muted">
-            <span className={`h-2 w-2 rounded-full ${URGENCY_DOT[u]}`} />
-            {URGENCY_LABEL[u]}
-          </span>
-        ))}
+        {(["overdue", "urgent", "soon", "upcoming", "future"] as const).map(
+          (u) => (
+            <span
+              key={u}
+              className="flex items-center gap-1 text-xs text-muted"
+            >
+              <span className={`h-2 w-2 rounded-full ${URGENCY_DOT[u]}`} />
+              {URGENCY_LABEL[u]}
+            </span>
+          ),
+        )}
       </div>
 
       {/* Selected day panel */}
@@ -240,22 +256,45 @@ export function CalendarView({ items, birthDate }: CalendarViewProps) {
             {selectedDate.getMonth() + 1}月{selectedDate.getDate()}日
           </p>
           {selectedItems.length === 0 ? (
-            <p className="mt-2 text-sm text-muted">
-              この日の予定はありません
-            </p>
+            <p className="mt-2 text-sm text-muted">この日の予定はありません</p>
           ) : (
             <div className="mt-3 space-y-2">
               {selectedItems.map((item) => (
                 <div
                   key={item.id}
-                  className="rounded-lg border border-border bg-card p-3"
+                  className={`rounded-lg border border-border p-3 ${
+                    item.completed ? "bg-warm-50 opacity-70" : "bg-card"
+                  }`}
                 >
                   <div className="flex items-start gap-2">
-                    <span
-                      className={`mt-0.5 h-2 w-2 shrink-0 rounded-full ${URGENCY_DOT[item.urgency]}`}
-                    />
+                    {onToggleComplete != null ? (
+                      <button
+                        type="button"
+                        onClick={() => onToggleComplete(item.id)}
+                        className="mt-0.5 shrink-0"
+                        aria-label={
+                          item.completed ? "未完了に戻す" : "完了にする"
+                        }
+                      >
+                        {item.completed ? (
+                          <CheckCircle2 className="h-4 w-4 text-teal-500" />
+                        ) : (
+                          <Circle className="h-4 w-4 text-gray-300 hover:text-teal-400" />
+                        )}
+                      </button>
+                    ) : (
+                      <span
+                        className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${URGENCY_DOT[item.urgency]}`}
+                      />
+                    )}
                     <div>
-                      <p className="text-sm font-medium text-card-foreground">
+                      <p
+                        className={`text-sm font-medium ${
+                          item.completed
+                            ? "text-muted line-through"
+                            : "text-card-foreground"
+                        }`}
+                      >
                         {item.title}
                       </p>
                       <p className="mt-0.5 text-xs leading-relaxed text-muted">
@@ -270,5 +309,5 @@ export function CalendarView({ items, birthDate }: CalendarViewProps) {
         </div>
       )}
     </div>
-  )
+  );
 }
