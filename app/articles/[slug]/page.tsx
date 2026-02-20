@@ -17,6 +17,7 @@ import { KeyPointsBox } from "@/components/article/key-points-box";
 import { CitationList } from "@/components/article/citation-list";
 import { ArticleCard } from "@/components/article/article-card";
 import { CategoryBadge } from "@/components/article/article-card";
+import { DoctorByline } from "@/components/article/doctor-byline";
 
 interface ArticlePageProps {
   readonly params: Promise<{ slug: string }>;
@@ -125,6 +126,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </div>
         </div>
       </header>
+
+      {/* Doctor byline */}
+      <DoctorByline
+        qaCount={frontmatter.qaCount}
+        referenceCount={frontmatter.referenceCount}
+      />
 
       {/* Key points */}
       <KeyPointsBox points={keyPoints} />

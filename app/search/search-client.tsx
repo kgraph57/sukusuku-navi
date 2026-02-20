@@ -2,12 +2,17 @@
 
 import { useState, useMemo } from "react"
 import Link from "next/link"
-import { Search, ArrowRight, Calendar, FileText } from "lucide-react"
+import { Search, ArrowRight, Calendar, Stethoscope, MessageCircle } from "lucide-react"
 import { Badge } from "@/components/shared/badge"
 import { SectionHeading } from "@/components/shared/section-heading"
 import type { ArticleCategory } from "@/lib/types"
 import { CATEGORY_LABELS } from "@/lib/types"
 import { useDebounce } from "@/lib/hooks/use-debounce"
+
+interface QaPair {
+  readonly question: string
+  readonly answer: string
+}
 
 interface SearchArticleData {
   readonly slug: string
@@ -18,6 +23,7 @@ interface SearchArticleData {
   readonly publishedAt: string
   readonly keyPoints: readonly string[]
   readonly qaCount: number
+  readonly qaPairs: readonly QaPair[]
 }
 
 interface SearchPageClientProps {
@@ -32,16 +38,35 @@ function formatDate(dateStr: string): string {
   return `${year}年${month}月${day}日`
 }
 
+function findMatchingQa(
+  qaPairs: readonly QaPair[],
+  query: string,
+): QaPair | null {
+  const lower = query.toLowerCase()
+  return (
+    qaPairs.find(
+      (qa) =>
+        qa.question.toLowerCase().includes(lower) ||
+        qa.answer.toLowerCase().includes(lower),
+    ) ?? null
+  )
+}
+
 function searchArticles(
   articles: readonly SearchArticleData[],
-  query: string
+  query: string,
 ): readonly SearchArticleData[] {
   const lower = query.toLowerCase()
   return articles.filter(
     (a) =>
       a.title.toLowerCase().includes(lower) ||
       a.description.toLowerCase().includes(lower) ||
-      a.keyPoints.some((kp) => kp.toLowerCase().includes(lower))
+      a.keyPoints.some((kp) => kp.toLowerCase().includes(lower)) ||
+      a.qaPairs.some(
+        (qa) =>
+          qa.question.toLowerCase().includes(lower) ||
+          qa.answer.toLowerCase().includes(lower),
+      ),
   )
 }
 
@@ -59,15 +84,30 @@ export function SearchPageClient({ articles }: SearchPageClientProps) {
   return (
     <div className="px-4 py-12 sm:py-16">
       <div className="mx-auto max-w-3xl">
-        <SectionHeading subtitle="キーワードで記事を検索できます">
+        <SectionHeading subtitle="キーワードで記事・Q&Aを検索できます">
           記事を検索
         </SectionHeading>
 
-        <div className="relative mt-8">
+        {/* Doctor badge */}
+        <div className="mt-6 flex items-center gap-2 rounded-lg border border-teal-100 bg-teal-50/50 px-4 py-2.5">
+          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal-600">
+            <Stethoscope className="h-3.5 w-3.5 text-white" />
+          </div>
+          <p className="text-xs text-muted">
+            <span className="font-medium text-teal-700">おかもん先生（小児科専門医）</span>
+            が執筆した記事と、収録された{" "}
+            <span className="font-medium text-foreground">
+              {articles.reduce((s, a) => s + a.qaCount, 0)}問のQ&amp;A
+            </span>{" "}
+            を横断して検索します
+          </p>
+        </div>
+
+        <div className="relative mt-4">
           <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" />
           <input
             type="search"
-            placeholder="例: 発熱、アレルギー、予防接種..."
+            placeholder="例: 発熱 夜中、アレルギー、予防接種の順番..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="w-full rounded-xl border border-border bg-white py-4 pl-12 pr-4 text-base text-foreground shadow-sm outline-none transition-all placeholder:text-muted/60 focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20"
@@ -79,46 +119,68 @@ export function SearchPageClient({ articles }: SearchPageClientProps) {
           <p className="mt-4 text-sm text-muted">
             {results.length > 0
               ? `「${debouncedQuery}」の検索結果: ${results.length}件`
-              : `「${debouncedQuery}」に一致する記事が見つかりませんでした`}
+              : `「${debouncedQuery}」に一致する記事・Q&Aが見つかりませんでした`}
           </p>
         )}
 
         {hasQuery && results.length > 0 && (
           <div className="mt-6 space-y-4">
-            {results.map((article) => (
-              <Link
-                key={article.slug}
-                href={`/articles/${article.slug}`}
-                className="group block rounded-xl border border-border bg-white p-5 transition-all hover:border-teal-200 hover:shadow-md"
-              >
-                <div className="flex items-center gap-2">
-                  <Badge category={article.category as ArticleCategory} />
-                  <span className="text-xs text-muted">
-                    Vol.{article.vol}
-                  </span>
-                </div>
-                <h3 className="mt-2 font-heading text-base font-bold text-card-foreground group-hover:text-teal-700 sm:text-lg">
-                  {article.title}
-                </h3>
-                <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-muted">
-                  {article.description}
-                </p>
-                <div className="mt-3 flex items-center gap-4 text-xs text-muted">
-                  <span className="flex items-center gap-1">
-                    <Calendar className="h-3 w-3" />
-                    {formatDate(article.publishedAt)}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <FileText className="h-3 w-3" />
-                    Q&amp;A {article.qaCount}問
-                  </span>
-                  <span className="ml-auto flex items-center gap-1 text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
-                    読む
-                    <ArrowRight className="h-3 w-3" />
-                  </span>
-                </div>
-              </Link>
-            ))}
+            {results.map((article) => {
+              const matchingQa = findMatchingQa(article.qaPairs, debouncedQuery)
+              return (
+                <Link
+                  key={article.slug}
+                  href={`/articles/${article.slug}`}
+                  className="group block rounded-xl border border-border bg-white p-5 transition-all hover:border-teal-200 hover:shadow-md"
+                >
+                  <div className="flex items-center gap-2">
+                    <Badge category={article.category as ArticleCategory} />
+                    <span className="text-xs text-muted">Vol.{article.vol}</span>
+                  </div>
+                  <h3 className="mt-2 font-heading text-base font-bold text-card-foreground group-hover:text-teal-700 sm:text-lg">
+                    {article.title}
+                  </h3>
+                  <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-muted">
+                    {article.description}
+                  </p>
+
+                  {/* Matching Q&A snippet */}
+                  {matchingQa && (
+                    <div className="mt-3 rounded-lg border border-teal-100 bg-teal-50/60 p-3">
+                      <div className="flex items-start gap-2">
+                        <MessageCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-coral-400" />
+                        <p className="text-xs font-medium text-coral-600 line-clamp-1">
+                          Q: {matchingQa.question}
+                        </p>
+                      </div>
+                      <div className="mt-1.5 flex items-start gap-2">
+                        <div className="mt-0.5 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-teal-600 text-[8px] font-bold text-white">
+                          医
+                        </div>
+                        <p className="text-xs leading-relaxed text-muted line-clamp-2">
+                          A: {matchingQa.answer}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="mt-3 flex items-center gap-4 text-xs text-muted">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="h-3 w-3" />
+                      {formatDate(article.publishedAt)}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <MessageCircle className="h-3 w-3" />
+                      Q&amp;A {article.qaCount}問
+                    </span>
+                    <span className="ml-auto flex items-center gap-1 text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
+                      読む
+                      <ArrowRight className="h-3 w-3" />
+                    </span>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
         )}
 
