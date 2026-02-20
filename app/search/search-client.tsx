@@ -1,105 +1,390 @@
-"use client"
+"use client";
 
-import { useState, useMemo } from "react"
-import Link from "next/link"
-import { Search, ArrowRight, Calendar, Stethoscope, MessageCircle } from "lucide-react"
-import { Badge } from "@/components/shared/badge"
-import { SectionHeading } from "@/components/shared/section-heading"
-import type { ArticleCategory } from "@/lib/types"
-import { CATEGORY_LABELS } from "@/lib/types"
-import { useDebounce } from "@/lib/hooks/use-debounce"
+import { useState, useMemo } from "react";
+import Link from "next/link";
+import {
+  Search,
+  ArrowRight,
+  Calendar,
+  Stethoscope,
+  MessageCircle,
+  Heart,
+  Syringe,
+  MapPin,
+  Building2,
+  Banknote,
+  AlertTriangle,
+} from "lucide-react";
+import { Badge } from "@/components/shared/badge";
+import { SectionHeading } from "@/components/shared/section-heading";
+import type { ArticleCategory } from "@/lib/types";
+import { CATEGORY_LABELS } from "@/lib/types";
+import { useDebounce } from "@/lib/hooks/use-debounce";
+import type { SearchItem } from "./page";
 
-interface QaPair {
-  readonly question: string
-  readonly answer: string
-}
+type ContentType = "all" | "article" | "program" | "vaccine" | "clinic" | "nursery";
 
-interface SearchArticleData {
-  readonly slug: string
-  readonly vol: number
-  readonly title: string
-  readonly description: string
-  readonly category: string
-  readonly publishedAt: string
-  readonly keyPoints: readonly string[]
-  readonly qaCount: number
-  readonly qaPairs: readonly QaPair[]
-}
+const CONTENT_TYPE_LABELS: Record<ContentType, string> = {
+  all: "すべて",
+  article: "記事",
+  program: "制度",
+  vaccine: "ワクチン",
+  clinic: "小児科",
+  nursery: "保育園",
+};
 
 interface SearchPageClientProps {
-  readonly articles: readonly SearchArticleData[]
+  readonly items: readonly SearchItem[];
 }
 
 function formatDate(dateStr: string): string {
-  const date = new Date(dateStr)
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  return `${year}年${month}月${day}日`
+  const date = new Date(dateStr);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return `${year}年${month}月${day}日`;
 }
 
-function findMatchingQa(
-  qaPairs: readonly QaPair[],
-  query: string,
-): QaPair | null {
-  const lower = query.toLowerCase()
-  return (
-    qaPairs.find(
+function matchesQuery(item: SearchItem, lower: string): boolean {
+  switch (item.type) {
+    case "article":
+      return (
+        item.title.toLowerCase().includes(lower) ||
+        item.description.toLowerCase().includes(lower) ||
+        item.keyPoints.some((kp) => kp.toLowerCase().includes(lower)) ||
+        item.qaPairs.some(
+          (qa) =>
+            qa.question.toLowerCase().includes(lower) ||
+            qa.answer.toLowerCase().includes(lower),
+        )
+      );
+    case "program":
+      return (
+        item.name.toLowerCase().includes(lower) ||
+        item.description.toLowerCase().includes(lower) ||
+        item.amountDescription.toLowerCase().includes(lower)
+      );
+    case "vaccine":
+      return (
+        item.name.toLowerCase().includes(lower) ||
+        item.nameShort.toLowerCase().includes(lower) ||
+        item.disease.toLowerCase().includes(lower) ||
+        item.description.toLowerCase().includes(lower)
+      );
+    case "clinic":
+      return (
+        item.name.toLowerCase().includes(lower) ||
+        item.address.toLowerCase().includes(lower) ||
+        item.features.some((f) => f.toLowerCase().includes(lower)) ||
+        item.nearestStation.toLowerCase().includes(lower)
+      );
+    case "nursery":
+      return (
+        item.name.toLowerCase().includes(lower) ||
+        item.address.toLowerCase().includes(lower) ||
+        item.features.some((f) => f.toLowerCase().includes(lower))
+      );
+  }
+}
+
+function ArticleResult({
+  item,
+  query,
+}: {
+  readonly item: SearchItem & { type: "article" };
+  readonly query: string;
+}) {
+  const lower = query.toLowerCase();
+  const matchingQa =
+    item.qaPairs.find(
       (qa) =>
         qa.question.toLowerCase().includes(lower) ||
         qa.answer.toLowerCase().includes(lower),
-    ) ?? null
-  )
+    ) ?? null;
+
+  return (
+    <Link
+      href={`/articles/${item.slug}`}
+      className="group block rounded-xl border border-border bg-white p-5 transition-all hover:border-teal-200 hover:shadow-md"
+    >
+      <div className="flex items-center gap-2">
+        <Badge category={item.category as ArticleCategory} />
+        <span className="text-xs text-muted">Vol.{item.vol}</span>
+      </div>
+      <h3 className="mt-2 font-heading text-base font-bold text-card-foreground group-hover:text-teal-700 sm:text-lg">
+        {item.title}
+      </h3>
+      <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-muted">
+        {item.description}
+      </p>
+
+      {matchingQa && (
+        <div className="mt-3 rounded-lg border border-teal-100 bg-teal-50/60 p-3">
+          <div className="flex items-start gap-2">
+            <MessageCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-coral-400" />
+            <p className="text-xs font-medium text-coral-600 line-clamp-1">
+              Q: {matchingQa.question}
+            </p>
+          </div>
+          <div className="mt-1.5 flex items-start gap-2">
+            <div className="mt-0.5 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-teal-600 text-[8px] font-bold text-white">
+              医
+            </div>
+            <p className="text-xs leading-relaxed text-muted line-clamp-2">
+              A: {matchingQa.answer}
+            </p>
+          </div>
+        </div>
+      )}
+
+      <div className="mt-3 flex items-center gap-4 text-xs text-muted">
+        <span className="flex items-center gap-1">
+          <Calendar className="h-3 w-3" />
+          {formatDate(item.publishedAt)}
+        </span>
+        <span className="flex items-center gap-1">
+          <MessageCircle className="h-3 w-3" />
+          Q&amp;A {item.qaCount}問
+        </span>
+        <span className="ml-auto flex items-center gap-1 text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
+          読む
+          <ArrowRight className="h-3 w-3" />
+        </span>
+      </div>
+    </Link>
+  );
 }
 
-function searchArticles(
-  articles: readonly SearchArticleData[],
-  query: string,
-): readonly SearchArticleData[] {
-  const lower = query.toLowerCase()
-  return articles.filter(
-    (a) =>
-      a.title.toLowerCase().includes(lower) ||
-      a.description.toLowerCase().includes(lower) ||
-      a.keyPoints.some((kp) => kp.toLowerCase().includes(lower)) ||
-      a.qaPairs.some(
-        (qa) =>
-          qa.question.toLowerCase().includes(lower) ||
-          qa.answer.toLowerCase().includes(lower),
-      ),
-  )
+function ProgramResult({
+  item,
+}: {
+  readonly item: SearchItem & { type: "program" };
+}) {
+  return (
+    <Link
+      href={`/programs/${item.slug}`}
+      className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-teal-200 hover:shadow-md"
+    >
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-teal-200 bg-teal-50">
+        <Banknote className="h-5 w-5 text-teal-600" />
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2">
+          <span className="rounded-full bg-teal-50 px-2 py-0.5 text-[10px] font-medium text-teal-700">
+            制度
+          </span>
+        </div>
+        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-teal-700">
+          {item.name}
+        </h3>
+        <p className="mt-1 line-clamp-2 text-sm text-muted">
+          {item.description}
+        </p>
+        {item.amountDescription && (
+          <p className="mt-1 text-xs font-medium text-teal-600">
+            {item.amountDescription}
+          </p>
+        )}
+      </div>
+    </Link>
+  );
 }
 
-export function SearchPageClient({ articles }: SearchPageClientProps) {
-  const [query, setQuery] = useState("")
-  const debouncedQuery = useDebounce(query, 300)
+function VaccineResult({
+  item,
+}: {
+  readonly item: SearchItem & { type: "vaccine" };
+}) {
+  return (
+    <Link
+      href={`/vaccines/${item.slug}`}
+      className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-teal-200 hover:shadow-md"
+    >
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-purple-200 bg-purple-50">
+        <Syringe className="h-5 w-5 text-purple-600" />
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2">
+          <span className="rounded-full bg-purple-50 px-2 py-0.5 text-[10px] font-medium text-purple-700">
+            {item.vaccineType === "routine" ? "定期接種" : "任意接種"}
+          </span>
+        </div>
+        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-teal-700">
+          {item.name}
+        </h3>
+        <p className="mt-1 text-xs text-muted">対象疾患: {item.disease}</p>
+        <p className="mt-1 line-clamp-2 text-sm text-muted">
+          {item.description}
+        </p>
+      </div>
+    </Link>
+  );
+}
+
+function ClinicResult({
+  item,
+}: {
+  readonly item: SearchItem & { type: "clinic" };
+}) {
+  return (
+    <Link
+      href={`/clinics/${item.slug}`}
+      className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-teal-200 hover:shadow-md"
+    >
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blue-200 bg-blue-50">
+        <MapPin className="h-5 w-5 text-blue-600" />
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2">
+          <span className="rounded-full bg-blue-50 px-2 py-0.5 text-[10px] font-medium text-blue-700">
+            小児科
+          </span>
+          {item.emergencyAvailable && (
+            <span className="flex items-center gap-0.5 rounded-full bg-red-50 px-2 py-0.5 text-[10px] font-medium text-red-700">
+              <AlertTriangle className="h-2.5 w-2.5" />
+              救急対応
+            </span>
+          )}
+        </div>
+        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-teal-700">
+          {item.name}
+        </h3>
+        <p className="mt-1 text-xs text-muted">{item.address}</p>
+        <p className="mt-1 text-xs text-muted">
+          最寄駅: {item.nearestStation}
+        </p>
+      </div>
+    </Link>
+  );
+}
+
+function NurseryResult({
+  item,
+}: {
+  readonly item: SearchItem & { type: "nursery" };
+}) {
+  return (
+    <Link
+      href={`/nurseries/${item.slug}`}
+      className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-teal-200 hover:shadow-md"
+    >
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-green-200 bg-green-50">
+        <Building2 className="h-5 w-5 text-green-600" />
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2">
+          <span className="rounded-full bg-green-50 px-2 py-0.5 text-[10px] font-medium text-green-700">
+            保育園
+          </span>
+        </div>
+        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-teal-700">
+          {item.name}
+        </h3>
+        <p className="mt-1 text-xs text-muted">{item.address}</p>
+        {item.features.length > 0 && (
+          <div className="mt-1.5 flex flex-wrap gap-1">
+            {item.features.slice(0, 3).map((f) => (
+              <span
+                key={f}
+                className="rounded bg-warm-100 px-1.5 py-0.5 text-[10px] text-muted"
+              >
+                {f}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </Link>
+  );
+}
+
+function SearchResultItem({
+  item,
+  query,
+}: {
+  readonly item: SearchItem;
+  readonly query: string;
+}) {
+  switch (item.type) {
+    case "article":
+      return <ArticleResult item={item} query={query} />;
+    case "program":
+      return <ProgramResult item={item} />;
+    case "vaccine":
+      return <VaccineResult item={item} />;
+    case "clinic":
+      return <ClinicResult item={item} />;
+    case "nursery":
+      return <NurseryResult item={item} />;
+  }
+}
+
+export function SearchPageClient({ items }: SearchPageClientProps) {
+  const [query, setQuery] = useState("");
+  const [activeType, setActiveType] = useState<ContentType>("all");
+  const debouncedQuery = useDebounce(query, 300);
 
   const results = useMemo(() => {
-    if (debouncedQuery.length === 0) return []
-    return searchArticles(articles, debouncedQuery)
-  }, [articles, debouncedQuery])
+    if (debouncedQuery.length === 0) return [];
+    const lower = debouncedQuery.toLowerCase();
+    const matched = items.filter((item) => matchesQuery(item, lower));
 
-  const hasQuery = debouncedQuery.length > 0
+    if (activeType === "all") return matched;
+    return matched.filter((item) => item.type === activeType);
+  }, [items, debouncedQuery, activeType]);
+
+  const typeCounts = useMemo(() => {
+    if (debouncedQuery.length === 0) return {};
+    const lower = debouncedQuery.toLowerCase();
+    const matched = items.filter((item) => matchesQuery(item, lower));
+    const counts: Record<string, number> = {};
+    for (const item of matched) {
+      counts[item.type] = (counts[item.type] ?? 0) + 1;
+    }
+    return counts;
+  }, [items, debouncedQuery]);
+
+  const totalCount = Object.values(typeCounts).reduce((a, b) => a + b, 0);
+  const hasQuery = debouncedQuery.length > 0;
+
+  const articleCount = items.filter((i) => i.type === "article").length;
+  const programCount = items.filter((i) => i.type === "program").length;
+  const vaccineCount = items.filter((i) => i.type === "vaccine").length;
+  const clinicCount = items.filter((i) => i.type === "clinic").length;
+  const nurseryCount = items.filter((i) => i.type === "nursery").length;
 
   return (
     <div className="px-4 py-12 sm:py-16">
       <div className="mx-auto max-w-3xl">
-        <SectionHeading subtitle="キーワードで記事・Q&Aを検索できます">
-          記事を検索
+        <SectionHeading subtitle="記事・制度・ワクチン・小児科・保育園をまとめて検索">
+          横断検索
         </SectionHeading>
 
-        {/* Doctor badge */}
         <div className="mt-6 flex items-center gap-2 rounded-lg border border-teal-100 bg-teal-50/50 px-4 py-2.5">
           <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal-600">
             <Stethoscope className="h-3.5 w-3.5 text-white" />
           </div>
           <p className="text-xs text-muted">
-            <span className="font-medium text-teal-700">おかもん先生（小児科専門医）</span>
-            が執筆した記事と、収録された{" "}
             <span className="font-medium text-foreground">
-              {articles.reduce((s, a) => s + a.qaCount, 0)}問のQ&amp;A
-            </span>{" "}
-            を横断して検索します
+              {articleCount}本の記事
+            </span>
+            ・
+            <span className="font-medium text-foreground">
+              {programCount}件の制度
+            </span>
+            ・
+            <span className="font-medium text-foreground">
+              {vaccineCount}種のワクチン
+            </span>
+            ・
+            <span className="font-medium text-foreground">
+              {clinicCount}件の小児科
+            </span>
+            ・
+            <span className="font-medium text-foreground">
+              {nurseryCount}件の保育園
+            </span>
+            を横断検索
           </p>
         </div>
 
@@ -107,7 +392,7 @@ export function SearchPageClient({ articles }: SearchPageClientProps) {
           <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" />
           <input
             type="search"
-            placeholder="例: 発熱 夜中、アレルギー、予防接種の順番..."
+            placeholder="例: 児童手当、MRワクチン、麻布、アレルギー..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="w-full rounded-xl border border-border bg-white py-4 pl-12 pr-4 text-base text-foreground shadow-sm outline-none transition-all placeholder:text-muted/60 focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20"
@@ -115,76 +400,55 @@ export function SearchPageClient({ articles }: SearchPageClientProps) {
           />
         </div>
 
+        {hasQuery && totalCount > 0 && (
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            {(
+              Object.entries(CONTENT_TYPE_LABELS) as [ContentType, string][]
+            ).map(([type, label]) => {
+              const count =
+                type === "all" ? totalCount : (typeCounts[type] ?? 0);
+              if (type !== "all" && count === 0) return null;
+
+              return (
+                <button
+                  key={type}
+                  type="button"
+                  onClick={() => setActiveType(type)}
+                  className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                    activeType === type
+                      ? "bg-teal-600 text-white"
+                      : "border border-border bg-white text-muted hover:border-teal-200 hover:text-teal-700"
+                  }`}
+                >
+                  {label}
+                  <span className="ml-1 opacity-70">{count}</span>
+                </button>
+              );
+            })}
+          </div>
+        )}
+
         {hasQuery && (
           <p className="mt-4 text-sm text-muted">
-            {results.length > 0
+            {totalCount > 0
               ? `「${debouncedQuery}」の検索結果: ${results.length}件`
-              : `「${debouncedQuery}」に一致する記事・Q&Aが見つかりませんでした`}
+              : `「${debouncedQuery}」に一致する結果が見つかりませんでした`}
           </p>
         )}
 
         {hasQuery && results.length > 0 && (
           <div className="mt-6 space-y-4">
-            {results.map((article) => {
-              const matchingQa = findMatchingQa(article.qaPairs, debouncedQuery)
-              return (
-                <Link
-                  key={article.slug}
-                  href={`/articles/${article.slug}`}
-                  className="group block rounded-xl border border-border bg-white p-5 transition-all hover:border-teal-200 hover:shadow-md"
-                >
-                  <div className="flex items-center gap-2">
-                    <Badge category={article.category as ArticleCategory} />
-                    <span className="text-xs text-muted">Vol.{article.vol}</span>
-                  </div>
-                  <h3 className="mt-2 font-heading text-base font-bold text-card-foreground group-hover:text-teal-700 sm:text-lg">
-                    {article.title}
-                  </h3>
-                  <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-muted">
-                    {article.description}
-                  </p>
-
-                  {/* Matching Q&A snippet */}
-                  {matchingQa && (
-                    <div className="mt-3 rounded-lg border border-teal-100 bg-teal-50/60 p-3">
-                      <div className="flex items-start gap-2">
-                        <MessageCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-coral-400" />
-                        <p className="text-xs font-medium text-coral-600 line-clamp-1">
-                          Q: {matchingQa.question}
-                        </p>
-                      </div>
-                      <div className="mt-1.5 flex items-start gap-2">
-                        <div className="mt-0.5 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-teal-600 text-[8px] font-bold text-white">
-                          医
-                        </div>
-                        <p className="text-xs leading-relaxed text-muted line-clamp-2">
-                          A: {matchingQa.answer}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="mt-3 flex items-center gap-4 text-xs text-muted">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
-                      {formatDate(article.publishedAt)}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <MessageCircle className="h-3 w-3" />
-                      Q&amp;A {article.qaCount}問
-                    </span>
-                    <span className="ml-auto flex items-center gap-1 text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
-                      読む
-                      <ArrowRight className="h-3 w-3" />
-                    </span>
-                  </div>
-                </Link>
-              )
-            })}
+            {results.map((item) => (
+              <SearchResultItem
+                key={`${item.type}-${item.slug}`}
+                item={item}
+                query={debouncedQuery}
+              />
+            ))}
           </div>
         )}
 
-        {hasQuery && results.length === 0 && (
+        {hasQuery && totalCount === 0 && (
           <div className="mt-12 text-center">
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-warm-100">
               <Search className="h-7 w-7 text-muted" />
@@ -201,14 +465,22 @@ export function SearchPageClient({ articles }: SearchPageClientProps) {
               人気のキーワード
             </p>
             <div className="mt-4 flex flex-wrap justify-center gap-2">
-              {Object.entries(CATEGORY_LABELS).map(([key, label]) => (
+              {[
+                ...Object.entries(CATEGORY_LABELS).map(([, label]) => label),
+                "児童手当",
+                "産後ケア",
+                "おたふく",
+                "BCG",
+                "麻布",
+                "一時保育",
+              ].map((keyword) => (
                 <button
-                  key={key}
+                  key={keyword}
                   type="button"
-                  onClick={() => setQuery(label)}
+                  onClick={() => setQuery(keyword)}
                   className="rounded-full border border-border bg-white px-4 py-2 text-sm text-foreground transition-colors hover:border-teal-200 hover:bg-teal-50 hover:text-teal-700"
                 >
-                  {label}
+                  {keyword}
                 </button>
               ))}
             </div>
@@ -216,5 +488,5 @@ export function SearchPageClient({ articles }: SearchPageClientProps) {
         )}
       </div>
     </div>
-  )
+  );
 }
