@@ -1,5 +1,5 @@
-import type { Metadata } from "next"
-import Link from "next/link"
+import type { Metadata } from "next";
+import Link from "next/link";
 import {
   Stethoscope,
   Thermometer,
@@ -9,15 +9,22 @@ import {
   Frown,
   AlertTriangle,
   ArrowRight,
-} from "lucide-react"
-import { getAllSymptoms } from "@/lib/triage/engine"
-import type { TriageSymptom } from "@/lib/triage/engine"
+  BrainCircuit,
+  Ear,
+  Megaphone,
+  Brain,
+  Eye,
+  Flame,
+  Zap,
+} from "lucide-react";
+import { getAllSymptoms } from "@/lib/triage/engine";
+import type { TriageSymptom } from "@/lib/triage/engine";
 
 export const metadata: Metadata = {
   title: "症状チェック（トリアージ）",
   description:
-    "お子さんの症状から受診の緊急度を判断します。発熱、嘔吐、咳、発疹、腹痛の5症状に対応。",
-}
+    "お子さんの症状から受診の緊急度を判断します。発熱・嘔吐・咳・発疹・腹痛・頭部外傷・呼吸困難・けいれんなど15症状に対応。",
+};
 
 const ICON_MAP: Record<string, typeof Thermometer> = {
   Thermometer,
@@ -25,7 +32,15 @@ const ICON_MAP: Record<string, typeof Thermometer> = {
   Wind,
   CircleDot,
   Frown,
-}
+  BrainCircuit,
+  Ear,
+  Megaphone,
+  Brain,
+  Eye,
+  Flame,
+  Zap,
+  AlertTriangle,
+};
 
 const SYMPTOM_COLORS: readonly string[] = [
   "bg-red-50 text-red-600 border-red-200",
@@ -33,17 +48,17 @@ const SYMPTOM_COLORS: readonly string[] = [
   "bg-blue-50 text-blue-600 border-blue-200",
   "bg-pink-50 text-pink-600 border-pink-200",
   "bg-purple-50 text-purple-600 border-purple-200",
-]
+];
 
 function SymptomCard({
   symptom,
   index,
 }: {
-  readonly symptom: TriageSymptom
-  readonly index: number
+  readonly symptom: TriageSymptom;
+  readonly index: number;
 }) {
-  const IconComponent = ICON_MAP[symptom.icon] ?? Stethoscope
-  const colorClass = SYMPTOM_COLORS[index % SYMPTOM_COLORS.length]
+  const IconComponent = ICON_MAP[symptom.icon] ?? Stethoscope;
+  const colorClass = SYMPTOM_COLORS[index % SYMPTOM_COLORS.length];
 
   return (
     <Link
@@ -68,11 +83,11 @@ function SymptomCard({
         </span>
       </div>
     </Link>
-  )
+  );
 }
 
 export default function TriagePage() {
-  const symptoms = getAllSymptoms()
+  const symptoms = getAllSymptoms();
 
   return (
     <>
@@ -111,11 +126,7 @@ export default function TriagePage() {
           </h2>
           <div className="mt-6 space-y-3">
             {symptoms.map((symptom, index) => (
-              <SymptomCard
-                key={symptom.slug}
-                symptom={symptom}
-                index={index}
-              />
+              <SymptomCard key={symptom.slug} symptom={symptom} index={index} />
             ))}
           </div>
         </div>
@@ -155,5 +166,5 @@ export default function TriagePage() {
         </div>
       </section>
     </>
-  )
+  );
 }
