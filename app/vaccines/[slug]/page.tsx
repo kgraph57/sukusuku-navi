@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   ShieldCheck,
   HelpCircle,
+  BookOpen,
 } from "lucide-react";
 import {
   getAllVaccines,
@@ -214,6 +215,40 @@ export default async function VaccineDetailPage({ params }: PageProps) {
                 おかもん先生の予防接種解説記事を読む
                 <ArrowLeft className="h-4 w-4 rotate-180" />
               </Link>
+            </div>
+          )}
+
+          {vaccine.knowVpdUrl && (
+            <div className="rounded-xl border border-border bg-card p-6">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+                <BookOpen className="h-5 w-5 text-teal-600" />
+                公式情報・参考サイト
+              </h2>
+              <p className="mt-2 text-sm text-muted">
+                このワクチンについての詳しい情報は、以下の公式サイトもあわせてご参照ください。
+              </p>
+              <div className="mt-4 flex flex-col gap-3">
+                <a
+                  href={vaccine.knowVpdUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-100"
+                >
+                  <ShieldCheck className="h-4 w-4 shrink-0" />
+                  Know VPD! で{vaccine.nameShort}の詳細を見る
+                  <ExternalLink className="ml-auto h-3.5 w-3.5 shrink-0" />
+                </a>
+                <a
+                  href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/yobou-sesshu/index.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg border border-border bg-warm-50 px-4 py-3 text-sm font-medium text-muted transition-colors hover:bg-warm-100"
+                >
+                  <Info className="h-4 w-4 shrink-0" />
+                  厚生労働省 予防接種情報
+                  <ExternalLink className="ml-auto h-3.5 w-3.5 shrink-0" />
+                </a>
+              </div>
             </div>
           )}
 

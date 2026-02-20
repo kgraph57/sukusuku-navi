@@ -184,7 +184,14 @@ export interface Vaccine {
   readonly contraindications: string;
   readonly relatedArticleSlug: string | null;
   readonly relatedProgramSlug: string | null;
-  readonly faq?: ReadonlyArray<VaccinationFaq>;
+  readonly knowVpdUrl: string | null;
+  readonly faq?: ReadonlyArray<VaccineFaq>;
+}
+
+export interface VaccineFaq {
+  readonly question: string;
+  readonly answer: string;
+  readonly category?: string;
 }
 
 export interface VaccinationStep {

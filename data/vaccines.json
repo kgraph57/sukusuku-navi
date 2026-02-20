@@ -40,6 +40,7 @@
     "contraindications": "発熱中（体温37.5℃以上）の場合、重篤なアレルギー反応の既往がある場合は接種を延期します。",
     "relatedArticleSlug": "vaccination-schedule",
     "relatedProgramSlug": null,
+    "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_hib.htm",
     "faq": [
       {
         "question": "軽い鼻水があっても接種できますか？",
@@ -114,6 +115,7 @@
     "contraindications": "発熱中の場合や、本ワクチン成分に対する重篤なアレルギー反応の既往がある場合は接種を延期します。",
     "relatedArticleSlug": "vaccination-schedule",
     "relatedProgramSlug": null,
+    "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_pc.htm",
     "faq": [
       {
         "question": "軽い鼻水・咳があっても接種できますか？",
@@ -166,6 +168,7 @@
     "contraindications": "発熱中の場合、酵母に対する重篤なアレルギーがある場合は接種を延期します。",
     "relatedArticleSlug": null,
     "relatedProgramSlug": null,
+    "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_hb.htm",
     "faq": [
       {
         "question": "軽い風邪症状があっても接種できますか？",
@@ -211,6 +214,7 @@
     "contraindications": "腸重積症の既往・消化器系の先天性奇形がある場合は接種禁忌です。消化管疾患がある場合も接種延期となります。",
     "relatedArticleSlug": null,
     "relatedProgramSlug": null,
+    "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_rota.htm",
     "faq": [
       {
         "question": "接種当日に嘔吐や下痢がありました。接種は延期すべきですか？",
@@ -249,6 +253,7 @@
     "contraindications": "免疫不全疾患（先天性・後天性）、副腎皮質ステロイドの大量投与中の場合は禁忌です。",
     "relatedArticleSlug": "vaccination-schedule",
     "relatedProgramSlug": null,
+    "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_bcg.htm",
     "faq": [
       {
         "question": "接種後3週間で接種部位が赤く腫れてきました。正常ですか？",
@@ -304,6 +309,7 @@
     "contraindications": "卵アレルギーがある場合はかかりつけ医に相談してください。免疫不全がある場合は禁忌です。",
     "relatedArticleSlug": null,
     "relatedProgramSlug": null,
+    "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_mr.htm",
     "faq": [
       {
         "question": "接種後1週間で発熱・発疹が出ました。はしかにかかりましたか？",
@@ -349,6 +355,7 @@
     "contraindications": "免疫不全疾患がある場合、重症の発熱疾患がある場合は接種を延期・禁忌とします。",
     "relatedArticleSlug": null,
     "relatedProgramSlug": null,
+    "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_cp.htm",
     "faq": [
       {
         "question": "接種後に水ぶくれのような発疹が出ました。みずぼうそうに感染しましたか？",
@@ -403,6 +410,7 @@
     "contraindications": "発熱中、重篤な急性疾患がある場合は接種を延期します。",
     "relatedArticleSlug": null,
     "relatedProgramSlug": null,
+    "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_je.htm",
     "faq": [
       {
         "question": "接種当日に発熱しました。延期すべきですか？",
@@ -450,6 +458,7 @@
     "contraindications": "本剤成分に対する重篤なアレルギーの既往がある場合は禁忌です。",
     "relatedArticleSlug": null,
     "relatedProgramSlug": null,
+    "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_hpv.htm",
     "faq": [
       {
         "question": "接種後に立ちくらみが起きました。大丈夫ですか？",
@@ -495,6 +504,7 @@
     "contraindications": "卵アレルギーが強い場合はかかりつけ医に相談。免疫不全がある場合は禁忌です。",
     "relatedArticleSlug": null,
     "relatedProgramSlug": "mumps-vaccine-subsidy",
+    "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_mm.htm",
     "faq": [
       {
         "question": "なぜ定期接種でないのですか？接種は必要ですか？",
@@ -540,6 +550,7 @@
     "contraindications": "卵アレルギーが強い場合は注意が必要です（医師に相談）。発熱中は延期します。",
     "relatedArticleSlug": null,
     "relatedProgramSlug": "influenza-vaccine-subsidy",
+    "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_flu.htm",
     "faq": [
       {
         "question": "卵アレルギーがありますが接種できますか？",

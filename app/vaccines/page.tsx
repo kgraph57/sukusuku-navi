@@ -1,6 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Syringe, ArrowRight, CheckCircle2, Info } from "lucide-react";
+import {
+  Syringe,
+  ArrowRight,
+  CheckCircle2,
+  Info,
+  Calendar,
+  MapPin,
+  HelpCircle,
+  ShieldCheck,
+  BookOpen,
+  Stethoscope,
+  Heart,
+  ExternalLink,
+} from "lucide-react";
 import {
   getAllVaccines,
   getRoutineVaccines,
@@ -9,17 +22,38 @@ import {
   VACCINE_TYPE_COLORS,
   formatAgeMonths,
 } from "@/lib/vaccines";
+import {
+  getVaccinationSteps,
+  getVaccinationFaqs,
+  getVaccinationEvidence,
+} from "@/lib/vaccinations";
+import { getArticlesByCategory } from "@/lib/content";
+import { SectionHeading } from "@/components/shared/section-heading";
+import { ScheduleTable } from "@/components/vaccination/schedule-table";
+import { StepsGuide } from "@/components/vaccination/steps-guide";
+import { FaqSection } from "@/components/vaccination/faq-section";
+import { EvidenceSection } from "@/components/vaccination/evidence-section";
+import { Badge } from "@/components/shared/badge";
 import type { Vaccine } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "予防接種スケジュール",
+  title: "予防接種ガイド",
   description:
-    "港区の乳幼児期の予防接種スケジュール一覧。定期接種・任意接種の種類、接種時期、港区の助成制度をまとめています。",
+    "港区の予防接種スケジュール、接種の手順、よくある質問、科学的エビデンスをまとめた総合ガイド。小児科医おかもんが解説します。",
 };
+
+const JUMP_LINKS = [
+  { href: "#schedule", icon: Calendar, label: "スケジュール" },
+  { href: "#vaccines", icon: Syringe, label: "ワクチン一覧" },
+  { href: "#steps", icon: MapPin, label: "港区での手順" },
+  { href: "#faq", icon: HelpCircle, label: "よくある質問" },
+  { href: "#evidence", icon: ShieldCheck, label: "エビデンス" },
+] as const;
 
 function VaccineCard({ vaccine }: { readonly vaccine: Vaccine }) {
   const colorClass =
-    VACCINE_TYPE_COLORS[vaccine.type] ?? "bg-gray-50 text-gray-700 border-gray-200";
+    VACCINE_TYPE_COLORS[vaccine.type] ??
+    "bg-gray-50 text-gray-700 border-gray-200";
   const firstDose = vaccine.doses[0];
   const lastDose = vaccine.doses[vaccine.doses.length - 1];
 
@@ -76,23 +110,97 @@ export default function VaccinesPage() {
   const routineVaccines = getRoutineVaccines();
   const optionalVaccines = getOptionalVaccines();
   const allVaccines = getAllVaccines();
+  const steps = getVaccinationSteps();
+  const faqs = getVaccinationFaqs();
+  const evidence = getVaccinationEvidence();
+  const vaccinationArticles = getArticlesByCategory("vaccination");
 
   return (
     <>
-      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-10 pt-10 sm:pb-16 sm:pt-14">
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">
-            予防接種スケジュール
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-100">
+            <Syringe className="h-7 w-7 text-teal-600" />
+          </div>
+          <h1 className="mt-5 font-heading text-3xl font-bold text-foreground sm:text-4xl">
+            予防接種ガイド
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-muted">
-            全{allVaccines.length}種類のワクチン情報と接種時期をまとめました。
-            港区独自の助成制度も確認できます。
+          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted">
+            全{allVaccines.length}
+            種類のワクチン情報と接種スケジュール、港区での手順、科学的エビデンスをまとめた総合ガイドです。
+          </p>
+
+          {/* Jump Links */}
+          <nav className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            {JUMP_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="inline-flex items-center gap-1.5 rounded-full border border-teal-200 bg-white px-4 py-2 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+              >
+                <link.icon className="h-3.5 w-3.5" />
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </section>
+
+      {/* Doctor's Message */}
+      <section className="px-4 py-10">
+        <div className="mx-auto max-w-4xl">
+          <div className="flex gap-4 rounded-xl border border-teal-200 bg-teal-50/50 p-5 sm:p-6">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teal-600">
+              <Stethoscope className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-teal-800">
+                おかもん先生より
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-muted">
+                予防接種は、お子さんを重篤な感染症から守る最も効果的な手段です。
+                ワクチンは世界中で年間数百万人の命を救っており、その安全性と有効性は膨大な科学的エビデンスで裏付けられています。
+                「接種しない自由」もありますが、それは同時にお子さんだけでなく、まだワクチンを打てない赤ちゃんや免疫が弱い方々をリスクにさらすことにもなります。
+                このページでは、エビデンスに基づいた正確な情報をお届けします。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Schedule Overview */}
+      <section id="schedule" className="scroll-mt-20 px-4 pb-16">
+        <div className="mx-auto max-w-4xl">
+          <SectionHeading
+            subtitle="お子さんの年齢に応じた接種スケジュールの全体像です"
+            align="left"
+          >
+            接種スケジュール
+          </SectionHeading>
+          <div className="mt-8">
+            <ScheduleTable vaccines={allVaccines} />
+          </div>
+          <p className="mt-4 text-xs leading-relaxed text-muted">
+            ※
+            スケジュールは標準的な接種時期を示しています。お子さんの体調や個別の事情に応じて、かかりつけ医と相談のうえスケジュールを調整してください。
           </p>
         </div>
       </section>
 
-      <section className="px-4 py-8 sm:py-12">
+      {/* Vaccine List */}
+      <section
+        id="vaccines"
+        className="scroll-mt-20 border-t border-border bg-warm-100/50 px-4 py-16"
+      >
         <div className="mx-auto max-w-4xl space-y-10">
+          <SectionHeading
+            subtitle="各ワクチンの詳細情報・副反応・よくある質問はこちら"
+            align="left"
+          >
+            ワクチン一覧
+          </SectionHeading>
+
           <div className="rounded-xl border border-teal-200 bg-teal-50 p-5">
             <div className="flex items-start gap-3">
               <Info className="mt-0.5 h-5 w-5 shrink-0 text-teal-600" />
@@ -123,12 +231,12 @@ export default function VaccinesPage() {
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-100">
                 <Syringe className="h-3.5 w-3.5 text-teal-700" />
               </span>
-              <h2 className="font-heading text-xl font-bold text-foreground">
+              <h3 className="font-heading text-xl font-bold text-foreground">
                 定期接種
                 <span className="ml-2 text-sm font-normal text-muted">
                   （公費・無料）
                 </span>
-              </h2>
+              </h3>
               <span className="rounded-full bg-warm-200 px-2 py-0.5 text-xs font-medium text-muted">
                 {routineVaccines.length}種
               </span>
@@ -145,12 +253,12 @@ export default function VaccinesPage() {
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-orange-100">
                 <Syringe className="h-3.5 w-3.5 text-orange-700" />
               </span>
-              <h2 className="font-heading text-xl font-bold text-foreground">
+              <h3 className="font-heading text-xl font-bold text-foreground">
                 任意接種
                 <span className="ml-2 text-sm font-normal text-muted">
                   （原則自費・一部港区助成あり）
                 </span>
-              </h2>
+              </h3>
               <span className="rounded-full bg-warm-200 px-2 py-0.5 text-xs font-medium text-muted">
                 {optionalVaccines.length}種
               </span>
@@ -161,12 +269,232 @@ export default function VaccinesPage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="rounded-xl border border-border bg-warm-50 p-5">
-            <p className="text-xs leading-relaxed text-muted">
-              ※ 接種時期は標準的な目安です。お子さんの体調やかかりつけ医の方針によって前後することがあります。
-              詳細なスケジュールはかかりつけの小児科医にご相談ください。
-            </p>
+      {/* Steps Section */}
+      <section id="steps" className="scroll-mt-20 px-4 py-16">
+        <div className="mx-auto max-w-3xl">
+          <SectionHeading
+            subtitle="港区にお住まいの方向け、予防接種の流れ"
+            align="left"
+          >
+            港区での接種手順
+          </SectionHeading>
+          <div className="mt-8">
+            <StepsGuide steps={steps} />
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section
+        id="faq"
+        className="scroll-mt-20 border-t border-border bg-warm-100/50 px-4 py-16"
+      >
+        <div className="mx-auto max-w-3xl">
+          <SectionHeading
+            subtitle="保護者の方からよく寄せられる質問にお答えします"
+            align="left"
+          >
+            よくある質問
+          </SectionHeading>
+          <div className="mt-8">
+            <FaqSection faqs={faqs} />
+          </div>
+        </div>
+      </section>
+
+      {/* Evidence Section */}
+      <section id="evidence" className="scroll-mt-20 px-4 py-16">
+        <div className="mx-auto max-w-3xl">
+          <SectionHeading
+            subtitle="予防接種の有効性と安全性を支える科学的根拠"
+            align="left"
+          >
+            科学的エビデンス
+          </SectionHeading>
+          <div className="mt-8">
+            <EvidenceSection evidence={evidence} />
+          </div>
+        </div>
+      </section>
+
+      {/* Related Articles */}
+      {vaccinationArticles.length > 0 && (
+        <section className="border-t border-border bg-warm-100/50 px-4 py-16">
+          <div className="mx-auto max-w-3xl">
+            <SectionHeading
+              subtitle="予防接種に関する詳しい記事もあわせてお読みください"
+              align="left"
+            >
+              関連記事
+            </SectionHeading>
+            <div className="mt-8 space-y-3">
+              {vaccinationArticles.map((article) => (
+                <Link
+                  key={article.frontmatter.slug}
+                  href={`/articles/${article.frontmatter.slug}`}
+                  className="group flex items-center gap-4 rounded-xl border border-border bg-card p-4 transition-all hover:border-teal-200 hover:shadow-md"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-600">
+                    <BookOpen className="h-5 w-5" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <Badge category="vaccination" />
+                      <span className="text-xs text-muted">
+                        Vol.{article.frontmatter.vol}
+                      </span>
+                    </div>
+                    <h3 className="mt-1 text-sm font-bold text-card-foreground group-hover:text-teal-700">
+                      {article.frontmatter.title}
+                    </h3>
+                  </div>
+                  <ArrowRight className="h-4 w-4 shrink-0 text-muted opacity-0 transition-opacity group-hover:opacity-100" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Official Resources Section */}
+      <section className="border-t border-border px-4 py-16">
+        <div className="mx-auto max-w-3xl">
+          <SectionHeading
+            subtitle="国や学会の公式情報もあわせてご確認ください"
+            align="left"
+          >
+            公式情報・参考サイト
+          </SectionHeading>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <a
+              href="https://www.know-vpd.jp/feature/vc_schedule.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-teal-200 bg-teal-50">
+                <ShieldCheck className="h-5 w-5 text-teal-600" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-teal-700">
+                  Know VPD!
+                </h3>
+                <p className="mt-0.5 text-xs text-muted">
+                  予防接種スケジュール・各ワクチン詳細（日本ワクチン産業協会）
+                </p>
+                <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-teal-600">
+                  www.know-vpd.jp
+                  <ExternalLink className="h-3 w-3" />
+                </span>
+              </div>
+            </a>
+            <a
+              href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/yobou-sesshu/index.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blue-200 bg-blue-50">
+                <ShieldCheck className="h-5 w-5 text-blue-600" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-teal-700">
+                  厚生労働省 予防接種情報
+                </h3>
+                <p className="mt-0.5 text-xs text-muted">
+                  定期接種制度・接種スケジュール・法制度の公式情報
+                </p>
+                <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-blue-600">
+                  www.mhlw.go.jp
+                  <ExternalLink className="h-3 w-3" />
+                </span>
+              </div>
+            </a>
+            <a
+              href="https://id-info.jihs.go.jp/relevant/vaccine/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-purple-200 bg-purple-50">
+                <BookOpen className="h-5 w-5 text-purple-600" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-teal-700">
+                  国立感染症研究所（JIHS）
+                </h3>
+                <p className="mt-0.5 text-xs text-muted">
+                  感染症・ワクチンに関する科学的情報と研究データ
+                </p>
+                <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-purple-600">
+                  id-info.jihs.go.jp
+                  <ExternalLink className="h-3 w-3" />
+                </span>
+              </div>
+            </a>
+            <a
+              href="https://www.jpeds.or.jp/modules/activity/index.php?content_id=138"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-coral-200 bg-coral-50">
+                <Stethoscope className="h-5 w-5 text-coral-600" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-teal-700">
+                  日本小児科学会
+                </h3>
+                <p className="mt-0.5 text-xs text-muted">
+                  同時接種の考え方・接種スケジュール推奨（専門医向け）
+                </p>
+                <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-coral-600">
+                  www.jpeds.or.jp
+                  <ExternalLink className="h-3 w-3" />
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="px-4 py-16">
+        <div className="mx-auto max-w-3xl">
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <Link
+              href="/clinics"
+              className="flex flex-1 items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                <MapPin className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="font-heading text-sm font-bold text-card-foreground">
+                  予防接種できる医療機関を探す
+                </h3>
+                <p className="mt-0.5 text-xs text-muted">港区の小児科マップ</p>
+              </div>
+            </Link>
+            <Link
+              href="/programs"
+              className="flex flex-1 items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-coral-50 text-coral-500">
+                <Heart className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="font-heading text-sm font-bold text-card-foreground">
+                  ワクチン助成金を確認する
+                </h3>
+                <p className="mt-0.5 text-xs text-muted">
+                  おたふくかぜ・インフルエンザ
+                </p>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
