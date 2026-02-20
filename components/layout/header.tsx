@@ -1,23 +1,185 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { Menu, X, Search, Baby, User } from "lucide-react";
+import {
+  Menu,
+  X,
+  Search,
+  Baby,
+  User,
+  ChevronDown,
+  BookOpen,
+  Syringe,
+  Stethoscope,
+  ClipboardList,
+  Calculator,
+  MapPin,
+  Building2,
+  AlertTriangle,
+} from "lucide-react";
 
-const NAV_ITEMS = [
-  { href: "/articles", label: "記事一覧" },
-  { href: "/vaccines", label: "予防接種" },
-  { href: "/checkups", label: "健診ガイド" },
-  { href: "/programs", label: "制度一覧" },
-  { href: "/simulator", label: "給付金シミュレーター" },
-  { href: "/triage", label: "受診判断" },
-  { href: "/clinics", label: "小児科マップ" },
-  { href: "/nurseries", label: "保育園探し" },
-  { href: "/checklists", label: "手続きガイド" },
+interface NavGroup {
+  readonly label: string;
+  readonly items: readonly {
+    readonly href: string;
+    readonly label: string;
+    readonly icon: typeof BookOpen;
+    readonly description: string;
+  }[];
+}
+
+const NAV_GROUPS: readonly NavGroup[] = [
+  {
+    label: "調べる",
+    items: [
+      {
+        href: "/articles",
+        label: "記事一覧",
+        icon: BookOpen,
+        description: "小児科医監修の子育て情報",
+      },
+      {
+        href: "/vaccines",
+        label: "予防接種",
+        icon: Syringe,
+        description: "接種スケジュールと詳細",
+      },
+      {
+        href: "/checkups",
+        label: "健診ガイド",
+        icon: Stethoscope,
+        description: "乳幼児健診の時期と内容",
+      },
+    ],
+  },
+  {
+    label: "手続き",
+    items: [
+      {
+        href: "/programs",
+        label: "制度一覧",
+        icon: ClipboardList,
+        description: "助成金・給付金・支援制度",
+      },
+      {
+        href: "/simulator",
+        label: "給付金シミュレーター",
+        icon: Calculator,
+        description: "受給額をかんたん計算",
+      },
+      {
+        href: "/checklists",
+        label: "手続きガイド",
+        icon: ClipboardList,
+        description: "出産前後のやることリスト",
+      },
+    ],
+  },
+  {
+    label: "探す",
+    items: [
+      {
+        href: "/clinics",
+        label: "小児科マップ",
+        icon: MapPin,
+        description: "港区の小児科・夜間対応",
+      },
+      {
+        href: "/nurseries",
+        label: "保育園探し",
+        icon: Building2,
+        description: "認可・認証保育園の情報",
+      },
+    ],
+  },
 ] as const;
+
+const STANDALONE_NAV = {
+  href: "/triage",
+  label: "受診判断",
+  icon: AlertTriangle,
+} as const;
+
+function DropdownMenu({
+  group,
+  isOpen,
+  onOpen,
+  onClose,
+}: {
+  readonly group: NavGroup;
+  readonly isOpen: boolean;
+  readonly onOpen: () => void;
+  readonly onClose: () => void;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
+
+  const handleMouseEnter = useCallback(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    onOpen();
+  }, [onOpen]);
+
+  const handleMouseLeave = useCallback(() => {
+    timeoutRef.current = setTimeout(onClose, 150);
+  }, [onClose]);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="relative"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <button
+        type="button"
+        className={`flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+          isOpen
+            ? "bg-teal-50 text-teal-700"
+            : "text-muted hover:bg-teal-50 hover:text-teal-700"
+        }`}
+        onClick={isOpen ? onClose : onOpen}
+        aria-expanded={isOpen}
+      >
+        {group.label}
+        <ChevronDown
+          className={`h-3.5 w-3.5 transition-transform ${isOpen ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      {isOpen && (
+        <div className="absolute left-0 top-full z-50 mt-1 w-64 rounded-xl border border-border bg-white p-2 shadow-lg">
+          {group.items.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-teal-50"
+              onClick={onClose}
+            >
+              <item.icon className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" />
+              <div>
+                <p className="text-sm font-medium text-foreground">
+                  {item.label}
+                </p>
+                <p className="text-xs text-muted">{item.description}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-white/95 backdrop-blur-sm">
@@ -31,19 +193,26 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-teal-50 hover:text-teal-700"
-            >
-              {item.label}
-            </Link>
+        <nav className="hidden items-center gap-0.5 md:flex">
+          {NAV_GROUPS.map((group) => (
+            <DropdownMenu
+              key={group.label}
+              group={group}
+              isOpen={openDropdown === group.label}
+              onOpen={() => setOpenDropdown(group.label)}
+              onClose={() => setOpenDropdown(null)}
+            />
           ))}
           <Link
+            href={STANDALONE_NAV.href}
+            className="rounded-lg px-3 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 hover:text-red-700"
+          >
+            {STANDALONE_NAV.label}
+          </Link>
+          <div className="mx-1 h-5 w-px bg-border" />
+          <Link
             href="/my"
-            className="ml-1 rounded-lg p-2 text-muted transition-colors hover:bg-teal-50 hover:text-teal-700"
+            className="rounded-lg p-2 text-muted transition-colors hover:bg-teal-50 hover:text-teal-700"
             aria-label="マイページ"
           >
             <User className="h-5 w-5" />
@@ -57,49 +226,68 @@ export function Header() {
           </Link>
         </nav>
 
-        <button
-          type="button"
-          className="rounded-lg p-2 text-muted md:hidden"
-          onClick={() => setIsMenuOpen((prev) => !prev)}
-          aria-label={isMenuOpen ? "メニューを閉じる" : "メニューを開く"}
-          aria-expanded={isMenuOpen}
-        >
-          {isMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
+        <div className="flex items-center gap-1 md:hidden">
+          <Link
+            href="/search"
+            className="rounded-lg p-2 text-muted"
+            aria-label="検索"
+          >
+            <Search className="h-5 w-5" />
+          </Link>
+          <button
+            type="button"
+            className="rounded-lg p-2 text-muted"
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+            aria-label={isMenuOpen ? "メニューを閉じる" : "メニューを開く"}
+            aria-expanded={isMenuOpen}
+          >
+            {isMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
+        </div>
       </div>
 
       {isMenuOpen && (
         <nav className="border-t border-border bg-white px-4 pb-4 md:hidden">
-          {NAV_ITEMS.map((item) => (
+          {NAV_GROUPS.map((group) => (
+            <div key={group.label} className="mt-3 first:mt-1">
+              <p className="px-3 pb-1 text-xs font-bold uppercase tracking-wider text-muted">
+                {group.label}
+              </p>
+              {group.items.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-teal-50 hover:text-teal-700"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <item.icon className="h-4 w-4 text-teal-600" />
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          ))}
+          <div className="mt-3 border-t border-border pt-3">
             <Link
-              key={item.href}
-              href={item.href}
-              className="block rounded-lg px-3 py-3 text-base font-medium text-foreground transition-colors hover:bg-teal-50 hover:text-teal-700"
+              href={STANDALONE_NAV.href}
+              className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-red-600 transition-colors hover:bg-red-50"
               onClick={() => setIsMenuOpen(false)}
             >
-              {item.label}
+              <STANDALONE_NAV.icon className="h-4 w-4" />
+              {STANDALONE_NAV.label}
             </Link>
-          ))}
-          <Link
-            href="/my"
-            className="flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium text-foreground transition-colors hover:bg-teal-50 hover:text-teal-700"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <User className="h-5 w-5" />
-            マイページ
-          </Link>
-          <Link
-            href="/search"
-            className="flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium text-foreground transition-colors hover:bg-teal-50 hover:text-teal-700"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <Search className="h-5 w-5" />
-            検索
-          </Link>
+            <Link
+              href="/my"
+              className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-teal-50 hover:text-teal-700"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <User className="h-4 w-4 text-teal-600" />
+              マイページ
+            </Link>
+          </div>
         </nav>
       )}
     </header>
