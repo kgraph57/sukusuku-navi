@@ -7,6 +7,8 @@ import { getAllClinics } from "@/lib/clinics";
 import { getAllChecklists } from "@/lib/checklists";
 import { getAllSymptoms } from "@/lib/triage/engine";
 import { getAllVaccines } from "@/lib/vaccines";
+import { getAllNurseries } from "@/lib/nurseries";
+import { getAllCheckups } from "@/lib/checkups";
 
 const BASE_URL = "https://kgraph57.github.io/sukusuku-navi";
 
@@ -17,6 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const checklists = getAllChecklists();
   const symptoms = getAllSymptoms();
   const vaccines = getAllVaccines();
+  const nurseries = getAllNurseries();
+  const checkups = getAllCheckups();
 
   const staticPages = [
     {
@@ -63,6 +67,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/vaccines`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/nurseries`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/checkups`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.8,
@@ -129,6 +145,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const nurseryPages = nurseries.map((n) => ({
+    url: `${BASE_URL}/nurseries/${n.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  const checkupPages = checkups.map((c) => ({
+    url: `${BASE_URL}/checkups/${c.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   return [
     ...staticPages,
     ...articlePages,
@@ -137,5 +167,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...checklistPages,
     ...symptomPages,
     ...vaccinePages,
+    ...nurseryPages,
+    ...checkupPages,
   ];
 }

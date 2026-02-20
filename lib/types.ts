@@ -221,3 +221,80 @@ export interface VaccinationEvidence {
   readonly source: string;
   readonly sourceUrl: string | null;
 }
+
+export type CheckupVenue = "hospital" | "public" | "clinic" | "school";
+
+export interface CheckupDoctorCheck {
+  readonly area: string;
+  readonly detail: string;
+  readonly doctorNote: string;
+}
+
+export interface CheckupPreparation {
+  readonly item: string;
+  readonly detail: string;
+}
+
+export interface CheckupFaq {
+  readonly question: string;
+  readonly answer: string;
+}
+
+export interface Checkup {
+  readonly slug: string;
+  readonly name: string;
+  readonly nameShort: string;
+  readonly ageMonths: number;
+  readonly ageLabel: string;
+  readonly venue: CheckupVenue;
+  readonly venueLabel: string;
+  readonly cost: string;
+  readonly isMandatory: boolean;
+  readonly description: string;
+  readonly whatDoctorChecks: readonly CheckupDoctorCheck[];
+  readonly preparation: readonly CheckupPreparation[];
+  readonly faq: readonly CheckupFaq[];
+  readonly tips: readonly string[];
+  readonly nextCheckup: string | null;
+}
+
+export type NurseryType =
+  | "licensed"
+  | "certified"
+  | "small-scale"
+  | "kodomoen"
+  | "minato-room";
+
+export type NurseryArea =
+  | "shiba-mita"
+  | "azabu"
+  | "akasaka-aoyama"
+  | "takanawa-shirokane"
+  | "daiba-shibaura";
+
+export interface NurseryHours {
+  readonly standard: string;
+  readonly extended: string | null;
+  readonly shortTime: string | null;
+}
+
+export interface Nursery {
+  readonly slug: string;
+  readonly name: string;
+  readonly type: NurseryType;
+  readonly area: NurseryArea;
+  readonly address: string;
+  readonly phone: string;
+  readonly hours: NurseryHours;
+  readonly ageMin: number;
+  readonly ageMax: number;
+  readonly capacity: number;
+  readonly features: readonly string[];
+  readonly hasGarden: boolean;
+  readonly nearestStation: string;
+  readonly website: string | null;
+  readonly lat: number;
+  readonly lng: number;
+  readonly operator: string;
+  readonly notes: string;
+}
