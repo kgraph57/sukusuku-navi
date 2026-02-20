@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   AlertTriangle,
   Phone,
@@ -17,37 +17,40 @@ import {
   CircleDot,
   AlertOctagon,
   Stethoscope,
-} from "lucide-react"
-import { SEVERITY_CONFIG } from "@/lib/triage/engine"
-import type { SeverityResult } from "@/lib/triage/engine"
-import guidedData from "@/data/guided-triage.json"
+  Frown,
+  Eye,
+  Zap,
+} from "lucide-react";
+import { SEVERITY_CONFIG } from "@/lib/triage/engine";
+import type { SeverityResult } from "@/lib/triage/engine";
+import guidedData from "@/data/guided-triage.json";
 
 type GuidedStep =
   | "emergency-screening"
   | "age-select"
   | "symptom-group"
   | "sub-symptom"
-  | "result"
+  | "result";
 
 interface EmergencyQuestion {
-  readonly id: string
-  readonly text: string
-  readonly helpText: string
-  readonly yesResult: SeverityResult
+  readonly id: string;
+  readonly text: string;
+  readonly helpText: string;
+  readonly yesResult: SeverityResult;
 }
 
 interface AgeGroup {
-  readonly id: string
-  readonly label: string
-  readonly description: string
+  readonly id: string;
+  readonly label: string;
+  readonly description: string;
 }
 
 interface SymptomGroup {
-  readonly id: string
-  readonly label: string
-  readonly icon: string
-  readonly description: string
-  readonly symptomSlugs: readonly string[]
+  readonly id: string;
+  readonly label: string;
+  readonly icon: string;
+  readonly description: string;
+  readonly symptomSlugs: readonly string[];
 }
 
 const ICON_MAP: Record<string, typeof Thermometer> = {
@@ -57,17 +60,21 @@ const ICON_MAP: Record<string, typeof Thermometer> = {
   CircleDot,
   AlertTriangle: AlertOctagon,
   Stethoscope,
-}
+  Frown,
+  Eye,
+  Zap,
+};
 
-const AGE_ICONS = [Baby, Baby, Baby, Baby]
+const AGE_ICONS = [Baby, Baby, Baby, Baby];
 
-const emergencyQuestions = guidedData.emergencyScreening as readonly EmergencyQuestion[]
-const ageGroups = guidedData.ageGroups as readonly AgeGroup[]
-const symptomGroups = guidedData.symptomGroups as readonly SymptomGroup[]
+const emergencyQuestions =
+  guidedData.emergencyScreening as readonly EmergencyQuestion[];
+const ageGroups = guidedData.ageGroups as readonly AgeGroup[];
+const symptomGroups = guidedData.symptomGroups as readonly SymptomGroup[];
 const ageOverrides = guidedData.ageOverrides as Record<
   string,
   Record<string, SeverityResult>
->
+>;
 
 const STEP_LABELS: Record<GuidedStep, string> = {
   "emergency-screening": "緊急確認",
@@ -75,7 +82,7 @@ const STEP_LABELS: Record<GuidedStep, string> = {
   "symptom-group": "症状の選択",
   "sub-symptom": "症状の詳細",
   result: "判定結果",
-}
+};
 
 const STEP_ORDER: readonly GuidedStep[] = [
   "emergency-screening",
@@ -83,24 +90,24 @@ const STEP_ORDER: readonly GuidedStep[] = [
   "symptom-group",
   "sub-symptom",
   "result",
-]
+];
 
 function getStepProgress(step: GuidedStep, screeningIndex: number): number {
   if (step === "emergency-screening") {
-    return screeningIndex === 0 ? 10 : 20
+    return Math.round(((screeningIndex + 1) / emergencyQuestions.length) * 20);
   }
-  const index = STEP_ORDER.indexOf(step)
-  return Math.min(100, (index + 1) * 25)
+  const index = STEP_ORDER.indexOf(step);
+  return Math.min(100, 20 + index * 20);
 }
 
 function InlineResult({
   result,
   onReset,
 }: {
-  readonly result: SeverityResult
-  readonly onReset: () => void
+  readonly result: SeverityResult;
+  readonly onReset: () => void;
 }) {
-  const config = SEVERITY_CONFIG[result.severity]
+  const config = SEVERITY_CONFIG[result.severity];
 
   return (
     <div className="space-y-6">
@@ -136,9 +143,7 @@ function InlineResult({
           <ul className="mt-2 space-y-2">
             {result.actions.map((action, index) => (
               <li key={index} className="flex gap-2 text-sm">
-                <span
-                  className={`mt-0.5 shrink-0 font-bold ${config.color}`}
-                >
+                <span className={`mt-0.5 shrink-0 font-bold ${config.color}`}>
                   {index + 1}.
                 </span>
                 <span className="text-foreground">{action}</span>
@@ -164,80 +169,80 @@ function InlineResult({
         最初からやり直す
       </button>
     </div>
-  )
+  );
 }
 
 export function GuidedTriageFlow() {
-  const router = useRouter()
-  const [step, setStep] = useState<GuidedStep>("emergency-screening")
-  const [screeningIndex, setScreeningIndex] = useState(0)
-  const [selectedAge, setSelectedAge] = useState<string | null>(null)
-  const [selectedGroup, setSelectedGroup] = useState<SymptomGroup | null>(null)
-  const [result, setResult] = useState<SeverityResult | null>(null)
-  const [showHelp, setShowHelp] = useState(false)
+  const router = useRouter();
+  const [step, setStep] = useState<GuidedStep>("emergency-screening");
+  const [screeningIndex, setScreeningIndex] = useState(0);
+  const [selectedAge, setSelectedAge] = useState<string | null>(null);
+  const [selectedGroup, setSelectedGroup] = useState<SymptomGroup | null>(null);
+  const [result, setResult] = useState<SeverityResult | null>(null);
+  const [showHelp, setShowHelp] = useState(false);
 
-  const progress = result ? 100 : getStepProgress(step, screeningIndex)
-  const currentScreening = emergencyQuestions[screeningIndex]
+  const progress = result ? 100 : getStepProgress(step, screeningIndex);
+  const currentScreening = emergencyQuestions[screeningIndex];
 
   const handleEmergencyAnswer = (answer: "yes" | "no") => {
-    if (!currentScreening) return
+    if (!currentScreening) return;
 
     if (answer === "yes") {
-      setResult(currentScreening.yesResult)
-      setStep("result")
-      return
+      setResult(currentScreening.yesResult);
+      setStep("result");
+      return;
     }
 
-    const nextIndex = screeningIndex + 1
+    const nextIndex = screeningIndex + 1;
     if (nextIndex < emergencyQuestions.length) {
-      setScreeningIndex(nextIndex)
-      setShowHelp(false)
+      setScreeningIndex(nextIndex);
+      setShowHelp(false);
     } else {
-      setStep("age-select")
-      setShowHelp(false)
+      setStep("age-select");
+      setShowHelp(false);
     }
-  }
+  };
 
   const handleAgeSelect = (ageId: string) => {
-    setSelectedAge(ageId)
-    setStep("symptom-group")
-  }
+    setSelectedAge(ageId);
+    setStep("symptom-group");
+  };
 
   const handleSymptomGroupSelect = (group: SymptomGroup) => {
-    setSelectedGroup(group)
+    setSelectedGroup(group);
 
     // Check for age override
     if (selectedAge && ageOverrides[selectedAge]) {
-      const overrideForGroup = ageOverrides[selectedAge][group.id]
+      const overrideForGroup = ageOverrides[selectedAge][group.id];
       if (overrideForGroup) {
-        setResult(overrideForGroup)
-        setStep("result")
-        return
+        setResult(overrideForGroup);
+        setStep("result");
+        return;
       }
     }
 
     // If group has exactly 1 symptom slug → go straight to triage flow
     if (group.symptomSlugs.length === 1) {
-      router.push(`/triage/${group.symptomSlugs[0]}`)
-      return
+      router.push(`/triage/${group.symptomSlugs[0]}`);
+      return;
     }
 
     // Multiple slugs → show sub-symptom selection
-    setStep("sub-symptom")
-  }
+    setStep("sub-symptom");
+  };
 
   const handleSubSymptomSelect = (slug: string) => {
-    router.push(`/triage/${slug}`)
-  }
+    router.push(`/triage/${slug}`);
+  };
 
   const handleReset = () => {
-    setStep("emergency-screening")
-    setScreeningIndex(0)
-    setSelectedAge(null)
-    setSelectedGroup(null)
-    setResult(null)
-    setShowHelp(false)
-  }
+    setStep("emergency-screening");
+    setScreeningIndex(0);
+    setSelectedAge(null);
+    setSelectedGroup(null);
+    setResult(null);
+    setShowHelp(false);
+  };
 
   return (
     <div className="rounded-2xl border border-border bg-card shadow-sm">
@@ -258,8 +263,8 @@ export function GuidedTriageFlow() {
         {/* Step breadcrumbs */}
         <div className="mt-2 flex items-center gap-1 text-xs text-muted">
           {STEP_ORDER.slice(0, -1).map((s, i) => {
-            const isActive = STEP_ORDER.indexOf(step) >= i
-            const isCurrent = step === s
+            const isActive = STEP_ORDER.indexOf(step) >= i;
+            const isCurrent = step === s;
             return (
               <span key={s} className="flex items-center gap-1">
                 {i > 0 && <ChevronRight className="h-3 w-3" />}
@@ -275,7 +280,7 @@ export function GuidedTriageFlow() {
                   {STEP_LABELS[s]}
                 </span>
               </span>
-            )
+            );
           })}
         </div>
       </div>
@@ -286,9 +291,14 @@ export function GuidedTriageFlow() {
           <div className="space-y-5">
             <div className="flex gap-3 rounded-lg border border-red-200 bg-red-50 p-4">
               <AlertTriangle className="h-5 w-5 shrink-0 text-red-600" />
-              <p className="text-sm font-medium text-red-800">
-                まず緊急性の確認をします
-              </p>
+              <div>
+                <p className="text-sm font-medium text-red-800">
+                  まず緊急性の確認をします
+                </p>
+                <p className="mt-0.5 text-xs text-red-600">
+                  質問 {screeningIndex + 1} / {emergencyQuestions.length}
+                </p>
+              </div>
             </div>
 
             <div className="rounded-xl border border-border bg-white p-5">
@@ -382,7 +392,7 @@ export function GuidedTriageFlow() {
 
             <div className="grid gap-3 sm:grid-cols-2">
               {symptomGroups.map((group) => {
-                const IconComponent = ICON_MAP[group.icon] ?? Stethoscope
+                const IconComponent = ICON_MAP[group.icon] ?? Stethoscope;
                 return (
                   <button
                     key={group.id}
@@ -402,7 +412,7 @@ export function GuidedTriageFlow() {
                       </p>
                     </div>
                   </button>
-                )
+                );
               })}
             </div>
           </div>
@@ -416,7 +426,8 @@ export function GuidedTriageFlow() {
                 もう少し詳しく教えてください
               </h3>
               <p className="mt-1 text-sm text-muted">
-                「{selectedGroup.label}」のうち、もっとも当てはまるものを選んでください
+                「{selectedGroup.label}
+                」のうち、もっとも当てはまるものを選んでください
               </p>
             </div>
 
@@ -458,7 +469,7 @@ export function GuidedTriageFlow() {
         )}
       </div>
     </div>
-  )
+  );
 }
 
 /** Map symptom slug to a human-readable Japanese label */
@@ -481,6 +492,6 @@ function formatSlugLabel(slug: string): string {
     "eye-symptoms": "目の症状",
     seizure: "けいれん",
     nosebleed: "鼻血",
-  }
-  return SLUG_LABELS[slug] ?? slug
+  };
+  return SLUG_LABELS[slug] ?? slug;
 }
