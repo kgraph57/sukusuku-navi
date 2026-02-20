@@ -26,45 +26,45 @@
     "applicationSteps": [
       {
         "step": 1,
-        "title": "健康保険証と母子手帳を持参して区役所へ",
-        "description": "出生届・住民登録後、みなと子育てステーション等で申請",
-        "tip": "出生届提出のついでに申請するとスムーズです"
+        "title": "出生届・住民登録後に窓口へ",
+        "description": "出生届提出後、みなと子育てステーションまたは区役所子ども家庭課で申請します。",
+        "tip": "出生届と同日に申請できます。母子手帳と健康保険証を忘れずに。"
       },
       {
         "step": 2,
         "title": "申請書類を記入・提出",
-        "description": "子ども医療費助成申請書に記入して提出",
-        "tip": null
+        "description": "子ども医療費助成申請書に記入して提出します。",
+        "tip": "書類は窓口でもらえます。事前にダウンロードも可能。"
       },
       {
         "step": 3,
         "title": "医療証（マル乳等）が郵送される",
-        "description": "約1〜2週間後に自宅に郵送",
+        "description": "審査後、約1〜2週間で自宅に郵送されます。",
         "tip": null
       },
       {
         "step": 4,
         "title": "医療機関で医療証を提示する",
-        "description": "窓口で医療証・健康保険証を提示すれば自己負担ゼロ",
-        "tip": "医療証が届く前でも、後日払い戻し申請が可能です"
+        "description": "受診時に医療証と健康保険証を窓口で提示すれば自己負担ゼロになります。",
+        "tip": "都外の医療機関では使用不可。その場合は領収書を保管して払い戻し申請を。"
       }
     ],
     "requiredDocuments": [
       {
-        "name": "健康保険証（子どもの）",
-        "obtainHow": "加入している健康保険組合から交付",
+        "name": "健康保険証（お子さんのもの）",
+        "obtainHow": "加入している健康保険組合または協会けんぽから交付",
         "notes": null,
         "downloadUrl": null
       },
       {
         "name": "印鑑",
-        "obtainHow": "認印（シャチハタ不可）",
+        "obtainHow": "認印（シャチハタ不可）をご持参ください",
         "notes": null,
         "downloadUrl": null
       },
       {
         "name": "申請者（保護者）の本人確認書類",
-        "obtainHow": "運転免許証・マイナンバーカード等",
+        "obtainHow": "運転免許証・マイナンバーカード・パスポート等",
         "notes": null,
         "downloadUrl": null
       }
@@ -73,18 +73,18 @@
       {
         "method": "counter",
         "label": "窓口申請",
-        "description": "みなと子育てステーション、区役所子ども家庭課窓口",
-        "url": null,
-        "address": "港区芝公園1-5-25（みなと子育てステーション）",
+        "description": "みなと子育てステーション（芝浦・赤坂・麻布・高輪）または区役所子ども家庭課で申請できます。",
+        "url": "https://www.city.minato.tokyo.jp/kosodate-station",
+        "address": "港区芝浦1-3-25（芝浦港南区民センター内）ほか",
         "hours": "平日 8:30〜17:00"
       },
       {
         "method": "online",
-        "label": "オンライン申請",
-        "description": "港区電子申請サービス（一部対応）",
-        "url": "https://www.city.minato.tokyo.jp/kodomo-iryohi",
+        "label": "電子申請",
+        "description": "港区電子申請サービスから一部オンラインで申請できます。",
+        "url": "https://www.city.minato.tokyo.jp/denshi-shinsei",
         "address": null,
-        "hours": null
+        "hours": "24時間受付"
       }
     ],
     "faq": [
@@ -129,39 +129,39 @@
       {
         "step": 1,
         "title": "出生届提出後15日以内に申請",
-        "description": "出生届と同時または翌日以降、速やかに申請（15日以内が重要）",
-        "tip": "15日を過ぎると申請月の翌月からの支給になるため、早めの申請が重要です"
+        "description": "出生届と同時または翌日以降、速やかに申請します（15日以内が重要）。",
+        "tip": "15日を過ぎると翌月からの支給になります。必ず速やかに申請を。"
       },
       {
         "step": 2,
-        "title": "申請書類を記入・提出",
-        "description": "区役所または電子申請で認定請求書を提出",
-        "tip": null
+        "title": "認定請求書を記入・提出",
+        "description": "区役所または電子申請（マイナポータル）で認定請求書を提出します。",
+        "tip": "マイナポータルの「ぴったりサービス」からオンライン申請が可能です。"
       },
       {
         "step": 3,
         "title": "認定通知書が届く",
-        "description": "審査後、認定通知書が送付される",
+        "description": "審査後、認定通知書が送付されます。",
         "tip": null
       },
       {
         "step": 4,
         "title": "指定口座に振込",
-        "description": "年3回（6月・10月・2月）に4ヶ月分ずつ振込",
+        "description": "年3回（6月・10月・2月）に4ヶ月分ずつ振り込まれます。",
         "tip": null
       }
     ],
     "requiredDocuments": [
       {
         "name": "請求者の健康保険証",
-        "obtainHow": "加入している健康保険組合または協会けんぽから",
-        "notes": "お子さんのものではなく親（請求者）のもの",
+        "obtainHow": "お子さんのものではなく親（請求者）が加入している健保組合から",
+        "notes": "公務員の方は勤務先での申請になる場合があります",
         "downloadUrl": null
       },
       {
-        "name": "受取口座の通帳またはカード",
-        "obtainHow": "金融機関で確認",
-        "notes": "請求者名義の口座に限る",
+        "name": "受取口座の通帳またはキャッシュカード",
+        "obtainHow": "請求者名義の銀行口座",
+        "notes": null,
         "downloadUrl": null
       },
       {
@@ -181,18 +181,18 @@
       {
         "method": "counter",
         "label": "窓口申請",
-        "description": "区役所子ども家庭課、みなと子育てステーション",
+        "description": "区役所子ども家庭課またはみなと子育てステーションで申請できます。",
         "url": null,
-        "address": "港区芝公園1-5-25（みなと子育てステーション）",
+        "address": "港区芝公園1-5-25（区役所本館4階）",
         "hours": "平日 8:30〜17:00"
       },
       {
         "method": "online",
-        "label": "オンライン申請",
-        "description": "マイナポータル（ぴったりサービス）から申請可能",
-        "url": "https://myna.go.jp/",
+        "label": "マイナポータル（ぴったりサービス）",
+        "description": "マイナポータルの「ぴったりサービス」からオンライン申請が可能です。",
+        "url": "https://myna.go.jp/html/help_about_app.html",
         "address": null,
-        "hours": null
+        "hours": "24時間受付"
       }
     ],
     "faq": [
@@ -237,20 +237,20 @@
     "applicationSteps": [
       {
         "step": 1,
-        "title": "妊娠届出時に面談（1回目）",
-        "description": "保健センター等で妊婦面談を受け、5万円相当の支給",
-        "tip": "妊娠届出と同時に面談の予約ができます"
+        "title": "妊娠届出時に保健センターで面談（1回目）",
+        "description": "保健センターで妊婦面談（アウトリーチ面談）を受けると5万円相当が支給されます。",
+        "tip": "妊娠8週頃（心拍確認後）に妊娠届出をすると母子手帳が交付され、面談の案内があります。"
       },
       {
         "step": 2,
         "title": "出産後に面談（2回目）",
-        "description": "出産後に保健師等と面談を受け、5万円相当の支給",
-        "tip": null
+        "description": "出産後に保健師等と面談を受けると、さらに5万円相当が支給されます。",
+        "tip": "産後ケアや育児相談もこの面談で一緒に相談できます。"
       },
       {
         "step": 3,
         "title": "交付金の受取",
-        "description": "現金またはポイント等の形で受取",
+        "description": "現金または商品券等の形で受け取ります。",
         "tip": null
       }
     ],
@@ -263,24 +263,24 @@
       },
       {
         "name": "本人確認書類",
-        "obtainHow": "マイナンバーカード・運転免許証等",
+        "obtainHow": "マイナンバーカード・運転免許証・パスポート等",
         "notes": null,
         "downloadUrl": null
       },
       {
         "name": "振込先口座情報",
-        "obtainHow": "金融機関の通帳またはキャッシュカード",
-        "notes": "本人名義の口座に限る",
+        "obtainHow": "本人名義の銀行口座の通帳またはキャッシュカード",
+        "notes": null,
         "downloadUrl": null
       }
     ],
     "applicationMethods": [
       {
         "method": "counter",
-        "label": "保健センター窓口",
-        "description": "三田・高輪・芝浦港南の各保健センターで手続き",
-        "url": null,
-        "address": "三田保健センター: 港区芝5-36-4",
+        "label": "保健センターで面談",
+        "description": "三田・高輪・芝浦港南・麻布の各保健センターで面談を受けます。",
+        "url": "https://www.city.minato.tokyo.jp/hokenservice/index.html",
+        "address": "みなと保健所（港区虎ノ門2-3-4）ほか各保健センター",
         "hours": "平日 8:30〜17:00"
       }
     ],
@@ -322,21 +322,21 @@
     "applicationSteps": [
       {
         "step": 1,
-        "title": "医療機関で直接支払制度を選択",
-        "description": "出産前に病院・助産所に申し出て、直接支払制度を利用（手続きが最も簡単）",
-        "tip": "ほとんどの産院で直接支払制度が利用できます。入院前に確認しておきましょう"
+        "title": "医療機関で直接支払制度を選択（推奨）",
+        "description": "出産前に入院する病院・助産所に申し出て、直接支払制度の同意書にサインします。",
+        "tip": "直接支払制度なら自分で手続きする必要がほぼなく、最も簡単です。"
       },
       {
         "step": 2,
-        "title": "差額がある場合の請求",
-        "description": "費用が50万円未満の場合は差額を健康保険組合に請求",
+        "title": "出産費用と50万円の差額を確認",
+        "description": "費用が50万円未満の場合は差額を、超えた場合は超過分を自己負担します。",
         "tip": null
       },
       {
         "step": 3,
-        "title": "直接支払制度を使わない場合",
-        "description": "自費で出産費用を支払い、出産後に健康保険組合に申請",
-        "tip": "申請期限は出産日翌日から2年以内です"
+        "title": "差額がある場合は健保組合に請求",
+        "description": "費用が50万円未満だった場合、差額を健康保険組合に請求します（退院後2年以内）。",
+        "tip": "病院が発行する「出産費用明細書」が必要です。大切に保管してください。"
       }
     ],
     "requiredDocuments": [
@@ -347,20 +347,20 @@
         "downloadUrl": null
       },
       {
-        "name": "出産証明書または母子健康手帳",
-        "obtainHow": "出産した医療機関が発行",
+        "name": "出産証明書または母子健康手帳（出生届出済証明欄）",
+        "obtainHow": "分娩した医療機関・助産所が発行",
         "notes": null,
         "downloadUrl": null
       },
       {
         "name": "振込先口座情報",
-        "obtainHow": "金融機関の通帳またはキャッシュカード",
-        "notes": "本人名義の口座に限る",
+        "obtainHow": "本人名義の銀行口座の通帳またはキャッシュカード",
+        "notes": null,
         "downloadUrl": null
       },
       {
-        "name": "請求書（健保組合所定のもの）",
-        "obtainHow": "加入中の健保組合から入手",
+        "name": "請求書（健保組合所定の様式）",
+        "obtainHow": "加入中の健保組合または協会けんぽのWebサイトからダウンロード",
         "notes": null,
         "downloadUrl": null
       }
@@ -368,17 +368,17 @@
     "applicationMethods": [
       {
         "method": "counter",
-        "label": "健保組合窓口",
-        "description": "加入している健康保険組合（会社員）または協会けんぽ",
-        "url": null,
-        "address": null,
-        "hours": null
+        "label": "健康保険組合へ申請",
+        "description": "加入している健康保険組合（会社員の場合）または協会けんぽの窓口・郵送で申請します。",
+        "url": "https://www.kyoukaikenpo.or.jp/g7/cat710/",
+        "address": "各健康保険組合・協会けんぽ都道府県支部",
+        "hours": "平日 8:30〜17:15（協会けんぽの場合）"
       },
       {
         "method": "online",
-        "label": "オンライン申請",
-        "description": "一部の健保組合ではオンライン申請が可能（要確認）",
-        "url": "https://www.kyoukaikenpo.or.jp/",
+        "label": "健保組合オンライン申請",
+        "description": "一部の健康保険組合ではオンライン申請が可能です。加入組合のWebサイトをご確認ください。",
+        "url": null,
         "address": null,
         "hours": null
       }
@@ -417,7 +417,67 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/mumps-vaccine",
     "deadline": null,
-    "notes": "港区指定の医療機関で接種してください。"
+    "notes": "港区指定の医療機関で接種してください。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "港区から接種票（助成券）が届く",
+        "description": "対象年齢になると港区から接種票が郵送されます。",
+        "tip": "接種票が届かない場合は区役所健康推進課に問い合わせを。"
+      },
+      {
+        "step": 2,
+        "title": "港区指定医療機関に予約",
+        "description": "指定医療機関に電話またはWebで予約します。",
+        "tip": "かかりつけの小児科が指定医療機関かどうか事前に確認しましょう。"
+      },
+      {
+        "step": 3,
+        "title": "接種票・母子手帳を持参して接種",
+        "description": "接種票と母子健康手帳を持参して医療機関を受診します。窓口負担はありません。",
+        "tip": null
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "おたふくかぜワクチン接種票（助成券）",
+        "obtainHow": "港区から対象年齢になると郵送で届きます",
+        "notes": "紛失した場合は区役所健康推進課で再発行可能",
+        "downloadUrl": null
+      },
+      {
+        "name": "母子健康手帳",
+        "obtainHow": "妊娠届出時に交付されたもの",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "健康保険証（お子さんのもの）",
+        "obtainHow": "加入している健康保険組合から交付",
+        "notes": null,
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "指定医療機関で直接接種",
+        "description": "港区指定の医療機関で接種票を提示して接種します。申請手続きは不要です。",
+        "url": "https://www.city.minato.tokyo.jp/kenkousuishin/shitei-iryoukikan.html",
+        "address": "港区内指定医療機関",
+        "hours": "各医療機関の診察時間に準ずる"
+      }
+    ],
+    "faq": [
+      {
+        "question": "何回接種できますか？",
+        "answer": "1歳から就学前の2回接種が推奨されています。1回目は1歳〜2歳、2回目は年長（4〜6歳）での接種が理想的です。"
+      },
+      {
+        "question": "指定医療機関以外で接種した場合は？",
+        "answer": "指定医療機関以外では助成が受けられません。接種前に必ず指定医療機関リストを確認してください。"
+      }
+    ]
   },
   {
     "slug": "influenza-vaccine-subsidy",
@@ -442,7 +502,61 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/influenza-vaccine",
     "deadline": "毎年10月〜翌年1月頃",
-    "notes": "接種期間は例年10月〜翌年1月頃。13歳未満は2回接種が推奨されます。"
+    "notes": "接種期間は例年10月〜翌年1月頃。13歳未満は2回接種が推奨されます。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "毎年9〜10月頃に接種票が届く",
+        "description": "対象者には例年9〜10月頃に港区から接種票が郵送されます。",
+        "tip": "接種票が届かない場合や紛失した場合は区役所健康推進課へ。"
+      },
+      {
+        "step": 2,
+        "title": "港区指定医療機関に予約",
+        "description": "指定医療機関に電話またはWebで予約します。",
+        "tip": "人気のクリニックは10月初旬に予約が埋まることがあります。早めの予約を。"
+      },
+      {
+        "step": 3,
+        "title": "接種票・母子手帳を持参して接種",
+        "description": "接種票と母子健康手帳を持参して医療機関を受診します。",
+        "tip": "13歳未満は2〜4週間の間隔をあけて2回接種が推奨されています。"
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "インフルエンザワクチン接種票（助成券）",
+        "obtainHow": "港区から毎年9〜10月頃に郵送で届きます",
+        "notes": "紛失した場合は区役所健康推進課で再発行可能",
+        "downloadUrl": null
+      },
+      {
+        "name": "母子健康手帳",
+        "obtainHow": "妊娠届出時に交付されたもの",
+        "notes": null,
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "指定医療機関で直接接種",
+        "description": "港区指定の医療機関で接種票を提示して接種します。申請手続きは不要です。",
+        "url": "https://www.city.minato.tokyo.jp/kenkousuishin/shitei-iryoukikan.html",
+        "address": "港区内指定医療機関",
+        "hours": "各医療機関の診察時間に準ずる"
+      }
+    ],
+    "faq": [
+      {
+        "question": "何回接種できますか？",
+        "answer": "13歳未満は2回接種が推奨されています（2〜4週間の間隔をあけて）。13歳以上は1回接種です。"
+      },
+      {
+        "question": "卵アレルギーがある場合は接種できますか？",
+        "answer": "卵アレルギーがあっても接種できることが多いですが、必ずかかりつけ医に相談してから接種してください。"
+      }
+    ]
   },
   {
     "slug": "postnatal-care-stay",
@@ -468,7 +582,77 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/sango-care",
     "deadline": null,
-    "notes": "事前申請が必要です。利用可能な施設に空きがある場合に利用できます。"
+    "notes": "事前申請が必要です。利用可能な施設に空きがある場合に利用できます。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "みなと子育てステーションまたは保健センターに相談",
+        "description": "出産後、まずみなと子育てステーションまたは担当の保健センターに相談します。",
+        "tip": "産後の体調が悪い・育児が辛いと感じたら迷わず相談を。早めの利用が体の回復に繋がります。"
+      },
+      {
+        "step": 2,
+        "title": "利用申請書を提出",
+        "description": "産後ケア事業利用申請書を記入して提出します。",
+        "tip": null
+      },
+      {
+        "step": 3,
+        "title": "施設の空き状況を確認・予約",
+        "description": "利用可能な施設（助産所・医療機関）に空きがある場合、予約を取ります。",
+        "tip": "人気施設は早めに埋まります。出産前から相談しておくと安心です。"
+      },
+      {
+        "step": 4,
+        "title": "宿泊して産後ケアを受ける",
+        "description": "施設に宿泊し、助産師等から授乳指導・育児相談・休息のサポートを受けます。",
+        "tip": null
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "産後ケア事業利用申請書",
+        "obtainHow": "みなと子育てステーションまたは保健センターの窓口でもらえます",
+        "notes": null,
+        "downloadUrl": "https://www.city.minato.tokyo.jp/sango-care/shinsei-sho.html"
+      },
+      {
+        "name": "母子健康手帳",
+        "obtainHow": "妊娠届出時に交付されたもの",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "健康保険証（お子さんのもの）",
+        "obtainHow": "加入している健康保険組合から交付",
+        "notes": null,
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "窓口・電話で相談・申請",
+        "description": "みなと子育てステーション（4ヶ所）または各保健センターに電話または来所して相談・申請します。",
+        "url": "https://www.city.minato.tokyo.jp/kosodate-station",
+        "address": "みなと子育てステーション芝浦（港区芝浦1-3-25）ほか",
+        "hours": "平日 8:30〜17:00"
+      }
+    ],
+    "faq": [
+      {
+        "question": "何泊できますか？",
+        "answer": "原則として7泊まで利用できます。状況に応じて延長が認められる場合もあります。"
+      },
+      {
+        "question": "赤ちゃんと一緒に泊まれますか？",
+        "answer": "はい、赤ちゃんと一緒に宿泊します。授乳指導や夜間の育児サポートが受けられます。"
+      },
+      {
+        "question": "費用はいくらですか？",
+        "answer": "世帯の住民税課税状況によって異なります。住民税非課税世帯は無料、課税世帯は1泊あたり数千円の自己負担があります。"
+      }
+    ]
   },
   {
     "slug": "postnatal-care-day",
@@ -493,7 +677,61 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/sango-care-day",
     "deadline": null,
-    "notes": "事前申請が必要です。"
+    "notes": "事前申請が必要です。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "みなと子育てステーションまたは保健センターに相談",
+        "description": "出産後、まずみなと子育てステーションまたは担当保健センターに相談します。",
+        "tip": null
+      },
+      {
+        "step": 2,
+        "title": "利用申請書を提出",
+        "description": "産後ケア事業利用申請書を記入して提出します。",
+        "tip": null
+      },
+      {
+        "step": 3,
+        "title": "施設を予約して日帰り利用",
+        "description": "利用可能な施設に空きがある日を予約し、赤ちゃんと一緒に来所します。",
+        "tip": "授乳に困っている・眠れないなど、困ったことを気軽に相談してみましょう。"
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "産後ケア事業利用申請書",
+        "obtainHow": "みなと子育てステーションまたは保健センターの窓口でもらえます",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "母子健康手帳",
+        "obtainHow": "妊娠届出時に交付されたもの",
+        "notes": null,
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "窓口・電話で申請",
+        "description": "みなと子育てステーションまたは各保健センターに電話または来所して申請します。",
+        "url": "https://www.city.minato.tokyo.jp/kosodate-station",
+        "address": "みなと子育てステーション芝浦（港区芝浦1-3-25）ほか",
+        "hours": "平日 8:30〜17:00"
+      }
+    ],
+    "faq": [
+      {
+        "question": "何日利用できますか？",
+        "answer": "デイサービス型は原則として7回まで利用できます。"
+      },
+      {
+        "question": "上の子も連れて行けますか？",
+        "answer": "原則として赤ちゃんのみの利用となります。上の子の預け先について事前に施設に相談してください。"
+      }
+    ]
   },
   {
     "slug": "postnatal-care-visit",
@@ -518,7 +756,61 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/sango-care-visit",
     "deadline": null,
-    "notes": "事前申請が必要です。"
+    "notes": "事前申請が必要です。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "みなと子育てステーションまたは保健センターに相談",
+        "description": "出産後、まずみなと子育てステーションまたは担当保健センターに電話または来所して相談します。",
+        "tip": "外出が難しい方や、退院後すぐに自宅でケアを受けたい方に特に適しています。"
+      },
+      {
+        "step": 2,
+        "title": "利用申請書を提出",
+        "description": "産後ケア事業利用申請書を記入して提出します（郵送またはFAXでも可）。",
+        "tip": null
+      },
+      {
+        "step": 3,
+        "title": "訪問日時を調整・訪問を受ける",
+        "description": "担当者と訪問日時を調整し、自宅で助産師等による支援を受けます。",
+        "tip": null
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "産後ケア事業利用申請書",
+        "obtainHow": "みなと子育てステーションまたは保健センターの窓口・郵送・FAXで取得",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "母子健康手帳",
+        "obtainHow": "妊娠届出時に交付されたもの（訪問時に提示）",
+        "notes": null,
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "電話・窓口で申請",
+        "description": "みなと子育てステーションまたは各保健センターに電話または来所して申請します。",
+        "url": "https://www.city.minato.tokyo.jp/kosodate-station",
+        "address": "みなと子育てステーション芝浦（港区芝浦1-3-25）ほか",
+        "hours": "平日 8:30〜17:00"
+      }
+    ],
+    "faq": [
+      {
+        "question": "何回訪問してもらえますか？",
+        "answer": "訪問型は原則として3回まで利用できます。"
+      },
+      {
+        "question": "訪問してくれるのはどんな人ですか？",
+        "answer": "助産師または保健師が訪問します。授乳指導・育児相談・体重測定などを行います。"
+      }
+    ]
   },
   {
     "slug": "temporary-childcare",
@@ -543,7 +835,67 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/ichiji-hoiku",
     "deadline": null,
-    "notes": "利用には事前登録が必要です。施設ごとに定員があります。"
+    "notes": "利用には事前登録が必要です。施設ごとに定員があります。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "利用したい施設に問い合わせ・事前登録",
+        "description": "一時保育を実施している施設（保育園・子育て支援センター等）に問い合わせ、事前登録（面談）を行います。",
+        "tip": "施設によって対象年齢・定員・利用日が異なります。複数の施設に登録しておくと便利です。"
+      },
+      {
+        "step": 2,
+        "title": "利用希望日を予約",
+        "description": "事前登録後、利用希望日を電話やWebで予約します。",
+        "tip": "人気の施設は早めに予約が埋まります。利用したい日の1〜2週間前には予約を。"
+      },
+      {
+        "step": 3,
+        "title": "当日持ち物を持参して利用",
+        "description": "指定された持ち物（おむつ・着替え・お弁当等）を持参して施設に預けます。",
+        "tip": null
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "一時保育申請書（施設所定）",
+        "obtainHow": "利用する施設の窓口でもらえます",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "母子健康手帳",
+        "obtainHow": "妊娠届出時に交付されたもの（健診記録の確認に使用）",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "健康保険証（お子さんのもの）",
+        "obtainHow": "加入している健康保険組合から交付",
+        "notes": null,
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "各施設窓口・電話で申込",
+        "description": "一時保育実施施設に直接問い合わせ・申し込みします。港区のWebサイトで施設一覧を確認できます。",
+        "url": "https://www.city.minato.tokyo.jp/kosodate/ippannhoiku/ichiji.html",
+        "address": "港区内一時保育実施施設（多数）",
+        "hours": "各施設の受付時間に準ずる"
+      }
+    ],
+    "faq": [
+      {
+        "question": "何時間まで預けられますか？",
+        "answer": "施設によって異なりますが、通常は1日（開所時間内）まで預けられます。定期的な利用も可能です。"
+      },
+      {
+        "question": "病気の子どもでも預けられますか？",
+        "answer": "通常の一時保育は体調が良い場合のみ利用できます。病気の場合は「病児・病後児保育」をご利用ください。"
+      }
+    ]
   },
   {
     "slug": "child-short-stay",
@@ -568,11 +920,71 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/short-stay",
     "deadline": null,
-    "notes": "原則7日以内の利用。事前申請が必要です。"
+    "notes": "原則7日以内の利用。事前申請が必要です。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "区役所子ども家庭課に相談・申請",
+        "description": "まず区役所子ども家庭課（または支所）に相談し、利用申請書を提出します。",
+        "tip": "緊急の場合は事前申請なしで相談できますが、通常は事前申請が必要です。"
+      },
+      {
+        "step": 2,
+        "title": "利用決定通知が届く",
+        "description": "審査後、利用決定通知書が届きます。",
+        "tip": null
+      },
+      {
+        "step": 3,
+        "title": "受け入れ施設に連絡・荷物を持参",
+        "description": "受け入れ施設（児童養護施設等）に連絡し、必要な荷物を持参してお子さんを預けます。",
+        "tip": "お子さんが安心できるよう、好きなおもちゃや本を持たせてあげましょう。"
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "子どもショートステイ利用申請書",
+        "obtainHow": "区役所子ども家庭課の窓口でもらえます",
+        "notes": null,
+        "downloadUrl": "https://www.city.minato.tokyo.jp/kosodate/shortstay-shinsei.html"
+      },
+      {
+        "name": "利用理由を証明できる書類",
+        "obtainHow": "診断書（保護者が病気の場合）、母子手帳（出産の場合）等",
+        "notes": "利用理由に応じて必要書類が異なります",
+        "downloadUrl": null
+      },
+      {
+        "name": "お子さんの健康保険証",
+        "obtainHow": "加入している健康保険組合から交付",
+        "notes": null,
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "区役所子ども家庭課窓口",
+        "description": "区役所子ども家庭課またはみなと子育てステーションの窓口で申請します。",
+        "url": "https://www.city.minato.tokyo.jp/kodomo-katei/",
+        "address": "港区芝公園1-5-25（区役所本館4階）",
+        "hours": "平日 8:30〜17:00"
+      }
+    ],
+    "faq": [
+      {
+        "question": "何日間預けられますか？",
+        "answer": "原則として1回につき7日以内です。やむを得ない事情がある場合は延長できることがあります。"
+      },
+      {
+        "question": "費用はいくらですか？",
+        "answer": "世帯の所得に応じて異なります。生活保護世帯・住民税非課税世帯は無料、課税世帯は1泊あたり数千円の自己負担があります。"
+      }
+    ]
   },
   {
     "slug": "family-support",
-    "name": "ファミリーサポート",
+    "name": "ファミリーサポートセンター",
     "description": "0歳から小学6年生までのお子さんの送迎や預かりなどを、地域の支援会員が行う相互援助活動です。",
     "category": "childcare",
     "eligibility": {
@@ -593,7 +1005,67 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/family-support",
     "deadline": null,
-    "notes": "利用には事前に会員登録が必要です。"
+    "notes": "利用には事前に会員登録が必要です。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "ファミリーサポートセンターに問い合わせ・説明会に参加",
+        "description": "港区ファミリーサポートセンターに問い合わせ、入会説明会（無料）に参加します。",
+        "tip": "依頼会員（利用者）として登録後、すぐにサービスを利用できます。"
+      },
+      {
+        "step": 2,
+        "title": "会員登録（入会申込書を提出）",
+        "description": "入会申込書を記入して提出し、依頼会員として登録します。",
+        "tip": null
+      },
+      {
+        "step": 3,
+        "title": "センターに支援を依頼する",
+        "description": "センターに依頼内容（送迎・預かりの日時・場所など）を伝えると、支援会員を紹介してもらえます。",
+        "tip": "定期的な利用の場合は担当の支援会員が固定されることが多く、お子さんが慣れやすいです。"
+      },
+      {
+        "step": 4,
+        "title": "事前打ち合わせ・利用開始",
+        "description": "支援会員と事前に打ち合わせをして、利用を開始します。利用後に料金を直接お支払いします。",
+        "tip": null
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "ファミリーサポートセンター入会申込書",
+        "obtainHow": "ファミリーサポートセンターまたは区役所窓口でもらえます",
+        "notes": null,
+        "downloadUrl": "https://www.city.minato.tokyo.jp/family-support/toroku.html"
+      },
+      {
+        "name": "本人確認書類",
+        "obtainHow": "運転免許証・マイナンバーカード等",
+        "notes": null,
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "ファミリーサポートセンター窓口",
+        "description": "港区ファミリーサポートセンターの窓口または電話で入会申込みができます。",
+        "url": "https://www.city.minato.tokyo.jp/family-support",
+        "address": "港区芝浦1-3-25（みなとパーク芝浦内）",
+        "hours": "平日・土曜 9:00〜17:00"
+      }
+    ],
+    "faq": [
+      {
+        "question": "支援会員はどんな人ですか？",
+        "answer": "区内在住・在勤の方で、子育て支援の意欲がある方が登録しています。事前研修を受けています。"
+      },
+      {
+        "question": "どんなことをお願いできますか？",
+        "answer": "保育所・幼稚園・学校への送迎、保育終了後や学校終了後の預かり、保護者の急病・急用時の預かりなどが依頼できます。"
+      }
+    ]
   },
   {
     "slug": "komusubi-project",
@@ -617,7 +1089,63 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/komusubi",
     "deadline": null,
-    "notes": "妊娠中の方も参加可能。地域の子育て仲間とつながれます。"
+    "notes": "妊娠中の方も参加可能。地域の子育て仲間とつながれます。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "港区子むすびプロジェクトのWebサイトで情報確認",
+        "description": "開催予定のイベントや子育てひろば情報を確認します。",
+        "tip": null
+      },
+      {
+        "step": 2,
+        "title": "参加したいイベント・講座に申し込む",
+        "description": "参加したいイベントや講座にWebや電話で申し込みます。",
+        "tip": "無料のイベントも多数あります。気軽に参加してみましょう。"
+      },
+      {
+        "step": 3,
+        "title": "イベント・講座に参加する",
+        "description": "指定の場所・日時に参加します。親子で楽しめるプログラムが充実しています。",
+        "tip": null
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "特に指定なし",
+        "obtainHow": "イベントによっては母子健康手帳等の持参が必要な場合があります",
+        "notes": "各イベントの案内をご確認ください",
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "online",
+        "label": "Webサイト・電話で申込",
+        "description": "港区子むすびプロジェクトのWebサイトから各イベントの申し込みができます。",
+        "url": "https://www.city.minato.tokyo.jp/komusubi",
+        "address": null,
+        "hours": null
+      },
+      {
+        "method": "counter",
+        "label": "みなと子育てステーション窓口",
+        "description": "みなと子育てステーション（4ヶ所）の窓口でも情報収集・申込ができます。",
+        "url": "https://www.city.minato.tokyo.jp/kosodate-station",
+        "address": "みなと子育てステーション芝浦（港区芝浦1-3-25）ほか",
+        "hours": "平日 8:30〜17:00"
+      }
+    ],
+    "faq": [
+      {
+        "question": "どんなイベントがありますか？",
+        "answer": "親子で楽しむ工作・音楽・体操などのイベント、育児講座、専門家への相談会、同月齢の子育てグループなど多数あります。"
+      },
+      {
+        "question": "妊娠中でも参加できますか？",
+        "answer": "はい、妊娠中の方も参加できるプログラムがあります。産前から地域の仲間とつながっておくと産後の育児が楽になります。"
+      }
+    ]
   },
   {
     "slug": "unlicensed-nursery-subsidy",
@@ -643,7 +1171,73 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/ninkagai-josei",
     "deadline": null,
-    "notes": "助成額は認可保育所の保育料との差額が上限です。"
+    "notes": "助成額は認可保育所の保育料との差額が上限です。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "区役所保育課に相談・申請",
+        "description": "区役所保育課の窓口に相談し、利用申請書を提出します。",
+        "tip": "認可保育所の利用調整結果（不承諾通知）があると助成を受けやすい場合があります。"
+      },
+      {
+        "step": 2,
+        "title": "審査・決定通知",
+        "description": "審査後、助成の可否と金額が通知されます。",
+        "tip": null
+      },
+      {
+        "step": 3,
+        "title": "毎月（または定期的に）請求書を提出",
+        "description": "認可外保育施設の保育料領収書を添えて、定期的に助成金の請求を行います。",
+        "tip": "領収書は必ず保管してください。"
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "認可外保育施設保育料助成申請書",
+        "obtainHow": "区役所保育課の窓口でもらえます",
+        "notes": null,
+        "downloadUrl": "https://www.city.minato.tokyo.jp/hoiku/ninkagai-josei-shinsei.html"
+      },
+      {
+        "name": "認可外保育施設との契約書（写し）",
+        "obtainHow": "利用している認可外保育施設から交付",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "保育料の領収書",
+        "obtainHow": "毎月、利用している認可外保育施設から受け取る",
+        "notes": "原本を提出。コピーは不可の場合があります",
+        "downloadUrl": null
+      },
+      {
+        "name": "認可保育所の利用調整結果通知（不承諾通知）",
+        "obtainHow": "港区から送付されます",
+        "notes": "お持ちの方のみ",
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "区役所保育課窓口",
+        "description": "区役所保育課の窓口で申請します。",
+        "url": "https://www.city.minato.tokyo.jp/hoiku/",
+        "address": "港区芝公園1-5-25（区役所本館4階）",
+        "hours": "平日 8:30〜17:00"
+      }
+    ],
+    "faq": [
+      {
+        "question": "幼児教育・保育の無償化との違いは？",
+        "answer": "3〜5歳は無償化制度により上限月額37,000円が補助されます。この助成はそれとは別に、港区独自で認可保育所との差額を補填するものです。"
+      },
+      {
+        "question": "どの認可外保育施設でも対象になりますか？",
+        "answer": "都道府県等に届け出のある認可外保育施設が対象です。届け出のない施設は対象外となります。"
+      }
+    ]
   },
   {
     "slug": "multi-child-nursery-reduction",
@@ -668,7 +1262,63 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/tashi-keigen",
     "deadline": null,
-    "notes": "きょうだいの年齢に関わらず、生計を同一にする子どもの数でカウントされます。"
+    "notes": "きょうだいの年齢に関わらず、生計を同一にする子どもの数でカウントされます。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "保育所入所申込時に申告",
+        "description": "保育所の入所申込書に第2子以降であることを記入し、きょうだいの情報を申告します。",
+        "tip": "すでに入所中の場合は区役所保育課に変更申請が必要です。"
+      },
+      {
+        "step": 2,
+        "title": "審査・保育料の決定",
+        "description": "審査後、軽減後の保育料が決定・通知されます。",
+        "tip": null
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "保育所利用申込書（きょうだい情報欄に記入）",
+        "obtainHow": "区役所保育課または区のWebサイトから取得",
+        "notes": null,
+        "downloadUrl": "https://www.city.minato.tokyo.jp/hoiku/nyuushomoshikomi.html"
+      },
+      {
+        "name": "きょうだいの健康保険証または住民票",
+        "obtainHow": "加入保険から交付または区役所で発行",
+        "notes": "同一世帯であることの確認のため",
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "区役所保育課窓口",
+        "description": "保育所入所申込時に区役所保育課窓口で手続きします。",
+        "url": "https://www.city.minato.tokyo.jp/hoiku/",
+        "address": "港区芝公園1-5-25（区役所本館4階）",
+        "hours": "平日 8:30〜17:00"
+      },
+      {
+        "method": "online",
+        "label": "電子申請（保育所入所申込）",
+        "description": "保育所入所申込の電子申請時に多子世帯の情報を入力します。",
+        "url": "https://www.city.minato.tokyo.jp/denshi-shinsei",
+        "address": null,
+        "hours": "24時間受付"
+      }
+    ],
+    "faq": [
+      {
+        "question": "上の子が既に卒園していても第2子の軽減は受けられますか？",
+        "answer": "2024年度から年齢制限が撤廃されたため、生計を同じくする子どもの数でカウントされます。上の子が卒園済みでも第2子以降の軽減が適用されます。"
+      },
+      {
+        "question": "認可外保育施設でも対象になりますか？",
+        "answer": "認可保育所・認定こども園・小規模保育事業等の認可施設が対象です。認可外保育施設は原則対象外です。"
+      }
+    ]
   },
   {
     "slug": "private-kindergarten-subsidy",
@@ -693,7 +1343,67 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/shiritsu-youchien",
     "deadline": "在園する幼稚園を通じて申請",
-    "notes": "無償化（月額25,700円）に加えて港区独自の上乗せ補助があります。"
+    "notes": "無償化（月額25,700円）に加えて港区独自の上乗せ補助があります。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "在園する幼稚園から書類を受け取る",
+        "description": "幼稚園を通じて港区から申請書類が配布されます。毎年4〜5月頃に配布されます。",
+        "tip": "手続きは基本的に幼稚園を通じて行うので、幼稚園の先生の指示に従ってください。"
+      },
+      {
+        "step": 2,
+        "title": "申請書類を記入・幼稚園に提出",
+        "description": "必要事項を記入した申請書類を幼稚園に提出します。",
+        "tip": null
+      },
+      {
+        "step": 3,
+        "title": "幼稚園を通じて港区に申請",
+        "description": "幼稚園がまとめて港区に申請します。保護者が直接区役所に出向く必要はありません。",
+        "tip": null
+      },
+      {
+        "step": 4,
+        "title": "補助金の受取",
+        "description": "補助金は園の学費に充当される場合と、保護者の口座に直接振り込まれる場合があります。",
+        "tip": null
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "幼稚園就園奨励費補助金申請書",
+        "obtainHow": "在園する幼稚園から配布されます",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "前年度の源泉徴収票または確定申告書の写し",
+        "obtainHow": "勤務先から交付（源泉徴収票）または税務署に申請（確定申告書の写し）",
+        "notes": "所得確認のために必要な場合があります",
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "在園幼稚園を通じて申請",
+        "description": "直接区役所に行く必要はありません。書類は幼稚園に提出してください。",
+        "url": "https://www.city.minato.tokyo.jp/shiritsu-youchien",
+        "address": "在園する私立幼稚園",
+        "hours": "各幼稚園の事務受付時間に準ずる"
+      }
+    ],
+    "faq": [
+      {
+        "question": "幼児教育無償化との関係は？",
+        "answer": "3〜5歳は幼児教育無償化により月額25,700円が補助されます。港区の補助はそれに上乗せして、入園料の一部なども補助するものです。"
+      },
+      {
+        "question": "港区外の私立幼稚園でも対象になりますか？",
+        "answer": "港区に住所がある方が対象で、都内の私立幼稚園に在園していれば対象になります。ただし手続きは在園幼稚園を通じて行います。"
+      }
+    ]
   },
   {
     "slug": "infant-health-checkup",
@@ -717,6 +1427,64 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/nyuyoji-kenshin",
     "deadline": null,
-    "notes": "対象時期になると受診票が届きます。指定医療機関または保健センターで受診してください。"
+    "notes": "対象時期になると受診票が届きます。指定医療機関または保健センターで受診してください。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "対象月齢になると受診票が届く",
+        "description": "健診の対象時期になると、港区から受診票（無料クーポン）が郵送されます。",
+        "tip": "受診票が届いたら有効期限内に受診しましょう。"
+      },
+      {
+        "step": 2,
+        "title": "指定医療機関または保健センターに予約",
+        "description": "かかりつけの指定医療機関または保健センターに電話で予約します。",
+        "tip": "1ヶ月健診は通常、分娩した産院で行います。3-4ヶ月健診以降はかかりつけ小児科を利用するのが便利です。"
+      },
+      {
+        "step": 3,
+        "title": "受診票・母子手帳を持参して受診",
+        "description": "受診票と母子健康手帳を持参して受診します。費用はかかりません。",
+        "tip": "健診当日の体温や体調を事前にメモしておくとスムーズです。"
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "乳幼児健康診査受診票",
+        "obtainHow": "港区から対象時期に郵送で届きます",
+        "notes": "紛失した場合は区役所健康推進課または保健センターで再発行可能",
+        "downloadUrl": null
+      },
+      {
+        "name": "母子健康手帳",
+        "obtainHow": "妊娠届出時に交付されたもの",
+        "notes": "健診結果はすべて母子手帳に記録されます。必ず持参してください",
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "指定医療機関または保健センターで受診",
+        "description": "港区指定の医療機関（小児科等）または保健センターで受診します。申請手続きは不要です。",
+        "url": "https://www.city.minato.tokyo.jp/kenkousuishin/shitei-iryoukikan.html",
+        "address": "港区内指定医療機関または保健センター（芝浦・三田・高輪・麻布）",
+        "hours": "各医療機関の診察時間に準ずる"
+      }
+    ],
+    "faq": [
+      {
+        "question": "有効期限を過ぎてしまったらどうなりますか？",
+        "answer": "有効期限を過ぎると受診票は使用できませんが、保健センターに相談すると対応してもらえる場合があります。まずは保健センターにご相談ください。"
+      },
+      {
+        "question": "健診で引っかかった場合はどうなりますか？",
+        "answer": "精密検査や専門医への紹介が行われます。発達面での心配があれば、保健センターの発達相談も利用できます。"
+      },
+      {
+        "question": "1歳半健診と3歳健診では何を診てもらえますか？",
+        "answer": "1歳半健診では歩行・言葉の発達（1語文）・社会性などを確認します。3歳健診では視力・聴力・言葉の発達（2語文以上）・虫歯などを確認します。"
+      }
+    ]
   }
 ]

@@ -388,8 +388,11 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                 よくある質問
               </h2>
               <div className="mt-4 space-y-4">
-                {program.faq.map((item, i) => (
-                  <div key={i}>
+                {program.faq.map((item) => (
+                  <div
+                    key={item.question}
+                    className="border-b border-border pb-4 last:border-0 last:pb-0"
+                  >
                     <p className="text-sm font-medium text-card-foreground">
                       Q. {item.question}
                     </p>

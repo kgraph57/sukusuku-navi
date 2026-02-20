@@ -161,3 +161,55 @@ export const AGE_GROUP_LABELS: Record<AgeGroup, string> = {
   "6-12yr": "6〜12歳",
   all: "全年齢",
 } as const;
+
+export type VaccineType = "routine" | "optional";
+
+export interface VaccineDose {
+  readonly doseNumber: number;
+  readonly label: string;
+  readonly ageMonthsMin: number;
+  readonly ageMonthsMax: number;
+  readonly ageMonthsStandard: number;
+}
+
+export interface Vaccine {
+  readonly slug: string;
+  readonly name: string;
+  readonly nameShort: string;
+  readonly type: VaccineType;
+  readonly disease: string;
+  readonly description: string;
+  readonly doses: readonly VaccineDose[];
+  readonly sideEffects: string;
+  readonly contraindications: string;
+  readonly relatedArticleSlug: string | null;
+  readonly relatedProgramSlug: string | null;
+}
+
+export interface VaccinationStep {
+  readonly step: number;
+  readonly title: string;
+  readonly description: string;
+  readonly tip: string | null;
+  readonly where: string | null;
+  readonly url: string | null;
+}
+
+export type VaccinationFaqCategory =
+  | "schedule"
+  | "safety"
+  | "side-effects"
+  | "practical";
+
+export interface VaccinationFaq {
+  readonly question: string;
+  readonly answer: string;
+  readonly category: VaccinationFaqCategory;
+}
+
+export interface VaccinationEvidence {
+  readonly claim: string;
+  readonly evidence: string;
+  readonly source: string;
+  readonly sourceUrl: string | null;
+}
