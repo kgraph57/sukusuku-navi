@@ -11,6 +11,7 @@ import {
   ClipboardList,
   User,
   Syringe,
+  Calendar,
 } from "lucide-react";
 import { FamilyProfileSetup } from "@/components/family/family-profile-setup";
 import { getFamilyProfile, getChildAge } from "@/lib/family-store";
@@ -129,6 +130,23 @@ function QuickActions() {
           </h3>
           <p className="text-xs text-muted">接種スケジュールを確認する</p>
         </div>
+      </Link>
+      <Link
+        href="/my/timeline"
+        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md sm:col-span-2"
+      >
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-teal-200 bg-teal-50">
+          <Calendar className="h-5 w-5 text-teal-600" />
+        </div>
+        <div className="flex-1">
+          <h3 className="font-heading text-sm font-bold text-card-foreground">
+            タイムライン
+          </h3>
+          <p className="text-xs text-muted">
+            今やるべき手続き・健診・予防接種を時系列で確認
+          </p>
+        </div>
+        <ArrowRight className="h-4 w-4 shrink-0 text-teal-600" />
       </Link>
     </div>
   );
