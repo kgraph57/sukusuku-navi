@@ -1,52 +1,53 @@
-"use client"
+"use client";
 
-import { useSearchParams } from "next/navigation"
-import { useMemo, Suspense } from "react"
-import Link from "next/link"
+import { useSearchParams } from "next/navigation";
+import { useMemo, Suspense } from "react";
+import Link from "next/link";
 import {
   ArrowLeft,
   Calculator,
   RefreshCw,
   TrendingUp,
   AlertTriangle,
-} from "lucide-react"
-import { runSimulation } from "@/lib/simulator/engine"
-import { ResultCard } from "@/components/simulator/result-card"
-import type { SimulatorInput, SimulatorResult } from "@/lib/types"
+} from "lucide-react";
+import { runSimulation } from "@/lib/simulator/engine";
+import { ResultCard } from "@/components/simulator/result-card";
+import { LifePlanTimeline } from "@/components/simulator/life-plan-timeline";
+import type { SimulatorInput, SimulatorResult } from "@/lib/types";
 
 function formatTotalAmount(amount: number): string {
   if (amount >= 10000) {
-    const man = Math.floor(amount / 10000)
-    return `${man.toLocaleString()}万円`
+    const man = Math.floor(amount / 10000);
+    return `${man.toLocaleString()}万円`;
   }
-  return `${amount.toLocaleString()}円`
+  return `${amount.toLocaleString()}円`;
 }
 
 function parseFormData(searchParams: URLSearchParams): SimulatorInput | null {
   try {
-    const raw = searchParams.get("data")
-    if (!raw) return null
-    const decoded = decodeURIComponent(atob(raw))
-    return JSON.parse(decoded) as SimulatorInput
+    const raw = searchParams.get("data");
+    if (!raw) return null;
+    const decoded = decodeURIComponent(atob(raw));
+    return JSON.parse(decoded) as SimulatorInput;
   } catch {
-    return null
+    return null;
   }
 }
 
 function ResultsContent() {
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
 
   const { input, result } = useMemo<{
-    input: SimulatorInput | null
-    result: SimulatorResult | null
+    input: SimulatorInput | null;
+    result: SimulatorResult | null;
   }>(() => {
-    const parsed = parseFormData(searchParams)
-    if (!parsed) return { input: null, result: null }
+    const parsed = parseFormData(searchParams);
+    if (!parsed) return { input: null, result: null };
     return {
       input: parsed,
       result: runSimulation(parsed),
-    }
-  }, [searchParams])
+    };
+  }, [searchParams]);
 
   if (!input || !result) {
     return (
@@ -67,15 +68,15 @@ function ResultsContent() {
           </Link>
         </div>
       </div>
-    )
+    );
   }
 
   const financialPrograms = result.eligiblePrograms.filter(
-    (ep) => ep.estimatedAmount > 0
-  )
+    (ep) => ep.estimatedAmount > 0,
+  );
   const servicePrograms = result.eligiblePrograms.filter(
-    (ep) => ep.estimatedAmount === 0
-  )
+    (ep) => ep.estimatedAmount === 0,
+  );
 
   return (
     <div className="min-h-screen bg-warm-50 px-4 pb-16 pt-8">
@@ -143,6 +144,21 @@ function ResultsContent() {
           </section>
         )}
 
+        <section className="mt-8">
+          <h2 className="font-heading text-xl font-bold text-foreground">
+            お子さんのライフプラン
+          </h2>
+          <p className="mt-1 text-sm text-muted">
+            年齢ごとに受けられる制度の一覧です。
+          </p>
+          <div className="mt-4">
+            <LifePlanTimeline
+              children={input.children}
+              eligiblePrograms={result.eligiblePrograms}
+            />
+          </div>
+        </section>
+
         <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/simulator/start"
@@ -176,7 +192,7 @@ function ResultsContent() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default function SimulatorResultsPage() {
@@ -193,5 +209,5 @@ export default function SimulatorResultsPage() {
     >
       <ResultsContent />
     </Suspense>
-  )
+  );
 }

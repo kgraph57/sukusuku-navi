@@ -14,17 +14,17 @@ export interface Clinic {
   readonly address: string;
   readonly phone: string;
   readonly hours: ClinicHours;
+  readonly nightHours: string | null;
   readonly features: readonly string[];
   readonly emergencyAvailable: boolean;
   readonly website: string;
+  readonly onlineBookingUrl: string | null;
   readonly lat: number;
   readonly lng: number;
-  readonly notes: string;
-  readonly nightHours: string | null;
-  readonly requiredItems: readonly string[];
   readonly nearestStation: string;
   readonly parkingAvailable: boolean;
-  readonly onlineBookingUrl: string | null;
+  readonly requiredItems: readonly string[];
+  readonly notes: string;
 }
 
 export function getAllClinics(): readonly Clinic[] {

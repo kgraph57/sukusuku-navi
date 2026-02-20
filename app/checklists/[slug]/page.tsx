@@ -1,50 +1,50 @@
-import type { Metadata } from "next"
-import Link from "next/link"
-import { notFound } from "next/navigation"
-import { ArrowLeft } from "lucide-react"
-import { getAllChecklists, getChecklistBySlug } from "@/lib/checklists"
-import { ChecklistContent } from "@/components/checklist/checklist-content"
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
+import { getAllChecklists, getChecklistBySlug } from "@/lib/checklists";
+import { ChecklistContent } from "@/components/checklist/checklist-content";
 
 interface PageProps {
-  readonly params: Promise<{ slug: string }>
+  readonly params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const checklists = getAllChecklists()
+  const checklists = getAllChecklists();
   return checklists.map((checklist) => ({
     slug: checklist.slug,
-  }))
+  }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await params
-  const checklist = getChecklistBySlug(slug)
-  if (!checklist) return { title: "チェックリストが見つかりません" }
+  const { slug } = await params;
+  const checklist = getChecklistBySlug(slug);
+  if (!checklist) return { title: "チェックリストが見つかりません" };
 
   return {
     title: `${checklist.name} - 手続きチェックリスト`,
     description: checklist.description,
-  }
+  };
 }
 
 export default async function ChecklistDetailPage({ params }: PageProps) {
-  const { slug } = await params
-  const checklist = getChecklistBySlug(slug)
+  const { slug } = await params;
+  const checklist = getChecklistBySlug(slug);
 
   if (!checklist) {
-    notFound()
+    notFound();
   }
 
-  const allChecklists = getAllChecklists()
-  const currentIndex = allChecklists.findIndex((c) => c.slug === slug)
+  const allChecklists = getAllChecklists();
+  const currentIndex = allChecklists.findIndex((c) => c.slug === slug);
   const prevChecklist =
-    currentIndex > 0 ? allChecklists[currentIndex - 1] : null
+    currentIndex > 0 ? allChecklists[currentIndex - 1] : null;
   const nextChecklist =
     currentIndex < allChecklists.length - 1
       ? allChecklists[currentIndex + 1]
-      : null
+      : null;
 
   return (
     <>
@@ -69,7 +69,7 @@ export default async function ChecklistDetailPage({ params }: PageProps) {
 
       <section className="px-4 py-8 sm:py-12">
         <div className="mx-auto max-w-3xl">
-          <ChecklistContent checklist={checklist} />
+          <ChecklistContent slug={checklist.slug} items={checklist.items} />
 
           <div className="mt-8 flex items-center justify-between gap-4">
             {prevChecklist ? (
@@ -108,5 +108,5 @@ export default async function ChecklistDetailPage({ params }: PageProps) {
         </div>
       </section>
     </>
-  )
+  );
 }
