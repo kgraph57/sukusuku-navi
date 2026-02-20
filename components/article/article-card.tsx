@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Calendar, Tag, Users } from "lucide-react";
+import { ArrowRight, Users } from "lucide-react";
 import type {
   ArticleFrontmatter,
   ArticleCategory,
@@ -18,6 +18,19 @@ const CATEGORY_COLORS: Record<ArticleCategory, string> = {
   checkup: "bg-teal-50 text-teal-700 border-teal-200",
   "mental-health": "bg-purple-50 text-purple-700 border-purple-200",
   "municipal-service": "bg-indigo-50 text-indigo-700 border-indigo-200",
+} as const;
+
+const CATEGORY_ACCENT: Record<ArticleCategory, string> = {
+  "infectious-disease": "border-l-red-400",
+  allergy: "border-l-orange-400",
+  skin: "border-l-pink-400",
+  vaccination: "border-l-blue-400",
+  development: "border-l-green-400",
+  nutrition: "border-l-yellow-400",
+  emergency: "border-l-red-500",
+  checkup: "border-l-teal-400",
+  "mental-health": "border-l-purple-400",
+  "municipal-service": "border-l-indigo-400",
 } as const;
 
 function CategoryBadge({ category }: { readonly category: ArticleCategory }) {
@@ -50,40 +63,50 @@ export function ArticleCard({ frontmatter }: ArticleCardProps) {
   return (
     <Link
       href={`/articles/${slug}`}
-      className="group flex flex-col rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+      className={`group flex flex-col rounded-xl border border-border border-l-4 bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md ${CATEGORY_ACCENT[category]}`}
     >
+      {/* Header row */}
       <div className="flex flex-wrap items-center gap-2">
-        <span className="text-xs font-medium text-muted">Vol.{vol}</span>
+        <span className="rounded-full bg-teal-100 px-2.5 py-0.5 text-xs font-bold text-teal-700">
+          Vol.{vol}
+        </span>
         <CategoryBadge category={category} />
       </div>
 
-      <h3 className="mt-3 font-heading text-lg font-bold leading-snug text-card-foreground group-hover:text-teal-700">
+      {/* Title */}
+      <h3 className="mt-3 font-heading text-[1.05rem] font-bold leading-snug text-card-foreground group-hover:text-teal-700">
         {title}
       </h3>
 
+      {/* Description */}
       <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">
         {description}
       </p>
 
+      {/* Key points */}
       {keyPoints.length > 0 && (
-        <ul className="mt-3 space-y-1">
+        <ul className="mt-3 space-y-1.5 rounded-lg bg-warm-100 px-3 py-2.5">
           {keyPoints.slice(0, 2).map((point) => (
             <li
               key={point}
-              className="flex items-start gap-1.5 text-xs leading-relaxed text-muted"
+              className="flex items-start gap-2 text-xs leading-relaxed text-muted"
             >
-              <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-400" />
+              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-500" />
               <span className="line-clamp-1">{point}</span>
             </li>
           ))}
         </ul>
       )}
 
-      <div className="mt-auto flex flex-wrap items-center gap-2 pt-4">
+      {/* Footer */}
+      <div className="mt-auto flex items-center justify-between pt-4">
         <div className="flex items-center gap-1 text-xs text-muted">
           <Users className="h-3.5 w-3.5" />
           <span>{ageGroups.map((ag) => AGE_GROUP_LABELS[ag]).join("・")}</span>
         </div>
+        <span className="flex items-center gap-0.5 text-xs font-medium text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
+          読む <ArrowRight className="h-3 w-3" />
+        </span>
       </div>
     </Link>
   );

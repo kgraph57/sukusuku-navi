@@ -39,19 +39,19 @@ export function createMdxComponents(): MDXComponents {
   return {
     h1: (props) => (
       <h1
-        className="mb-6 mt-10 font-heading text-2xl font-bold text-foreground sm:text-3xl"
+        className="mb-6 mt-12 font-heading text-2xl font-bold text-foreground sm:text-3xl"
         {...props}
       />
     ),
     h2: (props) => (
       <h2
-        className="mb-4 mt-8 font-heading text-xl font-bold text-foreground sm:text-2xl"
+        className="mb-5 mt-12 font-heading text-xl font-bold text-foreground sm:text-2xl"
         {...props}
       />
     ),
     h3: (props) => (
       <h3
-        className="mb-3 mt-6 font-heading text-lg font-bold text-foreground"
+        className="mb-4 mt-8 font-heading text-lg font-bold text-foreground"
         {...props}
       />
     ),
@@ -61,7 +61,7 @@ export function createMdxComponents(): MDXComponents {
       const qaMatch = extractSpeaker(text);
       if (qaMatch) {
         return (
-          <div className="my-3">
+          <div className="my-4">
             <QaBubble speaker={qaMatch.speaker}>
               <span
                 dangerouslySetInnerHTML={{
@@ -83,7 +83,7 @@ export function createMdxComponents(): MDXComponents {
 
       return (
         <p
-          className="my-3 text-sm leading-relaxed text-foreground sm:text-base"
+          className="my-5 text-base leading-[1.95] text-foreground"
           {...props}
         />
       );
@@ -97,8 +97,8 @@ export function createMdxComponents(): MDXComponents {
 
       if (isKeyPoints) {
         return (
-          <div className="my-6 rounded-xl border-2 border-teal-200 bg-teal-50/50 p-5">
-            <div className="prose-sm text-foreground [&>p]:my-1 [&>p]:text-sm [&_strong]:font-bold [&_strong]:text-teal-800 [&_ol]:mt-2 [&_ol]:space-y-1 [&_ol]:text-sm [&_li]:text-sm">
+          <div className="my-8 rounded-xl border-2 border-teal-200 bg-teal-50/50 p-6">
+            <div className="text-foreground [&>p]:my-2 [&>p]:text-base [&>p]:leading-relaxed [&_strong]:font-bold [&_strong]:text-teal-800 [&_ol]:mt-3 [&_ol]:space-y-2 [&_ol]:text-base [&_li]:text-base [&_li]:leading-relaxed">
               {props.children}
             </div>
           </div>
@@ -106,25 +106,35 @@ export function createMdxComponents(): MDXComponents {
       }
 
       return (
-        <blockquote className="my-6 rounded-lg border-l-4 border-teal-300 bg-teal-50/30 py-3 pl-4 pr-3 text-sm leading-relaxed text-foreground [&>p]:my-1 [&_strong]:font-bold [&_strong]:text-teal-800 [&_ul]:mt-2 [&_ul]:space-y-1 [&_li]:text-sm">
+        <blockquote className="my-7 rounded-lg border-l-4 border-teal-400 bg-teal-50/40 py-4 pl-5 pr-4 text-base leading-[1.9] text-foreground [&>p]:my-2 [&>p]:leading-[1.9] [&_strong]:font-bold [&_strong]:text-teal-800 [&_ul]:mt-3 [&_ul]:space-y-2 [&_li]:text-base [&_li]:leading-relaxed">
           {props.children}
         </blockquote>
       );
     },
     ul: (props) => (
       <ul
-        className="my-4 space-y-2 pl-5 text-sm leading-relaxed text-foreground [&>li]:list-disc"
+        className="my-6 space-y-3 pl-6 text-base leading-[1.9] text-foreground [&>li]:list-disc"
         {...props}
       />
     ),
     ol: (props) => (
       <ol
-        className="my-4 space-y-2 pl-5 text-sm leading-relaxed text-foreground [&>li]:list-decimal"
+        className="my-6 space-y-3 pl-6 text-base leading-[1.9] text-foreground [&>li]:list-decimal"
         {...props}
       />
     ),
-    li: (props) => <li className="pl-1" {...props} />,
-    hr: () => <hr className="my-8 border-border" />,
+    li: (props) => <li className="pl-1.5 leading-[1.9]" {...props} />,
+    hr: () => (
+      <div className="my-10 flex items-center gap-4">
+        <div className="h-px flex-1 bg-border" />
+        <div className="flex gap-1">
+          <span className="h-1.5 w-1.5 rounded-full bg-teal-300" />
+          <span className="h-1.5 w-1.5 rounded-full bg-teal-300" />
+          <span className="h-1.5 w-1.5 rounded-full bg-teal-300" />
+        </div>
+        <div className="h-px flex-1 bg-border" />
+      </div>
+    ),
     a: (props) => (
       <a
         className="text-teal-600 underline underline-offset-2 hover:text-teal-700"
@@ -134,18 +144,21 @@ export function createMdxComponents(): MDXComponents {
       />
     ),
     table: (props) => (
-      <div className="my-6 overflow-x-auto rounded-lg border border-border">
+      <div className="my-7 overflow-x-auto rounded-xl border border-border shadow-sm">
         <table className="w-full text-sm" {...props} />
       </div>
     ),
     th: (props) => (
       <th
-        className="border-b border-border bg-teal-50 px-4 py-2 text-left font-medium text-foreground"
+        className="border-b-2 border-teal-200 bg-teal-600 px-5 py-3 text-left text-sm font-semibold text-white"
         {...props}
       />
     ),
     td: (props) => (
-      <td className="border-b border-border px-4 py-2 text-muted" {...props} />
+      <td
+        className="border-b border-border px-5 py-3 text-sm leading-relaxed text-foreground odd:bg-white even:bg-teal-50/30"
+        {...props}
+      />
     ),
     sup: (props) => <sup className="text-xs text-teal-600" {...props} />,
   };

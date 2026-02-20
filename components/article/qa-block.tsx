@@ -12,13 +12,13 @@ export function QaBubble({ speaker, children }: QaBubbleProps) {
 
   if (doctor) {
     return (
-      <div className="flex items-start gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-100 text-sm font-bold text-teal-700">
+      <div className="flex items-start gap-3 sm:gap-4">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-teal-600 text-sm font-bold text-white shadow-sm">
           医
         </div>
-        <div className="max-w-[80%]">
-          <p className="mb-1 text-xs font-medium text-teal-600">{speaker}</p>
-          <div className="rounded-2xl rounded-tl-sm bg-teal-50 px-4 py-3 text-sm leading-relaxed text-foreground">
+        <div className="max-w-[82%]">
+          <p className="mb-1.5 text-xs font-semibold text-teal-600">{speaker}</p>
+          <div className="rounded-2xl rounded-tl-sm bg-teal-50 px-5 py-4 text-base leading-[1.9] text-foreground shadow-sm">
             {children}
           </div>
         </div>
@@ -27,15 +27,15 @@ export function QaBubble({ speaker, children }: QaBubbleProps) {
   }
 
   return (
-    <div className="flex flex-row-reverse items-start gap-3">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-coral-100 text-sm font-bold text-coral-600">
+    <div className="flex flex-row-reverse items-start gap-3 sm:gap-4">
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-coral-400 text-sm font-bold text-white shadow-sm">
         親
       </div>
-      <div className="max-w-[80%]">
-        <p className="mb-1 text-right text-xs font-medium text-coral-500">
+      <div className="max-w-[82%]">
+        <p className="mb-1.5 text-right text-xs font-semibold text-coral-500">
           {speaker}
         </p>
-        <div className="rounded-2xl rounded-tr-sm bg-coral-50 px-4 py-3 text-sm leading-relaxed text-foreground">
+        <div className="rounded-2xl rounded-tr-sm bg-coral-50 px-5 py-4 text-base leading-[1.9] text-foreground shadow-sm">
           {children}
         </div>
       </div>
@@ -49,7 +49,7 @@ interface QaBlockProps {
 
 export function QaBlock({ children }: QaBlockProps) {
   return (
-    <div className="my-6 space-y-4 rounded-xl border border-border bg-warm-50 p-4 sm:p-6">
+    <div className="my-8 space-y-5 rounded-xl border border-border bg-warm-50 p-5 sm:p-7">
       {children}
     </div>
   )

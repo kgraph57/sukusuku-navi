@@ -34,7 +34,7 @@ export async function generateMetadata({
   const article = getArticleBySlug(slug);
   if (!article) return {};
 
-  const { title, description, category } = article.frontmatter;
+  const { title, description } = article.frontmatter;
 
   return {
     title,
@@ -68,9 +68,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const mdxComponents = createMdxComponents();
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-10 sm:py-16">
+    <article className="mx-auto max-w-3xl px-4 py-12 sm:py-20">
       {/* Breadcrumb */}
-      <nav className="mb-8">
+      <nav className="mb-10">
         <Link
           href="/articles"
           className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-teal-600"
@@ -81,23 +81,23 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       </nav>
 
       {/* Article header */}
-      <header className="mb-8">
+      <header className="mb-10 border-b border-border pb-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full bg-teal-100 px-3 py-1 text-xs font-bold text-teal-700">
+          <span className="rounded-full bg-teal-600 px-3 py-1 text-xs font-bold text-white">
             Vol.{vol}
           </span>
           <CategoryBadge category={category} />
         </div>
 
-        <h1 className="mt-4 font-heading text-2xl font-bold leading-tight text-foreground sm:text-3xl">
+        <h1 className="mt-5 font-heading text-2xl font-bold leading-[1.45] text-foreground sm:text-3xl sm:leading-[1.4]">
           {title}
         </h1>
 
-        <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
+        <p className="mt-4 text-base leading-[1.85] text-muted">
           {description}
         </p>
 
-        <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-muted">
+        <div className="mt-5 flex flex-wrap items-center gap-4 text-xs text-muted">
           <div className="flex items-center gap-1">
             <Calendar className="h-3.5 w-3.5" />
             <time dateTime={publishedAt}>
