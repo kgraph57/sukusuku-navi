@@ -20,67 +20,95 @@ export const metadata: Metadata = {
 
 const HOKATSU_STEPS = [
   {
-    month: "4〜8月",
+    month: "4〜9月",
     title: "情報収集・見学",
     description:
-      "港区のホームページで保育施設一覧を確認。気になる園に電話して見学予約。複数園を比較しましょう。",
+      "港区HPで保育施設一覧を確認。気になる園に電話して見学予約。複数園（5〜10園）を比較しましょう。港区は全国でも競争率が高いエリアです。",
   },
   {
-    month: "9〜10月",
-    title: "申込書類の準備",
+    month: "10月上旬",
+    title: "「入園のごあんない」公開・書類準備",
     description:
-      "就労証明書・収入証明書等を準備。港区役所の子ども家庭支援部で相談も可能です。",
+      "港区HPで「保育園入園のごあんない」が公開されます。就労証明書（勤務先に依頼）・課税証明書等を早めに準備。",
   },
   {
-    month: "11月",
-    title: "4月入園の一次申込",
+    month: "11月上旬〜下旬",
+    title: "4月入園の一次申込（締切厳守）",
     description:
-      "例年11月中旬〜12月上旬が締切。港区役所窓口またはオンラインで提出。希望園は最大20園まで記入可能。",
+      "郵送・電子申請は11月上旬〜下旬、窓口は12月上旬まで。電子申請が便利です。希望園は優先順位をつけて記入。",
   },
   {
-    month: "2月",
+    month: "1月末",
     title: "一次選考結果通知",
     description:
-      "内定の場合は面接・健康診断へ。不承諾の場合は二次募集（2月下旬締切）に申込可能。",
+      "内定の場合は面接・健康診断へ。不承諾の場合は二次募集（1月下旬〜2月上旬締切）に申込可能。",
   },
   {
     month: "3月",
-    title: "入園準備",
+    title: "入園準備・慣らし保育",
     description:
-      "内定園の入園説明会に参加。持ち物の準備、慣らし保育のスケジュール確認。",
+      "内定園の入園説明会に参加。持ち物の準備、慣らし保育（1〜2週間）のスケジュール確認。職場と復帰日を調整。",
   },
 ] as const;
 
 const REQUIRED_DOCS = [
   {
-    name: "教育・保育給付認定申請書",
-    note: "港区HPからダウンロード可",
+    name: "子どものための教育・保育給付認定申請書 + 家庭状況調査表",
+    note: "港区HPからダウンロード、または電子申請で入力",
   },
   {
-    name: "保育の利用申込書",
-    note: "希望園を優先順位で記入",
+    name: "保育所入所等申込書 + 児童の健康状況申告書",
+    note: "希望園を優先順位で記入。お子さんの健康状態も申告",
   },
   {
     name: "就労証明書",
-    note: "勤務先に作成依頼（自営業の場合は確定申告書の写し等）",
+    note: "勤務先に作成依頼（自営業は確定申告書の写し等）。転職予定の場合は内定証明書",
   },
   {
-    name: "収入を証明する書類",
-    note: "課税証明書または源泉徴収票",
+    name: "課税（非課税）証明書",
+    note: "保育料の算定に使用。マイナンバー提示で省略可能な場合あり",
   },
   {
-    name: "家庭状況を確認する書類",
-    note: "ひとり親の場合は戸籍謄本等が追加で必要",
+    name: "復職に関する誓約書（育休中の場合）",
+    note: "育休からの復職時期を証明する書類",
+  },
+  {
+    name: "その他（世帯状況による）",
+    note: "ひとり親：戸籍謄本、障害：手帳の写し、疾病：診断書など",
   },
 ] as const;
 
 const INDEX_EXAMPLES = [
-  { condition: "両親フルタイム（月20日以上・週40h以上）", points: "各20点" },
-  { condition: "ひとり親世帯", points: "+3〜5点" },
-  { condition: "きょうだい在園", points: "+2点" },
-  { condition: "港区保育室在籍", points: "+2点" },
-  { condition: "認証保育所に有償で預けている", points: "+2点" },
-  { condition: "育休明け復帰", points: "+1点" },
+  {
+    condition: "就労（週5日以上・1日8h以上＝週40h以上）",
+    points: "各20点",
+    note: "父母それぞれに算出。両親フルタイムで合計40点",
+  },
+  {
+    condition: "就労（週5日以上・1日6h〜8h未満）",
+    points: "各18点",
+    note: "時短勤務の場合",
+  },
+  {
+    condition: "きょうだい同時入園・在園児きょうだい",
+    points: "+1点",
+    note: "加点項目。同じ園を希望する場合",
+  },
+  {
+    condition: "双子以上の同時入園",
+    points: "+1点",
+    note: "加点項目",
+  },
+  {
+    condition: "勤務実績3ヶ月未満",
+    points: "−2点",
+    note: "減点項目。転職直後は注意",
+  },
+  {
+    condition: "同居の祖父母等が保育可能",
+    points: "−3点",
+    note: "減点項目。65歳未満の同居親族がいる場合",
+  },
 ] as const;
 
 function TypeSummaryCard({
@@ -151,7 +179,10 @@ export default function NurseriesPage() {
           </h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             <TypeSummaryCard type="licensed" count={countByType("licensed")} />
-            <TypeSummaryCard type="certified" count={countByType("certified")} />
+            <TypeSummaryCard
+              type="certified"
+              count={countByType("certified")}
+            />
             <TypeSummaryCard
               type="small-scale"
               count={countByType("small-scale")}
@@ -256,40 +287,36 @@ export default function NurseriesPage() {
             認可保育園の選考は「利用調整指数」に基づいて行われます。基本指数（保育の必要性）と調整指数（加点・減点）の合計が高い順に内定が決まります。
           </p>
 
-          <div className="mt-6 overflow-hidden rounded-xl border border-border">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-border bg-card">
-                  <th className="px-4 py-3 text-left text-xs font-medium text-muted">
-                    条件
-                  </th>
-                  <th className="px-4 py-3 text-right text-xs font-medium text-muted">
-                    指数（目安）
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {INDEX_EXAMPLES.map((item) => (
-                  <tr
-                    key={item.condition}
-                    className="border-b border-border last:border-0"
-                  >
-                    <td className="px-4 py-3 text-sm text-card-foreground">
-                      {item.condition}
-                    </td>
-                    <td className="px-4 py-3 text-right text-sm font-medium text-teal-600">
-                      {item.points}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="mt-6 space-y-2">
+            {INDEX_EXAMPLES.map((item) => (
+              <div
+                key={item.condition}
+                className="flex items-start justify-between gap-4 rounded-lg border border-border bg-card p-4"
+              >
+                <div className="min-w-0">
+                  <p className="text-sm font-medium text-card-foreground">
+                    {item.condition}
+                  </p>
+                  <p className="mt-0.5 text-xs text-muted">{item.note}</p>
+                </div>
+                <span className="shrink-0 rounded-full bg-teal-100 px-3 py-1 text-sm font-bold text-teal-700">
+                  {item.points}
+                </span>
+              </div>
+            ))}
           </div>
 
           <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4">
             <p className="text-sm leading-relaxed text-amber-800">
               <strong>ポイント：</strong>
-              港区は比較的倍率が高いエリアです。両親フルタイム（基本指数40点）に加え、認証保育所の利用実績や港区保育室在籍などの加点があると有利になります。最新の指数表は港区HPで確認してください。
+              港区は全国でも特に競争率が高いエリアです。両親フルタイム（基本指数40点）だけでは人気園は難しく、きょうだい加点を含む41点以上が実質的なボーダーラインです。同点の場合は13項目の優先基準（港区在住・ひとり親・心身障害者世帯等）で調整されます。
+            </p>
+          </div>
+          <div className="mt-3 rounded-lg border border-blue-200 bg-blue-50 p-4">
+            <p className="text-sm leading-relaxed text-blue-800">
+              <strong>問い合わせ先：</strong>
+              子ども家庭支援部
+              保育課（03-3578-2441）。各地区総合支所でも相談可能です。
             </p>
           </div>
 
