@@ -9,7 +9,10 @@
       "maxAge": 18,
       "incomeLimit": null,
       "residency": "minato",
-      "conditions": ["港区に住所があること", "健康保険に加入していること"]
+      "conditions": [
+        "港区に住所があること",
+        "健康保険に加入していること"
+      ]
     },
     "amount": {
       "type": "subsidy",
@@ -19,7 +22,85 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/kodomo-iryohi",
     "deadline": null,
-    "notes": "医療証（マル乳・マル子・マル青）を医療機関の窓口で提示してください。"
+    "notes": "医療証（マル乳・マル子・マル青）を医療機関の窓口で提示してください。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "健康保険証と母子手帳を持参して区役所へ",
+        "description": "出生届・住民登録後、みなと子育てステーション等で申請",
+        "tip": "出生届提出のついでに申請するとスムーズです"
+      },
+      {
+        "step": 2,
+        "title": "申請書類を記入・提出",
+        "description": "子ども医療費助成申請書に記入して提出",
+        "tip": null
+      },
+      {
+        "step": 3,
+        "title": "医療証（マル乳等）が郵送される",
+        "description": "約1〜2週間後に自宅に郵送",
+        "tip": null
+      },
+      {
+        "step": 4,
+        "title": "医療機関で医療証を提示する",
+        "description": "窓口で医療証・健康保険証を提示すれば自己負担ゼロ",
+        "tip": "医療証が届く前でも、後日払い戻し申請が可能です"
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "健康保険証（子どもの）",
+        "obtainHow": "加入している健康保険組合から交付",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "印鑑",
+        "obtainHow": "認印（シャチハタ不可）",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "申請者（保護者）の本人確認書類",
+        "obtainHow": "運転免許証・マイナンバーカード等",
+        "notes": null,
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "窓口申請",
+        "description": "みなと子育てステーション、区役所子ども家庭課窓口",
+        "url": null,
+        "address": "港区芝公園1-5-25（みなと子育てステーション）",
+        "hours": "平日 8:30〜17:00"
+      },
+      {
+        "method": "online",
+        "label": "オンライン申請",
+        "description": "港区電子申請サービス（一部対応）",
+        "url": "https://www.city.minato.tokyo.jp/kodomo-iryohi",
+        "address": null,
+        "hours": null
+      }
+    ],
+    "faq": [
+      {
+        "question": "医療証はいつ届きますか？",
+        "answer": "申請後約1〜2週間で郵送されます。"
+      },
+      {
+        "question": "他の区や都外の病院でも使えますか？",
+        "answer": "都内の保険医療機関では使用できます。都外では一旦自己負担後、領収書を持参して払い戻しの申請が必要です。"
+      },
+      {
+        "question": "18歳を過ぎたらどうなりますか？",
+        "answer": "18歳に達した日以後最初の3月31日まで有効です。高校3年生の3月末まで使用できます。"
+      }
+    ]
   },
   {
     "slug": "child-allowance",
@@ -31,7 +112,9 @@
       "maxAge": 18,
       "incomeLimit": null,
       "residency": "japan",
-      "conditions": ["お子さんを養育していること"]
+      "conditions": [
+        "お子さんを養育していること"
+      ]
     },
     "amount": {
       "type": "variable",
@@ -41,7 +124,91 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/jidou-teate",
     "deadline": "出生日・転入日の翌日から15日以内",
-    "notes": "年3回（6月・10月・2月）にまとめて支給されます。"
+    "notes": "年3回（6月・10月・2月）にまとめて支給されます。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "出生届提出後15日以内に申請",
+        "description": "出生届と同時または翌日以降、速やかに申請（15日以内が重要）",
+        "tip": "15日を過ぎると申請月の翌月からの支給になるため、早めの申請が重要です"
+      },
+      {
+        "step": 2,
+        "title": "申請書類を記入・提出",
+        "description": "区役所または電子申請で認定請求書を提出",
+        "tip": null
+      },
+      {
+        "step": 3,
+        "title": "認定通知書が届く",
+        "description": "審査後、認定通知書が送付される",
+        "tip": null
+      },
+      {
+        "step": 4,
+        "title": "指定口座に振込",
+        "description": "年3回（6月・10月・2月）に4ヶ月分ずつ振込",
+        "tip": null
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "請求者の健康保険証",
+        "obtainHow": "加入している健康保険組合または協会けんぽから",
+        "notes": "お子さんのものではなく親（請求者）のもの",
+        "downloadUrl": null
+      },
+      {
+        "name": "受取口座の通帳またはカード",
+        "obtainHow": "金融機関で確認",
+        "notes": "請求者名義の口座に限る",
+        "downloadUrl": null
+      },
+      {
+        "name": "個人番号（マイナンバー）確認書類",
+        "obtainHow": "マイナンバーカード、または通知カード＋本人確認書類",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "本人確認書類",
+        "obtainHow": "運転免許証・パスポート・マイナンバーカード等",
+        "notes": null,
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "窓口申請",
+        "description": "区役所子ども家庭課、みなと子育てステーション",
+        "url": null,
+        "address": "港区芝公園1-5-25（みなと子育てステーション）",
+        "hours": "平日 8:30〜17:00"
+      },
+      {
+        "method": "online",
+        "label": "オンライン申請",
+        "description": "マイナポータル（ぴったりサービス）から申請可能",
+        "url": "https://myna.go.jp/",
+        "address": null,
+        "hours": null
+      }
+    ],
+    "faq": [
+      {
+        "question": "転居した場合はどうすればいいですか？",
+        "answer": "転出先の自治体に受給事由消滅届を出し、転入先で新たに申請が必要です。転入後15日以内に手続きしてください。"
+      },
+      {
+        "question": "第3子かどうかはどう数えますか？",
+        "answer": "2024年10月の制度改正から、年齢制限なしで生計を同じくしている子どもの数で算定されます。"
+      },
+      {
+        "question": "所得制限はありますか？",
+        "answer": "2024年10月の制度改正により所得制限が撤廃されました。"
+      }
+    ]
   },
   {
     "slug": "birth-childcare-grant",
@@ -53,7 +220,10 @@
       "maxAge": 0,
       "incomeLimit": null,
       "residency": "minato",
-      "conditions": ["妊娠届出をした方", "出産した方"]
+      "conditions": [
+        "妊娠届出をした方",
+        "出産した方"
+      ]
     },
     "amount": {
       "type": "fixed",
@@ -63,7 +233,67 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/shussan-ouen",
     "deadline": null,
-    "notes": "面談（妊娠届出時・出産後）を受けた後に交付されます。"
+    "notes": "面談（妊娠届出時・出産後）を受けた後に交付されます。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "妊娠届出時に面談（1回目）",
+        "description": "保健センター等で妊婦面談を受け、5万円相当の支給",
+        "tip": "妊娠届出と同時に面談の予約ができます"
+      },
+      {
+        "step": 2,
+        "title": "出産後に面談（2回目）",
+        "description": "出産後に保健師等と面談を受け、5万円相当の支給",
+        "tip": null
+      },
+      {
+        "step": 3,
+        "title": "交付金の受取",
+        "description": "現金またはポイント等の形で受取",
+        "tip": null
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "母子健康手帳",
+        "obtainHow": "妊娠届出時に区役所・保健センターで交付",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "本人確認書類",
+        "obtainHow": "マイナンバーカード・運転免許証等",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "振込先口座情報",
+        "obtainHow": "金融機関の通帳またはキャッシュカード",
+        "notes": "本人名義の口座に限る",
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "保健センター窓口",
+        "description": "三田・高輪・芝浦港南の各保健センターで手続き",
+        "url": null,
+        "address": "三田保健センター: 港区芝5-36-4",
+        "hours": "平日 8:30〜17:00"
+      }
+    ],
+    "faq": [
+      {
+        "question": "転入した場合はもらえますか？",
+        "answer": "港区に転入後、面談を受ければ受給できます。ただし他の自治体で既に受給した分は対象外となります。"
+      },
+      {
+        "question": "交付金はいつもらえますか？",
+        "answer": "妊娠届出時の面談後と、出産後の面談後にそれぞれ支給されます。"
+      }
+    ]
   },
   {
     "slug": "childbirth-lump-sum",
@@ -75,7 +305,10 @@
       "maxAge": 0,
       "incomeLimit": null,
       "residency": "japan",
-      "conditions": ["健康保険に加入していること", "妊娠4ヶ月（85日）以上の出産"]
+      "conditions": [
+        "健康保険に加入していること",
+        "妊娠4ヶ月（85日）以上の出産"
+      ]
     },
     "amount": {
       "type": "fixed",
@@ -85,7 +318,81 @@
     },
     "applicationUrl": "https://www.city.minato.tokyo.jp/shussan-ikuji-ichijikin",
     "deadline": "出産日の翌日から2年以内",
-    "notes": "直接支払制度を利用すると、医療機関への直接支払いが可能です。"
+    "notes": "直接支払制度を利用すると、医療機関への直接支払いが可能です。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "医療機関で直接支払制度を選択",
+        "description": "出産前に病院・助産所に申し出て、直接支払制度を利用（手続きが最も簡単）",
+        "tip": "ほとんどの産院で直接支払制度が利用できます。入院前に確認しておきましょう"
+      },
+      {
+        "step": 2,
+        "title": "差額がある場合の請求",
+        "description": "費用が50万円未満の場合は差額を健康保険組合に請求",
+        "tip": null
+      },
+      {
+        "step": 3,
+        "title": "直接支払制度を使わない場合",
+        "description": "自費で出産費用を支払い、出産後に健康保険組合に申請",
+        "tip": "申請期限は出産日翌日から2年以内です"
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "健康保険証（請求者のもの）",
+        "obtainHow": "加入している健康保険組合または協会けんぽから",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "出産証明書または母子健康手帳",
+        "obtainHow": "出産した医療機関が発行",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "振込先口座情報",
+        "obtainHow": "金融機関の通帳またはキャッシュカード",
+        "notes": "本人名義の口座に限る",
+        "downloadUrl": null
+      },
+      {
+        "name": "請求書（健保組合所定のもの）",
+        "obtainHow": "加入中の健保組合から入手",
+        "notes": null,
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "健保組合窓口",
+        "description": "加入している健康保険組合（会社員）または協会けんぽ",
+        "url": null,
+        "address": null,
+        "hours": null
+      },
+      {
+        "method": "online",
+        "label": "オンライン申請",
+        "description": "一部の健保組合ではオンライン申請が可能（要確認）",
+        "url": "https://www.kyoukaikenpo.or.jp/",
+        "address": null,
+        "hours": null
+      }
+    ],
+    "faq": [
+      {
+        "question": "50万円を超えた場合はどうなりますか？",
+        "answer": "50万円が上限です。超過分は自己負担となります。多胎妊娠の場合は胎児1人につき50万円が支給されます。"
+      },
+      {
+        "question": "直接支払制度と受取代理制度の違いは？",
+        "answer": "直接支払制度は医療機関が健保組合に直接請求するため手続きが簡単です。受取代理制度は産院が代理で受け取る方法で、小規模な産院で使われることがあります。"
+      }
+    ]
   },
   {
     "slug": "mumps-vaccine-subsidy",
@@ -97,7 +404,10 @@
       "maxAge": 6,
       "incomeLimit": null,
       "residency": "minato",
-      "conditions": ["1歳〜小学校就学前", "港区に住所があること"]
+      "conditions": [
+        "1歳〜小学校就学前",
+        "港区に住所があること"
+      ]
     },
     "amount": {
       "type": "subsidy",
@@ -119,7 +429,10 @@
       "maxAge": 15,
       "incomeLimit": null,
       "residency": "minato",
-      "conditions": ["生後6ヶ月〜中学3年生", "港区に住所があること"]
+      "conditions": [
+        "生後6ヶ月〜中学3年生",
+        "港区に住所があること"
+      ]
     },
     "amount": {
       "type": "subsidy",
@@ -141,7 +454,11 @@
       "maxAge": 0,
       "incomeLimit": null,
       "residency": "minato",
-      "conditions": ["出産後4ヶ月まで", "港区に住所があること", "育児支援が必要な方"]
+      "conditions": [
+        "出産後4ヶ月まで",
+        "港区に住所があること",
+        "育児支援が必要な方"
+      ]
     },
     "amount": {
       "type": "variable",
@@ -163,7 +480,10 @@
       "maxAge": 0,
       "incomeLimit": null,
       "residency": "minato",
-      "conditions": ["出産後4ヶ月まで", "港区に住所があること"]
+      "conditions": [
+        "出産後4ヶ月まで",
+        "港区に住所があること"
+      ]
     },
     "amount": {
       "type": "variable",
@@ -185,7 +505,10 @@
       "maxAge": 0,
       "incomeLimit": null,
       "residency": "minato",
-      "conditions": ["出産後4ヶ月まで", "港区に住所があること"]
+      "conditions": [
+        "出産後4ヶ月まで",
+        "港区に住所があること"
+      ]
     },
     "amount": {
       "type": "variable",
@@ -207,7 +530,10 @@
       "maxAge": 6,
       "incomeLimit": null,
       "residency": "minato",
-      "conditions": ["生後4ヶ月〜就学前", "港区に住所があること"]
+      "conditions": [
+        "生後4ヶ月〜就学前",
+        "港区に住所があること"
+      ]
     },
     "amount": {
       "type": "variable",
@@ -229,7 +555,10 @@
       "maxAge": 12,
       "incomeLimit": null,
       "residency": "minato",
-      "conditions": ["2歳〜小学6年生", "保護者の病気・出産・介護等の理由"]
+      "conditions": [
+        "2歳〜小学6年生",
+        "保護者の病気・出産・介護等の理由"
+      ]
     },
     "amount": {
       "type": "variable",
@@ -251,7 +580,10 @@
       "maxAge": 12,
       "incomeLimit": null,
       "residency": "minato",
-      "conditions": ["0歳〜小学6年生", "港区に住所があること"]
+      "conditions": [
+        "0歳〜小学6年生",
+        "港区に住所があること"
+      ]
     },
     "amount": {
       "type": "variable",
@@ -273,7 +605,9 @@
       "maxAge": 3,
       "incomeLimit": null,
       "residency": "minato",
-      "conditions": ["妊娠中〜3歳のお子さんがいる家庭"]
+      "conditions": [
+        "妊娠中〜3歳のお子さんがいる家庭"
+      ]
     },
     "amount": {
       "type": "variable",
@@ -295,7 +629,11 @@
       "maxAge": 6,
       "incomeLimit": null,
       "residency": "minato",
-      "conditions": ["認可外保育施設を利用していること", "港区に住所があること", "認可保育所に入所できなかった等の事情"]
+      "conditions": [
+        "認可外保育施設を利用していること",
+        "港区に住所があること",
+        "認可保育所に入所できなかった等の事情"
+      ]
     },
     "amount": {
       "type": "variable",
@@ -317,7 +655,10 @@
       "maxAge": 6,
       "incomeLimit": null,
       "residency": "minato",
-      "conditions": ["第2子以降のお子さん", "認可保育所等を利用していること"]
+      "conditions": [
+        "第2子以降のお子さん",
+        "認可保育所等を利用していること"
+      ]
     },
     "amount": {
       "type": "variable",
@@ -339,7 +680,10 @@
       "maxAge": 6,
       "incomeLimit": null,
       "residency": "minato",
-      "conditions": ["私立幼稚園に在園していること", "港区に住所があること"]
+      "conditions": [
+        "私立幼稚園に在園していること",
+        "港区に住所があること"
+      ]
     },
     "amount": {
       "type": "variable",
@@ -361,7 +705,9 @@
       "maxAge": 3,
       "incomeLimit": null,
       "residency": "minato",
-      "conditions": ["港区に住所があること"]
+      "conditions": [
+        "港区に住所があること"
+      ]
     },
     "amount": {
       "type": "fixed",
