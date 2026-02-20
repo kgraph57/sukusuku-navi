@@ -6,6 +6,7 @@ import { Menu, X, Search, Baby, User } from "lucide-react";
 
 const NAV_ITEMS = [
   { href: "/articles", label: "記事一覧" },
+  { href: "/vaccines", label: "予防接種" },
   { href: "/simulator", label: "給付金シミュレーター" },
   { href: "/triage", label: "受診判断" },
   { href: "/clinics", label: "小児科マップ" },

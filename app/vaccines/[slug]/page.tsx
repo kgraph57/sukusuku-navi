@@ -1,0 +1,227 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import {
+  ArrowLeft,
+  Syringe,
+  AlertCircle,
+  Clock,
+  Info,
+  ExternalLink,
+  CheckCircle2,
+  ShieldCheck,
+} from "lucide-react";
+import {
+  getAllVaccines,
+  getVaccineBySlug,
+  VACCINE_TYPE_LABELS,
+  VACCINE_TYPE_COLORS,
+  formatAgeMonths,
+} from "@/lib/vaccines";
+import { getProgramBySlug } from "@/lib/programs";
+
+interface PageProps {
+  readonly params: Promise<{ slug: string }>;
+}
+
+export async function generateStaticParams() {
+  const vaccines = getAllVaccines();
+  return vaccines.map((v) => ({ slug: v.slug }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const vaccine = getVaccineBySlug(slug);
+  if (!vaccine) return { title: "ワクチンが見つかりません" };
+  return {
+    title: `${vaccine.name}の接種スケジュール`,
+    description: vaccine.description,
+  };
+}
+
+export default async function VaccineDetailPage({ params }: PageProps) {
+  const { slug } = await params;
+  const vaccine = getVaccineBySlug(slug);
+
+  if (!vaccine) {
+    notFound();
+  }
+
+  const colorClass =
+    VACCINE_TYPE_COLORS[vaccine.type] ?? "bg-gray-50 text-gray-700 border-gray-200";
+  const relatedProgram = vaccine.relatedProgramSlug
+    ? getProgramBySlug(vaccine.relatedProgramSlug)
+    : null;
+
+  return (
+    <>
+      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
+        <div className="mx-auto max-w-3xl">
+          <Link
+            href="/vaccines"
+            className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            予防接種一覧に戻る
+          </Link>
+
+          <div className="mt-4 flex items-start gap-4">
+            <div
+              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border ${colorClass}`}
+            >
+              <Syringe className="h-6 w-6" />
+            </div>
+            <div>
+              <div className="flex flex-wrap gap-2">
+                <span
+                  className={`inline-flex rounded-full border px-2.5 py-0.5 text-xs font-medium ${colorClass}`}
+                >
+                  {VACCINE_TYPE_LABELS[vaccine.type]}
+                </span>
+                {relatedProgram && (
+                  <span className="inline-flex rounded-full border border-coral-200 bg-coral-50 px-2.5 py-0.5 text-xs font-medium text-coral-700">
+                    港区助成あり
+                  </span>
+                )}
+              </div>
+              <h1 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">
+                {vaccine.name}
+              </h1>
+              <p className="mt-1 text-sm text-muted">{vaccine.disease}</p>
+            </div>
+          </div>
+
+          <p className="mt-4 text-base leading-relaxed text-muted">
+            {vaccine.description}
+          </p>
+        </div>
+      </section>
+
+      <section className="px-4 py-8 sm:py-12">
+        <div className="mx-auto max-w-3xl space-y-6">
+          <div className="rounded-xl border border-border bg-card p-6">
+            <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+              <Clock className="h-5 w-5 text-teal-600" />
+              接種スケジュール
+            </h2>
+            <ol className="mt-4 space-y-4">
+              {vaccine.doses.map((dose) => (
+                <li key={dose.doseNumber} className="flex gap-4">
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal-100 text-sm font-bold text-teal-700">
+                    {dose.doseNumber}
+                  </div>
+                  <div className="flex-1 pt-0.5">
+                    <p className="text-sm font-medium text-card-foreground">
+                      {dose.label}
+                    </p>
+                    <div className="mt-1 flex flex-wrap gap-3">
+                      <span className="inline-flex items-center gap-1 rounded-md bg-teal-50 px-2 py-0.5 text-xs text-teal-700">
+                        標準:{" "}
+                        {dose.ageMonthsStandard >= 999
+                          ? "毎年"
+                          : formatAgeMonths(dose.ageMonthsStandard)}
+                      </span>
+                      {dose.ageMonthsMax < 999 && (
+                        <span className="inline-flex items-center gap-1 rounded-md bg-warm-100 px-2 py-0.5 text-xs text-muted">
+                          接種可能期間:{" "}
+                          {formatAgeMonths(dose.ageMonthsMin)}〜
+                          {formatAgeMonths(dose.ageMonthsMax)}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="rounded-xl border border-border bg-card p-6">
+            <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+              <Info className="h-5 w-5 text-teal-600" />
+              主な副反応
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-card-foreground">
+              {vaccine.sideEffects}
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-amber-200 bg-amber-50 p-6">
+            <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-amber-800">
+              <AlertCircle className="h-5 w-5" />
+              接種の注意事項・禁忌
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-amber-900">
+              {vaccine.contraindications}
+            </p>
+          </div>
+
+          {relatedProgram && (
+            <div className="rounded-xl border border-coral-200 bg-coral-50 p-6">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-coral-700">
+                <ShieldCheck className="h-5 w-5" />
+                港区の助成制度
+              </h2>
+              <p className="mt-3 text-sm font-medium text-coral-800">
+                {relatedProgram.name}
+              </p>
+              <p className="mt-1 text-sm leading-relaxed text-coral-700">
+                {relatedProgram.description}
+              </p>
+              <Link
+                href={`/programs/${relatedProgram.slug}`}
+                className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-coral-700 underline hover:text-coral-800"
+              >
+                助成制度の詳細を見る
+                <ExternalLink className="h-3 w-3" />
+              </Link>
+            </div>
+          )}
+
+          {vaccine.relatedArticleSlug && (
+            <div className="rounded-xl border border-border bg-card p-6">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+                <CheckCircle2 className="h-5 w-5 text-teal-600" />
+                関連記事
+              </h2>
+              <Link
+                href={`/articles/${vaccine.relatedArticleSlug}`}
+                className="mt-3 inline-flex items-center gap-2 rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-100"
+              >
+                おかもん先生の予防接種解説記事を読む
+                <ArrowLeft className="h-4 w-4 rotate-180" />
+              </Link>
+            </div>
+          )}
+
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/vaccines"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-teal-200 bg-white px-6 py-3 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              予防接種一覧に戻る
+            </Link>
+            {relatedProgram && (
+              <a
+                href={relatedProgram.applicationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-teal-600 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-teal-700"
+              >
+                助成申請ページを開く
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            )}
+          </div>
+
+          <div className="rounded-xl border border-border bg-warm-50 p-4">
+            <p className="text-xs leading-relaxed text-muted">
+              ※ この情報は一般的な医学情報の提供を目的としており、個別の診断・治療を行うものではありません。
+              接種時期や可否についてはかかりつけの小児科医にご相談ください。
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
