@@ -1,0 +1,72 @@
+import Link from "next/link";
+import {
+  CheckCircle2,
+  ExternalLink,
+  MapPin,
+  Lightbulb,
+} from "lucide-react";
+import type { VaccinationStep } from "@/lib/types";
+
+interface StepsGuideProps {
+  readonly steps: readonly VaccinationStep[];
+}
+
+export function StepsGuide({ steps }: StepsGuideProps) {
+  return (
+    <div className="relative space-y-0">
+      {steps.map((step, index) => {
+        const isLast = index === steps.length - 1;
+        return (
+          <div key={step.step} className="relative flex gap-4 pb-8">
+            {!isLast && (
+              <div
+                className="absolute left-[19px] top-10 h-[calc(100%-24px)] w-0.5 bg-teal-200"
+                aria-hidden="true"
+              />
+            )}
+            <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-teal-400 bg-white text-sm font-bold text-teal-700">
+              {step.step}
+            </div>
+            <div className="flex-1 pt-1">
+              <h4 className="font-heading text-base font-bold text-foreground">
+                {step.title}
+              </h4>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                {step.description}
+              </p>
+              {step.where && (
+                <p className="mt-2 flex items-center gap-1 text-xs text-muted">
+                  <MapPin className="h-3 w-3" />
+                  {step.where}
+                </p>
+              )}
+              {step.tip && (
+                <div className="mt-3 rounded-lg border border-teal-200 bg-teal-50 p-3">
+                  <p className="flex items-start gap-1.5 text-xs leading-relaxed text-teal-800">
+                    <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                    {step.tip}
+                  </p>
+                </div>
+              )}
+              {step.url && (
+                <Link
+                  href={step.url}
+                  className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-teal-600 hover:text-teal-700"
+                >
+                  詳しく見る
+                  <ExternalLink className="h-3 w-3" />
+                </Link>
+              )}
+            </div>
+          </div>
+        );
+      })}
+      <div className="flex items-center gap-3 rounded-lg border border-teal-200 bg-teal-50 p-4">
+        <CheckCircle2 className="h-5 w-5 shrink-0 text-teal-600" />
+        <p className="text-sm font-medium text-teal-800">
+          すべての定期接種を完了すると、お子さんは主要な感染症から守られます。
+        </p>
+      </div>
+    </div>
+  );
+}

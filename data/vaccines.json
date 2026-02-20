@@ -166,7 +166,7 @@
     ],
     "sideEffects": "接種部位の発赤・腫れが主な副反応です。発熱は比較的少ないです。",
     "contraindications": "発熱中の場合、酵母に対する重篤なアレルギーがある場合は接種を延期します。",
-    "relatedArticleSlug": null,
+    "relatedArticleSlug": "vaccination-schedule",
     "relatedProgramSlug": null,
     "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_hb.htm",
     "faq": [
@@ -212,7 +212,7 @@
     ],
     "sideEffects": "嘔吐・下痢・発熱が副反応として報告されています。まれに腸重積が起こることがあり、接種後1〜2週間は注意が必要です。",
     "contraindications": "腸重積症の既往・消化器系の先天性奇形がある場合は接種禁忌です。消化管疾患がある場合も接種延期となります。",
-    "relatedArticleSlug": null,
+    "relatedArticleSlug": "vaccination-schedule",
     "relatedProgramSlug": null,
     "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_rota.htm",
     "faq": [
@@ -307,7 +307,7 @@
     ],
     "sideEffects": "接種後5〜14日頃に発熱・発疹が出ることがあります（ワクチン反応）。麻しん感染症よりはるかに軽度です。",
     "contraindications": "卵アレルギーがある場合はかかりつけ医に相談してください。免疫不全がある場合は禁忌です。",
-    "relatedArticleSlug": null,
+    "relatedArticleSlug": "vaccination-schedule",
     "relatedProgramSlug": null,
     "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_mr.htm",
     "faq": [
@@ -353,7 +353,7 @@
     ],
     "sideEffects": "接種部位の発赤・腫れ、軽度の発熱。まれに接種後に軽い水痘様発疹が出ることがありますが、感染力はほとんどありません。",
     "contraindications": "免疫不全疾患がある場合、重症の発熱疾患がある場合は接種を延期・禁忌とします。",
-    "relatedArticleSlug": null,
+    "relatedArticleSlug": "chickenpox",
     "relatedProgramSlug": null,
     "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_cp.htm",
     "faq": [
@@ -408,7 +408,7 @@
     ],
     "sideEffects": "接種部位の発赤・腫れ・痛み、発熱。重篤な副反応（急性散在性脳脊髄炎等）はまれです。",
     "contraindications": "発熱中、重篤な急性疾患がある場合は接種を延期します。",
-    "relatedArticleSlug": null,
+    "relatedArticleSlug": "vaccination-schedule",
     "relatedProgramSlug": null,
     "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_je.htm",
     "faq": [
@@ -456,7 +456,7 @@
     ],
     "sideEffects": "接種部位の痛み・腫れ。接種後に立ちくらみ・失神が起こることがあるため、接種後15〜30分は座って待機します。",
     "contraindications": "本剤成分に対する重篤なアレルギーの既往がある場合は禁忌です。",
-    "relatedArticleSlug": null,
+    "relatedArticleSlug": "vaccination-schedule",
     "relatedProgramSlug": null,
     "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_hpv.htm",
     "faq": [
@@ -502,7 +502,7 @@
     ],
     "sideEffects": "接種後2〜3週間で軽度の耳下腺腫脹・発熱が見られることがあります。本感染症よりはるかに軽度です。",
     "contraindications": "卵アレルギーが強い場合はかかりつけ医に相談。免疫不全がある場合は禁忌です。",
-    "relatedArticleSlug": null,
+    "relatedArticleSlug": "mumps-vaccine",
     "relatedProgramSlug": "mumps-vaccine-subsidy",
     "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_mm.htm",
     "faq": [
@@ -548,7 +548,7 @@
     ],
     "sideEffects": "接種部位の発赤・腫れ・痛み。発熱・倦怠感がまれに見られます。通常1〜2日で改善します。",
     "contraindications": "卵アレルギーが強い場合は注意が必要です（医師に相談）。発熱中は延期します。",
-    "relatedArticleSlug": null,
+    "relatedArticleSlug": "influenza-vaccine-guide",
     "relatedProgramSlug": "influenza-vaccine-subsidy",
     "knowVpdUrl": "https://www.know-vpd.jp/vc/vc_top_flu.htm",
     "faq": [

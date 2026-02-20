@@ -11,11 +11,17 @@ import {
   Heart,
   GraduationCap,
   User,
+  Syringe,
+  Building2,
+  Activity,
 } from "lucide-react";
 import { getAllArticles } from "@/lib/content";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Card, CardTitle, CardDescription } from "@/components/shared/card";
 import { Badge } from "@/components/shared/badge";
+import { WeeklyDigest } from "@/components/home/weekly-digest";
+import { OnboardingBanner } from "@/components/home/onboarding-banner";
+import { EmergencyFab } from "@/components/home/emergency-fab";
 import type { ArticleCategory } from "@/lib/types";
 import { CATEGORY_LABELS } from "@/lib/types";
 
@@ -27,6 +33,21 @@ const FEATURES = [
     description:
       "小児科医が書いた50本以上のQ&A記事。感染症、アレルギー、予防接種など。",
     color: "bg-teal-50 text-teal-600",
+  },
+  {
+    href: "/vaccines",
+    icon: Syringe,
+    title: "予防接種ガイド",
+    description:
+      "定期接種・任意接種のスケジュール、港区での接種手順、科学的エビデンス。",
+    color: "bg-blue-50 text-blue-600",
+  },
+  {
+    href: "/checkups",
+    icon: Activity,
+    title: "乳幼児健診ガイド",
+    description: "各月齢の健診内容・準備物・医師のチェックポイントを解説。",
+    color: "bg-green-50 text-green-600",
   },
   {
     href: "/simulator",
@@ -49,6 +70,14 @@ const FEATURES = [
     title: "小児科マップ",
     description: "港区の小児科を地図で探せます。夜間・休日対応の医療機関も。",
     color: "bg-blue-50 text-blue-500",
+  },
+  {
+    href: "/nurseries",
+    icon: Building2,
+    title: "保育園探し",
+    description:
+      "港区の認可保育園・認証保育所を種別・エリアで検索。保活ガイドも。",
+    color: "bg-green-50 text-green-600",
   },
   {
     href: "/checklists",
@@ -251,6 +280,12 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
+      {/* Personalized Weekly Digest (registered users) */}
+      <WeeklyDigest />
+
+      {/* Onboarding Banner (new users) */}
+      <OnboardingBanner />
 
       {/* Features Section */}
       <section className="px-4 py-16 sm:py-24">
@@ -455,6 +490,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Emergency Floating Action Button */}
+      <EmergencyFab />
     </>
   );
 }
