@@ -100,7 +100,12 @@
         "question": "18歳を過ぎたらどうなりますか？",
         "answer": "18歳に達した日以後最初の3月31日まで有効です。高校3年生の3月末まで使用できます。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "child-allowance",
+      "infant-health-checkup"
+    ],
+    "processingTime": "約1〜2週間で医療証が郵送されます"
   },
   {
     "slug": "child-allowance",
@@ -208,7 +213,12 @@
         "question": "所得制限はありますか？",
         "answer": "2024年10月の制度改正により所得制限が撤廃されました。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "child-medical-subsidy",
+      "birth-childcare-grant"
+    ],
+    "processingTime": "申請翌月分から支給開始（原則）"
   },
   {
     "slug": "birth-childcare-grant",
@@ -293,7 +303,13 @@
         "question": "交付金はいつもらえますか？",
         "answer": "妊娠届出時の面談後と、出産後の面談後にそれぞれ支給されます。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "childbirth-lump-sum",
+      "child-allowance",
+      "postnatal-care-stay"
+    ],
+    "processingTime": "申請後約2週間で振込"
   },
   {
     "slug": "childbirth-lump-sum",
@@ -392,7 +408,12 @@
         "question": "直接支払制度と受取代理制度の違いは？",
         "answer": "直接支払制度は医療機関が健保組合に直接請求するため手続きが簡単です。受取代理制度は産院が代理で受け取る方法で、小規模な産院で使われることがあります。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "birth-childcare-grant",
+      "child-medical-subsidy"
+    ],
+    "processingTime": "直接支払制度利用時は退院時に精算"
   },
   {
     "slug": "mumps-vaccine-subsidy",
@@ -477,7 +498,12 @@
         "question": "指定医療機関以外で接種した場合は？",
         "answer": "指定医療機関以外では助成が受けられません。接種前に必ず指定医療機関リストを確認してください。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "influenza-vaccine-subsidy",
+      "child-medical-subsidy"
+    ],
+    "processingTime": "接種時に助成適用（事前申請不要）"
   },
   {
     "slug": "influenza-vaccine-subsidy",
@@ -556,7 +582,12 @@
         "question": "卵アレルギーがある場合は接種できますか？",
         "answer": "卵アレルギーがあっても接種できることが多いですが、必ずかかりつけ医に相談してから接種してください。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "mumps-vaccine-subsidy",
+      "child-medical-subsidy"
+    ],
+    "processingTime": "接種時に助成適用（事前申請不要）"
   },
   {
     "slug": "postnatal-care-stay",
@@ -652,7 +683,13 @@
         "question": "費用はいくらですか？",
         "answer": "世帯の住民税課税状況によって異なります。住民税非課税世帯は無料、課税世帯は1泊あたり数千円の自己負担があります。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "postnatal-care-day",
+      "postnatal-care-visit",
+      "birth-childcare-grant"
+    ],
+    "processingTime": "申請後約1週間で利用可否連絡"
   },
   {
     "slug": "postnatal-care-day",
@@ -731,7 +768,12 @@
         "question": "上の子も連れて行けますか？",
         "answer": "原則として赤ちゃんのみの利用となります。上の子の預け先について事前に施設に相談してください。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "postnatal-care-stay",
+      "postnatal-care-visit"
+    ],
+    "processingTime": "申請後約1週間で利用可否連絡"
   },
   {
     "slug": "postnatal-care-visit",
@@ -810,7 +852,12 @@
         "question": "訪問してくれるのはどんな人ですか？",
         "answer": "助産師または保健師が訪問します。授乳指導・育児相談・体重測定などを行います。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "postnatal-care-stay",
+      "postnatal-care-day"
+    ],
+    "processingTime": "申請後約1週間で利用可否連絡"
   },
   {
     "slug": "temporary-childcare",
@@ -895,7 +942,12 @@
         "question": "病気の子どもでも預けられますか？",
         "answer": "通常の一時保育は体調が良い場合のみ利用できます。病気の場合は「病児・病後児保育」をご利用ください。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "child-short-stay",
+      "family-support"
+    ],
+    "processingTime": "事前登録後、空き状況に応じて利用可能"
   },
   {
     "slug": "child-short-stay",
@@ -980,7 +1032,12 @@
         "question": "費用はいくらですか？",
         "answer": "世帯の所得に応じて異なります。生活保護世帯・住民税非課税世帯は無料、課税世帯は1泊あたり数千円の自己負担があります。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "temporary-childcare",
+      "family-support"
+    ],
+    "processingTime": "事前登録後、空き状況に応じて利用可能"
   },
   {
     "slug": "family-support",
@@ -1065,7 +1122,13 @@
         "question": "どんなことをお願いできますか？",
         "answer": "保育所・幼稚園・学校への送迎、保育終了後や学校終了後の預かり、保護者の急病・急用時の預かりなどが依頼できます。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "temporary-childcare",
+      "child-short-stay",
+      "komusubi-project"
+    ],
+    "processingTime": "会員登録後、マッチング次第で利用開始"
   },
   {
     "slug": "komusubi-project",
@@ -1145,7 +1208,12 @@
         "question": "妊娠中でも参加できますか？",
         "answer": "はい、妊娠中の方も参加できるプログラムがあります。産前から地域の仲間とつながっておくと産後の育児が楽になります。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "family-support",
+      "temporary-childcare"
+    ],
+    "processingTime": "登録後すぐに利用可能"
   },
   {
     "slug": "unlicensed-nursery-subsidy",
@@ -1237,7 +1305,12 @@
         "question": "どの認可外保育施設でも対象になりますか？",
         "answer": "都道府県等に届け出のある認可外保育施設が対象です。届け出のない施設は対象外となります。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "multi-child-nursery-reduction",
+      "private-kindergarten-subsidy"
+    ],
+    "processingTime": "申請後約1ヶ月で審査結果通知"
   },
   {
     "slug": "multi-child-nursery-reduction",
@@ -1318,7 +1391,13 @@
         "question": "認可外保育施設でも対象になりますか？",
         "answer": "認可保育所・認定こども園・小規模保育事業等の認可施設が対象です。認可外保育施設は原則対象外です。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "unlicensed-nursery-subsidy",
+      "private-kindergarten-subsidy",
+      "child-allowance"
+    ],
+    "processingTime": "認定後、翌月分から減額適用"
   },
   {
     "slug": "private-kindergarten-subsidy",
@@ -1403,7 +1482,12 @@
         "question": "港区外の私立幼稚園でも対象になりますか？",
         "answer": "港区に住所がある方が対象で、都内の私立幼稚園に在園していれば対象になります。ただし手続きは在園幼稚園を通じて行います。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "unlicensed-nursery-subsidy",
+      "multi-child-nursery-reduction"
+    ],
+    "processingTime": "申請後約1ヶ月で審査結果通知"
   },
   {
     "slug": "infant-health-checkup",
@@ -1485,6 +1569,11 @@
         "question": "1歳半健診と3歳健診では何を診てもらえますか？",
         "answer": "1歳半健診では歩行・言葉の発達（1語文）・社会性などを確認します。3歳健診では視力・聴力・言葉の発達（2語文以上）・虫歯などを確認します。"
       }
-    ]
+    ],
+    "relatedProgramSlugs": [
+      "child-medical-subsidy",
+      "child-allowance"
+    ],
+    "processingTime": "対象月齢になると受診券が郵送されます"
   }
 ]

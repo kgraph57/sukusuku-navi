@@ -79,6 +79,8 @@ export interface Program {
   readonly requiredDocuments?: ReadonlyArray<ProgramRequiredDocument>;
   readonly applicationMethods?: ReadonlyArray<ProgramApplicationMethod>;
   readonly faq?: ReadonlyArray<ProgramFaq>;
+  readonly relatedProgramSlugs?: readonly string[];
+  readonly processingTime?: string;
 }
 
 export interface ProgramEligibility {
