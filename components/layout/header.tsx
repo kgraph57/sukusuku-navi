@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Menu, X, Search, Baby } from "lucide-react"
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X, Search, Baby, User } from "lucide-react";
 
 const NAV_ITEMS = [
   { href: "/articles", label: "記事一覧" },
@@ -10,10 +10,10 @@ const NAV_ITEMS = [
   { href: "/triage", label: "受診判断" },
   { href: "/clinics", label: "小児科マップ" },
   { href: "/checklists", label: "手続きガイド" },
-] as const
+] as const;
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-white/95 backdrop-blur-sm">
@@ -38,8 +38,15 @@ export function Header() {
             </Link>
           ))}
           <Link
+            href="/my"
+            className="ml-1 rounded-lg p-2 text-muted transition-colors hover:bg-teal-50 hover:text-teal-700"
+            aria-label="マイページ"
+          >
+            <User className="h-5 w-5" />
+          </Link>
+          <Link
             href="/search"
-            className="ml-2 rounded-lg p-2 text-muted transition-colors hover:bg-teal-50 hover:text-teal-700"
+            className="rounded-lg p-2 text-muted transition-colors hover:bg-teal-50 hover:text-teal-700"
             aria-label="検索"
           >
             <Search className="h-5 w-5" />
@@ -74,6 +81,14 @@ export function Header() {
             </Link>
           ))}
           <Link
+            href="/my"
+            className="flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium text-foreground transition-colors hover:bg-teal-50 hover:text-teal-700"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <User className="h-5 w-5" />
+            マイページ
+          </Link>
+          <Link
             href="/search"
             className="flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium text-foreground transition-colors hover:bg-teal-50 hover:text-teal-700"
             onClick={() => setIsMenuOpen(false)}
@@ -84,5 +99,5 @@ export function Header() {
         </nav>
       )}
     </header>
-  )
+  );
 }

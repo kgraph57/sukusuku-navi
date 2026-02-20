@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "next/link";
 import {
   BookOpen,
   Calculator,
@@ -10,13 +10,14 @@ import {
   Calendar,
   Heart,
   GraduationCap,
-} from "lucide-react"
-import { getAllArticles } from "@/lib/content"
-import { SectionHeading } from "@/components/shared/section-heading"
-import { Card, CardTitle, CardDescription } from "@/components/shared/card"
-import { Badge } from "@/components/shared/badge"
-import type { ArticleCategory } from "@/lib/types"
-import { CATEGORY_LABELS } from "@/lib/types"
+  User,
+} from "lucide-react";
+import { getAllArticles } from "@/lib/content";
+import { SectionHeading } from "@/components/shared/section-heading";
+import { Card, CardTitle, CardDescription } from "@/components/shared/card";
+import { Badge } from "@/components/shared/badge";
+import type { ArticleCategory } from "@/lib/types";
+import { CATEGORY_LABELS } from "@/lib/types";
 
 const FEATURES = [
   {
@@ -46,24 +47,30 @@ const FEATURES = [
     href: "/clinics",
     icon: MapPin,
     title: "小児科マップ",
-    description:
-      "港区の小児科を地図で探せます。夜間・休日対応の医療機関も。",
+    description: "港区の小児科を地図で探せます。夜間・休日対応の医療機関も。",
     color: "bg-blue-50 text-blue-500",
   },
   {
     href: "/checklists",
     icon: ClipboardCheck,
     title: "手続きガイド",
-    description:
-      "出産前から入園まで、必要な手続きをチェックリストで管理。",
+    description: "出産前から入園まで、必要な手続きをチェックリストで管理。",
     color: "bg-purple-50 text-purple-500",
   },
-] as const
+  {
+    href: "/my",
+    icon: User,
+    title: "マイページ",
+    description:
+      "お子さんのプロフィールを登録して、手続き進捗・給付金をまとめて管理。",
+    color: "bg-orange-50 text-orange-500",
+  },
+] as const;
 
 const RECOMMENDED_CATEGORIES: readonly {
-  readonly category: ArticleCategory
-  readonly icon: typeof Heart
-  readonly description: string
+  readonly category: ArticleCategory;
+  readonly icon: typeof Heart;
+  readonly description: string;
 }[] = [
   {
     category: "infectious-disease",
@@ -85,23 +92,71 @@ const RECOMMENDED_CATEGORIES: readonly {
     icon: GraduationCap,
     description: "ことば・運動・社会性の発達マイルストーン",
   },
-] as const
+] as const;
 
 function HeroBackground() {
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+      aria-hidden="true"
+    >
       <svg
         className="absolute -right-20 -top-20 h-[500px] w-[500px] opacity-[0.06]"
         viewBox="0 0 400 400"
         fill="none"
       >
-        <circle cx="200" cy="200" r="180" stroke="currentColor" strokeWidth="2" className="text-teal-600" />
-        <circle cx="200" cy="200" r="140" stroke="currentColor" strokeWidth="1.5" className="text-teal-500" />
-        <circle cx="200" cy="200" r="100" stroke="currentColor" strokeWidth="1" className="text-teal-400" />
-        <circle cx="150" cy="150" r="20" fill="currentColor" className="text-coral-400" />
-        <circle cx="280" cy="120" r="12" fill="currentColor" className="text-teal-400" />
-        <circle cx="120" cy="280" r="16" fill="currentColor" className="text-teal-300" />
-        <circle cx="300" cy="260" r="10" fill="currentColor" className="text-coral-300" />
+        <circle
+          cx="200"
+          cy="200"
+          r="180"
+          stroke="currentColor"
+          strokeWidth="2"
+          className="text-teal-600"
+        />
+        <circle
+          cx="200"
+          cy="200"
+          r="140"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="text-teal-500"
+        />
+        <circle
+          cx="200"
+          cy="200"
+          r="100"
+          stroke="currentColor"
+          strokeWidth="1"
+          className="text-teal-400"
+        />
+        <circle
+          cx="150"
+          cy="150"
+          r="20"
+          fill="currentColor"
+          className="text-coral-400"
+        />
+        <circle
+          cx="280"
+          cy="120"
+          r="12"
+          fill="currentColor"
+          className="text-teal-400"
+        />
+        <circle
+          cx="120"
+          cy="280"
+          r="16"
+          fill="currentColor"
+          className="text-teal-300"
+        />
+        <circle
+          cx="300"
+          cy="260"
+          r="10"
+          fill="currentColor"
+          className="text-coral-300"
+        />
       </svg>
       <svg
         className="absolute -bottom-10 -left-16 h-[350px] w-[350px] opacity-[0.05]"
@@ -114,34 +169,46 @@ function HeroBackground() {
           strokeWidth="2"
           className="text-coral-500"
         />
-        <circle cx="80" cy="100" r="14" fill="currentColor" className="text-teal-300" />
-        <circle cx="220" cy="200" r="18" fill="currentColor" className="text-coral-300" />
+        <circle
+          cx="80"
+          cy="100"
+          r="14"
+          fill="currentColor"
+          className="text-teal-300"
+        />
+        <circle
+          cx="220"
+          cy="200"
+          r="18"
+          fill="currentColor"
+          className="text-coral-300"
+        />
       </svg>
     </div>
-  )
+  );
 }
 
 function formatDate(dateStr: string): string {
-  const date = new Date(dateStr)
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  return `${year}年${month}月${day}日`
+  const date = new Date(dateStr);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return `${year}年${month}月${day}日`;
 }
 
 export default function HomePage() {
-  const allArticles = getAllArticles()
-  const latestArticles = allArticles.slice(-5).reverse()
+  const allArticles = getAllArticles();
+  const latestArticles = allArticles.slice(-5).reverse();
 
   const recommendedByCategory = RECOMMENDED_CATEGORIES.map((rec) => {
     const articles = allArticles.filter(
-      (a) => a.frontmatter.category === rec.category
-    )
+      (a) => a.frontmatter.category === rec.category,
+    );
     return {
       ...rec,
       articles: articles.slice(0, 3),
-    }
-  })
+    };
+  });
 
   return (
     <>
@@ -311,9 +378,7 @@ export default function HomePage() {
                     ))}
                   </ul>
                 ) : (
-                  <p className="mt-4 text-sm text-muted">
-                    記事を準備中です
-                  </p>
+                  <p className="mt-4 text-sm text-muted">記事を準備中です</p>
                 )}
               </div>
             ))}
@@ -391,5 +456,5 @@ export default function HomePage() {
         </div>
       </section>
     </>
-  )
+  );
 }
