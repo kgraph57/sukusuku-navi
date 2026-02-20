@@ -8,6 +8,7 @@ import {
   CircleDot,
   Frown,
   AlertTriangle,
+  AlertOctagon,
   ArrowRight,
   BrainCircuit,
   Ear,
@@ -23,7 +24,7 @@ import type { TriageSymptom } from "@/lib/triage/engine";
 export const metadata: Metadata = {
   title: "症状チェック（トリアージ）",
   description:
-    "お子さんの症状から受診の緊急度を判断します。発熱・嘔吐・咳・発疹・腹痛・頭部外傷・呼吸困難・けいれんなど15症状に対応。",
+    "お子さんの症状から受診の緊急度を判断します。発熱・嘔吐・咳・発疹・腹痛・頭部外傷・呼吸困難・けいれん・誤飲・鼻血など17症状に対応。",
 };
 
 const ICON_MAP: Record<string, typeof Thermometer> = {
@@ -40,6 +41,7 @@ const ICON_MAP: Record<string, typeof Thermometer> = {
   Flame,
   Zap,
   AlertTriangle,
+  AlertOctagon,
 };
 
 const SYMPTOM_COLORS: readonly string[] = [
