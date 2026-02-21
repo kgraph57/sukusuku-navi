@@ -1,8 +1,10 @@
 import type { NextConfig } from "next";
 
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
+
 const nextConfig: NextConfig = {
-  output: "export",
-  basePath: process.env.GITHUB_PAGES === "true" ? "/sukusuku-navi" : "",
+  ...(isGitHubPages && { output: "export" as const }),
+  basePath: isGitHubPages ? "/sukusuku-navi" : "",
   images: {
     unoptimized: true,
   },
