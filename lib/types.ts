@@ -258,6 +258,7 @@ export interface Checkup {
   readonly faq: readonly CheckupFaq[];
   readonly tips: readonly string[];
   readonly nextCheckup: string | null;
+  readonly officialUrl: string | null;
 }
 
 export type NurseryType =

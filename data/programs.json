@@ -20,7 +20,7 @@
       "unit": "yen",
       "description": "医療費の自己負担分を全額助成（入院・通院・調剤・訪問看護）"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/kodomo-iryohi",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/kosodatesien/kodomo/kate/kodomoiryo.html",
     "deadline": null,
     "notes": "医療証（マル乳・マル子・マル青）を医療機関の窓口で提示してください。",
     "applicationSteps": [
@@ -127,7 +127,7 @@
       "unit": "yen-per-month",
       "description": "3歳未満: 月額15,000円、3歳〜高校卒業: 第1子・第2子 月額10,000円、第3子以降 月額30,000円"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/jidou-teate",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/kodomokyufu/kodomo/kodomo/jidoteate.html",
     "deadline": "出生日・転入日の翌日から15日以内",
     "notes": "年3回（6月・10月・2月）にまとめて支給されます。",
     "applicationSteps": [
@@ -241,7 +241,7 @@
       "unit": "yen",
       "description": "妊娠届出時5万円相当 + 出産後5万円相当 = 計10万円相当"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/shussan-ouen",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/chiikihoken/kodomo/syusankosodate.html",
     "deadline": null,
     "notes": "面談（妊娠届出時・出産後）を受けた後に交付されます。",
     "applicationSteps": [
@@ -332,7 +332,7 @@
       "unit": "yen",
       "description": "1児につき50万円"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/shussan-ikuji-ichijikin",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/kyufu/20181019.html",
     "deadline": "出産日の翌日から2年以内",
     "notes": "直接支払制度を利用すると、医療機関への直接支払いが可能です。",
     "applicationSteps": [
@@ -436,7 +436,7 @@
       "unit": "yen",
       "description": "接種費用の全額を助成"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/mumps-vaccine",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/hokenyobou/yobousessyu/otafukukaze.html",
     "deadline": null,
     "notes": "港区指定の医療機関で接種してください。",
     "applicationSteps": [
@@ -526,7 +526,7 @@
       "unit": "yen",
       "description": "1回あたり接種費用の一部を助成"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/influenza-vaccine",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/hokenyobou/yobousessyu/kodomoinnhuru.html",
     "deadline": "毎年10月〜翌年1月頃",
     "notes": "接種期間は例年10月〜翌年1月頃。13歳未満は2回接種が推奨されます。",
     "applicationSteps": [
@@ -611,7 +611,7 @@
       "unit": "yen",
       "description": "自己負担あり（世帯の所得に応じて変動）。住民税非課税世帯は無料。"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/sango-care",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/chiikihoken/kodomo/boshi-shortstay.html",
     "deadline": null,
     "notes": "事前申請が必要です。利用可能な施設に空きがある場合に利用できます。",
     "applicationSteps": [
@@ -712,7 +712,7 @@
       "unit": "yen",
       "description": "自己負担あり（世帯の所得に応じて変動）"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/sango-care-day",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/chiikihoken/kodomo/boshi-nyuboucare.html",
     "deadline": null,
     "notes": "事前申請が必要です。",
     "applicationSteps": [
@@ -796,7 +796,7 @@
       "unit": "yen",
       "description": "自己負担あり（世帯の所得に応じて変動）"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/sango-care-visit",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/chiikihoken/kodomo/boshi-nyuboucare.html",
     "deadline": null,
     "notes": "事前申請が必要です。",
     "applicationSteps": [
@@ -880,7 +880,7 @@
       "unit": "yen",
       "description": "利用料は施設により異なる"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/ichiji-hoiku",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/hoikusien/index-kuritsu-ichiji.html",
     "deadline": null,
     "notes": "利用には事前登録が必要です。施設ごとに定員があります。",
     "applicationSteps": [
@@ -970,7 +970,7 @@
       "unit": "yen",
       "description": "1泊あたりの利用料が発生（所得に応じて変動）"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/short-stay",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/kosodatesien/kodomo/kodomo/shien/shortstay.html",
     "deadline": null,
     "notes": "原則7日以内の利用。事前申請が必要です。",
     "applicationSteps": [
@@ -1060,7 +1060,7 @@
       "unit": "yen",
       "description": "1時間あたり800円〜900円（時間帯により異なる）"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/family-support",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/fukushikatsudou/kodomo/kodomo/shien/ikujisupport.html",
     "deadline": null,
     "notes": "利用には事前に会員登録が必要です。",
     "applicationSteps": [
@@ -1150,7 +1150,7 @@
       "unit": "yen",
       "description": "各種イベント・サービスにより異なる"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/komusubi",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/fukushikatsudou/kodomo/kodomo/shien/ikujisupport.html",
     "deadline": null,
     "notes": "妊娠中の方も参加可能。地域の子育て仲間とつながれます。",
     "applicationSteps": [
@@ -1237,7 +1237,7 @@
       "unit": "yen",
       "description": "認可保育所との保育料の差額（月額上限あり）"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/ninkagai-josei",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/hoikusien/r2_ninnkagai.html",
     "deadline": null,
     "notes": "助成額は認可保育所の保育料との差額が上限です。",
     "applicationSteps": [
@@ -1333,7 +1333,7 @@
       "unit": "yen",
       "description": "第2子: 保育料半額、第3子以降: 保育料無料"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/tashi-keigen",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/kodomo/kodomo/kodomo/hoikuen/27hoikuryo.html",
     "deadline": null,
     "notes": "きょうだいの年齢に関わらず、生計を同一にする子どもの数でカウントされます。",
     "applicationSteps": [
@@ -1420,7 +1420,7 @@
       "unit": "yen",
       "description": "入園料補助・保育料補助（金額は園や所得に応じて変動）"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/shiritsu-youchien",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/kyouikushomu/sigakujosei.html",
     "deadline": "在園する幼稚園を通じて申請",
     "notes": "無償化（月額25,700円）に加えて港区独自の上乗せ補助があります。",
     "applicationSteps": [
@@ -1509,7 +1509,7 @@
       "unit": "yen",
       "description": "無料（1ヶ月、3-4ヶ月、6-7ヶ月、9-10ヶ月、1歳6ヶ月、3歳の計6回）"
     },
-    "applicationUrl": "https://www.city.minato.tokyo.jp/nyuyoji-kenshin",
+    "applicationUrl": "https://www.city.minato.tokyo.jp/chiikihoken/kenko/kenko/boshi/kodomonokensin.html",
     "deadline": null,
     "notes": "対象時期になると受診票が届きます。指定医療機関または保健センターで受診してください。",
     "applicationSteps": [

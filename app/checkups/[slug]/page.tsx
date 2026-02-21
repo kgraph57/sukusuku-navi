@@ -11,6 +11,7 @@ import {
   ClipboardList,
   ShieldCheck,
   Activity,
+  ExternalLink,
 } from "lucide-react";
 import {
   getAllCheckups,
@@ -123,36 +124,34 @@ export default async function CheckupDetailPage({ params }: PageProps) {
                 医師のチェックポイント
               </h2>
               <div className="mt-4 space-y-0 divide-y divide-border">
-                {checkup.whatDoctorChecks.map(
-                  (check, i) => (
-                    <div
-                      key={i}
-                      className={`py-5 first:pt-0 last:pb-0 ${
-                        i % 2 === 1 ? "bg-warm-50 -mx-6 px-6" : ""
-                      }`}
-                    >
-                      <h3 className="text-sm font-bold text-card-foreground">
-                        {check.area}
-                      </h3>
-                      <p className="mt-1.5 text-sm leading-relaxed text-muted">
-                        {check.detail}
-                      </p>
-                      <div className="mt-3 rounded-lg border border-teal-200 bg-teal-50 p-4">
-                        <div className="flex items-start gap-2">
-                          <Stethoscope className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" />
-                          <div>
-                            <p className="text-xs font-bold text-teal-700">
-                              おかもん先生のひとこと
-                            </p>
-                            <p className="mt-1 text-sm leading-relaxed text-teal-800">
-                              {check.doctorNote}
-                            </p>
-                          </div>
+                {checkup.whatDoctorChecks.map((check, i) => (
+                  <div
+                    key={i}
+                    className={`py-5 first:pt-0 last:pb-0 ${
+                      i % 2 === 1 ? "bg-warm-50 -mx-6 px-6" : ""
+                    }`}
+                  >
+                    <h3 className="text-sm font-bold text-card-foreground">
+                      {check.area}
+                    </h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                      {check.detail}
+                    </p>
+                    <div className="mt-3 rounded-lg border border-teal-200 bg-teal-50 p-4">
+                      <div className="flex items-start gap-2">
+                        <Stethoscope className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" />
+                        <div>
+                          <p className="text-xs font-bold text-teal-700">
+                            おかもん先生のひとこと
+                          </p>
+                          <p className="mt-1 text-sm leading-relaxed text-teal-800">
+                            {check.doctorNote}
+                          </p>
                         </div>
                       </div>
                     </div>
-                  ),
-                )}
+                  </div>
+                ))}
               </div>
             </div>
           )}
@@ -231,6 +230,19 @@ export default async function CheckupDetailPage({ params }: PageProps) {
                 ))}
               </ul>
             </div>
+          )}
+
+          {/* Official URL Link */}
+          {checkup.officialUrl != null && (
+            <a
+              href={checkup.officialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-teal-200 bg-white px-6 py-3.5 text-base font-bold text-teal-600 shadow-sm transition-colors hover:bg-teal-50"
+            >
+              <ExternalLink className="h-5 w-5" />
+              港区公式ページで詳細を見る
+            </a>
           )}
 
           {/* Next Checkup CTA */}

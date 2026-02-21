@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import {
   MapPin,
   Clock,
@@ -10,12 +11,23 @@ import {
   Train,
   Trees,
   Filter,
+  List,
+  Map as MapIcon,
 } from "lucide-react";
+
+const NurseryMap = dynamic(
+  () => import("./nursery-map").then((mod) => ({ default: mod.NurseryMap })),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex h-[400px] items-center justify-center rounded-xl border border-border bg-warm-100 sm:h-[500px]">
+        <p className="text-sm text-muted">地図を読み込み中...</p>
+      </div>
+    ),
+  },
+);
 import type { Nursery, NurseryType, NurseryArea } from "@/lib/types";
-import {
-  NURSERY_TYPE_LABELS,
-  NURSERY_AREA_LABELS,
-} from "@/lib/nurseries";
+import { NURSERY_TYPE_LABELS, NURSERY_AREA_LABELS } from "@/lib/nurseries";
 import {
   NURSERY_TYPE_ICON_MAP,
   NURSERY_TYPE_COLOR_MAP,
@@ -129,11 +141,21 @@ const AGE_FILTER_LABELS: Record<AgeFilter, string> = {
   "3": "3歳から",
 };
 
+type ViewMode = "list" | "map";
+
 export function NurseryFilter({ nurseries }: NurseryFilterProps) {
   const [selectedType, setSelectedType] = useState<NurseryType | "all">("all");
   const [selectedArea, setSelectedArea] = useState<NurseryArea | "all">("all");
   const [selectedAge, setSelectedAge] = useState<AgeFilter>("all");
   const [gardenOnly, setGardenOnly] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>("list");
+
+  const resetFilters = () => {
+    setSelectedType("all");
+    setSelectedArea("all");
+    setSelectedAge("all");
+    setGardenOnly(false);
+  };
 
   const filtered = useMemo(() => {
     return nurseries.filter((n) => {
@@ -238,22 +260,22 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
                 受け入れ年齢
               </p>
               <div className="flex flex-wrap gap-1.5">
-                {(Object.entries(AGE_FILTER_LABELS) as [AgeFilter, string][]).map(
-                  ([key, label]) => (
-                    <button
-                      key={key}
-                      type="button"
-                      onClick={() => setSelectedAge(key)}
-                      className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
-                        selectedAge === key
-                          ? "bg-teal-600 text-white"
-                          : "bg-warm-100 text-muted hover:bg-warm-200"
-                      }`}
-                    >
-                      {label}
-                    </button>
-                  ),
-                )}
+                {(
+                  Object.entries(AGE_FILTER_LABELS) as [AgeFilter, string][]
+                ).map(([key, label]) => (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => setSelectedAge(key)}
+                    className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                      selectedAge === key
+                        ? "bg-teal-600 text-white"
+                        : "bg-warm-100 text-muted hover:bg-warm-200"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
               </div>
             </div>
 
@@ -276,31 +298,72 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
         </div>
       </div>
 
-      <div className="mt-4 flex items-center gap-2">
-        <p className="text-sm text-muted">
-          {filtered.length}件の保育施設
-        </p>
-        {activeFilterCount > 0 && (
+      <div className="mt-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <p className="text-sm text-muted">{filtered.length}件の保育施設</p>
+          {activeFilterCount > 0 && (
+            <button
+              type="button"
+              onClick={resetFilters}
+              className="text-xs font-medium text-teal-600 hover:text-teal-700"
+            >
+              フィルターをリセット
+            </button>
+          )}
+        </div>
+
+        <div className="flex rounded-lg border border-border bg-card">
           <button
             type="button"
-            onClick={() => {
-              setSelectedType("all");
-              setSelectedArea("all");
-              setSelectedAge("all");
-              setGardenOnly(false);
-            }}
-            className="text-xs font-medium text-teal-600 hover:text-teal-700"
+            onClick={() => setViewMode("list")}
+            className={`flex items-center gap-1.5 rounded-l-lg px-3 py-1.5 text-xs font-medium transition-colors ${
+              viewMode === "list"
+                ? "bg-teal-600 text-white"
+                : "text-muted hover:bg-warm-100"
+            }`}
           >
-            フィルターをリセット
+            <List className="h-3.5 w-3.5" />
+            リスト
           </button>
-        )}
+          <button
+            type="button"
+            onClick={() => setViewMode("map")}
+            className={`flex items-center gap-1.5 rounded-r-lg px-3 py-1.5 text-xs font-medium transition-colors ${
+              viewMode === "map"
+                ? "bg-teal-600 text-white"
+                : "text-muted hover:bg-warm-100"
+            }`}
+          >
+            <MapIcon className="h-3.5 w-3.5" />
+            マップ
+          </button>
+        </div>
       </div>
 
-      <div className="mt-4 space-y-3">
-        {filtered.length > 0 ? (
-          filtered.map((nursery) => (
-            <NurseryCard key={nursery.slug} nursery={nursery} />
-          ))
+      <div className="mt-4">
+        {viewMode === "list" ? (
+          <div className="space-y-3">
+            {filtered.length > 0 ? (
+              filtered.map((nursery) => (
+                <NurseryCard key={nursery.slug} nursery={nursery} />
+              ))
+            ) : (
+              <div className="rounded-xl border border-border bg-card p-8 text-center">
+                <p className="text-sm text-muted">
+                  条件に一致する保育施設が見つかりませんでした。
+                </p>
+                <button
+                  type="button"
+                  onClick={resetFilters}
+                  className="mt-2 text-sm font-medium text-teal-600 hover:text-teal-700"
+                >
+                  フィルターをリセット
+                </button>
+              </div>
+            )}
+          </div>
+        ) : filtered.length > 0 ? (
+          <NurseryMap nurseries={filtered} />
         ) : (
           <div className="rounded-xl border border-border bg-card p-8 text-center">
             <p className="text-sm text-muted">
@@ -308,12 +371,7 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
             </p>
             <button
               type="button"
-              onClick={() => {
-                setSelectedType("all");
-                setSelectedArea("all");
-                setSelectedAge("all");
-                setGardenOnly(false);
-              }}
+              onClick={resetFilters}
               className="mt-2 text-sm font-medium text-teal-600 hover:text-teal-700"
             >
               フィルターをリセット
