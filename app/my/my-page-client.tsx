@@ -36,7 +36,12 @@ interface MyPageClientProps {
 // ---------------------------------------------------------------------------
 
 function AccountBanner() {
-  const { user, signOut } = useAuth();
+  const { user, signOut, configured } = useAuth();
+
+  // Supabase 未設定時はログインバナーを非表示
+  if (!configured) {
+    return null;
+  }
 
   if (!user) {
     return (

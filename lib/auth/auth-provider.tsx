@@ -18,6 +18,7 @@ interface AuthState {
 }
 
 interface AuthContextValue extends AuthState {
+  readonly configured: boolean;
   readonly signInWithEmail: (
     email: string,
     password: string,
@@ -50,6 +51,7 @@ const noopAuth: AuthContextValue = {
   user: null,
   session: null,
   loading: false,
+  configured: false,
   signInWithEmail: async () => ({ error: "Supabase not configured" }),
   signUpWithEmail: async () => ({ error: "Supabase not configured" }),
   signInWithOAuth: async () => ({ error: "Supabase not configured" }),
@@ -154,6 +156,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const value: AuthContextValue = {
     ...state,
+    configured: true,
     signInWithEmail,
     signUpWithEmail,
     signInWithOAuth,

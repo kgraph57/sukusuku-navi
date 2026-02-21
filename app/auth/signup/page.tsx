@@ -6,7 +6,7 @@ import { Baby, Mail, ArrowLeft, CheckCircle } from "lucide-react";
 import { useAuth } from "@/lib/auth/auth-provider";
 
 export default function SignupPage() {
-  const { signUpWithEmail, signInWithOAuth } = useAuth();
+  const { signUpWithEmail, signInWithOAuth, configured } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,6 +14,29 @@ export default function SignupPage() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+
+  if (!configured) {
+    return (
+      <div className="mx-auto max-w-md px-4 py-12 text-center">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-teal-100">
+          <Baby className="h-7 w-7 text-teal-600" />
+        </div>
+        <h1 className="mt-4 font-heading text-2xl font-bold text-foreground">
+          アカウント登録は準備中です
+        </h1>
+        <p className="mt-2 text-sm text-muted">
+          現在はログインなしでご利用いただけます。データはお使いのブラウザに保存されます。
+        </p>
+        <Link
+          href="/my"
+          className="mt-6 inline-flex items-center gap-1.5 rounded-full bg-teal-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-teal-700"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" />
+          マイページへ
+        </Link>
+      </div>
+    );
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

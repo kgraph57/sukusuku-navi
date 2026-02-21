@@ -184,7 +184,20 @@ function DropdownMenu({
 // ---------------------------------------------------------------------------
 
 function MobileAuthLinks({ onClose }: { readonly onClose: () => void }) {
-  const { user, loading, signOut } = useAuth();
+  const { user, loading, signOut, configured } = useAuth();
+
+  if (!configured) {
+    return (
+      <Link
+        href="/my"
+        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-teal-50 hover:text-teal-700"
+        onClick={onClose}
+      >
+        <User className="h-4 w-4 text-teal-600" />
+        マイページ
+      </Link>
+    );
+  }
 
   if (loading) {
     return <div className="h-10 animate-pulse rounded-lg bg-warm-50" />;
@@ -233,7 +246,7 @@ function MobileAuthLinks({ onClose }: { readonly onClose: () => void }) {
 // ---------------------------------------------------------------------------
 
 function UserMenu() {
-  const { user, loading, signOut } = useAuth();
+  const { user, loading, signOut, configured } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -246,6 +259,17 @@ function UserMenu() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  if (!configured) {
+    return (
+      <Link
+        href="/my"
+        className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-teal-50 hover:text-teal-700"
+      >
+        マイページ
+      </Link>
+    );
+  }
 
   if (loading) {
     return <div className="h-8 w-8 animate-pulse rounded-full bg-warm-100" />;
