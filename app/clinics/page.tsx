@@ -16,7 +16,7 @@ import {
 } from "@/lib/clinics";
 import type { Clinic } from "@/lib/clinics";
 import { TYPE_ICON_MAP, TYPE_COLOR_MAP } from "@/lib/clinic-constants";
-import { ClinicMap } from "@/components/clinic/clinic-map";
+import { ClinicMapSection } from "@/components/clinic/clinic-map-section";
 
 export const metadata: Metadata = {
   title: "港区の小児科マップ",
@@ -120,7 +120,7 @@ export default function ClinicsPage() {
 
       <section className="border-b border-border px-4 py-6">
         <div className="mx-auto max-w-4xl">
-          <ClinicMap clinics={allClinics} />
+          <ClinicMapSection clinics={allClinics} />
         </div>
       </section>
 
