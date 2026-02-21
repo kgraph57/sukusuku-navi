@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Zen_Maru_Gothic, Noto_Sans_JP } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { Providers } from "./providers";
 import "./globals.css";
 
 const zenMaruGothic = Zen_Maru_Gothic({
@@ -24,7 +25,18 @@ export const metadata: Metadata = {
   },
   description:
     "愛育病院の小児科医おかもんが、エビデンスに基づく子育て・医療情報をお届けします。メルマガ記事、給付金シミュレーター、受診判断ガイドなど。",
-  metadataBase: new URL("https://kgraph57.github.io/sukusuku-navi"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ??
+      (process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "https://kgraph57.github.io/sukusuku-navi"),
+  ),
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "すくすくナビ",
+  },
   openGraph: {
     type: "website",
     locale: "ja_JP",
@@ -39,12 +51,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+        <meta name="theme-color" content="#0d9488" />
+        <link rel="apple-touch-icon" href="/icon.svg" />
+      </head>
       <body
         className={`${zenMaruGothic.variable} ${notoSansJP.variable} antialiased`}
       >
-        <Header />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+        <Providers>
+          <Header />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
