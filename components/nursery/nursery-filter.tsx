@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import {
@@ -13,6 +13,9 @@ import {
   Filter,
   List,
   Map as MapIcon,
+  GitCompareArrows,
+  Check,
+  X,
 } from "lucide-react";
 
 const NurseryMap = dynamic(
@@ -32,6 +35,7 @@ import {
   NURSERY_TYPE_ICON_MAP,
   NURSERY_TYPE_COLOR_MAP,
 } from "@/lib/nursery-constants";
+import { NurseryCompare } from "./nursery-compare";
 
 interface NurseryFilterProps {
   readonly nurseries: readonly Nursery[];
@@ -39,24 +43,67 @@ interface NurseryFilterProps {
 
 type AgeFilter = "all" | "0" | "1" | "3";
 
-function NurseryCard({ nursery }: { readonly nursery: Nursery }) {
+const MAX_COMPARE = 3;
+
+function NurseryCard({
+  nursery,
+  isSelected,
+  canSelect,
+  onToggleCompare,
+}: {
+  readonly nursery: Nursery;
+  readonly isSelected: boolean;
+  readonly canSelect: boolean;
+  readonly onToggleCompare: (slug: string) => void;
+}) {
   const colorClass =
     NURSERY_TYPE_COLOR_MAP[nursery.type] ??
     "bg-gray-50 text-gray-600 border-gray-200";
   const IconComponent = NURSERY_TYPE_ICON_MAP[nursery.type];
 
   return (
-    <Link
-      href={`/nurseries/${nursery.slug}`}
-      className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+    <div
+      className={`group flex gap-4 rounded-xl border bg-card p-5 transition-all ${
+        isSelected
+          ? "border-blue-300 ring-1 ring-blue-200"
+          : "border-border hover:border-teal-200 hover:shadow-md"
+      }`}
     >
-      <div
-        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${colorClass}`}
-      >
-        <IconComponent className="h-5 w-5" />
+      <div className="flex shrink-0 flex-col items-center gap-2">
+        <div
+          className={`flex h-10 w-10 items-center justify-center rounded-lg border ${colorClass}`}
+        >
+          <IconComponent className="h-5 w-5" />
+        </div>
+        <button
+          type="button"
+          onClick={() => onToggleCompare(nursery.slug)}
+          disabled={!isSelected && !canSelect}
+          className={`flex h-7 w-7 items-center justify-center rounded-full border transition-colors ${
+            isSelected
+              ? "border-blue-400 bg-blue-500 text-white"
+              : canSelect
+                ? "border-gray-300 bg-white text-gray-400 hover:border-blue-300 hover:text-blue-500"
+                : "cursor-not-allowed border-gray-200 bg-gray-50 text-gray-300"
+          }`}
+          aria-label={isSelected ? "比較から外す" : "比較に追加"}
+          title={
+            isSelected
+              ? "比較から外す"
+              : canSelect
+                ? "比較に追加"
+                : `最大${MAX_COMPARE}園まで`
+          }
+        >
+          {isSelected ? (
+            <Check className="h-3.5 w-3.5" />
+          ) : (
+            <GitCompareArrows className="h-3.5 w-3.5" />
+          )}
+        </button>
       </div>
 
-      <div className="min-w-0 flex-1">
+      <Link href={`/nurseries/${nursery.slug}`} className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
           <h3 className="font-heading text-base font-bold text-card-foreground">
             {nursery.name}
@@ -113,8 +160,8 @@ function NurseryCard({ nursery }: { readonly nursery: Nursery }) {
           詳細を見る
           <ArrowRight className="h-3 w-3" />
         </span>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
 
@@ -149,6 +196,8 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
   const [selectedAge, setSelectedAge] = useState<AgeFilter>("all");
   const [gardenOnly, setGardenOnly] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>("list");
+  const [compareSlugs, setCompareSlugs] = useState<readonly string[]>([]);
+  const [showCompare, setShowCompare] = useState(false);
 
   const resetFilters = () => {
     setSelectedType("all");
@@ -156,6 +205,25 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
     setSelectedAge("all");
     setGardenOnly(false);
   };
+
+  const handleToggleCompare = useCallback((slug: string) => {
+    setCompareSlugs((prev) =>
+      prev.includes(slug)
+        ? prev.filter((s) => s !== slug)
+        : prev.length < MAX_COMPARE
+          ? [...prev, slug]
+          : prev,
+    );
+  }, []);
+
+  const handleRemoveFromCompare = useCallback((slug: string) => {
+    setCompareSlugs((prev) => prev.filter((s) => s !== slug));
+  }, []);
+
+  const compareNurseries = useMemo(
+    () => nurseries.filter((n) => compareSlugs.includes(n.slug)),
+    [nurseries, compareSlugs],
+  );
 
   const filtered = useMemo(() => {
     return nurseries.filter((n) => {
@@ -340,12 +408,18 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
         </div>
       </div>
 
-      <div className="mt-4">
+      <div className={`mt-4 ${compareSlugs.length > 0 ? "pb-20" : ""}`}>
         {viewMode === "list" ? (
           <div className="space-y-3">
             {filtered.length > 0 ? (
               filtered.map((nursery) => (
-                <NurseryCard key={nursery.slug} nursery={nursery} />
+                <NurseryCard
+                  key={nursery.slug}
+                  nursery={nursery}
+                  isSelected={compareSlugs.includes(nursery.slug)}
+                  canSelect={compareSlugs.length < MAX_COMPARE}
+                  onToggleCompare={handleToggleCompare}
+                />
               ))
             ) : (
               <div className="rounded-xl border border-border bg-card p-8 text-center">
@@ -379,6 +453,58 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
           </div>
         )}
       </div>
+
+      {/* Floating compare bar */}
+      {compareSlugs.length > 0 && (
+        <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-card/95 px-4 py-3 shadow-lg backdrop-blur-sm">
+          <div className="mx-auto flex max-w-4xl items-center justify-between">
+            <div className="flex items-center gap-3">
+              <GitCompareArrows className="h-5 w-5 text-blue-600" />
+              <div>
+                <p className="text-sm font-medium text-foreground">
+                  {compareSlugs.length}園を選択中
+                </p>
+                <p className="text-xs text-muted">
+                  最大{MAX_COMPARE}園まで選べます
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setCompareSlugs([])}
+                className="flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted transition-colors hover:bg-warm-100"
+              >
+                <X className="h-3 w-3" />
+                クリア
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowCompare(true)}
+                disabled={compareSlugs.length < 2}
+                className="flex items-center gap-1.5 rounded-full bg-blue-600 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50"
+              >
+                <GitCompareArrows className="h-3.5 w-3.5" />
+                比較する
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Compare modal */}
+      {showCompare && compareNurseries.length >= 2 && (
+        <NurseryCompare
+          nurseries={compareNurseries}
+          onClose={() => setShowCompare(false)}
+          onRemove={(slug) => {
+            handleRemoveFromCompare(slug);
+            if (compareSlugs.length <= 2) {
+              setShowCompare(false);
+            }
+          }}
+        />
+      )}
     </div>
   );
 }

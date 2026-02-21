@@ -12,9 +12,17 @@ export function RegisterServiceWorker() {
       return;
     }
 
-    navigator.serviceWorker.register("/sw.js").catch(() => {
-      // Service worker registration failed silently
-    });
+    // Use Next.js basePath for GitHub Pages compatibility
+    const basePath =
+      (window as unknown as { __NEXT_DATA__?: { basePath?: string } })
+        .__NEXT_DATA__?.basePath ?? "";
+    const swUrl = `${basePath}/sw.js`;
+
+    navigator.serviceWorker
+      .register(swUrl, { scope: `${basePath}/` })
+      .catch(() => {
+        // Service worker registration failed silently
+      });
   }, []);
 
   return null;

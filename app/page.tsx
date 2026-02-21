@@ -431,10 +431,13 @@ export default function HomePage() {
             </div>
             <div>
               <h3 className="font-heading text-xl font-bold text-foreground">
-                おかもん（岡本 光平）
+                おかもん（岡本 賢）
               </h3>
               <p className="mt-1 text-sm font-medium text-teal-600">
                 愛育病院 小児科医
+              </p>
+              <p className="mt-1 text-xs text-muted">
+                順天堂大学 → 国立成育医療研究センター → 愛育病院
               </p>
               <p className="mt-4 text-base leading-relaxed text-muted">
                 診察室の中だけでなく、保護者の方が家庭で正しい判断ができるよう、エビデンスに基づいた情報発信を続けています。すべての記事に参考文献を明記し、「根拠のある安心」を届けます。

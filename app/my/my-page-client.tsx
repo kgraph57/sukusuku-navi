@@ -17,6 +17,7 @@ import {
   LogOut,
   Cloud,
   Shield,
+  Sparkles,
 } from "lucide-react";
 import { FamilyProfileSetup } from "@/components/family/family-profile-setup";
 import { MigrationDialog } from "@/components/auth/migration-dialog";
@@ -274,6 +275,20 @@ function QuickActions() {
           <p className="text-xs text-muted">
             今やるべき手続き・健診・予防接種を時系列で確認
           </p>
+        </div>
+      </Link>
+      <Link
+        href="/my/milestones"
+        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+      >
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-rose-200 bg-rose-50">
+          <Sparkles className="h-5 w-5 text-rose-500" />
+        </div>
+        <div>
+          <h3 className="font-heading text-sm font-bold text-card-foreground">
+            成長マイルストーン
+          </h3>
+          <p className="text-xs text-muted">「はじめて」の記録をつける</p>
         </div>
       </Link>
     </div>

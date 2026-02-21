@@ -1,5 +1,5 @@
-import type { Metadata } from "next"
-import Link from "next/link"
+import type { Metadata } from "next";
+import Link from "next/link";
 import {
   Stethoscope,
   BookOpen,
@@ -7,15 +7,15 @@ import {
   Heart,
   ArrowRight,
   CheckCircle2,
-} from "lucide-react"
-import { SectionHeading } from "@/components/shared/section-heading"
-import { getAllArticles } from "@/lib/content"
+} from "lucide-react";
+import { SectionHeading } from "@/components/shared/section-heading";
+import { getAllArticles } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "すくすくナビとは",
   description:
     "すくすくナビは、愛育病院の小児科医おかもんが運営する子育て情報サイトです。エビデンスに基づいた医療・育児情報をお届けします。",
-}
+};
 
 const VALUES = [
   {
@@ -36,7 +36,7 @@ const VALUES = [
     description:
       "会員登録なしですべての記事を閲覧できます。子育てに必要な情報は、すべての家庭に届くべきだと考えています。",
   },
-] as const
+] as const;
 
 const FEATURES_DETAIL = [
   "小児科医が執筆した50本以上のQ&A記事",
@@ -45,10 +45,10 @@ const FEATURES_DETAIL = [
   "症状から受診の緊急度を判断するトリアージガイド",
   "港区の小児科をマップで検索",
   "出産・入園に必要な手続きチェックリスト",
-] as const
+] as const;
 
 export default function AboutPage() {
-  const allArticles = getAllArticles()
+  const allArticles = getAllArticles();
 
   return (
     <div className="px-4 py-12 sm:py-16">
@@ -89,9 +89,7 @@ export default function AboutPage() {
 
       {/* What You Can Do */}
       <section className="mx-auto mt-16 max-w-3xl rounded-xl border border-border bg-card p-8 sm:mt-24">
-        <SectionHeading>
-          すくすくナビでできること
-        </SectionHeading>
+        <SectionHeading>すくすくナビでできること</SectionHeading>
         <ul className="mt-8 space-y-3">
           {FEATURES_DETAIL.map((feature) => (
             <li
@@ -117,10 +115,13 @@ export default function AboutPage() {
           </div>
           <div>
             <h3 className="font-heading text-xl font-bold text-foreground">
-              おかもん（岡本 光平）
+              おかもん（岡本 賢）
             </h3>
             <p className="mt-1 text-sm font-medium text-teal-600">
               愛育病院 小児科医
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-muted">
+              順天堂大学 → 国立成育医療研究センター → 愛育病院
             </p>
             <p className="mt-4 text-base leading-relaxed text-muted">
               港区の愛育病院小児科に勤務。日々の診療の中で、保護者の方が正しい情報にアクセスできず不安を抱えている現状を目の当たりにし、すくすくナビを開設しました。
@@ -164,5 +165,5 @@ export default function AboutPage() {
         </Link>
       </section>
     </div>
-  )
+  );
 }
