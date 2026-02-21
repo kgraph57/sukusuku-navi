@@ -1,7 +1,7 @@
 // sukusuku-navi Service Worker
 // Aggressive caching to reduce GitHub Pages requests and prevent rate limiting
 
-const CACHE_VERSION = "sukusuku-v2";
+const CACHE_VERSION = "sukusuku-v3";
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PAGE_CACHE = `${CACHE_VERSION}-pages`;
 
@@ -22,13 +22,15 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(
-        keys
-          .filter((key) => key !== STATIC_CACHE && key !== PAGE_CACHE)
-          .map((key) => caches.delete(key))
-      )
-    )
+    caches
+      .keys()
+      .then((keys) =>
+        Promise.all(
+          keys
+            .filter((key) => key !== STATIC_CACHE && key !== PAGE_CACHE)
+            .map((key) => caches.delete(key)),
+        ),
+      ),
   );
   self.clients.claim();
 });
@@ -39,7 +41,7 @@ self.addEventListener("activate", (event) => {
 
 function isStaticAsset(url) {
   return /\.(js|css|woff2?|ttf|otf|ico|svg|png|jpg|jpeg|webp|avif|json)(\?|$)/i.test(
-    url.pathname
+    url.pathname,
   );
 }
 
@@ -79,8 +81,8 @@ self.addEventListener("fetch", (event) => {
             .catch(() => cached);
 
           return cached || networkFetch;
-        })
-      )
+        }),
+      ),
     );
     return;
   }
@@ -106,11 +108,11 @@ self.addEventListener("fetch", (event) => {
                   {
                     status: 503,
                     headers: { "Content-Type": "text/plain; charset=utf-8" },
-                  }
-                )
-            )
-          )
-      )
+                  },
+                ),
+            ),
+          ),
+      ),
     );
     return;
   }
