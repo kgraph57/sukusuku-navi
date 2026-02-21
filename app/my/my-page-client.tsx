@@ -45,10 +45,10 @@ function AccountBanner() {
 
   if (!user) {
     return (
-      <div className="rounded-xl border border-teal-200 bg-gradient-to-r from-teal-50 to-white p-5">
+      <div className="rounded-xl border border-sage-200 bg-gradient-to-r from-sage-50 to-white p-5">
         <div className="flex items-start gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-100">
-            <Cloud className="h-5 w-5 text-teal-600" />
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-100">
+            <Cloud className="h-5 w-5 text-sage-600" />
           </div>
           <div className="flex-1">
             <h3 className="font-heading text-sm font-bold text-card-foreground">
@@ -59,7 +59,7 @@ function AccountBanner() {
             </p>
             <Link
               href="/auth/login"
-              className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-teal-600 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-teal-700"
+              className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-sage-600 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-sage-700"
             >
               <Shield className="h-3.5 w-3.5" />
               ログイン / 新規登録
@@ -74,14 +74,14 @@ function AccountBanner() {
     <div className="rounded-xl border border-border bg-card p-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-teal-100 text-sm font-bold text-teal-700">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sage-100 text-sm font-bold text-sage-700">
             {user.email?.charAt(0).toUpperCase() ?? "U"}
           </div>
           <div>
             <p className="text-sm font-medium text-card-foreground">
               {user.email}
             </p>
-            <p className="flex items-center gap-1 text-xs text-teal-600">
+            <p className="flex items-center gap-1 text-xs text-sage-600">
               <Cloud className="h-3 w-3" />
               クラウド同期オン
             </p>
@@ -90,7 +90,7 @@ function AccountBanner() {
         <button
           type="button"
           onClick={() => signOut()}
-          className="rounded-lg p-2 text-muted transition-colors hover:bg-warm-50 hover:text-foreground"
+          className="rounded-lg p-2 text-muted transition-colors hover:bg-ivory-50 hover:text-foreground"
           aria-label="ログアウト"
         >
           <LogOut className="h-4 w-4" />
@@ -111,8 +111,8 @@ function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
   return (
     <div className="rounded-xl border border-border bg-card p-5">
       <div className="flex items-center gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-100">
-          <Baby className="h-5 w-5 text-teal-600" />
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-100">
+          <Baby className="h-5 w-5 text-sage-600" />
         </div>
         <div>
           <h3 className="font-heading text-base font-bold text-card-foreground">
@@ -140,10 +140,10 @@ function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
             <Link
               key={checklist.slug}
               href={`/checklists/${checklist.slug}`}
-              className="flex items-center gap-3 rounded-lg border border-border p-3 transition-colors hover:border-teal-200 hover:bg-teal-50/50"
+              className="flex items-center gap-3 rounded-lg border border-border p-3 transition-colors hover:border-sage-200 hover:bg-sage-50/50"
             >
               {isComplete ? (
-                <CheckCircle2 className="h-5 w-5 shrink-0 text-teal-500" />
+                <CheckCircle2 className="h-5 w-5 shrink-0 text-sage-500" />
               ) : (
                 <Circle className="h-5 w-5 shrink-0 text-gray-300" />
               )}
@@ -152,9 +152,9 @@ function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
                   {checklist.name}
                 </p>
                 <div className="mt-1 flex items-center gap-2">
-                  <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-warm-100">
+                  <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-ivory-100">
                     <div
-                      className="h-full rounded-full bg-teal-500 transition-all"
+                      className="h-full rounded-full bg-sage-500 transition-all"
                       style={{ width: `${percentage}%` }}
                     />
                   </div>
@@ -190,9 +190,9 @@ function SavedArticlesSection({
   return (
     <div>
       <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-foreground">
-        <Bookmark className="h-5 w-5 text-teal-600" />
+        <Bookmark className="h-5 w-5 text-sage-600" />
         保存した記事
-        <span className="rounded-full bg-teal-100 px-2 py-0.5 text-xs font-medium text-teal-700">
+        <span className="rounded-full bg-sage-100 px-2 py-0.5 text-xs font-medium text-sage-700">
           {savedSlugs.length}件
         </span>
       </h2>
@@ -201,10 +201,10 @@ function SavedArticlesSection({
           <Link
             key={slug}
             href={`/articles/${slug}`}
-            className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-teal-200 hover:bg-teal-50/50"
+            className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-sage-200 hover:bg-sage-50/50"
           >
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-teal-50">
-              <FileText className="h-4 w-4 text-teal-600" />
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sage-50">
+              <FileText className="h-4 w-4 text-sage-600" />
             </div>
             <p className="min-w-0 flex-1 truncate text-sm font-medium text-card-foreground">
               {articleTitles[slug] ?? slug}
@@ -226,10 +226,10 @@ function QuickActions() {
     <div className="grid gap-3 sm:grid-cols-2">
       <Link
         href="/simulator/start"
-        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
       >
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-teal-200 bg-teal-50">
-          <Calculator className="h-5 w-5 text-teal-600" />
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-sage-200 bg-sage-50">
+          <Calculator className="h-5 w-5 text-sage-600" />
         </div>
         <div>
           <h3 className="font-heading text-sm font-bold text-card-foreground">
@@ -240,10 +240,10 @@ function QuickActions() {
       </Link>
       <Link
         href="/checklists"
-        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
       >
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-coral-200 bg-coral-50">
-          <ClipboardList className="h-5 w-5 text-coral-600" />
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blush-200 bg-blush-50">
+          <ClipboardList className="h-5 w-5 text-blush-600" />
         </div>
         <div>
           <h3 className="font-heading text-sm font-bold text-card-foreground">
@@ -254,7 +254,7 @@ function QuickActions() {
       </Link>
       <Link
         href="/my/vaccinations"
-        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-purple-200 bg-purple-50">
           <Syringe className="h-5 w-5 text-purple-600" />
@@ -268,10 +268,10 @@ function QuickActions() {
       </Link>
       <Link
         href="/my/timeline"
-        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
       >
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-teal-200 bg-teal-50">
-          <Calendar className="h-5 w-5 text-teal-600" />
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-sage-200 bg-sage-50">
+          <Calendar className="h-5 w-5 text-sage-600" />
         </div>
         <div>
           <h3 className="font-heading text-sm font-bold text-card-foreground">
@@ -284,7 +284,7 @@ function QuickActions() {
       </Link>
       <Link
         href="/my/milestones"
-        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-rose-200 bg-rose-50">
           <Sparkles className="h-5 w-5 text-rose-500" />
@@ -347,10 +347,10 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-warm-50 px-4 py-12">
+      <div className="min-h-screen bg-ivory-50 px-4 py-12">
         <div className="mx-auto max-w-3xl">
-          <div className="h-8 w-48 animate-pulse rounded bg-warm-200" />
-          <div className="mt-6 h-64 animate-pulse rounded-xl bg-warm-200" />
+          <div className="h-8 w-48 animate-pulse rounded bg-ivory-200" />
+          <div className="mt-6 h-64 animate-pulse rounded-xl bg-ivory-200" />
         </div>
       </div>
     );
@@ -368,10 +368,10 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
         />
       )}
 
-      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
+      <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <h1 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
-            <User className="mr-2 inline-block h-7 w-7 text-teal-600" />
+            <User className="mr-2 inline-block h-7 w-7 text-sage-600" />
             マイページ
           </h1>
           <p className="mt-2 text-sm leading-relaxed text-muted">

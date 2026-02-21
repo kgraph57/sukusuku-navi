@@ -66,7 +66,7 @@ function SymptomCard({
   return (
     <Link
       href={`/triage/${symptom.slug}`}
-      className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+      className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
     >
       <div
         className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border ${colorClass}`}
@@ -80,7 +80,7 @@ function SymptomCard({
         <p className="mt-1 text-sm leading-relaxed text-muted">
           {symptom.description}
         </p>
-        <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
+        <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
           チェックを始める
           <ArrowRight className="h-3 w-3" />
         </span>
@@ -94,10 +94,10 @@ export default function TriagePage() {
 
   return (
     <>
-      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
+      <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">
-            <Stethoscope className="mr-2 inline-block h-8 w-8 text-teal-600" />
+            <Stethoscope className="mr-2 inline-block h-8 w-8 text-sage-600" />
             症状チェック
           </h1>
           <p className="mt-4 text-base leading-relaxed text-muted">
@@ -138,7 +138,7 @@ export default function TriagePage() {
       </section>
 
       {/* Existing Symptom List - Alternative/Direct Access */}
-      <section className="border-t border-border bg-warm-50 px-4 py-12 sm:py-16">
+      <section className="border-t border-border bg-ivory-50 px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-heading text-xl font-bold text-foreground">
             症状から直接選ぶ

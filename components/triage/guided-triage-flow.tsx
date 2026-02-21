@@ -24,6 +24,13 @@ import {
 import { SEVERITY_CONFIG } from "@/lib/triage/engine";
 import type { SeverityResult } from "@/lib/triage/engine";
 import guidedData from "@/data/guided-triage.json";
+import {
+  trackTriageStarted,
+  trackTriageEmergencyAnswer,
+  trackTriageAgeSelected,
+  trackTriageSymptomSelected,
+  trackTriageResultViewed,
+} from "@/lib/analytics/events";
 
 type GuidedStep =
   | "emergency-screening"
@@ -153,7 +160,7 @@ function InlineResult({
         </div>
       </div>
 
-      <div className="flex gap-2 rounded-lg border border-border bg-warm-50 p-4">
+      <div className="flex gap-2 rounded-lg border border-border bg-ivory-50 p-4">
         <AlertTriangle className="h-4 w-4 shrink-0 text-muted" />
         <p className="text-xs leading-relaxed text-muted">
           この判定は医師の診断に代わるものではありません。あくまで受診の目安としてご利用ください。心配な場合はいつでも医療機関にご相談ください。
@@ -163,7 +170,7 @@ function InlineResult({
       <button
         type="button"
         onClick={onReset}
-        className="inline-flex items-center justify-center gap-2 rounded-full border border-teal-200 bg-white px-6 py-3 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+        className="inline-flex items-center justify-center gap-2 rounded-full border border-sage-200 bg-white px-6 py-3 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
       >
         <RotateCcw className="h-4 w-4" />
         最初からやり直す
@@ -186,10 +193,12 @@ export function GuidedTriageFlow() {
 
   const handleEmergencyAnswer = (answer: "yes" | "no") => {
     if (!currentScreening) return;
+    trackTriageEmergencyAnswer(currentScreening.id, answer);
 
     if (answer === "yes") {
       setResult(currentScreening.yesResult);
       setStep("result");
+      trackTriageResultViewed("emergency", currentScreening.yesResult.severity);
       return;
     }
 
@@ -204,11 +213,13 @@ export function GuidedTriageFlow() {
   };
 
   const handleAgeSelect = (ageId: string) => {
+    trackTriageAgeSelected(ageId);
     setSelectedAge(ageId);
     setStep("symptom-group");
   };
 
   const handleSymptomGroupSelect = (group: SymptomGroup) => {
+    trackTriageSymptomSelected(group.id);
     setSelectedGroup(group);
 
     // Check for age override
@@ -254,9 +265,9 @@ export function GuidedTriageFlow() {
           </span>
           <span className="text-muted">{progress}%</span>
         </div>
-        <div className="mt-2 h-2 overflow-hidden rounded-full bg-warm-100">
+        <div className="mt-2 h-2 overflow-hidden rounded-full bg-ivory-100">
           <div
-            className="h-full rounded-full bg-teal-500 transition-all duration-500"
+            className="h-full rounded-full bg-sage-500 transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -271,7 +282,7 @@ export function GuidedTriageFlow() {
                 <span
                   className={
                     isCurrent
-                      ? "font-medium text-teal-600"
+                      ? "font-medium text-sage-600"
                       : isActive
                         ? "text-foreground"
                         : ""
@@ -317,7 +328,7 @@ export function GuidedTriageFlow() {
               <button
                 type="button"
                 onClick={() => setShowHelp((prev) => !prev)}
-                className="mt-3 inline-flex items-center gap-1 text-xs text-muted hover:text-teal-600"
+                className="mt-3 inline-flex items-center gap-1 text-xs text-muted hover:text-sage-600"
               >
                 <HelpCircle className="h-3.5 w-3.5" />
                 {showHelp ? "ヒントを閉じる" : "判断のヒント"}
@@ -336,7 +347,7 @@ export function GuidedTriageFlow() {
               <button
                 type="button"
                 onClick={() => handleEmergencyAnswer("no")}
-                className="flex items-center justify-center gap-2 rounded-xl border-2 border-teal-200 bg-teal-50 px-6 py-4 text-base font-bold text-teal-700 transition-all hover:border-teal-300 hover:bg-teal-100"
+                className="flex items-center justify-center gap-2 rounded-xl border-2 border-sage-200 bg-sage-50 px-6 py-4 text-base font-bold text-sage-700 transition-all hover:border-sage-300 hover:bg-sage-100"
               >
                 <XCircle className="h-5 w-5" />
                 いいえ
@@ -363,10 +374,10 @@ export function GuidedTriageFlow() {
                   key={ag.id}
                   type="button"
                   onClick={() => handleAgeSelect(ag.id)}
-                  className="flex flex-col items-center gap-2 rounded-xl border-2 border-border bg-white p-4 transition-all hover:border-teal-300 hover:bg-teal-50 hover:shadow-sm"
+                  className="flex flex-col items-center gap-2 rounded-xl border-2 border-border bg-white p-4 transition-all hover:border-sage-300 hover:bg-sage-50 hover:shadow-sm"
                 >
                   {AGE_ICONS[index] && (
-                    <Baby className="h-6 w-6 text-teal-600" />
+                    <Baby className="h-6 w-6 text-sage-600" />
                   )}
                   <span className="text-base font-bold text-foreground">
                     {ag.label}
@@ -398,10 +409,10 @@ export function GuidedTriageFlow() {
                     key={group.id}
                     type="button"
                     onClick={() => handleSymptomGroupSelect(group)}
-                    className="flex items-start gap-3 rounded-xl border-2 border-border bg-white p-4 text-left transition-all hover:border-teal-300 hover:bg-teal-50 hover:shadow-sm"
+                    className="flex items-start gap-3 rounded-xl border-2 border-border bg-white p-4 text-left transition-all hover:border-sage-300 hover:bg-sage-50 hover:shadow-sm"
                   >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-50">
-                      <IconComponent className="h-5 w-5 text-teal-600" />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sage-50">
+                      <IconComponent className="h-5 w-5 text-sage-600" />
                     </div>
                     <div>
                       <span className="text-base font-bold text-foreground">
@@ -437,9 +448,9 @@ export function GuidedTriageFlow() {
                   key={slug}
                   type="button"
                   onClick={() => handleSubSymptomSelect(slug)}
-                  className="flex items-center gap-3 rounded-xl border-2 border-border bg-white p-4 text-left transition-all hover:border-teal-300 hover:bg-teal-50 hover:shadow-sm"
+                  className="flex items-center gap-3 rounded-xl border-2 border-border bg-white p-4 text-left transition-all hover:border-sage-300 hover:bg-sage-50 hover:shadow-sm"
                 >
-                  <ChevronRight className="h-5 w-5 shrink-0 text-teal-600" />
+                  <ChevronRight className="h-5 w-5 shrink-0 text-sage-600" />
                   <span className="text-base font-medium text-foreground">
                     {formatSlugLabel(slug)}
                   </span>
@@ -460,7 +471,7 @@ export function GuidedTriageFlow() {
             <button
               type="button"
               onClick={handleReset}
-              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
             >
               <RotateCcw className="h-3.5 w-3.5" />
               最初からやり直す

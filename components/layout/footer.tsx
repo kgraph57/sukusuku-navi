@@ -23,14 +23,14 @@ const FOOTER_LINKS = {
 export function Footer() {
   return (
     <footer className="border-t border-border bg-white">
-      <div className="mx-auto max-w-6xl px-4 py-12">
+      <div className="mx-auto max-w-6xl px-4 py-16">
         <div className="grid gap-8 sm:grid-cols-3">
           <div>
-            <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-teal-600">
+            <Link href="/" className="flex items-center gap-2.5">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-sage-700">
                 <Baby className="h-4 w-4 text-white" />
               </div>
-              <span className="font-heading text-lg font-bold text-teal-800">
+              <span className="font-heading text-lg tracking-wide text-foreground">
                 すくすくナビ
               </span>
             </Link>
@@ -41,7 +41,7 @@ export function Footer() {
 
           {Object.entries(FOOTER_LINKS).map(([category, links]) => (
             <div key={category}>
-              <h3 className="font-heading text-sm font-bold text-foreground">
+              <h3 className="font-heading text-sm font-semibold tracking-wide text-foreground">
                 {category}
               </h3>
               <ul className="mt-3 space-y-2">
@@ -49,7 +49,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-muted transition-colors hover:text-teal-600"
+                      className="text-sm text-muted transition-colors hover:text-sage-600"
                     >
                       {link.label}
                     </Link>

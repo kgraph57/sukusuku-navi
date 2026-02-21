@@ -48,11 +48,11 @@ export default async function ChecklistDetailPage({ params }: PageProps) {
 
   return (
     <>
-      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
+      <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <Link
             href="/checklists"
-            className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+            className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
           >
             <ArrowLeft className="h-4 w-4" />
             チェックリスト一覧に戻る
@@ -75,7 +75,7 @@ export default async function ChecklistDetailPage({ params }: PageProps) {
             {prevChecklist ? (
               <Link
                 href={`/checklists/${prevChecklist.slug}`}
-                className="flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+                className="flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
               >
                 <ArrowLeft className="h-4 w-4" />
                 {prevChecklist.name}
@@ -86,7 +86,7 @@ export default async function ChecklistDetailPage({ params }: PageProps) {
             {nextChecklist ? (
               <Link
                 href={`/checklists/${nextChecklist.slug}`}
-                className="flex items-center gap-1 text-sm text-teal-600 transition-colors hover:text-teal-700"
+                className="flex items-center gap-1 text-sm text-sage-600 transition-colors hover:text-sage-700"
               >
                 {nextChecklist.name}
                 <ArrowLeft className="h-4 w-4 rotate-180" />
@@ -99,7 +99,7 @@ export default async function ChecklistDetailPage({ params }: PageProps) {
           <div className="mt-4 pt-4">
             <Link
               href="/checklists"
-              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
             >
               <ArrowLeft className="h-4 w-4" />
               チェックリスト一覧に戻る

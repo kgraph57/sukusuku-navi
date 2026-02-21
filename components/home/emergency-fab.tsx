@@ -43,7 +43,7 @@ export function EmergencyFab() {
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="rounded-full p-1 text-muted hover:bg-warm-100"
+              className="rounded-full p-1 text-muted hover:bg-ivory-100"
               aria-label="閉じる"
             >
               <X className="h-4 w-4" />

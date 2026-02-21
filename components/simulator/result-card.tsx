@@ -28,7 +28,7 @@ const CATEGORY_ICON_MAP: Record<string, typeof Heart> = {
 
 const CATEGORY_COLOR_MAP: Record<string, string> = {
   medical: "bg-red-50 text-red-600 border-red-200",
-  financial: "bg-teal-50 text-teal-600 border-teal-200",
+  financial: "bg-sage-50 text-sage-600 border-sage-200",
   childcare: "bg-blue-50 text-blue-600 border-blue-200",
   support: "bg-purple-50 text-purple-600 border-purple-200",
 };
@@ -89,16 +89,16 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
             </p>
 
             {estimatedAmount > 0 && (
-              <div className="mt-3 inline-flex items-baseline gap-1 rounded-lg bg-teal-50 px-3 py-1.5">
-                <span className="text-sm text-teal-700">年間推定</span>
-                <span className="font-heading text-xl font-bold text-teal-700">
+              <div className="mt-3 inline-flex items-baseline gap-1 rounded-lg bg-sage-50 px-3 py-1.5">
+                <span className="text-sm text-sage-700">年間推定</span>
+                <span className="font-heading text-xl font-bold text-sage-700">
                   {formatAmount(estimatedAmount)}
                 </span>
               </div>
             )}
 
             {estimatedAmount === 0 && program.amount.type !== "fixed" && (
-              <div className="mt-3 inline-flex items-baseline gap-1 rounded-lg bg-warm-100 px-3 py-1.5">
+              <div className="mt-3 inline-flex items-baseline gap-1 rounded-lg bg-ivory-100 px-3 py-1.5">
                 <span className="text-sm text-muted">
                   {program.amount.description}
                 </span>
@@ -110,7 +110,7 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
         <button
           type="button"
           onClick={() => setIsExpanded((prev) => !prev)}
-          className="mt-4 flex w-full items-center justify-between rounded-lg bg-warm-50 px-3 py-2 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+          className="mt-4 flex w-full items-center justify-between rounded-lg bg-ivory-50 px-3 py-2 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
         >
           <span>やることリスト ({actionItems.length}件)</span>
           {isExpanded ? (
@@ -125,9 +125,9 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
             {actionItems.map((item) => (
               <div
                 key={item}
-                className="flex items-start gap-2 rounded-lg bg-warm-50 px-3 py-2"
+                className="flex items-start gap-2 rounded-lg bg-ivory-50 px-3 py-2"
               >
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-500" />
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-sage-500" />
                 <span className="text-sm text-card-foreground">{item}</span>
               </div>
             ))}
@@ -137,7 +137,7 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
         <div className="mt-4 flex flex-wrap gap-2 border-t border-border pt-4">
           <Link
             href={`/programs/${program.slug}`}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-teal-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-teal-700"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-sage-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-sage-700"
           >
             手続き方法を見る
             <ArrowRight className="h-4 w-4" />
@@ -146,7 +146,7 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
             href={program.applicationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-teal-200 bg-white px-4 py-2 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-sage-200 bg-white px-4 py-2 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
           >
             公式サイトで申請
             <ExternalLink className="h-4 w-4" />

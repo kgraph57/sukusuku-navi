@@ -108,7 +108,7 @@ export default function PrivacyPage() {
                       key={item}
                       className="flex items-start gap-2 text-sm leading-relaxed text-muted"
                     >
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-400" />
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sage-400" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -118,12 +118,12 @@ export default function PrivacyPage() {
           ))}
         </div>
 
-        <div className="mt-12 rounded-xl bg-warm-100 p-6">
+        <div className="mt-12 rounded-xl bg-ivory-100 p-6">
           <p className="text-sm leading-relaxed text-muted">
             本ポリシーについてご不明な点がございましたら、
             <a
               href="/contact"
-              className="font-medium text-teal-600 underline transition-colors hover:text-teal-700"
+              className="font-medium text-sage-600 underline transition-colors hover:text-sage-700"
             >
               お問い合わせページ
             </a>

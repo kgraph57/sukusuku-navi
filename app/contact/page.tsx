@@ -49,8 +49,8 @@ export default function ContactPage() {
 
         {/* Email Contact */}
         <div className="mt-10 rounded-xl border border-border bg-card p-8 text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-teal-50">
-            <Mail className="h-8 w-8 text-teal-600" />
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-sage-50">
+            <Mail className="h-8 w-8 text-sage-600" />
           </div>
           <h2 className="mt-5 font-heading text-xl font-bold text-foreground">
             メールでのお問い合わせ
@@ -60,7 +60,7 @@ export default function ContactPage() {
           </p>
           <a
             href="mailto:contact@sukusuku-navi.jp"
-            className="mt-5 inline-flex items-center gap-2 rounded-full bg-teal-600 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-teal-600/25 transition-all hover:bg-teal-700 hover:shadow-xl"
+            className="mt-5 inline-flex items-center gap-2 rounded-full bg-sage-600 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-sage-600/25 transition-all hover:bg-sage-700 hover:shadow-xl"
           >
             <Mail className="h-4 w-4" />
             contact@sukusuku-navi.jp
@@ -78,7 +78,7 @@ export default function ContactPage() {
           <div className="mt-6 grid gap-6 sm:grid-cols-3">
             {GUIDELINES.map((guideline) => (
               <div key={guideline.title}>
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-50 text-teal-600">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sage-50 text-sage-600">
                   <guideline.icon className="h-5 w-5" />
                 </div>
                 <h3 className="mt-3 font-heading text-sm font-bold text-foreground">
@@ -93,7 +93,7 @@ export default function ContactPage() {
         </div>
 
         {/* FAQ-like section */}
-        <div className="mt-10 rounded-xl bg-warm-100 p-6">
+        <div className="mt-10 rounded-xl bg-ivory-100 p-6">
           <h2 className="font-heading text-base font-bold text-foreground">
             よくあるお問い合わせ
           </h2>

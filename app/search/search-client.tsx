@@ -105,13 +105,13 @@ function ArticleResult({
   return (
     <Link
       href={`/articles/${item.slug}`}
-      className="group block rounded-xl border border-border bg-white p-5 transition-all hover:border-teal-200 hover:shadow-md"
+      className="group block rounded-xl border border-border bg-white p-5 transition-all hover:border-sage-200 hover:shadow-md"
     >
       <div className="flex items-center gap-2">
         <Badge category={item.category as ArticleCategory} />
         <span className="text-xs text-muted">Vol.{item.vol}</span>
       </div>
-      <h3 className="mt-2 font-heading text-base font-bold text-card-foreground group-hover:text-teal-700 sm:text-lg">
+      <h3 className="mt-2 font-heading text-base font-bold text-card-foreground group-hover:text-sage-700 sm:text-lg">
         {item.title}
       </h3>
       <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-muted">
@@ -119,15 +119,15 @@ function ArticleResult({
       </p>
 
       {matchingQa && (
-        <div className="mt-3 rounded-lg border border-teal-100 bg-teal-50/60 p-3">
+        <div className="mt-3 rounded-lg border border-sage-100 bg-sage-50/60 p-3">
           <div className="flex items-start gap-2">
-            <MessageCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-coral-400" />
-            <p className="text-xs font-medium text-coral-600 line-clamp-1">
+            <MessageCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-blush-400" />
+            <p className="text-xs font-medium text-blush-600 line-clamp-1">
               Q: {matchingQa.question}
             </p>
           </div>
           <div className="mt-1.5 flex items-start gap-2">
-            <div className="mt-0.5 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-teal-600 text-[8px] font-bold text-white">
+            <div className="mt-0.5 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-sage-600 text-[8px] font-bold text-white">
               医
             </div>
             <p className="text-xs leading-relaxed text-muted line-clamp-2">
@@ -146,7 +146,7 @@ function ArticleResult({
           <MessageCircle className="h-3 w-3" />
           Q&amp;A {item.qaCount}問
         </span>
-        <span className="ml-auto flex items-center gap-1 text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
+        <span className="ml-auto flex items-center gap-1 text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
           読む
           <ArrowRight className="h-3 w-3" />
         </span>
@@ -163,25 +163,25 @@ function ProgramResult({
   return (
     <Link
       href={`/programs/${item.slug}`}
-      className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-teal-200 hover:shadow-md"
+      className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-sage-200 hover:shadow-md"
     >
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-teal-200 bg-teal-50">
-        <Banknote className="h-5 w-5 text-teal-600" />
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-sage-200 bg-sage-50">
+        <Banknote className="h-5 w-5 text-sage-600" />
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <span className="rounded-full bg-teal-50 px-2 py-0.5 text-[10px] font-medium text-teal-700">
+          <span className="rounded-full bg-sage-50 px-2 py-0.5 text-[10px] font-medium text-sage-700">
             制度
           </span>
         </div>
-        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-teal-700">
+        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-sage-700">
           {item.name}
         </h3>
         <p className="mt-1 line-clamp-2 text-sm text-muted">
           {item.description}
         </p>
         {item.amountDescription && (
-          <p className="mt-1 text-xs font-medium text-teal-600">
+          <p className="mt-1 text-xs font-medium text-sage-600">
             {item.amountDescription}
           </p>
         )}
@@ -198,7 +198,7 @@ function VaccineResult({
   return (
     <Link
       href={`/vaccines/${item.slug}`}
-      className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-teal-200 hover:shadow-md"
+      className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-sage-200 hover:shadow-md"
     >
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-purple-200 bg-purple-50">
         <Syringe className="h-5 w-5 text-purple-600" />
@@ -209,7 +209,7 @@ function VaccineResult({
             {item.vaccineType === "routine" ? "定期接種" : "任意接種"}
           </span>
         </div>
-        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-teal-700">
+        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-sage-700">
           {item.name}
         </h3>
         <p className="mt-1 text-xs text-muted">対象疾患: {item.disease}</p>
@@ -229,7 +229,7 @@ function ClinicResult({
   return (
     <Link
       href={`/clinics/${item.slug}`}
-      className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-teal-200 hover:shadow-md"
+      className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-sage-200 hover:shadow-md"
     >
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blue-200 bg-blue-50">
         <MapPin className="h-5 w-5 text-blue-600" />
@@ -246,7 +246,7 @@ function ClinicResult({
             </span>
           )}
         </div>
-        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-teal-700">
+        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-sage-700">
           {item.name}
         </h3>
         <p className="mt-1 text-xs text-muted">{item.address}</p>
@@ -266,7 +266,7 @@ function NurseryResult({
   return (
     <Link
       href={`/nurseries/${item.slug}`}
-      className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-teal-200 hover:shadow-md"
+      className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-sage-200 hover:shadow-md"
     >
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-green-200 bg-green-50">
         <Building2 className="h-5 w-5 text-green-600" />
@@ -277,7 +277,7 @@ function NurseryResult({
             保育園
           </span>
         </div>
-        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-teal-700">
+        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-sage-700">
           {item.name}
         </h3>
         <p className="mt-1 text-xs text-muted">{item.address}</p>
@@ -286,7 +286,7 @@ function NurseryResult({
             {item.features.slice(0, 3).map((f) => (
               <span
                 key={f}
-                className="rounded bg-warm-100 px-1.5 py-0.5 text-[10px] text-muted"
+                className="rounded bg-ivory-100 px-1.5 py-0.5 text-[10px] text-muted"
               >
                 {f}
               </span>
@@ -360,8 +360,8 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
           横断検索
         </SectionHeading>
 
-        <div className="mt-6 flex items-center gap-2 rounded-lg border border-teal-100 bg-teal-50/50 px-4 py-2.5">
-          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal-600">
+        <div className="mt-6 flex items-center gap-2 rounded-lg border border-sage-100 bg-sage-50/50 px-4 py-2.5">
+          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sage-600">
             <Stethoscope className="h-3.5 w-3.5 text-white" />
           </div>
           <p className="text-xs text-muted">
@@ -395,7 +395,7 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
             placeholder="例: 児童手当、MRワクチン、麻布、アレルギー..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full rounded-xl border border-border bg-white py-4 pl-12 pr-4 text-base text-foreground shadow-sm outline-none transition-all placeholder:text-muted/60 focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20"
+            className="w-full rounded-xl border border-border bg-white py-4 pl-12 pr-4 text-base text-foreground shadow-sm outline-none transition-all placeholder:text-muted/60 focus:border-sage-400 focus:ring-2 focus:ring-sage-400/20"
             autoFocus
           />
         </div>
@@ -416,8 +416,8 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
                   onClick={() => setActiveType(type)}
                   className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                     activeType === type
-                      ? "bg-teal-600 text-white"
-                      : "border border-border bg-white text-muted hover:border-teal-200 hover:text-teal-700"
+                      ? "bg-sage-600 text-white"
+                      : "border border-border bg-white text-muted hover:border-sage-200 hover:text-sage-700"
                   }`}
                 >
                   {label}
@@ -450,7 +450,7 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
 
         {hasQuery && totalCount === 0 && (
           <div className="mt-12 text-center">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-warm-100">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-ivory-100">
               <Search className="h-7 w-7 text-muted" />
             </div>
             <p className="mt-4 text-base text-muted">
@@ -478,7 +478,7 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
                   key={keyword}
                   type="button"
                   onClick={() => setQuery(keyword)}
-                  className="rounded-full border border-border bg-white px-4 py-2 text-sm text-foreground transition-colors hover:border-teal-200 hover:bg-teal-50 hover:text-teal-700"
+                  className="rounded-full border border-border bg-white px-4 py-2 text-sm text-foreground transition-colors hover:border-sage-200 hover:bg-sage-50 hover:text-sage-700"
                 >
                   {keyword}
                 </button>

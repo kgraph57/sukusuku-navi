@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
+import { useState } from "react";
+import Link from "next/link";
 import {
   ArrowLeft,
   AlertTriangle,
@@ -10,16 +10,20 @@ import {
   HelpCircle,
   CheckCircle2,
   XCircle,
-} from "lucide-react"
-import type { TriageSymptom, SeverityResult } from "@/lib/triage/engine"
-import { SEVERITY_CONFIG } from "@/lib/triage/engine"
+} from "lucide-react";
+import type { TriageSymptom, SeverityResult } from "@/lib/triage/engine";
+import { SEVERITY_CONFIG } from "@/lib/triage/engine";
+import {
+  trackTriageQuestionAnswered,
+  trackTriageResultViewed,
+} from "@/lib/analytics/events";
 
 interface TriageFlowProps {
-  readonly symptom: TriageSymptom
+  readonly symptom: TriageSymptom;
 }
 
 function SeverityCard({ result }: { readonly result: SeverityResult }) {
-  const config = SEVERITY_CONFIG[result.severity]
+  const config = SEVERITY_CONFIG[result.severity];
 
   return (
     <div
@@ -54,9 +58,7 @@ function SeverityCard({ result }: { readonly result: SeverityResult }) {
         <ul className="mt-2 space-y-2">
           {result.actions.map((action, index) => (
             <li key={index} className="flex gap-2 text-sm">
-              <span
-                className={`mt-0.5 shrink-0 font-bold ${config.color}`}
-              >
+              <span className={`mt-0.5 shrink-0 font-bold ${config.color}`}>
                 {index + 1}.
               </span>
               <span className="text-foreground">{action}</span>
@@ -65,56 +67,55 @@ function SeverityCard({ result }: { readonly result: SeverityResult }) {
         </ul>
       </div>
     </div>
-  )
+  );
 }
 
 export function TriageFlow({ symptom }: TriageFlowProps) {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
-  const [result, setResult] = useState<SeverityResult | null>(null)
-  const [showHelp, setShowHelp] = useState(false)
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [result, setResult] = useState<SeverityResult | null>(null);
+  const [showHelp, setShowHelp] = useState(false);
 
-  const currentQuestion = symptom.questions[currentQuestionIndex]
+  const currentQuestion = symptom.questions[currentQuestionIndex];
 
   const handleAnswer = (answer: "yes" | "no") => {
-    if (!currentQuestion) return
+    if (!currentQuestion) return;
+    trackTriageQuestionAnswered(symptom.slug, currentQuestion.id, answer);
 
     const answerResult =
-      answer === "yes"
-        ? currentQuestion.yesResult
-        : currentQuestion.noResult
+      answer === "yes" ? currentQuestion.yesResult : currentQuestion.noResult;
 
     if (typeof answerResult === "string") {
       const nextIndex = symptom.questions.findIndex(
-        (q) => q.id === answerResult
-      )
+        (q) => q.id === answerResult,
+      );
       if (nextIndex !== -1) {
-        setCurrentQuestionIndex(nextIndex)
-        setShowHelp(false)
+        setCurrentQuestionIndex(nextIndex);
+        setShowHelp(false);
       }
     } else {
-      setResult(answerResult as SeverityResult)
+      const severityResult = answerResult as SeverityResult;
+      trackTriageResultViewed(symptom.slug, severityResult.severity);
+      setResult(severityResult);
     }
-  }
+  };
 
   const handleReset = () => {
-    setCurrentQuestionIndex(0)
-    setResult(null)
-    setShowHelp(false)
-  }
+    setCurrentQuestionIndex(0);
+    setResult(null);
+    setShowHelp(false);
+  };
 
   const progress = result
     ? 100
-    : Math.round(
-        ((currentQuestionIndex + 1) / symptom.questions.length) * 100
-      )
+    : Math.round(((currentQuestionIndex + 1) / symptom.questions.length) * 100);
 
   return (
     <>
-      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
+      <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <Link
             href="/triage"
-            className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+            className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
           >
             <ArrowLeft className="h-4 w-4" />
             症状一覧に戻る
@@ -145,9 +146,9 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
               </span>
               <span className="text-muted">{progress}%</span>
             </div>
-            <div className="mt-1 h-2 overflow-hidden rounded-full bg-warm-100">
+            <div className="mt-1 h-2 overflow-hidden rounded-full bg-ivory-100">
               <div
-                className="h-full rounded-full bg-teal-500 transition-all duration-300"
+                className="h-full rounded-full bg-sage-500 transition-all duration-300"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -157,7 +158,7 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
             <div className="space-y-6">
               <SeverityCard result={result} />
 
-              <div className="flex gap-2 rounded-lg border border-border bg-warm-50 p-4">
+              <div className="flex gap-2 rounded-lg border border-border bg-ivory-50 p-4">
                 <AlertTriangle className="h-4 w-4 shrink-0 text-muted" />
                 <p className="text-xs leading-relaxed text-muted">
                   この判定は医師の診断に代わるものではありません。あくまで受診の目安としてご利用ください。心配な場合はいつでも医療機関にご相談ください。
@@ -168,14 +169,14 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-teal-200 bg-white px-6 py-3 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-sage-200 bg-white px-6 py-3 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
                 >
                   <RotateCcw className="h-4 w-4" />
                   もう一度チェックする
                 </button>
                 <Link
                   href="/triage"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-white px-6 py-3 text-sm font-medium text-muted transition-colors hover:bg-warm-50"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-white px-6 py-3 text-sm font-medium text-muted transition-colors hover:bg-ivory-50"
                 >
                   他の症状をチェックする
                 </Link>
@@ -199,7 +200,7 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
                 <button
                   type="button"
                   onClick={() => setShowHelp((prev) => !prev)}
-                  className="mt-3 inline-flex items-center gap-1 text-xs text-muted hover:text-teal-600"
+                  className="mt-3 inline-flex items-center gap-1 text-xs text-muted hover:text-sage-600"
                 >
                   <HelpCircle className="h-3.5 w-3.5" />
                   {showHelp ? "ヒントを閉じる" : "判断のヒント"}
@@ -210,7 +211,7 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
                 <button
                   type="button"
                   onClick={() => handleAnswer("yes")}
-                  className="flex items-center justify-center gap-2 rounded-xl border-2 border-coral-200 bg-coral-50 px-6 py-4 text-base font-bold text-coral-700 transition-all hover:border-coral-300 hover:bg-coral-100"
+                  className="flex items-center justify-center gap-2 rounded-xl border-2 border-blush-200 bg-blush-50 px-6 py-4 text-base font-bold text-blush-600 transition-all hover:border-blush-300 hover:bg-blush-100"
                 >
                   <CheckCircle2 className="h-5 w-5" />
                   はい
@@ -218,7 +219,7 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
                 <button
                   type="button"
                   onClick={() => handleAnswer("no")}
-                  className="flex items-center justify-center gap-2 rounded-xl border-2 border-teal-200 bg-teal-50 px-6 py-4 text-base font-bold text-teal-700 transition-all hover:border-teal-300 hover:bg-teal-100"
+                  className="flex items-center justify-center gap-2 rounded-xl border-2 border-sage-200 bg-sage-50 px-6 py-4 text-base font-bold text-sage-700 transition-all hover:border-sage-300 hover:bg-sage-100"
                 >
                   <XCircle className="h-5 w-5" />
                   いいえ
@@ -230,7 +231,7 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
           <div className="mt-8 pt-4">
             <Link
               href="/triage"
-              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
             >
               <ArrowLeft className="h-4 w-4" />
               症状一覧に戻る
@@ -239,5 +240,5 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
         </div>
       </section>
     </>
-  )
+  );
 }

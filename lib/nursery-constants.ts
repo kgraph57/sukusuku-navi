@@ -19,7 +19,7 @@ export const NURSERY_TYPE_ICON_MAP: Record<NurseryType, typeof Building2> = {
 };
 
 export const NURSERY_TYPE_COLOR_MAP: Record<NurseryType, string> = {
-  licensed: "bg-teal-50 text-teal-600 border-teal-200",
+  licensed: "bg-sage-50 text-sage-600 border-sage-200",
   certified: "bg-blue-50 text-blue-600 border-blue-200",
   "small-scale": "bg-purple-50 text-purple-600 border-purple-200",
   kodomoen: "bg-orange-50 text-orange-600 border-orange-200",

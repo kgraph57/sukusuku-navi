@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>すくすくナビ プレゼン構成ガイド</title>
+<style>
+  body { font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; max-width: 900px; margin: 0 auto; padding: 40px 20px; line-height: 1.8; color: #1a1a1a; }
+  h1 { font-size: 28px; border-bottom: 3px solid #0d9488; padding-bottom: 12px; }
+  h2 { font-size: 22px; color: #0d9488; border-left: 4px solid #0d9488; padding-left: 12px; margin-top: 48px; }
+  h3 { font-size: 18px; color: #333; margin-top: 24px; }
+  h4 { font-size: 15px; color: #666; margin-top: 16px; margin-bottom: 4px; }
+  .slide { border: 2px solid #e5e7eb; border-radius: 12px; padding: 24px; margin: 24px 0; background: #fff; }
+  .slide-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .slide-num { background: #0d9488; color: #fff; font-weight: bold; font-size: 14px; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .slide-title { font-size: 18px; font-weight: bold; color: #0d9488; }
+  .slide-time { font-size: 12px; color: #999; margin-left: auto; }
+  .content-box { background: #f0fdfa; border-radius: 8px; padding: 16px; margin: 12px 0; }
+  .visual-box { background: #fef3c7; border-radius: 8px; padding: 16px; margin: 12px 0; }
+  .script-box { background: #f3f4f6; border-radius: 8px; padding: 16px; margin: 12px 0; font-style: italic; }
+  .note-box { background: #fce7f3; border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 13px; }
+  .label { font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .label-content { color: #0d9488; }
+  .label-visual { color: #d97706; }
+  .label-script { color: #6b7280; }
+  .label-note { color: #be185d; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 14px; }
+  th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; }
+  th { background: #f0fdfa; color: #0d9488; }
+  ul, ol { padding-left: 20px; }
+  li { margin-bottom: 4px; font-size: 14px; }
+  hr { border: none; border-top: 1px solid #e5e7eb; margin: 40px 0; }
+  .audience-tag { display: inline-block; background: #e0f2fe; color: #0369a1; font-size: 11px; font-weight: bold; padding: 2px 8px; border-radius: 4px; margin-right: 4px; }
+  .duration { text-align: center; background: #f0fdfa; padding: 12px; border-radius: 8px; margin: 20px 0; font-size: 14px; }
+  @media print { body { max-width: 100%; padding: 20px; } .slide { break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<h1>すくすくナビ プレゼン構成ガイド</h1>
+<p style="color: #666; text-align: center;">スライド作成用の構成・内容・ビジュアル指示書<br>最終更新: 2026年2月22日</p>
+
+<hr>
+
+<h2>概要</h2>
+
+<p>このドキュメントは、すくすくナビのプレゼンテーション資料を作成する際のガイドです。各スライドに「何を載せるか」「どんなビジュアルにするか」「何を話すか」を記載しています。</p>
+
+<h3>想定プレゼン先（共通構成、強調ポイントを変える）</h3>
+<table>
+<tr><th>プレゼン先</th><th>時間</th><th>強調ポイント</th></tr>
+<tr><td>グッドデザイン賞</td><td>5分</td><td>設計思想、UX、社会課題解決</td></tr>
+<tr><td>Code for Japan</td><td>5-10分</td><td>シビックテック、オープンソース、地域課題</td></tr>
+<tr><td>港区子育て支援課</td><td>10-15分</td><td>住民サービス向上、データ、連携提案</td></tr>
+<tr><td>学会（小児科学会）</td><td>7分</td><td>エビデンス、社会実装、アウトカム</td></tr>
+<tr><td>一般ピッチ</td><td>3-5分</td><td>インパクト、ストーリー、差別化</td></tr>
+</table>
+
+<div class="duration">
+<strong>推奨構成: 全12スライド / 5〜10分</strong><br>
+スライドの取捨選択で3分〜15分に対応可能
+</div>
+
+<hr>
+
+<h2>スライド構成</h2>
+
+<!-- ===== SLIDE 1 ===== -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">1</div>
+    <div class="slide-title">タイトル</div>
+    <div class="slide-time">〜10秒</div>
+  </div>
+
+  <div class="content-box">
+    <div class="label label-content">内容</div>
+    <ul>
+      <li><strong>メインタイトル</strong>: すくすくナビ</li>
+      <li><strong>サブタイトル</strong>: 港区の子育て、もう迷わない。</li>
+      <li><strong>発表者</strong>: 岡本 賢（愛育病院 小児科）</li>
+      <li><strong>日付</strong>: 2026年○月</li>
+    </ul>
+  </div>
+
+  <div class="visual-box">
+    <div class="label label-visual">ビジュアル指示</div>
+    <ul>
+      <li>背景: ティールのグラデーション（#0d9488 → #14b8a6）、やわらかい印象</li>
+      <li>中央にすくすくナビのロゴ or アプリのスクリーンショット（スマホモック）</li>
+      <li>フォント: 丸ゴシック系（Zen Maru Gothic風）で温かみを出す</li>
+      <li>右下に小さくQRコード（実際のサイトURL）</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== SLIDE 2 ===== -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">2</div>
+    <div class="slide-title">自己紹介 — 「なぜ医者がアプリを作るのか」</div>
+    <div class="slide-time">〜30秒</div>
+  </div>
+
+  <div class="content-box">
+    <div class="label label-content">内容</div>
+    <ul>
+      <li><strong>岡本 賢（おかもん先生）</strong></li>
+      <li>愛育病院 小児科 勤務医</li>
+      <li>年間○千人の子どもを診察</li>
+      <li>院内メルマガ「おかもん先生の子育て通信」60号発行</li>
+      <li><strong>キーメッセージ</strong>: 「診察室の5分では伝えきれない。だから作った。」</li>
+    </ul>
+  </div>
+
+  <div class="visual-box">
+    <div class="label label-visual">ビジュアル指示</div>
+    <ul>
+      <li>左側: 岡本先生の写真（白衣 or カジュアル）</li>
+      <li>右側: テキスト情報</li>
+      <li>下部に吹き出しで「診察室の5分では伝えきれない。だから作った。」を大きく</li>
+      <li>背景: 白 or 薄いクリーム</li>
+    </ul>
+  </div>
+
+  <div class="script-box">
+    <div class="label label-script">トークスクリプト例</div>
+    「普段は愛育病院で小児科医をしています。外来で毎日お母さんお父さんと話す中で、ずっと感じていることがあります。診察室の5分では、本当に伝えたいことの10分の1も伝えられない。予防接種の次の予定、申請すべき助成金、夜中に熱が出たときの判断——全部、紙1枚渡して『調べてください』で終わってしまう。それが悔しくて、自分で作りました。」
+  </div>
+</div>
+
+<!-- ===== SLIDE 3 ===== -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">3</div>
+    <div class="slide-title">課題 — 「子育ての情報格差」</div>
+    <div class="slide-time">〜45秒</div>
+  </div>
+
+  <div class="content-box">
+    <div class="label label-content">内容（3つの課題を提示）</div>
+    <ol>
+      <li><strong>医療情報の信頼性問題</strong>
+        <ul>
+          <li>「子ども 発熱」でGoogle検索 → 不確かな情報で不安が増大</li>
+          <li>数値: 親の78%が「ネットの医療情報に不安を感じる」（※要出典確認）</li>
+        </ul>
+      </li>
+      <li><strong>行政手続きの複雑さ</strong>
+        <ul>
+          <li>港区だけで子育て関連制度20+。何を・いつ・どこで申請すべきかわからない</li>
+          <li>具体例: 「出産育児一時金」と「出産・子育て応援交付金」の違いを説明できる親は？</li>
+        </ul>
+      </li>
+      <li><strong>夜中の孤独な判断</strong>
+        <ul>
+          <li>深夜2時、子どもが39度の熱。救急？ 明日？ 誰にも聞けない</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <div class="visual-box">
+    <div class="label label-visual">ビジュアル指示</div>
+    <ul>
+      <li>3カラムレイアウト、各課題をアイコン付きカードで表示</li>
+      <li>アイコン案: 🔍（検索の不安）、📋（複雑な手続き）、🌙（夜中の孤独）</li>
+      <li>背景色: 薄いグレー or 薄いコーラル（問題提起の色調）</li>
+      <li>または: スマホで「子ども 発熱 病院」を検索している親のイラスト</li>
+    </ul>
+  </div>
+
+  <div class="script-box">
+    <div class="label label-script">トークスクリプト例</div>
+    「子育て中の親が抱える不安は、大きく3つに分けられます。1つ目、ネットの医療情報は玉石混交で、調べるほど不安になる。2つ目、港区の子育て支援制度は20以上あるのに、何をいつ申請すべきか、ほとんどの親が把握できていない。3つ目、深夜2時に子どもが39度の熱を出した。救急に行くべきか、朝まで待つべきか。隣に医者がいない限り、答えは出ない。これが現実です。」
+  </div>
+</div>
+
+<!-- ===== SLIDE 4 ===== -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">4</div>
+    <div class="slide-title">解決策 — 「すくすくナビとは」</div>
+    <div class="slide-time">〜30秒</div>
+  </div>
+
+  <div class="content-box">
+    <div class="label label-content">内容</div>
+    <ul>
+      <li><strong>ワンライン</strong>: 生年月日を入れるだけで「今週やるべきこと」がわかる、小児科医が作った子育て支援アプリ</li>
+      <li><strong>3つの柱</strong>:
+        <ol>
+          <li>🩺 <strong>医師監修の医療情報</strong> — エビデンス付き60記事</li>
+          <li>🏛️ <strong>港区特化の行政ガイド</strong> — 給付金シミュレーター + チェックリスト</li>
+          <li>🚨 <strong>受診判断トリアージ</strong> — 17症状の判定フロー</li>
+        </ol>
+      </li>
+      <li>完全無料 / ログイン不要で使える / PWA（スマホにインストール可）</li>
+    </ul>
+  </div>
+
+  <div class="visual-box">
+    <div class="label label-visual">ビジュアル指示</div>
+    <ul>
+      <li>中央: 大きく「生年月日を入れるだけ。」のキャッチコピー</li>
+      <li>下に3つの柱を横並びカードで（アイコン + 短い説明）</li>
+      <li>背景: ティールのグラデーション</li>
+      <li>フォントサイズ: キャッチコピーは特大</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== SLIDE 5 ===== -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">5</div>
+    <div class="slide-title">デモ / 機能紹介 — 「実際の画面」</div>
+    <div class="slide-time">〜1分30秒</div>
+  </div>
+
+  <div class="content-box">
+    <div class="label label-content">内容（4つの画面を見せる）</div>
+    <ol>
+      <li><strong>トップページ</strong>: 全体の導線、温かいデザイン</li>
+      <li><strong>給付金シミュレーター</strong>: 家族構成を入力→「年間○○万円受給可能」の結果画面
+        <ul><li>インパクト: 「知らなかった制度が見つかる」</li></ul>
+      </li>
+      <li><strong>受診判断トリアージ</strong>: 症状チェック→「今日中に受診してください」の判定画面
+        <ul><li>インパクト: 「夜中の不安を減らす」</li></ul>
+      </li>
+      <li><strong>マイページ / タイムライン</strong>: 「今週やること」リスト
+        <ul><li>インパクト: 「手続き忘れがゼロになる」</li></ul>
+      </li>
+    </ol>
+  </div>
+
+  <div class="visual-box">
+    <div class="label label-visual">ビジュアル指示</div>
+    <ul>
+      <li><strong>方法A（推奨）</strong>: スマホモックアップに実際のスクリーンショットを4枚横並び</li>
+      <li><strong>方法B</strong>: 1機能ずつスライドを分ける（計4枚追加、時間が長い場合）</li>
+      <li>スクリーンショット取得URL:
+        <ul>
+          <li>トップ: <code>https://kgraph57.github.io/sukusuku-navi/</code></li>
+          <li>シミュレーター結果: <code>/simulator/results</code>（テストデータ入力後）</li>
+          <li>トリアージ: <code>/triage</code>（発熱の判定結果画面）</li>
+          <li>タイムライン: <code>/my/timeline</code>（子ども登録後）</li>
+        </ul>
+      </li>
+      <li>各スクリーンショットの下に一言キャプション</li>
+    </ul>
+  </div>
+
+  <div class="note-box">
+    <div class="label label-note">時間調整のヒント</div>
+    3分ピッチの場合: スクリーンショット4枚を1スライドにまとめる。<br>
+    10分以上の場合: 各機能を1スライドずつ見せ、ライブデモも検討。
+  </div>
+</div>
+
+<!-- ===== SLIDE 6 ===== -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">6</div>
+    <div class="slide-title">コンテンツの信頼性 — 「なぜ信頼できるのか」</div>
+    <div class="slide-time">〜30秒</div>
+  </div>
+
+  <div class="content-box">
+    <div class="label label-content">内容</div>
+    <ul>
+      <li><strong>全60記事が現役小児科医の監修</strong>
+        <ul>
+          <li>実名・顔出しで責任を持つ（匿名サイトとの違い）</li>
+        </ul>
+      </li>
+      <li><strong>全記事にエビデンス（参考文献）付き</strong>
+        <ul>
+          <li>査読論文・ガイドラインからの引用</li>
+          <li>参考文献リストを記事末に表示</li>
+        </ul>
+      </li>
+      <li><strong>LINE風Q&A形式で「読める」医療情報に</strong>
+        <ul>
+          <li>専門用語をかみ砕いた対話形式</li>
+          <li>「読んで終わり」ではなく「やるべきこと」に導く</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="visual-box">
+    <div class="label label-visual">ビジュアル指示</div>
+    <ul>
+      <li>左半分: 記事のスクリーンショット（Q&Aバブル + 参考文献セクション）</li>
+      <li>右半分: 3つのポイントをアイコン付きで</li>
+      <li>「実名医師」「エビデンス」「わかりやすさ」の三角形ダイアグラムも有効</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== SLIDE 7 ===== -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">7</div>
+    <div class="slide-title">競合との違い — 「なぜすくすくナビか」</div>
+    <div class="slide-time">〜30秒</div>
+  </div>
+
+  <div class="content-box">
+    <div class="label label-content">内容</div>
+    <table>
+      <tr><th></th><th>ぴよログ</th><th>母子モ</th><th>ママリ</th><th>すくすくナビ</th></tr>
+      <tr><td>医師監修</td><td>×</td><td>△</td><td>×</td><td><strong>◎</strong></td></tr>
+      <tr><td>行政手続き案内</td><td>×</td><td>○</td><td>×</td><td><strong>◎</strong></td></tr>
+      <tr><td>受診判断</td><td>×</td><td>×</td><td>×</td><td><strong>◎</strong></td></tr>
+      <tr><td>給付金シミュレーション</td><td>×</td><td>×</td><td>×</td><td><strong>◎</strong></td></tr>
+      <tr><td>地域特化</td><td>×</td><td>○</td><td>×</td><td><strong>◎</strong></td></tr>
+    </table>
+    <p><strong>ポジショニング</strong>: 「医療の信頼性」×「行政アクション」×「地域密着」の三角形を全て満たす唯一のサービス</p>
+  </div>
+
+  <div class="visual-box">
+    <div class="label label-visual">ビジュアル指示</div>
+    <ul>
+      <li>上: 比較表（チェックマークで視覚的に差を明示）</li>
+      <li>下: ポジショニングマップ（2軸: 医療信頼性 × 行政連携度）にプロット</li>
+      <li>すくすくナビは右上の「空白地帯」に位置する</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== SLIDE 8 ===== -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">8</div>
+    <div class="slide-title">ユーザーストーリー — 「具体的な使われ方」</div>
+    <div class="slide-time">〜30秒</div>
+  </div>
+
+  <div class="content-box">
+    <div class="label label-content">内容（1つのストーリーを語る）</div>
+    <p><strong>ペルソナ: 田中さん（32歳、第一子・生後3ヶ月、愛育病院で出産）</strong></p>
+    <ol>
+      <li>退院時にQRコードカードを受け取る</li>
+      <li>生年月日を入力 →「今週やること」に<strong>「4ヶ月健診の予約」</strong>が表示</li>
+      <li>給付金シミュレーターで<strong>「年間42万円」</strong>受給可能と判明、知らなかった制度を発見</li>
+      <li>深夜に発熱 → トリアージで<strong>「明日の受診でOK」</strong>と判定、安心して朝を待てた</li>
+      <li>予防接種の次の予定を確認、忘れずに接種完了</li>
+    </ol>
+    <p><strong>結果</strong>: 手続き漏れゼロ、不要な夜間受診ゼロ、接種スケジュール遵守</p>
+  </div>
+
+  <div class="visual-box">
+    <div class="label label-visual">ビジュアル指示</div>
+    <ul>
+      <li>横長のタイムライン形式で①〜⑤を矢印でつなぐ</li>
+      <li>各ステップにスマホ画面のミニスクリーンショットを添える</li>
+      <li>イラストタッチ（温かみのある線画）が理想</li>
+      <li>最後に「結果」を緑のバッジで強調</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== SLIDE 9 ===== -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">9</div>
+    <div class="slide-title">社会インパクト — 「数字で語る価値」</div>
+    <div class="slide-time">〜30秒</div>
+  </div>
+
+  <div class="content-box">
+    <div class="label label-content">内容</div>
+    <h4>実装済みの規模</h4>
+    <table>
+      <tr><td>医療記事</td><td><strong>60本</strong>（全て参考文献付き）</td></tr>
+      <tr><td>対応制度・給付金</td><td><strong>20+制度</strong></td></tr>
+      <tr><td>トリアージ対応症状</td><td><strong>17症状</strong></td></tr>
+      <tr><td>保育園データ</td><td><strong>80+施設</strong></td></tr>
+      <tr><td>予防接種情報</td><td><strong>20+ワクチン</strong></td></tr>
+    </table>
+
+    <h4>ターゲット市場（港区）</h4>
+    <table>
+      <tr><td>港区の年間出生数</td><td><strong>約2,500人</strong></td></tr>
+      <tr><td>0〜5歳の推定在住児童数</td><td><strong>約15,000人</strong></td></tr>
+      <tr><td>推定世帯数</td><td><strong>約12,000世帯</strong></td></tr>
+    </table>
+
+    <h4>期待されるインパクト</h4>
+    <ul>
+      <li>手続き期限内完了率の向上 → 給付金の取りこぼし防止</li>
+      <li>不要な夜間救急受診の減少 → 医療資源の適正利用</li>
+      <li>予防接種スケジュール遵守率の向上 → 公衆衛生への貢献</li>
+    </ul>
+  </div>
+
+  <div class="visual-box">
+    <div class="label label-visual">ビジュアル指示</div>
+    <ul>
+      <li>大きな数字を3つ並べる（例: 「60記事」「20+制度」「17症状」）</li>
+      <li>インフォグラフィック風に</li>
+      <li>下部にインパクト指標を矢印(↑)で表現</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== SLIDE 10 ===== -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">10</div>
+    <div class="slide-title">ロードマップ — 「これからの計画」</div>
+    <div class="slide-time">〜30秒</div>
+  </div>
+
+  <div class="content-box">
+    <div class="label label-content">内容</div>
+    <table>
+      <tr><th>時期</th><th>フェーズ</th><th>目標</th></tr>
+      <tr><td><strong>2026年3月</strong></td><td>基盤固め</td><td>分析基盤完成、初期10ユーザー獲得</td></tr>
+      <tr><td><strong>2026年4月</strong></td><td>プロダクト完成</td><td>LINE連携、タイムラインMVP、50ユーザー</td></tr>
+      <tr><td><strong>2026年5-7月</strong></td><td>社会実装</td><td>港区連携、愛育病院配布、200ユーザー</td></tr>
+      <tr><td><strong>2026年8-12月</strong></td><td>実績発信</td><td>学会発表、賞応募、500ユーザー</td></tr>
+      <tr><td><strong>2027年〜</strong></td><td>スケール</td><td>他自治体展開（ホワイトラベル）</td></tr>
+    </table>
+  </div>
+
+  <div class="visual-box">
+    <div class="label label-visual">ビジュアル指示</div>
+    <ul>
+      <li>横長のタイムライン（ガントチャート風 or ステップ形式）</li>
+      <li>各フェーズを色分け（現在のフェーズをハイライト）</li>
+      <li>マイルストーン（10人→50人→200人→500人）を折れ線グラフ風に</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== SLIDE 11 ===== -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">11</div>
+    <div class="slide-title">スケーラビリティ — 「港区から全国へ」</div>
+    <div class="slide-time">〜20秒</div>
+  </div>
+
+  <div class="content-box">
+    <div class="label label-content">内容</div>
+    <ul>
+      <li><strong>ホワイトラベル設計</strong>: 行政データ（JSON）を差し替えるだけで他自治体に展開可能</li>
+      <li><strong>差し替え対象</strong>: 制度・助成金、保育園データ、クリニックデータ、健診情報</li>
+      <li><strong>共有資産</strong>: 医療記事60本は自治体非依存 → そのまま使える</li>
+      <li><strong>展開イメージ</strong>: 港区で実証 → 品川区・渋谷区 → 23区 → 全国</li>
+    </ul>
+  </div>
+
+  <div class="visual-box">
+    <div class="label label-visual">ビジュアル指示</div>
+    <ul>
+      <li>港区を中心に同心円が広がるイメージ図</li>
+      <li>または: 日本地図で港区→隣接区→全国にドットが広がるアニメーション</li>
+      <li>「JSONを差し替えるだけ」を技術ダイアグラムで簡潔に示す</li>
+    </ul>
+  </div>
+
+  <div class="note-box">
+    <div class="label label-note">プレゼン先による調整</div>
+    <span class="audience-tag">港区向け</span> このスライドは省略 or 軽く触れる程度に<br>
+    <span class="audience-tag">賞・ピッチ向け</span> 拡張可能性をしっかりアピール<br>
+    <span class="audience-tag">学会向け</span> 省略
+  </div>
+</div>
+
+<!-- ===== SLIDE 12 ===== -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="slide-num">12</div>
+    <div class="slide-title">クロージング — 「伝えたいこと」</div>
+    <div class="slide-time">〜20秒</div>
+  </div>
+
+  <div class="content-box">
+    <div class="label label-content">内容</div>
+    <ul>
+      <li><strong>メインメッセージ（大きく）</strong>:<br>
+        「診察室の5分では伝えきれない。<br>だから、24時間いつでも頼れるパートナーを作った。」
+      </li>
+      <li><strong>CTA（プレゼン先に合わせて変える）</strong>:
+        <ul>
+          <li><span class="audience-tag">一般</span> 「ぜひ使ってみてください」+ QRコード</li>
+          <li><span class="audience-tag">港区向け</span> 「ご意見・フィードバックをいただけませんか」</li>
+          <li><span class="audience-tag">Code for Japan</span> 「一緒に育ててくれる仲間を探しています」</li>
+          <li><span class="audience-tag">学会</span> 「ご質問・ご意見をお待ちしています」</li>
+        </ul>
+      </li>
+      <li>QRコード: <code>https://kgraph57.github.io/sukusuku-navi/</code></li>
+      <li>連絡先: GitHub / メール</li>
+    </ul>
+  </div>
+
+  <div class="visual-box">
+    <div class="label label-visual">ビジュアル指示</div>
+    <ul>
+      <li>背景: スライド1と同じティールグラデーション（統一感）</li>
+      <li>中央に大きくメインメッセージ</li>
+      <li>右下にQRコード（大きめ）</li>
+      <li>左下に連絡先</li>
+    </ul>
+  </div>
+
+  <div class="script-box">
+    <div class="label label-script">トークスクリプト例</div>
+    「最後に一つだけ。このアプリを作った動機はシンプルです。診察室の5分では伝えきれないから。だから、24時間いつでも頼れるパートナーを作りました。港区で子どもが生まれたら最初に入れるアプリ、それがすくすくナビです。ぜひ一度触ってみてください。ありがとうございました。」
+  </div>
+</div>
+
+<hr>
+
+<h2>プレゼン先別カスタマイズ</h2>
+
+<h3>グッドデザイン賞（5分）</h3>
+<table>
+<tr><th>使うスライド</th><th>追加・変更ポイント</th></tr>
+<tr><td>1, 3, 4, 5, 6, 7, 9, 12</td><td>スライド2（自己紹介）は最小限に。デザイン思想・UXの意図を語る。「なぜこのUI配色か」「LINE風Q&Aの設計意図」など</td></tr>
+</table>
+
+<h3>Code for Japan（5-10分）</h3>
+<table>
+<tr><th>使うスライド</th><th>追加・変更ポイント</th></tr>
+<tr><td>全12枚</td><td>技術スタック（Next.js, Supabase, PostHog）に触れる。オープンソースの可能性、シビックテックとしての位置づけを強調</td></tr>
+</table>
+
+<h3>港区子育て支援課（10-15分）</h3>
+<table>
+<tr><th>使うスライド</th><th>追加・変更ポイント</th></tr>
+<tr><td>全12枚 + 追加2-3枚</td><td>デモを丁寧に（実際に操作して見せる）。行政データの正確性を示す。連携のメリットを具体的に（「保健センターでQRコード配布」等）。スライド11は省略</td></tr>
+</table>
+
+<h3>学会発表（7分）</h3>
+<table>
+<tr><th>使うスライド</th><th>追加・変更ポイント</th></tr>
+<tr><td>1, 2, 3, 4, 5, 6, 9, 12</td><td>演題:「小児科医が開発するシビックテック型子育て支援Webアプリの社会実装」。背景・方法・結果・考察のIMRAD構成に組み替え。利用データ（PostHog）があれば結果として提示</td></tr>
+</table>
+
+<hr>
+
+<h2>デザイン統一ガイド</h2>
+
+<table>
+<tr><th>要素</th><th>指定</th></tr>
+<tr><td>メインカラー</td><td>ティール <code>#0d9488</code>（信頼・安心）</td></tr>
+<tr><td>アクセントカラー</td><td>コーラル <code>#f97316</code>（温かみ・注目）</td></tr>
+<tr><td>背景色</td><td>オフホワイト <code>#fafaf5</code> / 白 <code>#ffffff</code></td></tr>
+<tr><td>テキスト色</td><td>ダークグレー <code>#1a1a1a</code></td></tr>
+<tr><td>見出しフォント</td><td>Zen Maru Gothic / 丸ゴシック系</td></tr>
+<tr><td>本文フォント</td><td>Noto Sans JP / ヒラギノ角ゴ</td></tr>
+<tr><td>スライドサイズ</td><td>16:9（標準ワイド）</td></tr>
+<tr><td>全体トーン</td><td>温かい・信頼感・シンプル（医療+子育て）</td></tr>
+</table>
+
+<h3>避けるべきこと</h3>
+<ul>
+<li>文字詰め込みすぎ（1スライド3ポイントまで）</li>
+<li>派手なアニメーション（信頼感を損なう）</li>
+<li>ストック写真の多用（実際のスクリーンショットを優先）</li>
+<li>英語のジャーゴン（聴衆は非技術者が多い）</li>
+</ul>
+
+<hr>
+
+<h2>必要な素材リスト</h2>
+
+<table>
+<tr><th>素材</th><th>取得方法</th><th>優先度</th></tr>
+<tr><td>アプリのスクリーンショット（5-6枚）</td><td>実際のサイトからキャプチャ</td><td>必須</td></tr>
+<tr><td>岡本先生の写真</td><td>プロフ写真 or 勤務中の写真</td><td>必須</td></tr>
+<tr><td>スマホモックアップ</td><td>Figma / Canva のテンプレート</td><td>推奨</td></tr>
+<tr><td>QRコード</td><td>サイトURLから生成</td><td>必須</td></tr>
+<tr><td>ロゴ</td><td>未作成の場合はテキストロゴで可</td><td>推奨</td></tr>
+<tr><td>利用データ（グラフ）</td><td>PostHogダッシュボードから</td><td>あれば</td></tr>
+</table>
+
+<hr>
+
+<p><em>このドキュメントを元に、PowerPoint / Keynote / Canva / Google Slides で実際のスライドを作成してください。</em></p>
+<p><em>最終更新: 2026年2月22日</em></p>
+
+</body>
+</html>

@@ -47,7 +47,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <nav className="mb-8">
         <Link
           href="/articles"
-          className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-teal-600"
+          className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-sage-600"
         >
           <ArrowLeft className="h-4 w-4" />
           記事一覧に戻る
@@ -56,8 +56,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
       {/* Header */}
       <div className="flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-50">
-          <Tag className="h-5 w-5 text-teal-600" />
+        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sage-50">
+          <Tag className="h-5 w-5 text-sage-600" />
         </div>
         <div>
           <h1 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
@@ -77,8 +77,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             href={`/articles/category/${c}`}
             className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
               c === category
-                ? "bg-teal-600 text-white"
-                : "border border-border bg-card text-muted hover:border-teal-200 hover:text-teal-600"
+                ? "bg-sage-600 text-white"
+                : "border border-border bg-card text-muted hover:border-sage-200 hover:text-sage-600"
             }`}
           >
             {CATEGORY_LABELS[c]}
@@ -100,7 +100,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </p>
           <Link
             href="/articles"
-            className="mt-4 inline-flex items-center gap-2 rounded-full bg-teal-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-teal-700"
+            className="mt-4 inline-flex items-center gap-2 rounded-full bg-sage-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-sage-700"
           >
             記事一覧へ
           </Link>

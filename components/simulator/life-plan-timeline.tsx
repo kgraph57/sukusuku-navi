@@ -23,9 +23,9 @@ interface LifePlanTimelineProps {
 const AGE_MARKERS = [0, 1, 2, 3, 6, 12, 15, 18] as const
 
 const CATEGORY_COLORS: Record<string, { readonly bg: string; readonly border: string; readonly text: string; readonly bar: string }> = {
-  financial: { bg: "bg-teal-50", border: "border-teal-300", text: "text-teal-700", bar: "bg-teal-400" },
+  financial: { bg: "bg-sage-50", border: "border-sage-300", text: "text-sage-700", bar: "bg-sage-400" },
   medical: { bg: "bg-blue-50", border: "border-blue-300", text: "text-blue-700", bar: "bg-blue-400" },
-  childcare: { bg: "bg-coral-50", border: "border-coral-300", text: "text-coral-700", bar: "bg-coral-400" },
+  childcare: { bg: "bg-blush-50", border: "border-blush-300", text: "text-blush-600", bar: "bg-blush-400" },
   support: { bg: "bg-purple-50", border: "border-purple-300", text: "text-purple-700", bar: "bg-purple-400" },
 } as const
 
@@ -143,11 +143,11 @@ function ChildAgeMarker({
       style={{ left: `${position}%`, transform: "translateX(-50%)" }}
     >
       <div className="flex flex-col items-center">
-        <span className="whitespace-nowrap rounded-full bg-coral-500 px-2 py-0.5 text-xs font-bold text-white shadow-sm">
+        <span className="whitespace-nowrap rounded-full bg-blush-500 px-2 py-0.5 text-xs font-bold text-white shadow-sm">
           今ここ
         </span>
-        <div className="mt-0.5 h-3 w-0.5 bg-coral-400" />
-        <div className="flex h-4 w-4 items-center justify-center rounded-full bg-coral-500 shadow-sm">
+        <div className="mt-0.5 h-3 w-0.5 bg-blush-400" />
+        <div className="flex h-4 w-4 items-center justify-center rounded-full bg-blush-500 shadow-sm">
           <Baby className="h-2.5 w-2.5 text-white" />
         </div>
         {index > 0 && (
@@ -182,7 +182,7 @@ export function LifePlanTimeline({
   return (
     <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
       <div className="mb-4 flex items-center gap-2">
-        <Calendar className="h-5 w-5 text-teal-600" />
+        <Calendar className="h-5 w-5 text-sage-600" />
         <h3 className="font-heading text-base font-bold text-card-foreground">
           0歳〜18歳の制度タイムライン
         </h3>

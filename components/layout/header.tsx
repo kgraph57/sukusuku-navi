@@ -143,8 +143,8 @@ function DropdownMenu({
         type="button"
         className={`flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
           isOpen
-            ? "bg-teal-50 text-teal-700"
-            : "text-muted hover:bg-teal-50 hover:text-teal-700"
+            ? "bg-sage-50 text-sage-700"
+            : "text-muted hover:bg-sage-50 hover:text-sage-700"
         }`}
         onClick={isOpen ? onClose : onOpen}
         aria-expanded={isOpen}
@@ -161,10 +161,10 @@ function DropdownMenu({
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-teal-50"
+              className="flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-sage-50"
               onClick={onClose}
             >
-              <item.icon className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" />
+              <item.icon className="mt-0.5 h-4 w-4 shrink-0 text-sage-600" />
               <div>
                 <p className="text-sm font-medium text-foreground">
                   {item.label}
@@ -190,24 +190,24 @@ function MobileAuthLinks({ onClose }: { readonly onClose: () => void }) {
     return (
       <Link
         href="/my"
-        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-teal-50 hover:text-teal-700"
+        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-sage-50 hover:text-sage-700"
         onClick={onClose}
       >
-        <User className="h-4 w-4 text-teal-600" />
+        <User className="h-4 w-4 text-sage-600" />
         マイページ
       </Link>
     );
   }
 
   if (loading) {
-    return <div className="h-10 animate-pulse rounded-lg bg-warm-50" />;
+    return <div className="h-10 animate-pulse rounded-lg bg-ivory-50" />;
   }
 
   if (!user) {
     return (
       <Link
         href="/auth/login"
-        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-teal-600 transition-colors hover:bg-teal-50"
+        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-sage-600 transition-colors hover:bg-sage-50"
         onClick={onClose}
       >
         <User className="h-4 w-4" />
@@ -220,10 +220,10 @@ function MobileAuthLinks({ onClose }: { readonly onClose: () => void }) {
     <>
       <Link
         href="/my"
-        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-teal-50 hover:text-teal-700"
+        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-sage-50 hover:text-sage-700"
         onClick={onClose}
       >
-        <User className="h-4 w-4 text-teal-600" />
+        <User className="h-4 w-4 text-sage-600" />
         マイページ
       </Link>
       <button
@@ -232,7 +232,7 @@ function MobileAuthLinks({ onClose }: { readonly onClose: () => void }) {
           await signOut();
           onClose();
         }}
-        className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-muted transition-colors hover:bg-warm-50 hover:text-foreground"
+        className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-muted transition-colors hover:bg-ivory-50 hover:text-foreground"
       >
         <LogOut className="h-4 w-4" />
         ログアウト
@@ -264,7 +264,7 @@ function UserMenu() {
     return (
       <Link
         href="/my"
-        className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-teal-50 hover:text-teal-700"
+        className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-sage-50 hover:text-sage-700"
       >
         マイページ
       </Link>
@@ -272,14 +272,14 @@ function UserMenu() {
   }
 
   if (loading) {
-    return <div className="h-8 w-8 animate-pulse rounded-full bg-warm-100" />;
+    return <div className="h-8 w-8 animate-pulse rounded-full bg-ivory-100" />;
   }
 
   if (!user) {
     return (
       <Link
         href="/auth/login"
-        className="rounded-lg px-3 py-2 text-sm font-medium text-teal-600 transition-colors hover:bg-teal-50 hover:text-teal-700"
+        className="rounded-lg px-3 py-2 text-sm font-medium text-sage-600 transition-colors hover:bg-sage-50 hover:text-sage-700"
       >
         ログイン
       </Link>
@@ -293,7 +293,7 @@ function UserMenu() {
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex h-8 w-8 items-center justify-center rounded-full bg-teal-100 text-sm font-bold text-teal-700 transition-colors hover:bg-teal-200"
+        className="flex h-8 w-8 items-center justify-center rounded-full bg-sage-100 text-sm font-bold text-sage-700 transition-colors hover:bg-sage-200"
         aria-label="ユーザーメニュー"
         aria-expanded={isOpen}
       >
@@ -304,10 +304,10 @@ function UserMenu() {
         <div className="absolute right-0 top-full z-50 mt-2 w-48 rounded-xl border border-border bg-white p-2 shadow-lg">
           <Link
             href="/my"
-            className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-teal-50"
+            className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-sage-50"
             onClick={() => setIsOpen(false)}
           >
-            <User className="h-4 w-4 text-teal-600" />
+            <User className="h-4 w-4 text-sage-600" />
             マイページ
           </Link>
           <button
@@ -316,7 +316,7 @@ function UserMenu() {
               await signOut();
               setIsOpen(false);
             }}
-            className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-warm-50 hover:text-foreground"
+            className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-ivory-50 hover:text-foreground"
           >
             <LogOut className="h-4 w-4" />
             ログアウト
@@ -337,12 +337,12 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-white/95 backdrop-blur-sm">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-teal-600">
-            <Baby className="h-5 w-5 text-white" />
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
+        <Link href="/" className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-sage-700">
+            <Baby className="h-4 w-4 text-white" />
           </div>
-          <span className="font-heading text-xl font-bold text-teal-800">
+          <span className="font-heading text-lg tracking-wide text-foreground">
             すくすくナビ
           </span>
         </Link>
@@ -367,7 +367,7 @@ export function Header() {
           <UserMenu />
           <Link
             href="/search"
-            className="rounded-lg p-2 text-muted transition-colors hover:bg-teal-50 hover:text-teal-700"
+            className="rounded-lg p-2 text-muted transition-colors hover:bg-sage-50 hover:text-sage-700"
             aria-label="検索"
           >
             <Search className="h-5 w-5" />
@@ -399,37 +399,54 @@ export function Header() {
       </div>
 
       {isMenuOpen && (
-        <nav className="border-t border-border bg-white px-4 pb-4 md:hidden">
-          {NAV_GROUPS.map((group) => (
-            <div key={group.label} className="mt-3 first:mt-1">
-              <p className="px-3 pb-1 text-xs font-bold uppercase tracking-wider text-muted">
-                {group.label}
-              </p>
-              {group.items.map((item) => (
+        <div className="fixed inset-0 z-50 bg-white/98 backdrop-blur-sm md:hidden">
+          <div className="flex h-full flex-col px-6 pt-6 pb-8">
+            <div className="flex items-center justify-between">
+              <span className="font-heading text-lg tracking-wide text-foreground">
+                すくすくナビ
+              </span>
+              <button
+                type="button"
+                className="rounded-lg p-2 text-muted"
+                onClick={() => setIsMenuOpen(false)}
+                aria-label="メニューを閉じる"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            <nav className="mt-8 flex-1 space-y-6 overflow-y-auto">
+              {NAV_GROUPS.map((group) => (
+                <div key={group.label}>
+                  <p className="px-1 pb-2 text-xs font-medium uppercase tracking-[0.15em] text-muted">
+                    {group.label}
+                  </p>
+                  {group.items.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="flex items-center gap-3 rounded-lg px-1 py-3 font-heading text-lg tracking-wide text-foreground transition-colors hover:text-sage-700"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <item.icon className="h-4 w-4 text-sage-600" />
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              ))}
+              <div className="border-t border-border pt-4">
                 <Link
-                  key={item.href}
-                  href={item.href}
-                  className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-teal-50 hover:text-teal-700"
+                  href={STANDALONE_NAV.href}
+                  className="flex items-center gap-3 rounded-lg px-1 py-3 font-heading text-lg tracking-wide text-red-600 transition-colors hover:text-red-700"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <item.icon className="h-4 w-4 text-teal-600" />
-                  {item.label}
+                  <STANDALONE_NAV.icon className="h-4 w-4" />
+                  {STANDALONE_NAV.label}
                 </Link>
-              ))}
-            </div>
-          ))}
-          <div className="mt-3 border-t border-border pt-3">
-            <Link
-              href={STANDALONE_NAV.href}
-              className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-red-600 transition-colors hover:bg-red-50"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <STANDALONE_NAV.icon className="h-4 w-4" />
-              {STANDALONE_NAV.label}
-            </Link>
-            <MobileAuthLinks onClose={() => setIsMenuOpen(false)} />
+                <MobileAuthLinks onClose={() => setIsMenuOpen(false)} />
+              </div>
+            </nav>
           </div>
-        </nav>
+        </div>
       )}
     </header>
   );

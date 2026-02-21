@@ -25,7 +25,7 @@ export const VACCINE_TYPE_LABELS: Record<Vaccine["type"], string> = {
 } as const;
 
 export const VACCINE_TYPE_COLORS: Record<Vaccine["type"], string> = {
-  routine: "bg-teal-50 text-teal-700 border-teal-200",
+  routine: "bg-sage-50 text-sage-700 border-sage-200",
   optional: "bg-orange-50 text-orange-700 border-orange-200",
 } as const;
 

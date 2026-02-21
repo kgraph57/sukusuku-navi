@@ -18,7 +18,7 @@ const ONBOARDING_STEPS = [
     icon: Sparkles,
     title: "お子さんを登録",
     description: "生年月日を登録するとパーソナライズされた情報が届きます",
-    color: "bg-teal-50 text-teal-600",
+    color: "bg-sage-50 text-sage-600",
   },
   {
     href: "/my/timeline",
@@ -39,7 +39,7 @@ const ONBOARDING_STEPS = [
     icon: Calculator,
     title: "給付金を調べる",
     description: "受けられる行政サービス・助成金を一括検索",
-    color: "bg-coral-50 text-coral-500",
+    color: "bg-blush-50 text-blush-500",
   },
 ] as const;
 
@@ -74,20 +74,20 @@ export function OnboardingBanner() {
   }
 
   return (
-    <section className="border-t border-border bg-gradient-to-br from-teal-50/80 to-warm-50 px-4 py-10">
+    <section className="border-t border-border bg-gradient-to-br from-sage-50/80 to-ivory-50 px-4 py-10">
       <div className="mx-auto max-w-4xl">
-        <div className="relative rounded-2xl border border-teal-200 bg-white/80 p-6 shadow-sm sm:p-8">
+        <div className="relative rounded-2xl border border-sage-200 bg-white/80 p-6 shadow-sm sm:p-8">
           <button
             type="button"
             onClick={handleDismiss}
-            className="absolute right-3 top-3 rounded-full p-1.5 text-muted transition-colors hover:bg-warm-100 hover:text-foreground"
+            className="absolute right-3 top-3 rounded-full p-1.5 text-muted transition-colors hover:bg-ivory-100 hover:text-foreground"
             aria-label="閉じる"
           >
             <X className="h-4 w-4" />
           </button>
 
           <div className="text-center">
-            <p className="inline-flex items-center gap-1.5 rounded-full bg-teal-100/70 px-3 py-1 text-xs font-medium text-teal-700">
+            <p className="inline-flex items-center gap-1.5 rounded-full bg-sage-100/70 px-3 py-1 text-xs font-medium text-sage-700">
               <Sparkles className="h-3 w-3" />
               はじめての方へ
             </p>
@@ -104,7 +104,7 @@ export function OnboardingBanner() {
               <Link
                 key={step.href}
                 href={step.href}
-                className="group flex items-center gap-3 rounded-xl border border-border p-4 transition-all hover:border-teal-200 hover:shadow-md"
+                className="group flex items-center gap-3 rounded-xl border border-border p-4 transition-all hover:border-sage-200 hover:shadow-md"
               >
                 <div className="relative flex h-10 w-10 shrink-0 items-center justify-center">
                   <div
@@ -112,12 +112,12 @@ export function OnboardingBanner() {
                   >
                     <step.icon className="h-5 w-5" />
                   </div>
-                  <span className="absolute -left-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-teal-600 text-[10px] font-bold text-white">
+                  <span className="absolute -left-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-sage-600 text-[10px] font-bold text-white">
                     {index + 1}
                   </span>
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-medium text-card-foreground group-hover:text-teal-700">
+                  <p className="text-sm font-medium text-card-foreground group-hover:text-sage-700">
                     {step.title}
                   </p>
                   <p className="mt-0.5 text-xs text-muted line-clamp-1">
@@ -132,7 +132,7 @@ export function OnboardingBanner() {
           <div className="mt-5 text-center">
             <Link
               href="/my"
-              className="inline-flex items-center gap-2 rounded-full bg-teal-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-teal-700"
+              className="inline-flex items-center gap-2 rounded-full bg-sage-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700"
             >
               まずはお子さんを登録する
               <ArrowRight className="h-4 w-4" />

@@ -18,8 +18,8 @@ export default function SignupPage() {
   if (!configured) {
     return (
       <div className="mx-auto max-w-md px-4 py-12 text-center">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-teal-100">
-          <Baby className="h-7 w-7 text-teal-600" />
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
+          <Baby className="h-7 w-7 text-sage-600" />
         </div>
         <h1 className="mt-4 font-heading text-2xl font-bold text-foreground">
           アカウント登録は準備中です
@@ -29,7 +29,7 @@ export default function SignupPage() {
         </p>
         <Link
           href="/my"
-          className="mt-6 inline-flex items-center gap-1.5 rounded-full bg-teal-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-teal-700"
+          className="mt-6 inline-flex items-center gap-1.5 rounded-full bg-sage-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
           マイページへ
@@ -73,8 +73,8 @@ export default function SignupPage() {
   if (success) {
     return (
       <div className="mx-auto max-w-md px-4 py-12 text-center">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-teal-100">
-          <CheckCircle className="h-7 w-7 text-teal-600" />
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
+          <CheckCircle className="h-7 w-7 text-sage-600" />
         </div>
         <h1 className="mt-4 font-heading text-2xl font-bold text-foreground">
           メールを確認してください
@@ -85,7 +85,7 @@ export default function SignupPage() {
         </p>
         <Link
           href="/auth/login"
-          className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-teal-600 hover:text-teal-700"
+          className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-sage-600 hover:text-sage-700"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
           ログインページへ
@@ -97,8 +97,8 @@ export default function SignupPage() {
   return (
     <div className="mx-auto max-w-md px-4 py-12">
       <div className="text-center">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-teal-100">
-          <Baby className="h-7 w-7 text-teal-600" />
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
+          <Baby className="h-7 w-7 text-sage-600" />
         </div>
         <h1 className="mt-4 font-heading text-2xl font-bold text-foreground">
           新規登録
@@ -118,7 +118,7 @@ export default function SignupPage() {
         <button
           type="button"
           onClick={() => handleOAuth("google")}
-          className="flex w-full items-center justify-center gap-3 rounded-lg border border-border bg-white px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-warm-50"
+          className="flex w-full items-center justify-center gap-3 rounded-lg border border-border bg-white px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-ivory-50"
         >
           <svg className="h-5 w-5" viewBox="0 0 24 24">
             <path
@@ -176,7 +176,7 @@ export default function SignupPage() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="example@email.com"
               required
-              className="w-full rounded-lg border border-border bg-white py-2.5 pl-10 pr-3 text-sm placeholder:text-warm-300 focus:border-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-100"
+              className="w-full rounded-lg border border-border bg-white py-2.5 pl-10 pr-3 text-sm placeholder:text-ivory-200 focus:border-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-100"
             />
           </div>
         </div>
@@ -196,7 +196,7 @@ export default function SignupPage() {
             placeholder="6文字以上"
             required
             minLength={6}
-            className="mt-1 w-full rounded-lg border border-border bg-white px-3 py-2.5 text-sm placeholder:text-warm-300 focus:border-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-100"
+            className="mt-1 w-full rounded-lg border border-border bg-white px-3 py-2.5 text-sm placeholder:text-ivory-200 focus:border-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-100"
           />
         </div>
 
@@ -215,14 +215,14 @@ export default function SignupPage() {
             placeholder="もう一度入力"
             required
             minLength={6}
-            className="mt-1 w-full rounded-lg border border-border bg-white px-3 py-2.5 text-sm placeholder:text-warm-300 focus:border-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-100"
+            className="mt-1 w-full rounded-lg border border-border bg-white px-3 py-2.5 text-sm placeholder:text-ivory-200 focus:border-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-100"
           />
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-lg bg-teal-600 py-2.5 text-sm font-medium text-white transition-colors hover:bg-teal-700 disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full rounded-lg bg-sage-600 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {loading ? "登録中..." : "メールで登録"}
         </button>
@@ -232,7 +232,7 @@ export default function SignupPage() {
         すでにアカウントをお持ちの方は{" "}
         <Link
           href="/auth/login"
-          className="font-medium text-teal-600 hover:text-teal-700 hover:underline"
+          className="font-medium text-sage-600 hover:text-sage-700 hover:underline"
         >
           ログイン
         </Link>

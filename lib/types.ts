@@ -240,6 +240,8 @@ export interface CheckupPreparation {
 export interface CheckupFaq {
   readonly question: string;
   readonly answer: string;
+  readonly actionUrl?: string;
+  readonly actionLabel?: string;
 }
 
 export interface Checkup {
@@ -257,8 +259,15 @@ export interface Checkup {
   readonly preparation: readonly CheckupPreparation[];
   readonly faq: readonly CheckupFaq[];
   readonly tips: readonly string[];
+  readonly relatedArticles?: readonly CheckupRelatedArticle[];
   readonly nextCheckup: string | null;
   readonly officialUrl: string | null;
+}
+
+export interface CheckupRelatedArticle {
+  readonly slug: string;
+  readonly title: string;
+  readonly vol: number;
 }
 
 export type NurseryType =

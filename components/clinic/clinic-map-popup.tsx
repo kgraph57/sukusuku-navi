@@ -30,7 +30,7 @@ export function ClinicMapPopup({ clinic }: ClinicMapPopupProps) {
         <p>{clinic.address}</p>
         <p>{clinic.nearestStation}</p>
         <p>
-          <a href={`tel:${clinic.phone}`} className="hover:text-teal-600">
+          <a href={`tel:${clinic.phone}`} className="hover:text-sage-600">
             {clinic.phone}
           </a>
         </p>
@@ -40,7 +40,7 @@ export function ClinicMapPopup({ clinic }: ClinicMapPopupProps) {
         {clinic.features.slice(0, 3).map((feature) => (
           <span
             key={feature}
-            className="rounded-full bg-warm-100 px-1.5 py-0.5 text-[10px] text-muted"
+            className="rounded-full bg-ivory-100 px-1.5 py-0.5 text-[10px] text-muted"
           >
             {feature}
           </span>
@@ -49,13 +49,13 @@ export function ClinicMapPopup({ clinic }: ClinicMapPopupProps) {
       <div className="mt-2 flex gap-2">
         <Link
           href={`/clinics/${clinic.slug}`}
-          className="inline-flex items-center rounded-full bg-teal-600 px-3 py-1 text-xs font-medium text-white hover:bg-teal-700"
+          className="inline-flex items-center rounded-full bg-sage-600 px-3 py-1 text-xs font-medium text-white hover:bg-sage-700"
         >
           詳細を見る
         </Link>
         <a
           href={`tel:${clinic.phone}`}
-          className="inline-flex items-center gap-0.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted hover:bg-warm-100"
+          className="inline-flex items-center gap-0.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted hover:bg-ivory-100"
         >
           <Phone className="h-3 w-3" />
           電話
@@ -64,7 +64,7 @@ export function ClinicMapPopup({ clinic }: ClinicMapPopupProps) {
           href={`https://www.google.com/maps/search/?api=1&query=${clinic.lat},${clinic.lng}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-0.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted hover:bg-warm-100"
+          className="inline-flex items-center gap-0.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted hover:bg-ivory-100"
         >
           <ExternalLink className="h-3 w-3" />
           Maps

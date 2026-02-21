@@ -56,7 +56,7 @@ function DoseMarker({
   readonly label: string;
   readonly isRoutine: boolean;
 }) {
-  const bg = isRoutine ? "bg-teal-500 text-white" : "bg-coral-400 text-white";
+  const bg = isRoutine ? "bg-sage-500 text-white" : "bg-blush-400 text-white";
 
   return (
     <span
@@ -79,8 +79,8 @@ function DesktopTable({
     <div className="overflow-x-auto rounded-xl border border-border">
       <table className="w-full min-w-[800px] border-collapse">
         <thead>
-          <tr className="bg-warm-100">
-            <th className="sticky left-0 z-10 bg-warm-100 px-4 py-3 text-left text-sm font-bold text-foreground">
+          <tr className="bg-ivory-100">
+            <th className="sticky left-0 z-10 bg-ivory-100 px-4 py-3 text-left text-sm font-bold text-foreground">
               ワクチン名
             </th>
             {AGE_COLUMNS.map((col) => (
@@ -97,7 +97,7 @@ function DesktopTable({
           <tr>
             <td
               colSpan={AGE_COLUMNS.length + 1}
-              className="bg-teal-50 px-4 py-2 text-sm font-bold text-teal-700"
+              className="bg-sage-50 px-4 py-2 text-sm font-bold text-sage-700"
             >
               <span className="flex items-center gap-1.5">
                 <Shield className="h-4 w-4" />
@@ -111,7 +111,7 @@ function DesktopTable({
           <tr>
             <td
               colSpan={AGE_COLUMNS.length + 1}
-              className="bg-coral-50 px-4 py-2 text-sm font-bold text-coral-600"
+              className="bg-blush-50 px-4 py-2 text-sm font-bold text-blush-600"
             >
               <span className="flex items-center gap-1.5">
                 <Star className="h-4 w-4" />
@@ -142,7 +142,7 @@ function VaccineRow({ vaccine }: { readonly vaccine: Vaccine }) {
   const isRoutine = vaccine.type === "routine";
 
   return (
-    <tr className="border-t border-border transition-colors hover:bg-warm-50/50">
+    <tr className="border-t border-border transition-colors hover:bg-ivory-50/50">
       <td className="sticky left-0 z-10 bg-white px-4 py-3 text-sm font-medium text-foreground">
         <div className="flex flex-col">
           <span>{vaccine.nameShort}</span>
@@ -182,7 +182,7 @@ function MobileCards({
   return (
     <div className="space-y-6">
       <div>
-        <div className="mb-3 flex items-center gap-1.5 text-sm font-bold text-teal-700">
+        <div className="mb-3 flex items-center gap-1.5 text-sm font-bold text-sage-700">
           <Shield className="h-4 w-4" />
           {VACCINE_TYPE_LABELS.routine}（公費・無料）
         </div>
@@ -193,7 +193,7 @@ function MobileCards({
         </div>
       </div>
       <div>
-        <div className="mb-3 flex items-center gap-1.5 text-sm font-bold text-coral-600">
+        <div className="mb-3 flex items-center gap-1.5 text-sm font-bold text-blush-600">
           <Star className="h-4 w-4" />
           {VACCINE_TYPE_LABELS.optional}（一部助成あり）
         </div>
@@ -209,7 +209,7 @@ function MobileCards({
 
 function MobileVaccineCard({ vaccine }: { readonly vaccine: Vaccine }) {
   const isRoutine = vaccine.type === "routine";
-  const borderColor = isRoutine ? "border-teal-200" : "border-coral-200";
+  const borderColor = isRoutine ? "border-sage-200" : "border-blush-200";
 
   return (
     <div className={`rounded-lg border ${borderColor} bg-card p-4`}>
@@ -226,7 +226,7 @@ function MobileVaccineCard({ vaccine }: { readonly vaccine: Vaccine }) {
         {vaccine.doses.map((dose) => (
           <div
             key={dose.doseNumber}
-            className="flex items-center gap-1.5 rounded-full bg-warm-100 px-2.5 py-1"
+            className="flex items-center gap-1.5 rounded-full bg-ivory-100 px-2.5 py-1"
           >
             <DoseMarker
               doseNumber={dose.doseNumber}
@@ -245,7 +245,7 @@ function MobileVaccineCard({ vaccine }: { readonly vaccine: Vaccine }) {
       {vaccine.relatedArticleSlug && (
         <Link
           href={`/articles/${vaccine.relatedArticleSlug}`}
-          className="mt-3 inline-block text-xs font-medium text-teal-600 hover:text-teal-700"
+          className="mt-3 inline-block text-xs font-medium text-sage-600 hover:text-sage-700"
         >
           関連記事を読む →
         </Link>
@@ -267,13 +267,13 @@ export function ScheduleTable({ vaccines }: ScheduleTableProps) {
         />
         <div className="mt-3 flex items-center gap-4 text-xs text-muted">
           <span className="flex items-center gap-1.5">
-            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-teal-500 text-[10px] font-bold text-white">
+            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-sage-500 text-[10px] font-bold text-white">
               1
             </span>
             定期接種
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-coral-400 text-[10px] font-bold text-white">
+            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-blush-400 text-[10px] font-bold text-white">
               1
             </span>
             任意接種

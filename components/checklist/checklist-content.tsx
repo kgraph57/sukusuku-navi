@@ -131,7 +131,7 @@ function StampCircle({
     >
       {isChecked ? (
         <div
-          className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-teal-500 bg-teal-500 text-white"
+          className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-sage-500 bg-sage-500 text-white"
           style={
             justStamped
               ? { animation: "stamp 0.4s ease-out forwards" }
@@ -167,7 +167,7 @@ function StampItemCard({
   return (
     <div
       className={`rounded-xl border bg-card p-4 transition-all ${
-        isChecked ? "border-teal-200 bg-teal-50/50" : "border-border"
+        isChecked ? "border-sage-200 bg-sage-50/50" : "border-border"
       }`}
     >
       <div className="flex gap-3">
@@ -181,7 +181,7 @@ function StampItemCard({
           <h3
             className={`font-heading text-base font-bold ${
               isChecked
-                ? "text-teal-700 line-through"
+                ? "text-sage-700 line-through"
                 : "text-card-foreground"
             }`}
           >
@@ -194,8 +194,8 @@ function StampItemCard({
           <div className="mt-3 space-y-2">
             {item.deadline && (
               <div className="flex items-center gap-2 text-sm">
-                <Calendar className="h-3.5 w-3.5 shrink-0 text-coral-500" />
-                <span className="font-medium text-coral-600">
+                <Calendar className="h-3.5 w-3.5 shrink-0 text-blush-500" />
+                <span className="font-medium text-blush-600">
                   {item.deadline}
                 </span>
               </div>
@@ -213,7 +213,7 @@ function StampItemCard({
                   {item.documents.map((doc) => (
                     <span
                       key={doc}
-                      className="rounded bg-warm-100 px-1.5 py-0.5 text-xs text-muted"
+                      className="rounded bg-ivory-100 px-1.5 py-0.5 text-xs text-muted"
                     >
                       {doc}
                     </span>
@@ -224,10 +224,10 @@ function StampItemCard({
 
             {item.relatedProgram && (
               <div className="flex items-center gap-2 text-sm">
-                <ArrowRight className="h-3.5 w-3.5 shrink-0 text-teal-600" />
+                <ArrowRight className="h-3.5 w-3.5 shrink-0 text-sage-600" />
                 <Link
                   href={`/programs/${item.relatedProgram}`}
-                  className="font-medium text-teal-600 hover:text-teal-700 hover:underline"
+                  className="font-medium text-sage-600 hover:text-sage-700 hover:underline"
                 >
                   関連制度を見る
                 </Link>
@@ -255,17 +255,17 @@ function StampItemCard({
 
 function CelebrationBanner() {
   return (
-    <div className="relative overflow-hidden rounded-xl border-2 border-teal-300 bg-gradient-to-r from-teal-50 via-white to-teal-50 p-6 text-center">
+    <div className="relative overflow-hidden rounded-xl border-2 border-sage-300 bg-gradient-to-r from-sage-50 via-white to-sage-50 p-6 text-center">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {[
-          { top: "10%", left: "5%", bg: "bg-teal-400", delay: "0s" },
-          { top: "20%", left: "85%", bg: "bg-coral-400", delay: "0.2s" },
+          { top: "10%", left: "5%", bg: "bg-sage-400", delay: "0s" },
+          { top: "20%", left: "85%", bg: "bg-blush-400", delay: "0.2s" },
           { top: "60%", left: "15%", bg: "bg-yellow-400", delay: "0.4s" },
-          { top: "30%", left: "70%", bg: "bg-teal-300", delay: "0.1s" },
-          { top: "70%", left: "80%", bg: "bg-coral-300", delay: "0.3s" },
+          { top: "30%", left: "70%", bg: "bg-sage-300", delay: "0.1s" },
+          { top: "70%", left: "80%", bg: "bg-blush-300", delay: "0.3s" },
           { top: "15%", left: "45%", bg: "bg-yellow-300", delay: "0.5s" },
-          { top: "80%", left: "35%", bg: "bg-teal-500", delay: "0.15s" },
-          { top: "50%", left: "92%", bg: "bg-coral-500", delay: "0.35s" },
+          { top: "80%", left: "35%", bg: "bg-sage-500", delay: "0.15s" },
+          { top: "50%", left: "92%", bg: "bg-blush-500", delay: "0.35s" },
         ].map((dot, i) => (
           <div
             key={i}
@@ -280,7 +280,7 @@ function CelebrationBanner() {
         ))}
       </div>
 
-      <p className="relative text-lg font-bold text-teal-700">
+      <p className="relative text-lg font-bold text-sage-700">
         おめでとうございます！すべての手続きが完了しました
       </p>
     </div>
@@ -311,8 +311,8 @@ function ChildSelector({
             onClick={() => onSelect(child.id)}
             className={`flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
               isActive
-                ? "bg-teal-500 text-white"
-                : "bg-warm-100 text-muted hover:bg-warm-200"
+                ? "bg-sage-500 text-white"
+                : "bg-ivory-100 text-muted hover:bg-ivory-200"
             }`}
           >
             <Users className="h-3.5 w-3.5" />
@@ -346,11 +346,11 @@ function ProgressBar({
         <span className="font-medium text-card-foreground">
           進捗: {completed}/{total}項目完了
         </span>
-        <span className="font-medium text-teal-600">{percent}%</span>
+        <span className="font-medium text-sage-600">{percent}%</span>
       </div>
-      <div className="mt-2 h-3 overflow-hidden rounded-full bg-warm-100">
+      <div className="mt-2 h-3 overflow-hidden rounded-full bg-ivory-100">
         <div
-          className="h-full rounded-full bg-teal-500 transition-all duration-300"
+          className="h-full rounded-full bg-sage-500 transition-all duration-300"
           style={{ width: `${percent}%` }}
         />
       </div>
@@ -472,7 +472,7 @@ export function ChecklistContent({ slug, items }: ChecklistContentProps) {
         {items.map((item) => (
           <div
             key={item.id}
-            className="h-40 animate-pulse rounded-xl border border-border bg-warm-50"
+            className="h-40 animate-pulse rounded-xl border border-border bg-ivory-50"
           />
         ))}
       </div>
@@ -486,16 +486,16 @@ export function ChecklistContent({ slug, items }: ChecklistContentProps) {
 
       {/* Family profile banner (no profile) */}
       {!familyProfile && (
-        <div className="mb-4 rounded-xl border border-teal-200 bg-teal-50/60 p-4">
+        <div className="mb-4 rounded-xl border border-sage-200 bg-sage-50/60 p-4">
           <div className="flex items-center gap-2">
-            <Users className="h-5 w-5 text-teal-600" />
-            <p className="text-sm text-teal-800">
+            <Users className="h-5 w-5 text-sage-600" />
+            <p className="text-sm text-sage-800">
               お子さんを登録すると、進捗を保存できます
             </p>
           </div>
           <Link
             href="/my"
-            className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-700 hover:underline"
+            className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-sage-600 hover:text-sage-700 hover:underline"
           >
             登録はこちら
             <ArrowRight className="h-3.5 w-3.5" />
@@ -521,7 +521,7 @@ export function ChecklistContent({ slug, items }: ChecklistContentProps) {
           <button
             type="button"
             onClick={handleToggleAll}
-            className="text-xs font-medium text-teal-600 hover:text-teal-700"
+            className="text-xs font-medium text-sage-600 hover:text-sage-700"
           >
             {allCompleted ? "すべてリセット" : "すべて完了"}
           </button>

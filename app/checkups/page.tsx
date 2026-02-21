@@ -116,7 +116,7 @@ function CheckupCard({ checkup }: { readonly checkup: Checkup }) {
   return (
     <Link
       href={`/checkups/${checkup.slug}`}
-      className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+      className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
     >
       <div
         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${venueColorClass}`}
@@ -135,7 +135,7 @@ function CheckupCard({ checkup }: { readonly checkup: Checkup }) {
             {CHECKUP_VENUE_LABELS[checkup.venue]}
           </span>
           {checkup.isMandatory && (
-            <span className="inline-flex rounded-full border border-coral-200 bg-coral-50 px-2 py-0.5 text-xs font-medium text-coral-700">
+            <span className="inline-flex rounded-full border border-blush-200 bg-blush-50 px-2 py-0.5 text-xs font-medium text-blush-600">
               法定健診
             </span>
           )}
@@ -146,7 +146,7 @@ function CheckupCard({ checkup }: { readonly checkup: Checkup }) {
         <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-muted">
           {checkup.description}
         </p>
-        <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
+        <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
           詳しく見る
           <ArrowRight className="h-3 w-3" />
         </span>
@@ -165,7 +165,7 @@ function ScheduleTimeline({
   return (
     <div className="relative">
       {/* Vertical line */}
-      <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-teal-200 sm:left-8" />
+      <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-sage-200 sm:left-8" />
 
       <div className="space-y-6">
         {TIMELINE_ITEMS.map((item, index) => {
@@ -180,8 +180,8 @@ function ScheduleTimeline({
           return (
             <div key={checkup.slug} className="relative flex gap-4 sm:gap-6">
               {/* Timeline dot */}
-              <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-teal-400 bg-white sm:h-16 sm:w-16">
-                <span className="text-xs font-bold text-teal-700 sm:text-sm">
+              <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-sage-400 bg-white sm:h-16 sm:w-16">
+                <span className="text-xs font-bold text-sage-700 sm:text-sm">
                   {item.ageLabel}
                 </span>
               </div>
@@ -189,7 +189,7 @@ function ScheduleTimeline({
               {/* Content */}
               <Link
                 href={`/checkups/${checkup.slug}`}
-                className="group flex min-w-0 flex-1 items-center gap-3 rounded-xl border border-border bg-card p-4 transition-all hover:border-teal-200 hover:shadow-md"
+                className="group flex min-w-0 flex-1 items-center gap-3 rounded-xl border border-border bg-card p-4 transition-all hover:border-sage-200 hover:shadow-md"
               >
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
@@ -217,7 +217,7 @@ function ScheduleTimeline({
                       </span>
                     )}
                     {checkup.isMandatory && (
-                      <span className="inline-flex rounded-full border border-coral-200 bg-coral-50 px-2 py-0.5 text-xs font-medium text-coral-700">
+                      <span className="inline-flex rounded-full border border-blush-200 bg-blush-50 px-2 py-0.5 text-xs font-medium text-blush-600">
                         法定
                       </span>
                     )}
@@ -242,10 +242,10 @@ export default function CheckupsPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-10 pt-10 sm:pb-16 sm:pt-14">
+      <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-10 pt-10 sm:pb-16 sm:pt-14">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-100">
-            <ClipboardCheck className="h-7 w-7 text-teal-600" />
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-sage-100">
+            <ClipboardCheck className="h-7 w-7 text-sage-600" />
           </div>
           <h1 className="mt-5 font-heading text-3xl font-bold text-foreground sm:text-4xl">
             乳幼児健診ガイド
@@ -261,7 +261,7 @@ export default function CheckupsPage() {
               <a
                 key={link.href}
                 href={link.href}
-                className="inline-flex items-center gap-1.5 rounded-full border border-teal-200 bg-white px-4 py-2 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+                className="inline-flex items-center gap-1.5 rounded-full border border-sage-200 bg-white px-4 py-2 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
               >
                 <link.icon className="h-3.5 w-3.5" />
                 {link.label}
@@ -274,12 +274,12 @@ export default function CheckupsPage() {
       {/* Doctor's Message */}
       <section className="px-4 py-10">
         <div className="mx-auto max-w-4xl">
-          <div className="flex gap-4 rounded-xl border border-teal-200 bg-teal-50/50 p-5 sm:p-6">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teal-600">
+          <div className="flex gap-4 rounded-xl border border-sage-200 bg-sage-50/50 p-5 sm:p-6">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sage-600">
               <Stethoscope className="h-6 w-6 text-white" />
             </div>
             <div>
-              <p className="text-sm font-bold text-teal-800">
+              <p className="text-sm font-bold text-sage-800">
                 おかもん先生より
               </p>
               <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -333,7 +333,7 @@ export default function CheckupsPage() {
       {/* Checkup Cards List */}
       <section
         id="checkups"
-        className="scroll-mt-20 border-t border-border bg-warm-100/50 px-4 py-16"
+        className="scroll-mt-20 border-t border-border bg-ivory-100/50 px-4 py-16"
       >
         <div className="mx-auto max-w-4xl space-y-10">
           <SectionHeading
@@ -343,24 +343,24 @@ export default function CheckupsPage() {
             健診一覧
           </SectionHeading>
 
-          <div className="rounded-xl border border-teal-200 bg-teal-50 p-5">
+          <div className="rounded-xl border border-sage-200 bg-sage-50 p-5">
             <div className="flex items-start gap-3">
-              <Info className="mt-0.5 h-5 w-5 shrink-0 text-teal-600" />
+              <Info className="mt-0.5 h-5 w-5 shrink-0 text-sage-600" />
               <div className="space-y-1.5">
-                <p className="text-sm font-bold text-teal-800">
+                <p className="text-sm font-bold text-sage-800">
                   乳幼児健診の基本
                 </p>
-                <ul className="space-y-1 text-sm text-teal-700">
+                <ul className="space-y-1 text-sm text-sage-700">
                   <li className="flex items-start gap-1.5">
-                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-500" />
+                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sage-500" />
                     1歳半健診と3歳児健診は法律で義務づけられた健診です。必ず受診してください
                   </li>
                   <li className="flex items-start gap-1.5">
-                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-500" />
+                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sage-500" />
                     港区では3〜4ヶ月・6〜7ヶ月・9〜10ヶ月の健診も公費（無料）で受けられます
                   </li>
                   <li className="flex items-start gap-1.5">
-                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-500" />
+                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sage-500" />
                     健診で「要経過観察」と言われても慌てないでください。早めのフォローがお子さんの発達をサポートします
                   </li>
                 </ul>
@@ -391,8 +391,8 @@ export default function CheckupsPage() {
                 key={prep.item}
                 className="flex gap-4 rounded-xl border border-border bg-card p-5"
               >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-50">
-                  <ListChecks className="h-5 w-5 text-teal-600" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sage-50">
+                  <ListChecks className="h-5 w-5 text-sage-600" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <h3 className="font-heading text-sm font-bold text-card-foreground">
@@ -415,7 +415,7 @@ export default function CheckupsPage() {
       {/* FAQ Overview */}
       <section
         id="faq"
-        className="scroll-mt-20 border-t border-border bg-warm-100/50 px-4 py-16"
+        className="scroll-mt-20 border-t border-border bg-ivory-100/50 px-4 py-16"
       >
         <div className="mx-auto max-w-3xl">
           <SectionHeading
@@ -431,8 +431,8 @@ export default function CheckupsPage() {
                 className="group rounded-xl border border-border bg-card"
               >
                 <summary className="flex cursor-pointer items-center gap-3 p-5 [&::-webkit-details-marker]:hidden">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-teal-50">
-                    <MessageCircleQuestion className="h-4 w-4 text-teal-600" />
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sage-50">
+                    <MessageCircleQuestion className="h-4 w-4 text-sage-600" />
                   </div>
                   <span className="flex-1 text-sm font-bold text-card-foreground">
                     {faq.question}
@@ -474,12 +474,12 @@ export default function CheckupsPage() {
             医師はどこを見ているのか
           </SectionHeading>
           <div className="mt-8">
-            <div className="flex gap-4 rounded-xl border border-teal-200 bg-teal-50/50 p-5 sm:p-6">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teal-600">
+            <div className="flex gap-4 rounded-xl border border-sage-200 bg-sage-50/50 p-5 sm:p-6">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sage-600">
                 <Eye className="h-6 w-6 text-white" />
               </div>
               <div>
-                <p className="text-sm font-bold text-teal-800">
+                <p className="text-sm font-bold text-sage-800">
                   おかもん先生の解説
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -496,13 +496,13 @@ export default function CheckupsPage() {
                 <Link
                   key={checkup.slug}
                   href={`/checkups/${checkup.slug}`}
-                  className="group flex items-center gap-3 rounded-xl border border-border bg-card p-4 transition-all hover:border-teal-200 hover:shadow-md"
+                  className="group flex items-center gap-3 rounded-xl border border-border bg-card p-4 transition-all hover:border-sage-200 hover:shadow-md"
                 >
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-teal-50">
-                    <Eye className="h-4 w-4 text-teal-600" />
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sage-50">
+                    <Eye className="h-4 w-4 text-sage-600" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-sm font-bold text-card-foreground group-hover:text-teal-700">
+                    <h3 className="text-sm font-bold text-card-foreground group-hover:text-sage-700">
                       {checkup.name}
                     </h3>
                     <p className="mt-0.5 text-xs text-muted">
@@ -523,7 +523,7 @@ export default function CheckupsPage() {
           <div className="flex flex-col gap-4 sm:flex-row">
             <Link
               href="/clinics"
-              className="flex flex-1 items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+              className="flex flex-1 items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
                 <MapPin className="h-5 w-5" />
@@ -537,9 +537,9 @@ export default function CheckupsPage() {
             </Link>
             <Link
               href="/programs"
-              className="flex flex-1 items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+              className="flex flex-1 items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-coral-50 text-coral-500">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blush-50 text-blush-500">
                 <Heart className="h-5 w-5" />
               </div>
               <div>

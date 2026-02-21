@@ -10,7 +10,7 @@ const CATEGORY_COLORS: Record<ArticleCategory, string> = {
   development: "bg-purple-50 text-purple-700 ring-purple-200",
   nutrition: "bg-green-50 text-green-700 ring-green-200",
   emergency: "bg-red-100 text-red-800 ring-red-300",
-  checkup: "bg-teal-50 text-teal-700 ring-teal-200",
+  checkup: "bg-sage-50 text-sage-700 ring-sage-200",
   "mental-health": "bg-indigo-50 text-indigo-700 ring-indigo-200",
   "municipal-service": "bg-cyan-50 text-cyan-700 ring-cyan-200",
 } as const

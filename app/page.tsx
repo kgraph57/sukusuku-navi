@@ -31,8 +31,8 @@ const FEATURES = [
     icon: BookOpen,
     title: "記事を読む",
     description:
-      "小児科医が書いた50本以上のQ&A記事。感染症、アレルギー、予防接種など。",
-    color: "bg-teal-50 text-teal-600",
+      "小児科医が書いた60本以上のQ&A記事。感染症、アレルギー、予防接種など。",
+    color: "bg-sage-50 text-sage-600",
   },
   {
     href: "/vaccines",
@@ -40,14 +40,14 @@ const FEATURES = [
     title: "予防接種ガイド",
     description:
       "定期接種・任意接種のスケジュール、港区での接種手順、科学的エビデンス。",
-    color: "bg-blue-50 text-blue-600",
+    color: "bg-sage-100 text-sage-500",
   },
   {
     href: "/checkups",
     icon: Activity,
     title: "乳幼児健診ガイド",
     description: "各月齢の健診内容・準備物・医師のチェックポイントを解説。",
-    color: "bg-green-50 text-green-600",
+    color: "bg-sage-50 text-sage-500",
   },
   {
     href: "/simulator",
@@ -55,7 +55,7 @@ const FEATURES = [
     title: "給付金シミュレーター",
     description:
       "お子さんの年齢と世帯情報から、受けられる行政サービス・助成金を一括検索。",
-    color: "bg-coral-50 text-coral-500",
+    color: "bg-blush-50 text-blush-500",
   },
   {
     href: "/triage",
@@ -69,7 +69,7 @@ const FEATURES = [
     icon: MapPin,
     title: "小児科マップ",
     description: "港区の小児科を地図で探せます。夜間・休日対応の医療機関も。",
-    color: "bg-blue-50 text-blue-500",
+    color: "bg-sage-100 text-sage-600",
   },
   {
     href: "/nurseries",
@@ -77,14 +77,14 @@ const FEATURES = [
     title: "保育園探し",
     description:
       "港区の認可保育園・認証保育所を種別・エリアで検索。保活ガイドも。",
-    color: "bg-green-50 text-green-600",
+    color: "bg-sage-50 text-sage-600",
   },
   {
     href: "/checklists",
     icon: ClipboardCheck,
     title: "手続きガイド",
     description: "出産前から入園まで、必要な手続きをチェックリストで管理。",
-    color: "bg-purple-50 text-purple-500",
+    color: "bg-blush-100 text-blush-600",
   },
   {
     href: "/my",
@@ -92,7 +92,7 @@ const FEATURES = [
     title: "マイページ",
     description:
       "お子さんのプロフィールを登録して、手続き進捗・給付金をまとめて管理。",
-    color: "bg-orange-50 text-orange-500",
+    color: "bg-ivory-100 text-gold-600",
   },
 ] as const;
 
@@ -123,100 +123,6 @@ const RECOMMENDED_CATEGORIES: readonly {
   },
 ] as const;
 
-function HeroBackground() {
-  return (
-    <div
-      className="pointer-events-none absolute inset-0 overflow-hidden"
-      aria-hidden="true"
-    >
-      <svg
-        className="absolute -right-20 -top-20 h-[500px] w-[500px] opacity-[0.06]"
-        viewBox="0 0 400 400"
-        fill="none"
-      >
-        <circle
-          cx="200"
-          cy="200"
-          r="180"
-          stroke="currentColor"
-          strokeWidth="2"
-          className="text-teal-600"
-        />
-        <circle
-          cx="200"
-          cy="200"
-          r="140"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          className="text-teal-500"
-        />
-        <circle
-          cx="200"
-          cy="200"
-          r="100"
-          stroke="currentColor"
-          strokeWidth="1"
-          className="text-teal-400"
-        />
-        <circle
-          cx="150"
-          cy="150"
-          r="20"
-          fill="currentColor"
-          className="text-coral-400"
-        />
-        <circle
-          cx="280"
-          cy="120"
-          r="12"
-          fill="currentColor"
-          className="text-teal-400"
-        />
-        <circle
-          cx="120"
-          cy="280"
-          r="16"
-          fill="currentColor"
-          className="text-teal-300"
-        />
-        <circle
-          cx="300"
-          cy="260"
-          r="10"
-          fill="currentColor"
-          className="text-coral-300"
-        />
-      </svg>
-      <svg
-        className="absolute -bottom-10 -left-16 h-[350px] w-[350px] opacity-[0.05]"
-        viewBox="0 0 300 300"
-        fill="none"
-      >
-        <path
-          d="M150 30 C200 30, 270 80, 270 150 C270 220, 200 270, 150 270 C100 270, 30 220, 30 150 C30 80, 100 30, 150 30Z"
-          stroke="currentColor"
-          strokeWidth="2"
-          className="text-coral-500"
-        />
-        <circle
-          cx="80"
-          cy="100"
-          r="14"
-          fill="currentColor"
-          className="text-teal-300"
-        />
-        <circle
-          cx="220"
-          cy="200"
-          r="18"
-          fill="currentColor"
-          className="text-coral-300"
-        />
-      </svg>
-    </div>
-  );
-}
-
 function formatDate(dateStr: string): string {
   const date = new Date(dateStr);
   const year = date.getFullYear();
@@ -241,41 +147,42 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-warm-50 to-coral-50/30 px-4 pb-16 pt-12 sm:pb-24 sm:pt-20">
-        <HeroBackground />
+      {/* Hero Section — Aman-style serene minimalism */}
+      <section className="relative bg-gradient-to-b from-ivory-50 via-sage-50/30 to-ivory-50 px-4 pb-24 pt-20 sm:pb-36 sm:pt-28">
         <div className="relative mx-auto max-w-3xl text-center">
-          <p className="inline-flex items-center gap-1.5 rounded-full bg-teal-100/70 px-4 py-1.5 text-sm font-medium text-teal-700">
-            <Stethoscope className="h-3.5 w-3.5" />
-            愛育病院 小児科おかもん
+          <p className="text-sm font-medium tracking-[0.2em] uppercase text-sage-500">
+            愛育病院 小児科
           </p>
-          <h1 className="mt-5 font-heading text-3xl font-bold leading-tight text-foreground sm:text-5xl">
+          <h1 className="mt-8 font-heading text-3xl font-semibold leading-tight tracking-wide text-foreground sm:text-5xl">
             診察室の外でも、
             <br />
-            <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
-              お子さんのそばに。
-            </span>
+            <span className="text-sage-700">お子さんのそばに。</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
             小児科医がエビデンスに基づいて書いた記事、給付金シミュレーター、受診判断ガイド。
+            <br className="hidden sm:block" />
             子育てに必要な情報を、ひとつの場所に。
           </p>
-          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <div
+            className="mx-auto mt-10 h-px w-16 bg-gradient-to-r from-transparent via-gold-500 to-transparent"
+            aria-hidden="true"
+          />
+          <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/articles"
-              className="inline-flex items-center gap-2 rounded-full bg-teal-600 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-teal-600/25 transition-all hover:bg-teal-700 hover:shadow-xl hover:shadow-teal-600/30"
+              className="inline-flex items-center gap-2 rounded-full bg-sage-600 px-8 py-4 text-sm font-medium tracking-wide text-white shadow-md shadow-sage-600/15 transition-all hover:bg-sage-700 hover:shadow-lg hover:shadow-sage-600/20"
             >
               記事を読む
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/simulator"
-              className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-white px-7 py-3.5 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+              className="inline-flex items-center gap-2 rounded-full border border-sage-200 bg-white px-8 py-4 text-sm font-medium tracking-wide text-sage-700 transition-colors hover:bg-sage-50"
             >
               給付金を調べる
             </Link>
           </div>
-          <p className="mt-6 text-xs text-muted">
+          <p className="mt-8 text-xs tracking-wider text-muted">
             {allArticles.length}本以上の記事を無料で公開中
           </p>
         </div>
@@ -288,30 +195,30 @@ export default function HomePage() {
       <OnboardingBanner />
 
       {/* Features Section */}
-      <section className="px-4 py-16 sm:py-24">
+      <section className="px-4 py-20 sm:py-32">
         <div className="mx-auto max-w-5xl">
           <SectionHeading subtitle="子育てに必要な情報を、ワンストップで">
             すくすくナビでできること
           </SectionHeading>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map((feature) => (
               <Link
                 key={feature.href}
                 href={feature.href}
-                className="group rounded-xl border border-border bg-card p-6 transition-all hover:border-teal-200 hover:shadow-md"
+                className="group rounded-xl border border-border bg-card p-7 transition-all duration-200 hover:border-sage-200 hover:shadow-md hover:-translate-y-0.5"
               >
                 <div
                   className={`inline-flex h-10 w-10 items-center justify-center rounded-lg ${feature.color}`}
                 >
                   <feature.icon className="h-5 w-5" />
                 </div>
-                <h3 className="mt-4 font-heading text-lg font-bold text-card-foreground">
+                <h3 className="mt-4 font-heading text-lg font-semibold tracking-wide text-card-foreground">
                   {feature.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
                   {feature.description}
                 </p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
                   詳しく見る
                   <ArrowRight className="h-3.5 w-3.5" />
                 </span>
@@ -323,12 +230,12 @@ export default function HomePage() {
 
       {/* Latest Articles Section */}
       {latestArticles.length > 0 && (
-        <section className="border-t border-border bg-warm-100/50 px-4 py-16 sm:py-24">
+        <section className="border-t border-border bg-ivory-100/50 px-4 py-20 sm:py-32">
           <div className="mx-auto max-w-5xl">
             <SectionHeading subtitle="小児科医おかもんが書き下ろした最新の記事">
               最新の記事
             </SectionHeading>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {latestArticles.map((article) => (
                 <Card
                   key={article.frontmatter.slug}
@@ -341,7 +248,7 @@ export default function HomePage() {
                       Vol.{article.frontmatter.vol}
                     </span>
                   </div>
-                  <CardTitle className="mt-3 line-clamp-2 group-hover:text-teal-700">
+                  <CardTitle className="mt-3 line-clamp-2 group-hover:text-sage-700">
                     {article.frontmatter.title}
                   </CardTitle>
                   <CardDescription className="mt-2 line-clamp-2">
@@ -357,10 +264,10 @@ export default function HomePage() {
                 </Card>
               ))}
             </div>
-            <div className="mt-8 text-center">
+            <div className="mt-10 text-center">
               <Link
                 href="/articles"
-                className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-white px-6 py-3 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+                className="inline-flex items-center gap-2 rounded-full border border-sage-200 bg-white px-7 py-3.5 text-sm font-medium tracking-wide text-sage-700 transition-colors hover:bg-sage-50"
               >
                 すべての記事を見る
                 <ArrowRight className="h-4 w-4" />
@@ -371,35 +278,35 @@ export default function HomePage() {
       )}
 
       {/* Recommended by Category Section */}
-      <section className="px-4 py-16 sm:py-24">
+      <section className="px-4 py-20 sm:py-32">
         <div className="mx-auto max-w-5xl">
           <SectionHeading subtitle="気になるテーマから記事を探せます">
             いま読まれている記事
           </SectionHeading>
-          <div className="mt-10 grid gap-8 sm:grid-cols-2">
+          <div className="mt-12 grid gap-8 sm:grid-cols-2">
             {recommendedByCategory.map((rec) => (
               <div
                 key={rec.category}
-                className="rounded-xl border border-border bg-card p-6"
+                className="rounded-xl border border-border bg-card p-7"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-50 text-teal-600">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sage-50 text-sage-600">
                     <rec.icon className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-heading text-base font-bold text-card-foreground">
+                    <h3 className="font-heading text-base font-semibold tracking-wide text-card-foreground">
                       {CATEGORY_LABELS[rec.category]}
                     </h3>
                     <p className="text-xs text-muted">{rec.description}</p>
                   </div>
                 </div>
                 {rec.articles.length > 0 ? (
-                  <ul className="mt-4 divide-y divide-border">
+                  <ul className="mt-5 divide-y divide-border">
                     {rec.articles.map((article) => (
                       <li key={article.frontmatter.slug}>
                         <Link
                           href={`/articles/${article.frontmatter.slug}`}
-                          className="group flex items-center gap-2 py-3 text-sm text-foreground transition-colors hover:text-teal-700"
+                          className="group flex items-center gap-2 py-3 text-sm text-foreground transition-colors hover:text-sage-700"
                         >
                           <span className="shrink-0 text-xs font-medium text-muted">
                             Vol.{article.frontmatter.vol}
@@ -413,7 +320,7 @@ export default function HomePage() {
                     ))}
                   </ul>
                 ) : (
-                  <p className="mt-4 text-sm text-muted">記事を準備中です</p>
+                  <p className="mt-5 text-sm text-muted">記事を準備中です</p>
                 )}
               </div>
             ))}
@@ -422,40 +329,41 @@ export default function HomePage() {
       </section>
 
       {/* About Section */}
-      <section className="border-t border-border bg-teal-50/50 px-4 py-16 sm:py-24">
+      <section className="border-t border-border bg-sage-50/30 px-4 py-20 sm:py-32">
         <div className="mx-auto max-w-4xl">
-          <SectionHeading>おかもん先生について</SectionHeading>
-          <div className="mt-10 flex flex-col items-center gap-8 sm:flex-row sm:items-start">
-            <div className="flex h-28 w-28 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-400 to-teal-600 shadow-lg">
+          <SectionHeading>運営者について</SectionHeading>
+          <div className="mt-12 flex flex-col items-center gap-10 sm:flex-row sm:items-start">
+            <div className="flex h-28 w-28 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sage-500 to-sage-700 shadow-lg">
               <Stethoscope className="h-12 w-12 text-white" />
             </div>
             <div>
-              <h3 className="font-heading text-xl font-bold text-foreground">
-                おかもん（岡本 賢）
+              <h3 className="font-heading text-xl font-semibold tracking-wide text-foreground">
+                岡本 賢
               </h3>
-              <p className="mt-1 text-sm font-medium text-teal-600">
-                愛育病院 小児科医
+              <p className="mt-1 text-sm font-medium text-sage-600">
+                愛育病院 小児科 / すくすくナビ開発者
               </p>
-              <p className="mt-1 text-xs text-muted">
-                順天堂大学 → 国立成育医療研究センター → 愛育病院
-              </p>
+              <div
+                className="mt-3 h-px w-12 bg-gradient-to-r from-gold-500 to-transparent"
+                aria-hidden="true"
+              />
               <p className="mt-4 text-base leading-relaxed text-muted">
-                診察室の中だけでなく、保護者の方が家庭で正しい判断ができるよう、エビデンスに基づいた情報発信を続けています。すべての記事に参考文献を明記し、「根拠のある安心」を届けます。
+                順天堂大学医学部卒業。順天堂大学附属練馬病院にて初期研修修了後、国立成育医療研究センターにて研鑽を積み、現在は愛育病院小児科に勤務。臨床医としての知見とテクノロジーを掛け合わせ、医療情報の非対称性を解消する社会実装に取り組んでいる。
               </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <span className="rounded-full bg-teal-100 px-3 py-1 text-xs font-medium text-teal-700">
+              <div className="mt-5 flex flex-wrap gap-2">
+                <span className="rounded-full bg-sage-100 px-3 py-1 text-xs font-medium text-sage-700">
                   小児科専門医
                 </span>
-                <span className="rounded-full bg-teal-100 px-3 py-1 text-xs font-medium text-teal-700">
-                  エビデンス重視
+                <span className="rounded-full bg-sage-100 px-3 py-1 text-xs font-medium text-sage-700">
+                  順天堂大学医学部卒
                 </span>
-                <span className="rounded-full bg-teal-100 px-3 py-1 text-xs font-medium text-teal-700">
-                  港区在住
+                <span className="rounded-full bg-sage-100 px-3 py-1 text-xs font-medium text-sage-700">
+                  国立成育医療研究センター出身
                 </span>
               </div>
               <Link
                 href="/about"
-                className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-600 transition-colors hover:text-teal-700"
+                className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-sage-600 transition-colors hover:text-sage-700"
               >
                 詳しいプロフィールを見る
                 <ArrowRight className="h-3.5 w-3.5" />
@@ -466,28 +374,32 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="px-4 py-16 sm:py-24">
+      <section className="px-4 py-20 sm:py-32">
         <div className="mx-auto max-w-3xl">
-          <div className="rounded-2xl bg-gradient-to-br from-teal-600 to-teal-700 px-6 py-12 text-center shadow-xl sm:px-12">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-white/20">
+          <div className="rounded-2xl bg-gradient-to-br from-sage-700 to-sage-800 px-6 py-14 text-center shadow-xl sm:px-12">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-white/15">
               <Mail className="h-7 w-7 text-white" />
             </div>
-            <h2 className="mt-5 font-heading text-2xl font-bold text-white sm:text-3xl">
+            <h2 className="mt-6 font-heading text-2xl font-semibold tracking-wide text-white sm:text-3xl">
               メルマガに登録しませんか？
             </h2>
-            <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-teal-100">
+            <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-sage-200">
               おかもん先生が月2回、最新の小児医療トピックをわかりやすく解説します。登録は無料、いつでも解除できます。
             </p>
+            <div
+              className="mx-auto mt-6 h-px w-12 bg-gradient-to-r from-transparent via-gold-400/60 to-transparent"
+              aria-hidden="true"
+            />
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium text-teal-700 shadow-lg transition-all hover:bg-teal-50 hover:shadow-xl"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-medium tracking-wide text-sage-700 shadow-lg transition-all hover:bg-sage-50 hover:shadow-xl"
               >
                 <Mail className="h-4 w-4" />
                 メルマガ登録はこちら
               </Link>
             </div>
-            <p className="mt-4 text-xs text-teal-200">
+            <p className="mt-5 text-xs tracking-wider text-sage-300">
               現在 {allArticles.length} 号まで配信中
             </p>
           </div>

@@ -59,8 +59,8 @@ function ChildSelector({
             onClick={() => onSelect(child.id)}
             className={`flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
               isActive
-                ? "bg-teal-500 text-white"
-                : "bg-warm-100 text-muted hover:bg-warm-200"
+                ? "bg-sage-500 text-white"
+                : "bg-ivory-100 text-muted hover:bg-ivory-200"
             }`}
           >
             <Users className="h-3.5 w-3.5" />
@@ -97,11 +97,11 @@ function ProgressSummary({
         <span className="font-medium text-card-foreground">
           接種進捗: {completedDoses}/{totalDoses}回完了
         </span>
-        <span className="font-medium text-teal-600">{percent}%</span>
+        <span className="font-medium text-sage-600">{percent}%</span>
       </div>
-      <div className="mt-2 h-3 overflow-hidden rounded-full bg-warm-100">
+      <div className="mt-2 h-3 overflow-hidden rounded-full bg-ivory-100">
         <div
-          className="h-full rounded-full bg-teal-500 transition-all duration-300"
+          className="h-full rounded-full bg-sage-500 transition-all duration-300"
           style={{ width: `${percent}%` }}
         />
       </div>
@@ -133,7 +133,7 @@ function DoseRow({
   return (
     <div
       className={`flex items-center gap-3 rounded-lg border p-3 transition-all ${
-        isCompleted ? "border-teal-200 bg-teal-50/50" : "border-border"
+        isCompleted ? "border-sage-200 bg-sage-50/50" : "border-border"
       }`}
     >
       <button
@@ -143,7 +143,7 @@ function DoseRow({
         aria-label={isCompleted ? "接種を取り消す" : "接種済みにする"}
       >
         {isCompleted ? (
-          <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-teal-500 bg-teal-500 text-white">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-sage-500 bg-sage-500 text-white">
             <Check className="h-4 w-4" />
           </div>
         ) : (
@@ -157,7 +157,7 @@ function DoseRow({
         <p
           className={`text-sm font-medium ${
             isCompleted
-              ? "text-teal-700 line-through"
+              ? "text-sage-700 line-through"
               : "text-card-foreground"
           }`}
         >
@@ -171,7 +171,7 @@ function DoseRow({
       </div>
 
       {record?.administeredDate && (
-        <div className="flex items-center gap-1 text-xs text-teal-600">
+        <div className="flex items-center gap-1 text-xs text-sage-600">
           <Calendar className="h-3 w-3" />
           <span>{record.administeredDate}</span>
         </div>
@@ -222,7 +222,7 @@ function VaccineCard({
   return (
     <div
       className={`rounded-xl border bg-card transition-all ${
-        allCompleted ? "border-teal-200" : "border-border"
+        allCompleted ? "border-sage-200" : "border-border"
       }`}
     >
       <button
@@ -233,8 +233,8 @@ function VaccineCard({
         <div
           className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${
             isRoutine
-              ? "bg-teal-50 text-teal-600"
-              : "bg-coral-50 text-coral-500"
+              ? "bg-sage-50 text-sage-600"
+              : "bg-blush-50 text-blush-500"
           }`}
         >
           <Syringe className="h-5 w-5" />
@@ -247,17 +247,17 @@ function VaccineCard({
             <span
               className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${
                 isRoutine
-                  ? "bg-teal-50 text-teal-700"
-                  : "bg-coral-50 text-coral-600"
+                  ? "bg-sage-50 text-sage-700"
+                  : "bg-blush-50 text-blush-600"
               }`}
             >
               {VACCINE_TYPE_LABELS[vaccine.type]}
             </span>
           </div>
           <div className="mt-1 flex items-center gap-2">
-            <div className="h-1.5 w-20 overflow-hidden rounded-full bg-warm-100">
+            <div className="h-1.5 w-20 overflow-hidden rounded-full bg-ivory-100">
               <div
-                className="h-full rounded-full bg-teal-500 transition-all"
+                className="h-full rounded-full bg-sage-500 transition-all"
                 style={{
                   width: `${totalCount > 0 ? (completedCount / totalCount) * 100 : 0}%`,
                 }}
@@ -291,7 +291,7 @@ function VaccineCard({
           </div>
           <Link
             href={`/vaccines/${vaccine.slug}`}
-            className="mt-3 inline-block text-xs font-medium text-teal-600 hover:text-teal-700"
+            className="mt-3 inline-block text-xs font-medium text-sage-600 hover:text-sage-700"
           >
             詳細を見る →
           </Link>
@@ -376,14 +376,14 @@ export default function VaccinationsPage() {
 
   if (!isLoaded) {
     return (
-      <div className="min-h-screen bg-warm-50 px-4 py-12">
+      <div className="min-h-screen bg-ivory-50 px-4 py-12">
         <div className="mx-auto max-w-3xl">
-          <div className="h-8 w-48 animate-pulse rounded bg-warm-200" />
+          <div className="h-8 w-48 animate-pulse rounded bg-ivory-200" />
           <div className="mt-6 space-y-4">
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="h-20 animate-pulse rounded-xl bg-warm-200"
+                className="h-20 animate-pulse rounded-xl bg-ivory-200"
               />
             ))}
           </div>
@@ -394,7 +394,7 @@ export default function VaccinationsPage() {
 
   if (!profile || profile.children.length === 0) {
     return (
-      <div className="min-h-screen bg-warm-50 px-4 py-12">
+      <div className="min-h-screen bg-ivory-50 px-4 py-12">
         <div className="mx-auto max-w-3xl">
           <Link
             href="/my"
@@ -403,9 +403,9 @@ export default function VaccinationsPage() {
             <ArrowLeft className="h-3.5 w-3.5" />
             マイページに戻る
           </Link>
-          <div className="mt-8 rounded-2xl border-2 border-dashed border-teal-200 bg-white/60 p-10 text-center">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-teal-100">
-              <Baby className="h-7 w-7 text-teal-600" />
+          <div className="mt-8 rounded-2xl border-2 border-dashed border-sage-200 bg-white/60 p-10 text-center">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
+              <Baby className="h-7 w-7 text-sage-600" />
             </div>
             <h1 className="mt-4 font-heading text-lg font-bold text-foreground">
               お子さんを登録してください
@@ -415,7 +415,7 @@ export default function VaccinationsPage() {
             </p>
             <Link
               href="/my"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-teal-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-teal-700"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-sage-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700"
             >
               <Baby className="h-4 w-4" />
               お子さんを登録する
@@ -433,7 +433,7 @@ export default function VaccinationsPage() {
 
   return (
     <>
-      <section className="bg-gradient-to-b from-purple-50 to-warm-50 px-4 pb-6 pt-8 sm:pb-8 sm:pt-12">
+      <section className="bg-gradient-to-b from-purple-50 to-ivory-50 px-4 pb-6 pt-8 sm:pb-8 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <Link
             href="/my"
@@ -484,7 +484,7 @@ export default function VaccinationsPage() {
 
           {/* Routine vaccines */}
           <div>
-            <h2 className="flex items-center gap-1.5 font-heading text-base font-bold text-teal-700">
+            <h2 className="flex items-center gap-1.5 font-heading text-base font-bold text-sage-700">
               <Shield className="h-4 w-4" />
               {VACCINE_TYPE_LABELS.routine}（公費・無料）
             </h2>
@@ -503,7 +503,7 @@ export default function VaccinationsPage() {
 
           {/* Optional vaccines */}
           <div>
-            <h2 className="flex items-center gap-1.5 font-heading text-base font-bold text-coral-600">
+            <h2 className="flex items-center gap-1.5 font-heading text-base font-bold text-blush-600">
               <Star className="h-4 w-4" />
               {VACCINE_TYPE_LABELS.optional}（一部助成あり）
             </h2>
@@ -527,7 +527,7 @@ export default function VaccinationsPage() {
             </p>
             <Link
               href="/vaccines"
-              className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-teal-600 hover:text-teal-700"
+              className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-sage-600 hover:text-sage-700"
             >
               予防接種一覧を見る
               <ArrowLeft className="h-3.5 w-3.5 rotate-180" />

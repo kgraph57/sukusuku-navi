@@ -14,7 +14,7 @@ const URGENCY_DOT: Record<TimelineUrgency, string> = {
   overdue: "bg-red-500",
   urgent: "bg-orange-400",
   soon: "bg-amber-400",
-  upcoming: "bg-teal-400",
+  upcoming: "bg-sage-400",
   future: "bg-gray-300",
 };
 
@@ -120,11 +120,11 @@ export function CalendarView({
   return (
     <div className="space-y-4">
       {/* Month navigation */}
-      <div className="flex items-center justify-between rounded-lg bg-warm-50 px-4 py-3">
+      <div className="flex items-center justify-between rounded-lg bg-ivory-50 px-4 py-3">
         <button
           type="button"
           onClick={prevMonth}
-          className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-warm-100"
+          className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-ivory-100"
           aria-label="前の月"
         >
           <ChevronLeft className="h-4 w-4 text-muted" />
@@ -135,7 +135,7 @@ export function CalendarView({
         <button
           type="button"
           onClick={nextMonth}
-          className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-warm-100"
+          className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-ivory-100"
           aria-label="次の月"
         >
           <ChevronRight className="h-4 w-4 text-muted" />
@@ -194,18 +194,18 @@ export function CalendarView({
                 onClick={() => setSelectedDate(isSelected ? null : date)}
                 className={`relative flex min-h-[52px] flex-col items-center gap-1 border-b border-r border-border/40 p-1 transition-colors last:border-r-0 ${
                   isSelected
-                    ? "bg-teal-50"
+                    ? "bg-sage-50"
                     : hasItems
-                      ? "cursor-pointer hover:bg-warm-50"
-                      : "hover:bg-warm-50/50"
+                      ? "cursor-pointer hover:bg-ivory-50"
+                      : "hover:bg-ivory-50/50"
                 }`}
               >
                 <span
                   className={`flex h-6 w-6 items-center justify-center rounded-full text-xs font-medium ${
                     isToday
-                      ? "bg-teal-600 text-white"
+                      ? "bg-sage-600 text-white"
                       : isSelected
-                        ? "font-bold text-teal-700"
+                        ? "font-bold text-sage-700"
                         : dow === 0
                           ? "text-red-500"
                           : dow === 6
@@ -217,7 +217,7 @@ export function CalendarView({
                 </span>
                 {hasItems &&
                   (allCompleted ? (
-                    <CheckCircle2 className="h-3 w-3 text-teal-400" />
+                    <CheckCircle2 className="h-3 w-3 text-sage-400" />
                   ) : (
                     <div className="flex flex-wrap justify-center gap-0.5 px-0.5">
                       {topUrgencies.map((urgency, i) => (
@@ -251,7 +251,7 @@ export function CalendarView({
 
       {/* Selected day panel */}
       {selectedDate != null && (
-        <div className="rounded-xl border border-teal-100 bg-teal-50/40 p-4">
+        <div className="rounded-xl border border-sage-100 bg-sage-50/40 p-4">
           <p className="font-heading text-sm font-bold text-foreground">
             {selectedDate.getMonth() + 1}月{selectedDate.getDate()}日
           </p>
@@ -263,7 +263,7 @@ export function CalendarView({
                 <div
                   key={item.id}
                   className={`rounded-lg border border-border p-3 ${
-                    item.completed ? "bg-warm-50 opacity-70" : "bg-card"
+                    item.completed ? "bg-ivory-50 opacity-70" : "bg-card"
                   }`}
                 >
                   <div className="flex items-start gap-2">
@@ -277,9 +277,9 @@ export function CalendarView({
                         }
                       >
                         {item.completed ? (
-                          <CheckCircle2 className="h-4 w-4 text-teal-500" />
+                          <CheckCircle2 className="h-4 w-4 text-sage-500" />
                         ) : (
-                          <Circle className="h-4 w-4 text-gray-300 hover:text-teal-400" />
+                          <Circle className="h-4 w-4 text-gray-300 hover:text-sage-400" />
                         )}
                       </button>
                     ) : (

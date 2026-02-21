@@ -60,7 +60,7 @@ function VaccineCard({ vaccine }: { readonly vaccine: Vaccine }) {
   return (
     <Link
       href={`/vaccines/${vaccine.slug}`}
-      className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+      className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
     >
       <div
         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${colorClass}`}
@@ -79,7 +79,7 @@ function VaccineCard({ vaccine }: { readonly vaccine: Vaccine }) {
             {VACCINE_TYPE_LABELS[vaccine.type]}
           </span>
           {vaccine.relatedProgramSlug && (
-            <span className="inline-flex rounded-full border border-coral-200 bg-coral-50 px-2 py-0.5 text-xs font-medium text-coral-700">
+            <span className="inline-flex rounded-full border border-blush-200 bg-blush-50 px-2 py-0.5 text-xs font-medium text-blush-600">
               港区助成あり
             </span>
           )}
@@ -89,7 +89,7 @@ function VaccineCard({ vaccine }: { readonly vaccine: Vaccine }) {
           {vaccine.description}
         </p>
         {firstDose && (
-          <p className="mt-2 text-xs font-medium text-teal-600">
+          <p className="mt-2 text-xs font-medium text-sage-600">
             接種時期:{" "}
             {vaccine.doses.length === 1
               ? formatAgeMonths(firstDose.ageMonthsStandard)
@@ -97,7 +97,7 @@ function VaccineCard({ vaccine }: { readonly vaccine: Vaccine }) {
             ／ 計{vaccine.doses.length}回
           </p>
         )}
-        <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
+        <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
           詳細・接種スケジュール
           <ArrowRight className="h-3 w-3" />
         </span>
@@ -118,10 +118,10 @@ export default function VaccinesPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-10 pt-10 sm:pb-16 sm:pt-14">
+      <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-10 pt-10 sm:pb-16 sm:pt-14">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-100">
-            <Syringe className="h-7 w-7 text-teal-600" />
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-sage-100">
+            <Syringe className="h-7 w-7 text-sage-600" />
           </div>
           <h1 className="mt-5 font-heading text-3xl font-bold text-foreground sm:text-4xl">
             予防接種ガイド
@@ -137,7 +137,7 @@ export default function VaccinesPage() {
               <a
                 key={link.href}
                 href={link.href}
-                className="inline-flex items-center gap-1.5 rounded-full border border-teal-200 bg-white px-4 py-2 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+                className="inline-flex items-center gap-1.5 rounded-full border border-sage-200 bg-white px-4 py-2 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
               >
                 <link.icon className="h-3.5 w-3.5" />
                 {link.label}
@@ -150,12 +150,12 @@ export default function VaccinesPage() {
       {/* Doctor's Message */}
       <section className="px-4 py-10">
         <div className="mx-auto max-w-4xl">
-          <div className="flex gap-4 rounded-xl border border-teal-200 bg-teal-50/50 p-5 sm:p-6">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teal-600">
+          <div className="flex gap-4 rounded-xl border border-sage-200 bg-sage-50/50 p-5 sm:p-6">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sage-600">
               <Stethoscope className="h-6 w-6 text-white" />
             </div>
             <div>
-              <p className="text-sm font-bold text-teal-800">
+              <p className="text-sm font-bold text-sage-800">
                 おかもん先生より
               </p>
               <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -191,7 +191,7 @@ export default function VaccinesPage() {
       {/* Vaccine List */}
       <section
         id="vaccines"
-        className="scroll-mt-20 border-t border-border bg-warm-100/50 px-4 py-16"
+        className="scroll-mt-20 border-t border-border bg-ivory-100/50 px-4 py-16"
       >
         <div className="mx-auto max-w-4xl space-y-10">
           <SectionHeading
@@ -201,24 +201,24 @@ export default function VaccinesPage() {
             ワクチン一覧
           </SectionHeading>
 
-          <div className="rounded-xl border border-teal-200 bg-teal-50 p-5">
+          <div className="rounded-xl border border-sage-200 bg-sage-50 p-5">
             <div className="flex items-start gap-3">
-              <Info className="mt-0.5 h-5 w-5 shrink-0 text-teal-600" />
+              <Info className="mt-0.5 h-5 w-5 shrink-0 text-sage-600" />
               <div className="space-y-1.5">
-                <p className="text-sm font-bold text-teal-800">
+                <p className="text-sm font-bold text-sage-800">
                   予防接種の基本ルール
                 </p>
-                <ul className="space-y-1 text-sm text-teal-700">
+                <ul className="space-y-1 text-sm text-sage-700">
                   <li className="flex items-start gap-1.5">
-                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-500" />
+                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sage-500" />
                     生後2ヶ月から開始。五種混合・肺炎球菌・B型肝炎・ロタを同時接種するのが標準的なスタートです
                   </li>
                   <li className="flex items-start gap-1.5">
-                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-500" />
+                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sage-500" />
                     同時接種は安全です。複数のワクチンを1回の来院でまとめて受けることで、早く免疫をつけられます
                   </li>
                   <li className="flex items-start gap-1.5">
-                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-500" />
+                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sage-500" />
                     定期接種は公費（無料）で受けられます。対象年齢・期間内に接種しましょう
                   </li>
                 </ul>
@@ -228,8 +228,8 @@ export default function VaccinesPage() {
 
           <div>
             <div className="flex items-center gap-3">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-100">
-                <Syringe className="h-3.5 w-3.5 text-teal-700" />
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sage-100">
+                <Syringe className="h-3.5 w-3.5 text-sage-700" />
               </span>
               <h3 className="font-heading text-xl font-bold text-foreground">
                 定期接種
@@ -237,7 +237,7 @@ export default function VaccinesPage() {
                   （公費・無料）
                 </span>
               </h3>
-              <span className="rounded-full bg-warm-200 px-2 py-0.5 text-xs font-medium text-muted">
+              <span className="rounded-full bg-ivory-200 px-2 py-0.5 text-xs font-medium text-muted">
                 {routineVaccines.length}種
               </span>
             </div>
@@ -259,7 +259,7 @@ export default function VaccinesPage() {
                   （原則自費・一部港区助成あり）
                 </span>
               </h3>
-              <span className="rounded-full bg-warm-200 px-2 py-0.5 text-xs font-medium text-muted">
+              <span className="rounded-full bg-ivory-200 px-2 py-0.5 text-xs font-medium text-muted">
                 {optionalVaccines.length}種
               </span>
             </div>
@@ -290,7 +290,7 @@ export default function VaccinesPage() {
       {/* FAQ Section */}
       <section
         id="faq"
-        className="scroll-mt-20 border-t border-border bg-warm-100/50 px-4 py-16"
+        className="scroll-mt-20 border-t border-border bg-ivory-100/50 px-4 py-16"
       >
         <div className="mx-auto max-w-3xl">
           <SectionHeading
@@ -322,7 +322,7 @@ export default function VaccinesPage() {
 
       {/* Related Articles */}
       {vaccinationArticles.length > 0 && (
-        <section className="border-t border-border bg-warm-100/50 px-4 py-16">
+        <section className="border-t border-border bg-ivory-100/50 px-4 py-16">
           <div className="mx-auto max-w-3xl">
             <SectionHeading
               subtitle="予防接種に関する詳しい記事もあわせてお読みください"
@@ -335,9 +335,9 @@ export default function VaccinesPage() {
                 <Link
                   key={article.frontmatter.slug}
                   href={`/articles/${article.frontmatter.slug}`}
-                  className="group flex items-center gap-4 rounded-xl border border-border bg-card p-4 transition-all hover:border-teal-200 hover:shadow-md"
+                  className="group flex items-center gap-4 rounded-xl border border-border bg-card p-4 transition-all hover:border-sage-200 hover:shadow-md"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-600">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sage-50 text-sage-600">
                     <BookOpen className="h-5 w-5" />
                   </div>
                   <div className="min-w-0 flex-1">
@@ -347,7 +347,7 @@ export default function VaccinesPage() {
                         Vol.{article.frontmatter.vol}
                       </span>
                     </div>
-                    <h3 className="mt-1 text-sm font-bold text-card-foreground group-hover:text-teal-700">
+                    <h3 className="mt-1 text-sm font-bold text-card-foreground group-hover:text-sage-700">
                       {article.frontmatter.title}
                     </h3>
                   </div>
@@ -373,19 +373,19 @@ export default function VaccinesPage() {
               href="https://www.know-vpd.jp/feature/vc_schedule.html"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+              className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-teal-200 bg-teal-50">
-                <ShieldCheck className="h-5 w-5 text-teal-600" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-sage-200 bg-sage-50">
+                <ShieldCheck className="h-5 w-5 text-sage-600" />
               </div>
               <div className="min-w-0 flex-1">
-                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-teal-700">
+                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-sage-700">
                   Know VPD!
                 </h3>
                 <p className="mt-0.5 text-xs text-muted">
                   予防接種スケジュール・各ワクチン詳細（日本ワクチン産業協会）
                 </p>
-                <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-teal-600">
+                <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-sage-600">
                   www.know-vpd.jp
                   <ExternalLink className="h-3 w-3" />
                 </span>
@@ -395,13 +395,13 @@ export default function VaccinesPage() {
               href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/yobou-sesshu/index.html"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+              className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blue-200 bg-blue-50">
                 <ShieldCheck className="h-5 w-5 text-blue-600" />
               </div>
               <div className="min-w-0 flex-1">
-                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-teal-700">
+                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-sage-700">
                   厚生労働省 予防接種情報
                 </h3>
                 <p className="mt-0.5 text-xs text-muted">
@@ -417,13 +417,13 @@ export default function VaccinesPage() {
               href="https://id-info.jihs.go.jp/relevant/vaccine/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+              className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-purple-200 bg-purple-50">
                 <BookOpen className="h-5 w-5 text-purple-600" />
               </div>
               <div className="min-w-0 flex-1">
-                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-teal-700">
+                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-sage-700">
                   国立感染症研究所（JIHS）
                 </h3>
                 <p className="mt-0.5 text-xs text-muted">
@@ -439,19 +439,19 @@ export default function VaccinesPage() {
               href="https://www.jpeds.or.jp/modules/activity/index.php?content_id=138"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+              className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-coral-200 bg-coral-50">
-                <Stethoscope className="h-5 w-5 text-coral-600" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blush-200 bg-blush-50">
+                <Stethoscope className="h-5 w-5 text-blush-600" />
               </div>
               <div className="min-w-0 flex-1">
-                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-teal-700">
+                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-sage-700">
                   日本小児科学会
                 </h3>
                 <p className="mt-0.5 text-xs text-muted">
                   同時接種の考え方・接種スケジュール推奨（専門医向け）
                 </p>
-                <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-coral-600">
+                <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-blush-600">
                   www.jpeds.or.jp
                   <ExternalLink className="h-3 w-3" />
                 </span>
@@ -467,7 +467,7 @@ export default function VaccinesPage() {
           <div className="flex flex-col gap-4 sm:flex-row">
             <Link
               href="/clinics"
-              className="flex flex-1 items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+              className="flex flex-1 items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
                 <MapPin className="h-5 w-5" />
@@ -481,9 +481,9 @@ export default function VaccinesPage() {
             </Link>
             <Link
               href="/programs"
-              className="flex flex-1 items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+              className="flex flex-1 items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-coral-50 text-coral-500">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blush-50 text-blush-500">
                 <Heart className="h-5 w-5" />
               </div>
               <div>

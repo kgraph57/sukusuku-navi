@@ -30,14 +30,14 @@ const CATEGORY_ICON_MAP: Record<string, typeof Heart> = {
 
 const CATEGORY_COLOR_MAP: Record<string, string> = {
   medical: "bg-red-50 text-red-600 border-red-200",
-  financial: "bg-teal-50 text-teal-600 border-teal-200",
+  financial: "bg-sage-50 text-sage-600 border-sage-200",
   childcare: "bg-blue-50 text-blue-600 border-blue-200",
   support: "bg-purple-50 text-purple-600 border-purple-200",
 }
 
 const CATEGORY_HEADER_COLOR_MAP: Record<string, string> = {
   medical: "text-red-600",
-  financial: "text-teal-600",
+  financial: "text-sage-600",
   childcare: "text-blue-600",
   support: "text-purple-600",
 }
@@ -51,7 +51,7 @@ function ProgramCard({ program }: { readonly program: Program }) {
   return (
     <Link
       href={`/programs/${program.slug}`}
-      className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+      className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
     >
       <div
         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${colorClass}`}
@@ -67,11 +67,11 @@ function ProgramCard({ program }: { readonly program: Program }) {
           {program.description}
         </p>
         {program.amount.description && (
-          <p className="mt-2 text-xs font-medium text-teal-600">
+          <p className="mt-2 text-xs font-medium text-sage-600">
             {program.amount.description}
           </p>
         )}
-        <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
+        <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
           詳細を見る
           <ArrowRight className="h-3 w-3" />
         </span>
@@ -91,7 +91,7 @@ export default function ProgramsPage() {
 
   return (
     <>
-      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
+      <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">
             港区の子育て支援制度
@@ -101,7 +101,7 @@ export default function ProgramsPage() {
           </p>
           <Link
             href="/simulator/start"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-coral-500 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-coral-600"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-blush-500 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-blush-600"
           >
             <Calculator className="h-4 w-4" />
             あなたの対象制度を調べる
@@ -124,7 +124,7 @@ export default function ProgramsPage() {
                   <h2 className="font-heading text-xl font-bold text-foreground">
                     {label}
                   </h2>
-                  <span className="rounded-full bg-warm-200 px-2 py-0.5 text-xs font-medium text-muted">
+                  <span className="rounded-full bg-ivory-200 px-2 py-0.5 text-xs font-medium text-muted">
                     {programs.length}件
                   </span>
                 </div>

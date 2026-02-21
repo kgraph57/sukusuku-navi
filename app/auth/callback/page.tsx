@@ -46,7 +46,7 @@ export default function AuthCallbackPage() {
         <button
           type="button"
           onClick={() => router.replace("/auth/login")}
-          className="mt-4 text-sm font-medium text-teal-600 hover:text-teal-700"
+          className="mt-4 text-sm font-medium text-sage-600 hover:text-sage-700"
         >
           ログインページに戻る
         </button>
@@ -56,11 +56,11 @@ export default function AuthCallbackPage() {
 
   return (
     <div className="flex min-h-[50vh] flex-col items-center justify-center px-4">
-      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-100">
-        <Baby className="h-7 w-7 text-teal-600" />
+      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
+        <Baby className="h-7 w-7 text-sage-600" />
       </div>
       <div className="mt-4 flex items-center gap-2">
-        <Loader2 className="h-4 w-4 animate-spin text-teal-600" />
+        <Loader2 className="h-4 w-4 animate-spin text-sage-600" />
         <p className="text-sm text-muted">認証処理中...</p>
       </div>
     </div>

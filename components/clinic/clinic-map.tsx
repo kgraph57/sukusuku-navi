@@ -36,7 +36,7 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
 
   return (
     <div className="space-y-3">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-teal-50/30 sm:aspect-[16/9]">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-sage-50/30 sm:aspect-[16/9]">
         {/* Grid background */}
         <div
           className="absolute inset-0 opacity-10"
@@ -48,7 +48,7 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
         />
 
         {/* Area label */}
-        <span className="absolute left-3 top-3 rounded-full bg-white/80 px-2.5 py-1 text-xs font-medium text-teal-700 shadow-sm backdrop-blur-sm">
+        <span className="absolute left-3 top-3 rounded-full bg-white/80 px-2.5 py-1 text-xs font-medium text-sage-700 shadow-sm backdrop-blur-sm">
           港区エリア
         </span>
 
@@ -77,12 +77,12 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
                       ? "fill-red-600 text-red-600"
                       : "fill-red-500 text-red-500"
                     : isSelected
-                      ? "fill-teal-700 text-teal-700"
-                      : "fill-teal-600 text-teal-600"
+                      ? "fill-sage-700 text-sage-700"
+                      : "fill-sage-600 text-sage-600"
                 }`}
               />
               {isSelected && (
-                <span className="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-white ring-2 ring-teal-600" />
+                <span className="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-white ring-2 ring-sage-600" />
               )}
             </button>
           );
@@ -92,7 +92,7 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
       {/* Legend */}
       <div className="flex gap-4 px-1 text-xs text-muted">
         <span className="flex items-center gap-1">
-          <MapPin className="h-3.5 w-3.5 fill-teal-600 text-teal-600" />
+          <MapPin className="h-3.5 w-3.5 fill-sage-600 text-sage-600" />
           クリニック
         </span>
         <span className="flex items-center gap-1">
@@ -103,12 +103,12 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
 
       {/* Selected clinic detail */}
       {selectedClinic != null && (
-        <div className="rounded-xl border border-teal-100 bg-teal-50/40 p-4">
+        <div className="rounded-xl border border-sage-100 bg-sage-50/40 p-4">
           <div className="flex items-start justify-between gap-2">
             <div>
               <Link
                 href={`/clinics/${selectedClinic.slug}`}
-                className="font-heading text-sm font-bold text-foreground hover:text-teal-700"
+                className="font-heading text-sm font-bold text-foreground hover:text-sage-700"
               >
                 {selectedClinic.name}
               </Link>
@@ -122,7 +122,7 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
               href={`https://www.google.com/maps/search/?api=1&query=${selectedClinic.lat},${selectedClinic.lng}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center gap-1 rounded-full bg-teal-600 px-3 py-1 text-xs font-medium text-white hover:bg-teal-700"
+              className="inline-flex shrink-0 items-center gap-1 rounded-full bg-sage-600 px-3 py-1 text-xs font-medium text-white hover:bg-sage-700"
             >
               <ExternalLink className="h-3 w-3" />
               地図で開く
@@ -137,7 +137,7 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
               <Phone className="h-3 w-3 shrink-0" />
               <a
                 href={`tel:${selectedClinic.phone}`}
-                className="hover:text-teal-600"
+                className="hover:text-sage-600"
               >
                 {selectedClinic.phone}
               </a>

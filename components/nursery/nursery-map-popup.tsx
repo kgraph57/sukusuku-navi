@@ -35,7 +35,7 @@ export function NurseryMapPopup({ nursery }: NurseryMapPopupProps) {
       <div className="mt-2 flex gap-2">
         <Link
           href={`/nurseries/${nursery.slug}`}
-          className="inline-flex items-center rounded-full bg-teal-600 px-3 py-1 text-xs font-medium text-white hover:bg-teal-700"
+          className="inline-flex items-center rounded-full bg-sage-600 px-3 py-1 text-xs font-medium text-white hover:bg-sage-700"
         >
           詳細を見る
         </Link>
@@ -43,7 +43,7 @@ export function NurseryMapPopup({ nursery }: NurseryMapPopupProps) {
           href={`https://www.google.com/maps/search/?api=1&query=${nursery.lat},${nursery.lng}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-0.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted hover:bg-warm-100"
+          className="inline-flex items-center gap-0.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted hover:bg-ivory-100"
         >
           <ExternalLink className="h-3 w-3" />
           Maps

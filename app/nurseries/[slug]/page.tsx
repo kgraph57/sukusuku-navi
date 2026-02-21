@@ -91,11 +91,11 @@ export default async function NurseryDetailPage({ params }: PageProps) {
   return (
     <>
       {/* Header */}
-      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
+      <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <Link
             href="/nurseries"
-            className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+            className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
           >
             <ArrowLeft className="h-4 w-4" />
             保育園一覧に戻る
@@ -114,7 +114,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                 >
                   {NURSERY_TYPE_LABELS[nursery.type]}
                 </span>
-                <span className="rounded-full bg-warm-200 px-2.5 py-0.5 text-xs font-medium text-muted">
+                <span className="rounded-full bg-ivory-200 px-2.5 py-0.5 text-xs font-medium text-muted">
                   {NURSERY_AREA_LABELS[nursery.area]}
                 </span>
                 {nursery.hasGarden && (
@@ -144,7 +144,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
           {/* 基本情報 */}
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-              <MapPin className="h-5 w-5 text-teal-600" />
+              <MapPin className="h-5 w-5 text-sage-600" />
               基本情報
             </h2>
             <div className="mt-4 space-y-3">
@@ -154,7 +154,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                 value={
                   <a
                     href={`tel:${nursery.phone}`}
-                    className="flex items-center gap-1 font-medium text-teal-600 hover:text-teal-700"
+                    className="flex items-center gap-1 font-medium text-sage-600 hover:text-sage-700"
                   >
                     <Phone className="h-3.5 w-3.5" />
                     {nursery.phone}
@@ -165,7 +165,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                 label="最寄駅"
                 value={
                   <span className="flex items-center gap-1">
-                    <Train className="h-3.5 w-3.5 shrink-0 text-teal-600" />
+                    <Train className="h-3.5 w-3.5 shrink-0 text-sage-600" />
                     {nursery.nearestStation}
                   </span>
                 }
@@ -175,7 +175,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                 label="対象年齢"
                 value={
                   <span className="flex items-center gap-1">
-                    <Users className="h-3.5 w-3.5 shrink-0 text-teal-600" />
+                    <Users className="h-3.5 w-3.5 shrink-0 text-sage-600" />
                     {ageLabel}
                   </span>
                 }
@@ -190,7 +190,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
           {/* 保育時間 */}
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-              <Clock className="h-5 w-5 text-teal-600" />
+              <Clock className="h-5 w-5 text-sage-600" />
               保育時間
             </h2>
             <div className="mt-4 space-y-2">
@@ -229,14 +229,14 @@ export default async function NurseryDetailPage({ params }: PageProps) {
           {/* 特徴 */}
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-              <Briefcase className="h-5 w-5 text-teal-600" />
+              <Briefcase className="h-5 w-5 text-sage-600" />
               特徴・対応
             </h2>
             <div className="mt-4 flex flex-wrap gap-2">
               {nursery.features.map((feature) => (
                 <span
                   key={feature}
-                  className="rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-sm font-medium text-teal-700"
+                  className="rounded-full border border-sage-200 bg-sage-50 px-3 py-1 text-sm font-medium text-sage-700"
                 >
                   {feature}
                 </span>
@@ -263,7 +263,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                 href={`https://www.google.com/maps/search/?api=1&query=${nursery.lat},${nursery.lng}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-700"
+                className="inline-flex items-center gap-1 text-sm font-medium text-sage-600 hover:text-sage-700"
               >
                 Googleマップで開く
                 <ExternalLink className="h-3.5 w-3.5" />
@@ -276,7 +276,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
             href={`https://www.google.com/maps/dir/?api=1&destination=${nursery.lat},${nursery.lng}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-teal-600 px-6 py-3.5 text-base font-bold text-white shadow-sm transition-colors hover:bg-teal-700"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-sage-600 px-6 py-3.5 text-base font-bold text-white shadow-sm transition-colors hover:bg-sage-700"
           >
             <Navigation2 className="h-5 w-5" />
             現在地からルート案内
@@ -289,7 +289,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                 href={nursery.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex w-full items-center justify-center gap-2 rounded-xl border border-teal-200 bg-white px-6 py-3.5 text-base font-bold text-teal-600 shadow-sm transition-colors hover:bg-teal-50"
+                className="flex w-full items-center justify-center gap-2 rounded-xl border border-sage-200 bg-white px-6 py-3.5 text-base font-bold text-sage-600 shadow-sm transition-colors hover:bg-sage-50"
               >
                 <ExternalLink className="h-5 w-5" />
                 施設のウェブサイトを開く
@@ -308,9 +308,9 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                   <Link
                     key={related.slug}
                     href={`/nurseries/${related.slug}`}
-                    className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-teal-200"
+                    className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-sage-200"
                   >
-                    <Building2 className="h-4 w-4 shrink-0 text-teal-600" />
+                    <Building2 className="h-4 w-4 shrink-0 text-sage-600" />
                     <div className="min-w-0">
                       <p className="text-sm font-medium text-card-foreground">
                         {related.name}
@@ -329,7 +329,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
           <div className="pt-4">
             <Link
               href="/nurseries"
-              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
             >
               <ArrowLeft className="h-4 w-4" />
               保育園一覧に戻る

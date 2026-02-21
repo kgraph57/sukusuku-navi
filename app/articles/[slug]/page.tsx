@@ -75,7 +75,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <nav className="mb-10">
         <Link
           href="/articles"
-          className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-teal-600"
+          className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-sage-600"
         >
           <ArrowLeft className="h-4 w-4" />
           記事一覧に戻る
@@ -85,7 +85,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       {/* Article header */}
       <header className="mb-10 border-b border-border pb-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full bg-teal-600 px-3 py-1 text-xs font-bold text-white">
+          <span className="rounded-full bg-sage-600 px-3 py-1 text-xs font-bold text-white">
             Vol.{vol}
           </span>
           <CategoryBadge category={category} />
@@ -114,7 +114,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <Tag className="h-3.5 w-3.5" />
             <Link
               href={`/articles/category/${category}`}
-              className="hover:text-teal-600 hover:underline"
+              className="hover:text-sage-600 hover:underline"
             >
               {CATEGORY_LABELS[category]}
             </Link>
@@ -156,7 +156,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <CitationList citations={citations} />
 
       {/* Disclaimer */}
-      <div className="mt-8 rounded-lg bg-warm-100 p-4 text-xs leading-relaxed text-muted">
+      <div className="mt-8 rounded-lg bg-ivory-100 p-4 text-xs leading-relaxed text-muted">
         ※
         この記事は一般的な医学情報の提供を目的としており、個別の診断・治療を行うものではありません。お子さんの症状が心配な場合は、かかりつけの小児科医にご相談ください。
       </div>
@@ -182,7 +182,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <div className="mt-12 text-center">
         <Link
           href="/articles"
-          className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-white px-6 py-3 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+          className="inline-flex items-center gap-2 rounded-full border border-sage-200 bg-white px-6 py-3 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
         >
           <ArrowLeft className="h-4 w-4" />
           記事一覧に戻る

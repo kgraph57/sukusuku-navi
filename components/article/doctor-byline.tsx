@@ -10,9 +10,9 @@ export function DoctorByline({ qaCount, referenceCount }: DoctorBylineProps) {
   return (
     <Link
       href="/about"
-      className="group mb-8 flex items-center gap-4 rounded-xl border border-teal-100 bg-teal-50/50 p-4 transition-colors hover:border-teal-200 hover:bg-teal-50"
+      className="group mb-8 flex items-center gap-4 rounded-xl border border-sage-100 bg-sage-50/50 p-4 transition-colors hover:border-sage-200 hover:bg-sage-50"
     >
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teal-600 shadow-sm">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sage-600 shadow-sm">
         <Stethoscope className="h-6 w-6 text-white" />
       </div>
 
@@ -21,10 +21,10 @@ export function DoctorByline({ qaCount, referenceCount }: DoctorBylineProps) {
           <span className="font-heading text-sm font-bold text-foreground">
             おかもん先生
           </span>
-          <span className="rounded-full bg-teal-100 px-2 py-0.5 text-xs font-medium text-teal-700">
+          <span className="rounded-full bg-sage-100 px-2 py-0.5 text-xs font-medium text-sage-700">
             小児科専門医
           </span>
-          <span className="rounded-full bg-white border border-teal-100 px-2 py-0.5 text-xs text-muted">
+          <span className="rounded-full bg-white border border-sage-100 px-2 py-0.5 text-xs text-muted">
             愛育病院 小児科
           </span>
         </div>
@@ -35,7 +35,7 @@ export function DoctorByline({ qaCount, referenceCount }: DoctorBylineProps) {
         </p>
       </div>
 
-      <span className="shrink-0 text-xs text-teal-600 group-hover:text-teal-700 group-hover:underline">
+      <span className="shrink-0 text-xs text-sage-600 group-hover:text-sage-700 group-hover:underline">
         プロフィール →
       </span>
     </Link>

@@ -72,7 +72,7 @@ export function createMdxComponents(): MDXComponents {
                     )
                     .replace(
                       /\[(\d+)\]/g,
-                      '<sup class="text-xs text-teal-600">[$1]</sup>',
+                      '<sup class="text-xs text-sage-600">[$1]</sup>',
                     ),
                 }}
               />
@@ -97,8 +97,8 @@ export function createMdxComponents(): MDXComponents {
 
       if (isKeyPoints) {
         return (
-          <div className="my-8 rounded-xl border-2 border-teal-200 bg-teal-50/50 p-6">
-            <div className="text-foreground [&>p]:my-2 [&>p]:text-base [&>p]:leading-relaxed [&_strong]:font-bold [&_strong]:text-teal-800 [&_ol]:mt-3 [&_ol]:space-y-2 [&_ol]:text-base [&_li]:text-base [&_li]:leading-relaxed">
+          <div className="my-8 rounded-xl border-2 border-sage-200 bg-sage-50/50 p-6">
+            <div className="text-foreground [&>p]:my-2 [&>p]:text-base [&>p]:leading-relaxed [&_strong]:font-bold [&_strong]:text-sage-800 [&_ol]:mt-3 [&_ol]:space-y-2 [&_ol]:text-base [&_li]:text-base [&_li]:leading-relaxed">
               {props.children}
             </div>
           </div>
@@ -106,7 +106,7 @@ export function createMdxComponents(): MDXComponents {
       }
 
       return (
-        <blockquote className="my-7 rounded-lg border-l-4 border-teal-400 bg-teal-50/40 py-4 pl-5 pr-4 text-base leading-[1.9] text-foreground [&>p]:my-2 [&>p]:leading-[1.9] [&_strong]:font-bold [&_strong]:text-teal-800 [&_ul]:mt-3 [&_ul]:space-y-2 [&_li]:text-base [&_li]:leading-relaxed">
+        <blockquote className="my-7 rounded-lg border-l-4 border-sage-400 bg-sage-50/40 py-4 pl-5 pr-4 text-base leading-[1.9] text-foreground [&>p]:my-2 [&>p]:leading-[1.9] [&_strong]:font-bold [&_strong]:text-sage-800 [&_ul]:mt-3 [&_ul]:space-y-2 [&_li]:text-base [&_li]:leading-relaxed">
           {props.children}
         </blockquote>
       );
@@ -128,16 +128,16 @@ export function createMdxComponents(): MDXComponents {
       <div className="my-10 flex items-center gap-4">
         <div className="h-px flex-1 bg-border" />
         <div className="flex gap-1">
-          <span className="h-1.5 w-1.5 rounded-full bg-teal-300" />
-          <span className="h-1.5 w-1.5 rounded-full bg-teal-300" />
-          <span className="h-1.5 w-1.5 rounded-full bg-teal-300" />
+          <span className="h-1.5 w-1.5 rounded-full bg-sage-300" />
+          <span className="h-1.5 w-1.5 rounded-full bg-sage-300" />
+          <span className="h-1.5 w-1.5 rounded-full bg-sage-300" />
         </div>
         <div className="h-px flex-1 bg-border" />
       </div>
     ),
     a: (props) => (
       <a
-        className="text-teal-600 underline underline-offset-2 hover:text-teal-700"
+        className="text-sage-600 underline underline-offset-2 hover:text-sage-700"
         target="_blank"
         rel="noopener noreferrer"
         {...props}
@@ -150,16 +150,16 @@ export function createMdxComponents(): MDXComponents {
     ),
     th: (props) => (
       <th
-        className="border-b-2 border-teal-200 bg-teal-600 px-5 py-3 text-left text-sm font-semibold text-white"
+        className="border-b-2 border-sage-200 bg-sage-600 px-5 py-3 text-left text-sm font-semibold text-white"
         {...props}
       />
     ),
     td: (props) => (
       <td
-        className="border-b border-border px-5 py-3 text-sm leading-relaxed text-foreground odd:bg-white even:bg-teal-50/30"
+        className="border-b border-border px-5 py-3 text-sm leading-relaxed text-foreground odd:bg-white even:bg-sage-50/30"
         {...props}
       />
     ),
-    sup: (props) => <sup className="text-xs text-teal-600" {...props} />,
+    sup: (props) => <sup className="text-xs text-sage-600" {...props} />,
   };
 }

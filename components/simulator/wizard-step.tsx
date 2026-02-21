@@ -28,10 +28,10 @@ export function WizardStep({
                 <div
                   className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold transition-colors ${
                     isCompleted
-                      ? "bg-teal-600 text-white"
+                      ? "bg-sage-600 text-white"
                       : isCurrent
-                        ? "bg-teal-600 text-white ring-4 ring-teal-100"
-                        : "bg-warm-200 text-muted"
+                        ? "bg-sage-600 text-white ring-4 ring-sage-100"
+                        : "bg-ivory-200 text-muted"
                   }`}
                 >
                   {isCompleted ? (
@@ -43,10 +43,10 @@ export function WizardStep({
                 <span
                   className={`mt-1.5 text-xs font-medium ${
                     isCurrent
-                      ? "text-teal-700"
+                      ? "text-sage-700"
                       : isFuture
                         ? "text-muted"
-                        : "text-teal-600"
+                        : "text-sage-600"
                   }`}
                 >
                   {label}
@@ -56,7 +56,7 @@ export function WizardStep({
               {index < totalSteps - 1 && (
                 <div
                   className={`mx-2 h-0.5 flex-1 transition-colors ${
-                    isCompleted ? "bg-teal-500" : "bg-warm-200"
+                    isCompleted ? "bg-sage-500" : "bg-ivory-200"
                   }`}
                 />
               )}
@@ -65,9 +65,9 @@ export function WizardStep({
         })}
       </div>
 
-      <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-warm-200">
+      <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-ivory-200">
         <div
-          className="h-full rounded-full bg-teal-500 transition-all duration-300"
+          className="h-full rounded-full bg-sage-500 transition-all duration-300"
           style={{
             width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%`,
           }}

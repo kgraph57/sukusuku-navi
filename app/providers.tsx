@@ -7,6 +7,7 @@ import { PostHogProvider } from "@/lib/analytics/posthog-provider";
 import { PageView } from "@/lib/analytics/pageview";
 import { RegisterServiceWorker } from "@/lib/pwa/register-sw";
 import { InstallPrompt } from "@/components/pwa/install-prompt";
+import { FeedbackButton } from "@/components/feedback/feedback-button";
 
 function StoreWithAuth({ children }: { readonly children: ReactNode }) {
   const { user } = useAuth();
@@ -21,6 +22,7 @@ export function Providers({ children }: { readonly children: ReactNode }) {
           <PageView />
           <RegisterServiceWorker />
           <InstallPrompt />
+          <FeedbackButton />
           {children}
         </StoreWithAuth>
       </AuthProvider>

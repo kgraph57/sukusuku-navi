@@ -11,7 +11,7 @@ const ClinicLeafletMap = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex h-[400px] items-center justify-center rounded-xl border border-border bg-warm-100 sm:h-[500px]">
+      <div className="flex h-[400px] items-center justify-center rounded-xl border border-border bg-ivory-100 sm:h-[500px]">
         <p className="text-sm text-muted">地図を読み込み中...</p>
       </div>
     ),

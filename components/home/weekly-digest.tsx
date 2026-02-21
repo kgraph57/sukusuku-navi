@@ -28,7 +28,7 @@ const CATEGORY_ICON: Record<TimelineCategory, typeof Building2> = {
 
 const CATEGORY_COLOR: Record<TimelineCategory, string> = {
   admin: "bg-blue-50 text-blue-600",
-  medical: "bg-teal-50 text-teal-600",
+  medical: "bg-sage-50 text-sage-600",
   vaccination: "bg-purple-50 text-purple-600",
   support: "bg-rose-50 text-rose-500",
 };
@@ -37,7 +37,7 @@ const URGENCY_BORDER: Record<string, string> = {
   overdue: "border-l-red-500",
   urgent: "border-l-orange-400",
   soon: "border-l-amber-400",
-  upcoming: "border-l-teal-400",
+  upcoming: "border-l-sage-400",
 };
 
 function DigestItem({ item }: { readonly item: TimelineItem }) {
@@ -120,11 +120,11 @@ export function WeeklyDigest() {
 
   if (child == null) {
     return (
-      <section className="border-t border-border bg-gradient-to-br from-teal-50 to-warm-50 px-4 py-12">
+      <section className="border-t border-border bg-gradient-to-br from-sage-50 to-ivory-50 px-4 py-12">
         <div className="mx-auto max-w-3xl">
-          <div className="flex flex-col items-center rounded-2xl border-2 border-dashed border-teal-200 bg-white/60 px-6 py-10 text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-100">
-              <Sparkles className="h-7 w-7 text-teal-600" />
+          <div className="flex flex-col items-center rounded-2xl border-2 border-dashed border-sage-200 bg-white/60 px-6 py-10 text-center">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
+              <Sparkles className="h-7 w-7 text-sage-600" />
             </div>
             <h2 className="mt-4 font-heading text-lg font-bold text-foreground">
               お子さんに合わせた「今週やること」を表示
@@ -134,7 +134,7 @@ export function WeeklyDigest() {
             </p>
             <Link
               href="/my"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-teal-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-teal-700"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-sage-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700"
             >
               <Baby className="h-4 w-4" />
               お子さんを登録する
@@ -150,18 +150,18 @@ export function WeeklyDigest() {
 
   if (urgentItems.length === 0) {
     return (
-      <section className="border-t border-border bg-gradient-to-br from-teal-50 to-warm-50 px-4 py-12">
+      <section className="border-t border-border bg-gradient-to-br from-sage-50 to-ivory-50 px-4 py-12">
         <div className="mx-auto max-w-3xl">
-          <div className="rounded-2xl border border-teal-100 bg-white/80 p-6 text-center">
+          <div className="rounded-2xl border border-sage-100 bg-white/80 p-6 text-center">
             <h2 className="font-heading text-lg font-bold text-foreground">
               {child.nickname}ちゃん（{ageLabel}）
             </h2>
-            <p className="mt-2 text-sm text-teal-600">
+            <p className="mt-2 text-sm text-sage-600">
               直近でやるべき手続きはすべて完了しています
             </p>
             <Link
               href="/my/timeline"
-              className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-700"
+              className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-sage-600 hover:text-sage-700"
             >
               タイムラインで今後の予定を確認
               <ArrowRight className="h-3.5 w-3.5" />
@@ -177,12 +177,12 @@ export function WeeklyDigest() {
   ).length;
 
   return (
-    <section className="border-t border-border bg-gradient-to-br from-teal-50 to-warm-50 px-4 py-12">
+    <section className="border-t border-border bg-gradient-to-br from-sage-50 to-ivory-50 px-4 py-12">
       <div className="mx-auto max-w-3xl">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-100">
-              <Calendar className="h-5 w-5 text-teal-600" />
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-100">
+              <Calendar className="h-5 w-5 text-sage-600" />
             </div>
             <div>
               <h2 className="font-heading text-lg font-bold text-foreground">
@@ -208,7 +208,7 @@ export function WeeklyDigest() {
         <div className="mt-4 text-center">
           <Link
             href="/my/timeline"
-            className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-white px-5 py-2 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+            className="inline-flex items-center gap-2 rounded-full border border-sage-200 bg-white px-5 py-2 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
           >
             すべてのタスクを見る
             <ArrowRight className="h-3.5 w-3.5" />

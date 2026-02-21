@@ -60,11 +60,11 @@ export default async function VaccineDetailPage({ params }: PageProps) {
 
   return (
     <>
-      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
+      <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <Link
             href="/vaccines"
-            className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+            className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
           >
             <ArrowLeft className="h-4 w-4" />
             予防接種一覧に戻る
@@ -84,7 +84,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
                   {VACCINE_TYPE_LABELS[vaccine.type]}
                 </span>
                 {relatedProgram && (
-                  <span className="inline-flex rounded-full border border-coral-200 bg-coral-50 px-2.5 py-0.5 text-xs font-medium text-coral-700">
+                  <span className="inline-flex rounded-full border border-blush-200 bg-blush-50 px-2.5 py-0.5 text-xs font-medium text-blush-600">
                     港区助成あり
                   </span>
                 )}
@@ -106,13 +106,13 @@ export default async function VaccineDetailPage({ params }: PageProps) {
         <div className="mx-auto max-w-3xl space-y-6">
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-              <Clock className="h-5 w-5 text-teal-600" />
+              <Clock className="h-5 w-5 text-sage-600" />
               接種スケジュール
             </h2>
             <ol className="mt-4 space-y-4">
               {vaccine.doses.map((dose) => (
                 <li key={dose.doseNumber} className="flex gap-4">
-                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal-100 text-sm font-bold text-teal-700">
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sage-100 text-sm font-bold text-sage-700">
                     {dose.doseNumber}
                   </div>
                   <div className="flex-1 pt-0.5">
@@ -120,14 +120,14 @@ export default async function VaccineDetailPage({ params }: PageProps) {
                       {dose.label}
                     </p>
                     <div className="mt-1 flex flex-wrap gap-3">
-                      <span className="inline-flex items-center gap-1 rounded-md bg-teal-50 px-2 py-0.5 text-xs text-teal-700">
+                      <span className="inline-flex items-center gap-1 rounded-md bg-sage-50 px-2 py-0.5 text-xs text-sage-700">
                         標準:{" "}
                         {dose.ageMonthsStandard >= 999
                           ? "毎年"
                           : formatAgeMonths(dose.ageMonthsStandard)}
                       </span>
                       {dose.ageMonthsMax < 999 && (
-                        <span className="inline-flex items-center gap-1 rounded-md bg-warm-100 px-2 py-0.5 text-xs text-muted">
+                        <span className="inline-flex items-center gap-1 rounded-md bg-ivory-100 px-2 py-0.5 text-xs text-muted">
                           接種可能期間: {formatAgeMonths(dose.ageMonthsMin)}〜
                           {formatAgeMonths(dose.ageMonthsMax)}
                         </span>
@@ -141,7 +141,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
 
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-              <Info className="h-5 w-5 text-teal-600" />
+              <Info className="h-5 w-5 text-sage-600" />
               主な副反応
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-card-foreground">
@@ -160,20 +160,20 @@ export default async function VaccineDetailPage({ params }: PageProps) {
           </div>
 
           {relatedProgram && (
-            <div className="rounded-xl border border-coral-200 bg-coral-50 p-6">
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-coral-700">
+            <div className="rounded-xl border border-blush-200 bg-blush-50 p-6">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-blush-600">
                 <ShieldCheck className="h-5 w-5" />
                 港区の助成制度
               </h2>
-              <p className="mt-3 text-sm font-medium text-coral-800">
+              <p className="mt-3 text-sm font-medium text-blush-600">
                 {relatedProgram.name}
               </p>
-              <p className="mt-1 text-sm leading-relaxed text-coral-700">
+              <p className="mt-1 text-sm leading-relaxed text-blush-600">
                 {relatedProgram.description}
               </p>
               <Link
                 href={`/programs/${relatedProgram.slug}`}
-                className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-coral-700 underline hover:text-coral-800"
+                className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-blush-600 underline hover:text-blush-600"
               >
                 助成制度の詳細を見る
                 <ExternalLink className="h-3 w-3" />
@@ -184,7 +184,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
           {vaccine.faq && vaccine.faq.length > 0 && (
             <div className="rounded-xl border border-border bg-card p-6">
               <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-                <HelpCircle className="h-5 w-5 text-teal-600" />
+                <HelpCircle className="h-5 w-5 text-sage-600" />
                 よくある質問
               </h2>
               <div className="mt-4 space-y-5">
@@ -205,12 +205,12 @@ export default async function VaccineDetailPage({ params }: PageProps) {
           {vaccine.relatedArticleSlug && (
             <div className="rounded-xl border border-border bg-card p-6">
               <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-                <CheckCircle2 className="h-5 w-5 text-teal-600" />
+                <CheckCircle2 className="h-5 w-5 text-sage-600" />
                 関連記事
               </h2>
               <Link
                 href={`/articles/${vaccine.relatedArticleSlug}`}
-                className="mt-3 inline-flex items-center gap-2 rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-100"
+                className="mt-3 inline-flex items-center gap-2 rounded-lg border border-sage-200 bg-sage-50 px-4 py-3 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-100"
               >
                 おかもん先生の予防接種解説記事を読む
                 <ArrowLeft className="h-4 w-4 rotate-180" />
@@ -221,7 +221,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
           {vaccine.knowVpdUrl && (
             <div className="rounded-xl border border-border bg-card p-6">
               <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-                <BookOpen className="h-5 w-5 text-teal-600" />
+                <BookOpen className="h-5 w-5 text-sage-600" />
                 公式情報・参考サイト
               </h2>
               <p className="mt-2 text-sm text-muted">
@@ -232,7 +232,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
                   href={vaccine.knowVpdUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-100"
+                  className="inline-flex items-center gap-2 rounded-lg border border-sage-200 bg-sage-50 px-4 py-3 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-100"
                 >
                   <ShieldCheck className="h-4 w-4 shrink-0" />
                   Know VPD! で{vaccine.nameShort}の詳細を見る
@@ -242,7 +242,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
                   href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/yobou-sesshu/index.html"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-border bg-warm-50 px-4 py-3 text-sm font-medium text-muted transition-colors hover:bg-warm-100"
+                  className="inline-flex items-center gap-2 rounded-lg border border-border bg-ivory-50 px-4 py-3 text-sm font-medium text-muted transition-colors hover:bg-ivory-100"
                 >
                   <Info className="h-4 w-4 shrink-0" />
                   厚生労働省 予防接種情報
@@ -255,7 +255,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
               href="/vaccines"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-teal-200 bg-white px-6 py-3 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-sage-200 bg-white px-6 py-3 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
             >
               <ArrowLeft className="h-4 w-4" />
               予防接種一覧に戻る
@@ -265,7 +265,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
                 href={relatedProgram.applicationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-teal-600 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-teal-700"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-sage-600 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-sage-700"
               >
                 助成申請ページを開く
                 <ExternalLink className="h-4 w-4" />
@@ -273,7 +273,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
             )}
           </div>
 
-          <div className="rounded-xl border border-border bg-warm-50 p-4">
+          <div className="rounded-xl border border-border bg-ivory-50 p-4">
             <p className="text-xs leading-relaxed text-muted">
               ※
               この情報は一般的な医学情報の提供を目的としており、個別の診断・治療を行うものではありません。

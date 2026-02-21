@@ -19,9 +19,9 @@ export function Card({
 
   const variantStyles = {
     default:
-      "border border-border bg-card hover:border-teal-200 hover:shadow-md",
+      "border border-border bg-card hover:border-sage-200 hover:shadow-md",
     outlined:
-      "border-2 border-teal-100 bg-white hover:border-teal-300 hover:shadow-md",
+      "border-2 border-sage-100 bg-white hover:border-sage-300 hover:shadow-md",
     elevated:
       "bg-white shadow-sm hover:shadow-lg",
   } as const

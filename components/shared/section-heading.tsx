@@ -24,7 +24,7 @@ export function SectionHeading({
         </p>
       )}
       <div
-        className={`mt-4 h-1 w-12 rounded-full bg-teal-400 ${
+        className={`mt-4 h-1 w-12 rounded-full bg-sage-400 ${
           align === "center" ? "mx-auto" : ""
         }`}
         aria-hidden="true"

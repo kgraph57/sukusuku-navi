@@ -8,5 +8,5 @@ export const TYPE_ICON_MAP: Record<Clinic["type"], typeof Building2> = {
 
 export const TYPE_COLOR_MAP: Record<Clinic["type"], string> = {
   hospital: "bg-red-50 text-red-600 border-red-200",
-  clinic: "bg-teal-50 text-teal-600 border-teal-200",
+  clinic: "bg-sage-50 text-sage-600 border-sage-200",
 };

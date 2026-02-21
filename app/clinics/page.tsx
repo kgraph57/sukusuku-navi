@@ -32,7 +32,7 @@ function ClinicCard({ clinic }: { readonly clinic: Clinic }) {
   return (
     <Link
       href={`/clinics/${clinic.slug}`}
-      className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+      className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
     >
       <div
         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${colorClass}`}
@@ -81,14 +81,14 @@ function ClinicCard({ clinic }: { readonly clinic: Clinic }) {
           {clinic.features.slice(0, 4).map((feature) => (
             <span
               key={feature}
-              className="rounded-full bg-warm-100 px-2 py-0.5 text-xs text-muted"
+              className="rounded-full bg-ivory-100 px-2 py-0.5 text-xs text-muted"
             >
               {feature}
             </span>
           ))}
         </div>
 
-        <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
+        <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
           詳細を見る
           <ArrowRight className="h-3 w-3" />
         </span>
@@ -104,10 +104,10 @@ export default function ClinicsPage() {
 
   return (
     <>
-      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
+      <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">
-            <MapPin className="mr-2 inline-block h-8 w-8 text-teal-600" />
+            <MapPin className="mr-2 inline-block h-8 w-8 text-sage-600" />
             港区の小児科マップ
           </h1>
           <p className="mt-4 text-base leading-relaxed text-muted">
@@ -179,11 +179,11 @@ export default function ClinicsPage() {
 
           <div>
             <div className="flex items-center gap-3">
-              <Stethoscope className="h-6 w-6 text-teal-600" />
+              <Stethoscope className="h-6 w-6 text-sage-600" />
               <h2 className="font-heading text-xl font-bold text-foreground">
                 クリニック
               </h2>
-              <span className="rounded-full bg-warm-200 px-2 py-0.5 text-xs font-medium text-muted">
+              <span className="rounded-full bg-ivory-200 px-2 py-0.5 text-xs font-medium text-muted">
                 {regularClinics.length}件
               </span>
             </div>

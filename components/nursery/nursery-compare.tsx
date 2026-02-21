@@ -74,7 +74,7 @@ const COMPARE_ROWS: readonly CompareRow[] = [
     label: "延長保育",
     render: (n) =>
       n.hours.extended != null ? (
-        <span className="text-teal-600">{n.hours.extended}</span>
+        <span className="text-sage-600">{n.hours.extended}</span>
       ) : (
         <span className="text-muted">なし</span>
       ),
@@ -83,7 +83,7 @@ const COMPARE_ROWS: readonly CompareRow[] = [
     label: "短時間保育",
     render: (n) =>
       n.hours.shortTime != null ? (
-        <span className="text-teal-600">{n.hours.shortTime}</span>
+        <span className="text-sage-600">{n.hours.shortTime}</span>
       ) : (
         <span className="text-muted">なし</span>
       ),
@@ -110,7 +110,7 @@ const COMPARE_ROWS: readonly CompareRow[] = [
         {n.features.map((f) => (
           <span
             key={f}
-            className="rounded-full bg-warm-100 px-2 py-0.5 text-[10px] text-muted"
+            className="rounded-full bg-ivory-100 px-2 py-0.5 text-[10px] text-muted"
           >
             {f}
           </span>
@@ -145,7 +145,7 @@ export function NurseryCompare({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full p-1.5 text-muted transition-colors hover:bg-warm-100 hover:text-foreground"
+            className="rounded-full p-1.5 text-muted transition-colors hover:bg-ivory-100 hover:text-foreground"
             aria-label="閉じる"
           >
             <X className="h-5 w-5" />
@@ -157,8 +157,8 @@ export function NurseryCompare({
           <table className="w-full min-w-[600px] border-collapse text-sm">
             {/* Nursery name headers */}
             <thead>
-              <tr className="border-b border-border bg-warm-50">
-                <th className="sticky left-0 z-10 bg-warm-50 px-3 py-3 text-left text-xs font-medium text-muted sm:px-4">
+              <tr className="border-b border-border bg-ivory-50">
+                <th className="sticky left-0 z-10 bg-ivory-50 px-3 py-3 text-left text-xs font-medium text-muted sm:px-4">
                   項目
                 </th>
                 {nurseries.map((n) => (
@@ -169,14 +169,14 @@ export function NurseryCompare({
                     <div className="flex items-start justify-between gap-2">
                       <Link
                         href={`/nurseries/${n.slug}`}
-                        className="font-heading text-sm font-bold text-teal-700 hover:underline"
+                        className="font-heading text-sm font-bold text-sage-700 hover:underline"
                       >
                         {n.name}
                       </Link>
                       <button
                         type="button"
                         onClick={() => onRemove(n.slug)}
-                        className="shrink-0 rounded-full p-0.5 text-muted hover:bg-warm-200 hover:text-foreground"
+                        className="shrink-0 rounded-full p-0.5 text-muted hover:bg-ivory-200 hover:text-foreground"
                         aria-label={`${n.name}を比較から外す`}
                       >
                         <X className="h-3.5 w-3.5" />
@@ -190,7 +190,7 @@ export function NurseryCompare({
               {COMPARE_ROWS.map((row, index) => (
                 <tr
                   key={row.label}
-                  className={`border-b border-border ${index % 2 === 0 ? "bg-white" : "bg-warm-50/50"}`}
+                  className={`border-b border-border ${index % 2 === 0 ? "bg-white" : "bg-ivory-50/50"}`}
                 >
                   <td className="sticky left-0 z-10 whitespace-nowrap px-3 py-2.5 text-xs font-medium text-muted sm:px-4" style={{ backgroundColor: index % 2 === 0 ? "white" : "rgb(250 249 247 / 0.5)" }}>
                     {row.label}
@@ -204,8 +204,8 @@ export function NurseryCompare({
               ))}
 
               {/* Action row */}
-              <tr className="border-b border-border bg-teal-50/50">
-                <td className="sticky left-0 z-10 bg-teal-50/50 px-3 py-3 text-xs font-medium text-muted sm:px-4">
+              <tr className="border-b border-border bg-sage-50/50">
+                <td className="sticky left-0 z-10 bg-sage-50/50 px-3 py-3 text-xs font-medium text-muted sm:px-4">
                   リンク
                 </td>
                 {nurseries.map((n) => (
@@ -213,7 +213,7 @@ export function NurseryCompare({
                     <div className="flex flex-wrap gap-2">
                       <Link
                         href={`/nurseries/${n.slug}`}
-                        className="inline-flex items-center rounded-full bg-teal-600 px-3 py-1 text-xs font-medium text-white hover:bg-teal-700"
+                        className="inline-flex items-center rounded-full bg-sage-600 px-3 py-1 text-xs font-medium text-white hover:bg-sage-700"
                       >
                         詳細を見る
                       </Link>
@@ -222,7 +222,7 @@ export function NurseryCompare({
                           href={n.website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-0.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted hover:bg-warm-100"
+                          className="inline-flex items-center gap-0.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted hover:bg-ivory-100"
                         >
                           <ExternalLink className="h-3 w-3" />
                           HP
@@ -232,7 +232,7 @@ export function NurseryCompare({
                         href={`https://www.google.com/maps/search/?api=1&query=${n.lat},${n.lng}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-0.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted hover:bg-warm-100"
+                        className="inline-flex items-center gap-0.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted hover:bg-ivory-100"
                       >
                         <MapPin className="h-3 w-3" />
                         Maps

@@ -27,6 +27,10 @@ import {
 } from "@/lib/timeline-engine";
 import type { TimelineItem, TimelineUrgency } from "@/lib/timeline-engine";
 import { CalendarView } from "@/components/timeline/calendar-view";
+import {
+  trackTimelineViewed,
+  trackTimelineItemCompleted,
+} from "@/lib/analytics/events";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -60,10 +64,10 @@ const URGENCY_STYLES: Record<
     badgeText: "text-amber-700",
   },
   upcoming: {
-    accentBar: "border-l-teal-400",
-    headerBg: "bg-teal-50",
-    badgeBg: "bg-teal-100",
-    badgeText: "text-teal-700",
+    accentBar: "border-l-sage-400",
+    headerBg: "bg-sage-50",
+    badgeBg: "bg-sage-100",
+    badgeText: "text-sage-700",
   },
   future: {
     accentBar: "border-l-gray-300",
@@ -86,7 +90,7 @@ function CategoryIcon({
     case "admin":
       return <Building2 className="h-5 w-5 text-blue-600" />;
     case "medical":
-      return <Stethoscope className="h-5 w-5 text-teal-600" />;
+      return <Stethoscope className="h-5 w-5 text-sage-600" />;
     case "vaccination":
       return <Syringe className="h-5 w-5 text-purple-600" />;
     case "support":
@@ -119,7 +123,7 @@ function TimelineItemCard({
     <div
       className={`flex gap-0 rounded-xl border border-border shadow-sm overflow-hidden border-l-4 ${
         item.completed
-          ? "border-l-gray-200 bg-warm-50 opacity-70"
+          ? "border-l-gray-200 bg-ivory-50 opacity-70"
           : `bg-card ${styles.accentBar}`
       }`}
     >
@@ -132,9 +136,9 @@ function TimelineItemCard({
             aria-label={item.completed ? "未完了に戻す" : "完了にする"}
           >
             {item.completed ? (
-              <CheckCircle2 className="h-6 w-6 text-teal-500" />
+              <CheckCircle2 className="h-6 w-6 text-sage-500" />
             ) : (
-              <Circle className="h-6 w-6 text-gray-300 hover:text-teal-400" />
+              <Circle className="h-6 w-6 text-gray-300 hover:text-sage-400" />
             )}
           </button>
 
@@ -150,7 +154,7 @@ function TimelineItemCard({
                 {item.title}
               </h3>
               {item.completed && (
-                <span className="inline-flex shrink-0 items-center rounded-full bg-teal-100 px-2 py-0.5 text-xs font-medium text-teal-700">
+                <span className="inline-flex shrink-0 items-center rounded-full bg-sage-100 px-2 py-0.5 text-xs font-medium text-sage-700">
                   完了
                 </span>
               )}
@@ -168,7 +172,7 @@ function TimelineItemCard({
             </p>
 
             {!item.completed && item.tip != null && (
-              <p className="mt-2 flex items-start gap-1 text-xs italic text-teal-600">
+              <p className="mt-2 flex items-start gap-1 text-xs italic text-sage-600">
                 <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0" />
                 <span>{item.tip}</span>
               </p>
@@ -183,14 +187,14 @@ function TimelineItemCard({
                 href={item.actionUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full bg-teal-600 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-teal-700"
+                className="inline-flex items-center rounded-full bg-sage-600 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-sage-700"
               >
                 {item.actionLabel}
               </a>
             ) : (
               <Link
                 href={item.actionUrl}
-                className="inline-flex items-center rounded-full bg-teal-600 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-teal-700"
+                className="inline-flex items-center rounded-full bg-sage-600 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-sage-700"
               >
                 {item.actionLabel}
               </Link>
@@ -238,8 +242,8 @@ const SECTIONS: readonly SectionConfig[] = [
     key: "upcoming",
     label: "この3ヶ月で",
     icon: <Calendar className="h-5 w-5" />,
-    headerTextColor: "text-teal-700",
-    headerBg: "bg-teal-50",
+    headerTextColor: "text-sage-700",
+    headerBg: "bg-sage-50",
     collapsible: false,
   },
   {
@@ -373,8 +377,8 @@ function ChildTabs({
             onClick={() => onSelect(child.id)}
             className={`flex shrink-0 items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
               isSelected
-                ? "bg-teal-600 text-white"
-                : "bg-warm-100 text-muted hover:bg-teal-50 hover:text-teal-700"
+                ? "bg-sage-600 text-white"
+                : "bg-ivory-100 text-muted hover:bg-sage-50 hover:text-sage-700"
             }`}
           >
             <Baby className="h-3.5 w-3.5" />
@@ -397,14 +401,14 @@ function ChildAgeBadge({ child }: { readonly child: ChildProfile }) {
 
   return (
     <div className="flex items-center gap-3">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-100">
-        <Baby className="h-5 w-5 text-teal-600" />
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-100">
+        <Baby className="h-5 w-5 text-sage-600" />
       </div>
       <div>
         <h2 className="font-heading text-lg font-bold text-foreground">
           {child.nickname}ちゃん
         </h2>
-        <span className="inline-flex items-center rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">
+        <span className="inline-flex items-center rounded-full bg-sage-50 px-2.5 py-0.5 text-xs font-medium text-sage-700">
           {ageLabel}
         </span>
       </div>
@@ -418,9 +422,9 @@ function ChildAgeBadge({ child }: { readonly child: ChildProfile }) {
 
 function NoProfileCTA() {
   return (
-    <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-teal-200 bg-teal-50/50 px-6 py-14 text-center">
-      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-teal-100">
-        <Baby className="h-8 w-8 text-teal-600" />
+    <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-sage-200 bg-sage-50/50 px-6 py-14 text-center">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-sage-100">
+        <Baby className="h-8 w-8 text-sage-600" />
       </div>
       <h2 className="mt-4 font-heading text-lg font-bold text-foreground">
         お子さんの情報を登録しましょう
@@ -432,7 +436,7 @@ function NoProfileCTA() {
       </p>
       <Link
         href="/my"
-        className="mt-6 inline-flex items-center rounded-full bg-teal-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-teal-700"
+        className="mt-6 inline-flex items-center rounded-full bg-sage-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700"
       >
         プロフィールを設定する
       </Link>
@@ -447,11 +451,11 @@ function NoProfileCTA() {
 function LoadingSkeleton() {
   return (
     <div className="space-y-4">
-      <div className="h-8 w-48 animate-pulse rounded-full bg-warm-200" />
-      <div className="h-10 w-full animate-pulse rounded-lg bg-warm-200" />
-      <div className="h-28 w-full animate-pulse rounded-xl bg-warm-200" />
-      <div className="h-28 w-full animate-pulse rounded-xl bg-warm-200" />
-      <div className="h-28 w-full animate-pulse rounded-xl bg-warm-200" />
+      <div className="h-8 w-48 animate-pulse rounded-full bg-ivory-200" />
+      <div className="h-10 w-full animate-pulse rounded-lg bg-ivory-200" />
+      <div className="h-28 w-full animate-pulse rounded-xl bg-ivory-200" />
+      <div className="h-28 w-full animate-pulse rounded-xl bg-ivory-200" />
+      <div className="h-28 w-full animate-pulse rounded-xl bg-ivory-200" />
     </div>
   );
 }
@@ -492,19 +496,6 @@ export default function TimelinePage() {
         profile.children[0])
       : null;
 
-  const handleToggleComplete = useCallback(
-    async (itemId: string) => {
-      if (profile == null || selectedChild == null) return;
-
-      const updated = await store.toggleCompletedItem(
-        selectedChild.id,
-        itemId,
-      );
-      setProfile(updated);
-    },
-    [profile, selectedChild, store],
-  );
-
   const timelineItems: readonly TimelineItem[] | null =
     selectedChild != null
       ? generateTimeline(selectedChild.birthDate, selectedChild.completedItems)
@@ -513,15 +504,30 @@ export default function TimelinePage() {
   const groupedSections: GroupedSections | null =
     timelineItems != null ? buildGroupedSections(timelineItems) : null;
 
+  const handleToggleComplete = useCallback(
+    async (itemId: string) => {
+      if (profile == null || selectedChild == null) return;
+
+      const item = timelineItems?.find((t) => t.id === itemId);
+      if (item && !item.completed) {
+        trackTimelineItemCompleted(itemId, item.category);
+      }
+
+      const updated = await store.toggleCompletedItem(selectedChild.id, itemId);
+      setProfile(updated);
+    },
+    [profile, selectedChild, store, timelineItems],
+  );
+
   return (
     <>
       <title>タイムライン | すくすくナビ</title>
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
+      <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <h1 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
-            <Calendar className="mr-2 inline-block h-6 w-6 text-teal-600" />
+            <Calendar className="mr-2 inline-block h-6 w-6 text-sage-600" />
             タイムライン
           </h1>
           <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -550,13 +556,13 @@ export default function TimelinePage() {
               {selectedChild != null && <ChildAgeBadge child={selectedChild} />}
 
               {selectedChild != null && (
-                <div className="flex gap-1 rounded-lg border border-border bg-warm-50 p-1">
+                <div className="flex gap-1 rounded-lg border border-border bg-ivory-50 p-1">
                   <button
                     type="button"
                     onClick={() => setViewMode("list")}
                     className={`flex flex-1 items-center justify-center gap-1.5 rounded-md py-1.5 text-sm font-medium transition-colors ${
                       viewMode === "list"
-                        ? "bg-white text-teal-700 shadow-sm"
+                        ? "bg-white text-sage-700 shadow-sm"
                         : "text-muted hover:text-foreground"
                     }`}
                   >
@@ -568,7 +574,7 @@ export default function TimelinePage() {
                     onClick={() => setViewMode("calendar")}
                     className={`flex flex-1 items-center justify-center gap-1.5 rounded-md py-1.5 text-sm font-medium transition-colors ${
                       viewMode === "calendar"
-                        ? "bg-white text-teal-700 shadow-sm"
+                        ? "bg-white text-sage-700 shadow-sm"
                         : "text-muted hover:text-foreground"
                     }`}
                   >

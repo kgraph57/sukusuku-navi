@@ -72,7 +72,7 @@ export function MigrationDialog({ onComplete }: MigrationDialogProps) {
               <button
                 type="button"
                 onClick={handleMigrate}
-                className="w-full rounded-lg bg-teal-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-teal-700"
+                className="w-full rounded-lg bg-sage-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-sage-700"
               >
                 クラウドに移行する
               </button>
@@ -89,7 +89,7 @@ export function MigrationDialog({ onComplete }: MigrationDialogProps) {
 
         {step === "migrating" && (
           <div className="py-8 text-center">
-            <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-teal-200 border-t-teal-600" />
+            <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-sage-200 border-t-sage-600" />
             <p className="text-sm text-gray-600">データを移行しています...</p>
           </div>
         )}
@@ -106,7 +106,7 @@ export function MigrationDialog({ onComplete }: MigrationDialogProps) {
             <button
               type="button"
               onClick={onComplete}
-              className="mt-6 w-full rounded-lg bg-teal-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-teal-700"
+              className="mt-6 w-full rounded-lg bg-sage-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-sage-700"
             >
               はじめる
             </button>
@@ -126,7 +126,7 @@ export function MigrationDialog({ onComplete }: MigrationDialogProps) {
               <button
                 type="button"
                 onClick={handleMigrate}
-                className="w-full rounded-lg bg-teal-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-teal-700"
+                className="w-full rounded-lg bg-sage-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-sage-700"
               >
                 再試行
               </button>

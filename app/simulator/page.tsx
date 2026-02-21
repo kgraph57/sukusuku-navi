@@ -35,9 +35,9 @@ const FEATURES = [
 export default function SimulatorPage() {
   return (
     <>
-      <section className="bg-gradient-to-b from-coral-50 to-warm-50 px-4 pb-16 pt-12 sm:pb-24 sm:pt-20">
+      <section className="bg-gradient-to-b from-blush-50 to-ivory-50 px-4 pb-16 pt-12 sm:pb-24 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-coral-500 text-white">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-blush-500 text-white">
             <Calculator className="h-8 w-8" />
           </div>
 
@@ -55,7 +55,7 @@ export default function SimulatorPage() {
 
           <Link
             href="/simulator/start"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-coral-500 px-8 py-4 text-base font-bold text-white transition-colors hover:bg-coral-600"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-blush-500 px-8 py-4 text-base font-bold text-white transition-colors hover:bg-blush-600"
           >
             シミュレーションを始める
             <ArrowRight className="h-5 w-5" />
@@ -75,7 +75,7 @@ export default function SimulatorPage() {
                 key={feature.title}
                 className="rounded-xl border border-border bg-card p-6 text-center"
               >
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-sage-50 text-sage-600">
                   <feature.icon className="h-6 w-6" />
                 </div>
                 <h3 className="mt-4 font-heading text-lg font-bold text-card-foreground">
@@ -90,7 +90,7 @@ export default function SimulatorPage() {
         </div>
       </section>
 
-      <section className="border-t border-border bg-warm-100/50 px-4 py-12">
+      <section className="border-t border-border bg-ivory-100/50 px-4 py-12">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs leading-relaxed text-muted">
             本シミュレーターの結果は概算です。実際の受給額や対象要件は、制度ごとの詳細条件により異なる場合があります。正確な情報は港区の窓口またはウェブサイトでご確認ください。入力された情報はブラウザ上でのみ処理され、サーバーに送信・保存されることはありません。

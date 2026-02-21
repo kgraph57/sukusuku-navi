@@ -74,7 +74,7 @@
         "method": "counter",
         "label": "窓口申請",
         "description": "みなと子育てステーション（芝浦・赤坂・麻布・高輪）または区役所子ども家庭課で申請できます。",
-        "url": "https://www.city.minato.tokyo.jp/kosodate-station",
+        "url": "https://www.city.minato.tokyo.jp/kosodatesien/kodomo/kodomo/index-shisetsu.html",
         "address": "港区芝浦1-3-25（芝浦港南区民センター内）ほか",
         "hours": "平日 8:30〜17:00"
       },
@@ -82,7 +82,7 @@
         "method": "online",
         "label": "電子申請",
         "description": "港区電子申請サービスから一部オンラインで申請できます。",
-        "url": "https://www.city.minato.tokyo.jp/denshi-shinsei",
+        "url": "https://www.city.minato.tokyo.jp/jouhoseisaku/kurashi/todokede/denshishinse/denshishinse.html",
         "address": null,
         "hours": "24時間受付"
       }
@@ -289,7 +289,7 @@
         "method": "counter",
         "label": "保健センターで面談",
         "description": "三田・高輪・芝浦港南・麻布の各保健センターで面談を受けます。",
-        "url": "https://www.city.minato.tokyo.jp/hokenservice/index.html",
+        "url": "https://www.city.minato.tokyo.jp/shisetsu/hokenjo/hokenjo/00.html",
         "address": "みなと保健所（港区虎ノ門2-3-4）ほか各保健センター",
         "hours": "平日 8:30〜17:00"
       }
@@ -484,7 +484,7 @@
         "method": "counter",
         "label": "指定医療機関で直接接種",
         "description": "港区指定の医療機関で接種票を提示して接種します。申請手続きは不要です。",
-        "url": "https://www.city.minato.tokyo.jp/kenkousuishin/shitei-iryoukikan.html",
+        "url": "https://www.city.minato.tokyo.jp/hokenyobou/yobousessyu/iryoukikanmeibo.html",
         "address": "港区内指定医療機関",
         "hours": "各医療機関の診察時間に準ずる"
       }
@@ -568,7 +568,7 @@
         "method": "counter",
         "label": "指定医療機関で直接接種",
         "description": "港区指定の医療機関で接種票を提示して接種します。申請手続きは不要です。",
-        "url": "https://www.city.minato.tokyo.jp/kenkousuishin/shitei-iryoukikan.html",
+        "url": "https://www.city.minato.tokyo.jp/hokenyobou/yobousessyu/iryoukikanmeibo.html",
         "address": "港区内指定医療機関",
         "hours": "各医療機関の診察時間に準ずる"
       }
@@ -645,7 +645,7 @@
         "name": "産後ケア事業利用申請書",
         "obtainHow": "みなと子育てステーションまたは保健センターの窓口でもらえます",
         "notes": null,
-        "downloadUrl": "https://www.city.minato.tokyo.jp/sango-care/shinsei-sho.html"
+        "downloadUrl": "https://www.city.minato.tokyo.jp/chiikihoken/kodomo/boshi-shortstay.html"
       },
       {
         "name": "母子健康手帳",
@@ -665,7 +665,7 @@
         "method": "counter",
         "label": "窓口・電話で相談・申請",
         "description": "みなと子育てステーション（4ヶ所）または各保健センターに電話または来所して相談・申請します。",
-        "url": "https://www.city.minato.tokyo.jp/kosodate-station",
+        "url": "https://www.city.minato.tokyo.jp/kosodatesien/kodomo/kodomo/index-shisetsu.html",
         "address": "みなと子育てステーション芝浦（港区芝浦1-3-25）ほか",
         "hours": "平日 8:30〜17:00"
       }
@@ -754,7 +754,7 @@
         "method": "counter",
         "label": "窓口・電話で申請",
         "description": "みなと子育てステーションまたは各保健センターに電話または来所して申請します。",
-        "url": "https://www.city.minato.tokyo.jp/kosodate-station",
+        "url": "https://www.city.minato.tokyo.jp/kosodatesien/kodomo/kodomo/index-shisetsu.html",
         "address": "みなと子育てステーション芝浦（港区芝浦1-3-25）ほか",
         "hours": "平日 8:30〜17:00"
       }
@@ -838,7 +838,7 @@
         "method": "counter",
         "label": "電話・窓口で申請",
         "description": "みなと子育てステーションまたは各保健センターに電話または来所して申請します。",
-        "url": "https://www.city.minato.tokyo.jp/kosodate-station",
+        "url": "https://www.city.minato.tokyo.jp/kosodatesien/kodomo/kodomo/index-shisetsu.html",
         "address": "みなと子育てステーション芝浦（港区芝浦1-3-25）ほか",
         "hours": "平日 8:30〜17:00"
       }
@@ -928,7 +928,7 @@
         "method": "counter",
         "label": "各施設窓口・電話で申込",
         "description": "一時保育実施施設に直接問い合わせ・申し込みします。港区のWebサイトで施設一覧を確認できます。",
-        "url": "https://www.city.minato.tokyo.jp/kosodate/ippannhoiku/ichiji.html",
+        "url": "https://www.city.minato.tokyo.jp/kosodatesien/kosodate/ichiran.html",
         "address": "港区内一時保育実施施設（多数）",
         "hours": "各施設の受付時間に準ずる"
       }
@@ -998,7 +998,7 @@
         "name": "子どもショートステイ利用申請書",
         "obtainHow": "区役所子ども家庭課の窓口でもらえます",
         "notes": null,
-        "downloadUrl": "https://www.city.minato.tokyo.jp/kosodate/shortstay-shinsei.html"
+        "downloadUrl": "https://www.city.minato.tokyo.jp/kosodatesien/kodomo/kodomo/shien/shortstay.html"
       },
       {
         "name": "利用理由を証明できる書類",
@@ -1018,7 +1018,7 @@
         "method": "counter",
         "label": "区役所子ども家庭課窓口",
         "description": "区役所子ども家庭課またはみなと子育てステーションの窓口で申請します。",
-        "url": "https://www.city.minato.tokyo.jp/kodomo-katei/",
+        "url": "https://www.city.minato.tokyo.jp/soshiki/kodomokate-index.html",
         "address": "港区芝公園1-5-25（区役所本館4階）",
         "hours": "平日 8:30〜17:00"
       }
@@ -1094,7 +1094,7 @@
         "name": "ファミリーサポートセンター入会申込書",
         "obtainHow": "ファミリーサポートセンターまたは区役所窓口でもらえます",
         "notes": null,
-        "downloadUrl": "https://www.city.minato.tokyo.jp/family-support/toroku.html"
+        "downloadUrl": "https://www.city.minato.tokyo.jp/fukushikatsudou/kodomo/kodomo/shien/ikujisupport.html"
       },
       {
         "name": "本人確認書類",
@@ -1108,7 +1108,7 @@
         "method": "counter",
         "label": "ファミリーサポートセンター窓口",
         "description": "港区ファミリーサポートセンターの窓口または電話で入会申込みができます。",
-        "url": "https://www.city.minato.tokyo.jp/family-support",
+        "url": "https://www.city.minato.tokyo.jp/fukushikatsudou/kodomo/kodomo/shien/ikujisupport.html",
         "address": "港区芝浦1-3-25（みなとパーク芝浦内）",
         "hours": "平日・土曜 9:00〜17:00"
       }
@@ -1186,7 +1186,7 @@
         "method": "online",
         "label": "Webサイト・電話で申込",
         "description": "港区子むすびプロジェクトのWebサイトから各イベントの申し込みができます。",
-        "url": "https://www.city.minato.tokyo.jp/komusubi",
+        "url": "https://www.city.minato.tokyo.jp/fukushikatsudou/kodomo/kodomo/shien/ikujisupport.html",
         "address": null,
         "hours": null
       },
@@ -1194,7 +1194,7 @@
         "method": "counter",
         "label": "みなと子育てステーション窓口",
         "description": "みなと子育てステーション（4ヶ所）の窓口でも情報収集・申込ができます。",
-        "url": "https://www.city.minato.tokyo.jp/kosodate-station",
+        "url": "https://www.city.minato.tokyo.jp/kosodatesien/kodomo/kodomo/index-shisetsu.html",
         "address": "みなと子育てステーション芝浦（港区芝浦1-3-25）ほか",
         "hours": "平日 8:30〜17:00"
       }
@@ -1265,7 +1265,7 @@
         "name": "認可外保育施設保育料助成申請書",
         "obtainHow": "区役所保育課の窓口でもらえます",
         "notes": null,
-        "downloadUrl": "https://www.city.minato.tokyo.jp/hoiku/ninkagai-josei-shinsei.html"
+        "downloadUrl": "https://www.city.minato.tokyo.jp/hoikusien/r2_ninnkagai.html"
       },
       {
         "name": "認可外保育施設との契約書（写し）",
@@ -1291,7 +1291,7 @@
         "method": "counter",
         "label": "区役所保育課窓口",
         "description": "区役所保育課の窓口で申請します。",
-        "url": "https://www.city.minato.tokyo.jp/hoiku/",
+        "url": "https://www.city.minato.tokyo.jp/soshiki/hoiku.html",
         "address": "港区芝公園1-5-25（区役所本館4階）",
         "hours": "平日 8:30〜17:00"
       }
@@ -1355,7 +1355,7 @@
         "name": "保育所利用申込書（きょうだい情報欄に記入）",
         "obtainHow": "区役所保育課または区のWebサイトから取得",
         "notes": null,
-        "downloadUrl": "https://www.city.minato.tokyo.jp/hoiku/nyuushomoshikomi.html"
+        "downloadUrl": "https://www.city.minato.tokyo.jp/hoikusien/sinseisyo08.html"
       },
       {
         "name": "きょうだいの健康保険証または住民票",
@@ -1369,7 +1369,7 @@
         "method": "counter",
         "label": "区役所保育課窓口",
         "description": "保育所入所申込時に区役所保育課窓口で手続きします。",
-        "url": "https://www.city.minato.tokyo.jp/hoiku/",
+        "url": "https://www.city.minato.tokyo.jp/soshiki/hoiku.html",
         "address": "港区芝公園1-5-25（区役所本館4階）",
         "hours": "平日 8:30〜17:00"
       },
@@ -1377,7 +1377,7 @@
         "method": "online",
         "label": "電子申請（保育所入所申込）",
         "description": "保育所入所申込の電子申請時に多子世帯の情報を入力します。",
-        "url": "https://www.city.minato.tokyo.jp/denshi-shinsei",
+        "url": "https://www.city.minato.tokyo.jp/jouhoseisaku/kurashi/todokede/denshishinse/denshishinse.html",
         "address": null,
         "hours": "24時間受付"
       }
@@ -1468,7 +1468,7 @@
         "method": "counter",
         "label": "在園幼稚園を通じて申請",
         "description": "直接区役所に行く必要はありません。書類は幼稚園に提出してください。",
-        "url": "https://www.city.minato.tokyo.jp/shiritsu-youchien",
+        "url": "https://www.city.minato.tokyo.jp/kyouikushomu/kodomo/gakko/yochien/shiritsu/s-youchien-title.html",
         "address": "在園する私立幼稚園",
         "hours": "各幼稚園の事務受付時間に準ずる"
       }
@@ -1551,7 +1551,7 @@
         "method": "counter",
         "label": "指定医療機関または保健センターで受診",
         "description": "港区指定の医療機関（小児科等）または保健センターで受診します。申請手続きは不要です。",
-        "url": "https://www.city.minato.tokyo.jp/kenkousuishin/shitei-iryoukikan.html",
+        "url": "https://www.city.minato.tokyo.jp/hokenyobou/yobousessyu/iryoukikanmeibo.html",
         "address": "港区内指定医療機関または保健センター（芝浦・三田・高輪・麻布）",
         "hours": "各医療機関の診察時間に準ずる"
       }
@@ -1575,5 +1575,111 @@
       "child-allowance"
     ],
     "processingTime": "対象月齢になると受診券が郵送されます"
+  },
+  {
+    "slug": "child-development-support",
+    "name": "児童発達支援センター（ぱお）",
+    "description": "発達につまずきや遅れが気になるお子さん（0〜18歳）を対象に、専門職（心理士・理学療法士・作業療法士・言語聴覚士など）が評価・相談・療育を行う港区の中核施設です。「歩くのが遅い」「言葉が出ない」「落ち着きがない」「集団になじめない」「学習が定着しにくい」など、どんな小さな心配でもまず電話で相談できます。",
+    "category": "support",
+    "eligibility": {
+      "minAge": 0,
+      "maxAge": 18,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": [
+        "港区に住所があること",
+        "発達に心配やつまずきがあるお子さん"
+      ]
+    },
+    "amount": {
+      "type": "fixed",
+      "value": 0,
+      "unit": "yen",
+      "description": "相談は無料。通所支援は受給者証取得後、世帯の所得に応じた利用者負担あり（月額上限あり）"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/kenko/fukushi/shogaisha/jidou-hattatsu/",
+    "deadline": null,
+    "notes": "乳幼児健診や保育園・幼稚園で発達の指摘を受けた場合の相談先として最適です。5歳児健診で「経過観察」となった場合も、まずここに電話してください。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "電話で相談予約",
+        "description": "児童発達支援センター「ぱお」に電話（03-6277-3903）し、お子さんの気になる点を伝えて面談を予約します。",
+        "tip": "「健診で指摘された」「園の先生に勧められた」など、きっかけを伝えるとスムーズです。"
+      },
+      {
+        "step": 2,
+        "title": "専門職による面談・評価",
+        "description": "心理士・作業療法士・言語聴覚士などの専門職がお子さんの様子を観察・評価し、必要な支援を一緒に考えます。",
+        "tip": "母子手帳、健診結果、園の先生からの所見メモを持参すると評価がスムーズです。"
+      },
+      {
+        "step": 3,
+        "title": "支援計画の作成",
+        "description": "お子さんに合った支援内容（通所療育・保育所等訪問支援・居宅訪問型支援など）を提案してもらいます。",
+        "tip": null
+      },
+      {
+        "step": 4,
+        "title": "通所支援の利用開始（必要な場合）",
+        "description": "療育の通所が必要な場合は、区に「通所受給者証」を申請して利用を開始します。",
+        "tip": "受給者証の申請には「サービス等利用計画案」が必要です。ぱおの相談支援専門員が作成を手伝ってくれます。"
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "母子健康手帳",
+        "obtainHow": "妊娠届出時に交付されたもの",
+        "notes": "これまでの発育記録・健診結果の確認に使用します",
+        "downloadUrl": null
+      },
+      {
+        "name": "健診結果や医師の紹介状（あれば）",
+        "obtainHow": "健診を受けた医療機関や保健所から入手",
+        "notes": "なくても相談可能です。電話相談から始められます",
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "phone",
+        "label": "電話相談（まずはここから）",
+        "description": "まずは電話で相談してください。お子さんの様子をお聞きし、面談の予約をご案内します。",
+        "url": "https://www.city.minato.tokyo.jp/kenko/fukushi/shogaisha/jidou-hattatsu/",
+        "address": "港区南麻布4-6-13",
+        "hours": "月〜土曜 9:00〜18:00（日曜・祝日・年末年始を除く）"
+      }
+    ],
+    "faq": [
+      {
+        "question": "どんな小さな心配でも相談していいのですか？",
+        "answer": "はい。「ちょっと気になる」段階での相談を歓迎しています。診断がなくても、障害がなくても相談できます。早めの相談が、お子さんにとって一番よい結果につながります。"
+      },
+      {
+        "question": "健診で「経過観察」と言われましたが、ぱおに相談すべきですか？",
+        "answer": "ぜひ相談してください。5歳児健診や1歳半・3歳児健診で経過観察となった場合、ぱおでは専門職がより詳しく評価し、必要に応じた支援につなげます。保健所からの紹介状がなくても直接電話で相談できます。"
+      },
+      {
+        "question": "療育とは何ですか？どんなことをするのですか？",
+        "answer": "療育（発達支援）は、お子さんの発達を専門家が個別にサポートするプログラムです。例えば、言葉の遅れには言語聴覚士が関わり、体の動きが不器用なお子さんには作業療法士が支援します。遊びや活動を通じて楽しみながら、お子さんのペースで成長を促します。"
+      },
+      {
+        "question": "保育園や幼稚園に通いながら利用できますか？",
+        "answer": "はい。多くのお子さんは園に通いながら、週1〜2回程度通所しています。また「保育所等訪問支援」では専門職が園を訪問してお子さんをサポートすることもできます。"
+      },
+      {
+        "question": "費用はかかりますか？",
+        "answer": "相談は無料です。通所支援を利用する場合は、世帯の所得に応じた利用者負担がありますが、月額上限が設定されています（非課税世帯は無料、一般世帯は月額4,600円が上限）。"
+      },
+      {
+        "question": "就学相談との関係はどうなりますか？",
+        "answer": "ぱおでの評価結果は、港区の就学相談にも活用できます。お子さんに合った学びの場（通常学級・通級指導教室・特別支援学級など）を一緒に考える材料になります。年長の夏頃から就学相談が始まるため、早めの相談をおすすめします。"
+      }
+    ],
+    "relatedProgramSlugs": [
+      "infant-health-checkup",
+      "child-medical-subsidy"
+    ],
+    "processingTime": "電話相談は随時受付。面談は予約制（通常1〜2週間以内）"
   }
 ]

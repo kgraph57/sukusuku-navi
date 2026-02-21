@@ -77,7 +77,7 @@ export function ArticleFilter({ articles }: ArticleFilterProps) {
           placeholder="記事を検索..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full rounded-xl border border-border bg-card py-3 pl-10 pr-4 text-sm text-foreground placeholder:text-muted focus:border-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-100"
+          className="w-full rounded-xl border border-border bg-card py-3 pl-10 pr-4 text-sm text-foreground placeholder:text-muted focus:border-sage-300 focus:outline-none focus:ring-2 focus:ring-sage-100"
         />
         {searchQuery && (
           <button
@@ -100,8 +100,8 @@ export function ArticleFilter({ articles }: ArticleFilterProps) {
             onClick={() => setSelectedCategory(null)}
             className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
               selectedCategory === null
-                ? "bg-teal-600 text-white"
-                : "border border-border bg-card text-muted hover:border-teal-200 hover:text-teal-600"
+                ? "bg-sage-600 text-white"
+                : "border border-border bg-card text-muted hover:border-sage-200 hover:text-sage-600"
             }`}
           >
             すべて
@@ -115,8 +115,8 @@ export function ArticleFilter({ articles }: ArticleFilterProps) {
               }
               className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                 selectedCategory === cat
-                  ? "bg-teal-600 text-white"
-                  : "border border-border bg-card text-muted hover:border-teal-200 hover:text-teal-600"
+                  ? "bg-sage-600 text-white"
+                  : "border border-border bg-card text-muted hover:border-sage-200 hover:text-sage-600"
               }`}
             >
               {CATEGORY_LABELS[cat]}
@@ -134,8 +134,8 @@ export function ArticleFilter({ articles }: ArticleFilterProps) {
             onClick={() => setSelectedAgeGroup(null)}
             className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
               selectedAgeGroup === null
-                ? "bg-teal-600 text-white"
-                : "border border-border bg-card text-muted hover:border-teal-200 hover:text-teal-600"
+                ? "bg-sage-600 text-white"
+                : "border border-border bg-card text-muted hover:border-sage-200 hover:text-sage-600"
             }`}
           >
             すべて
@@ -149,8 +149,8 @@ export function ArticleFilter({ articles }: ArticleFilterProps) {
               }
               className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                 selectedAgeGroup === ag
-                  ? "bg-teal-600 text-white"
-                  : "border border-border bg-card text-muted hover:border-teal-200 hover:text-teal-600"
+                  ? "bg-sage-600 text-white"
+                  : "border border-border bg-card text-muted hover:border-sage-200 hover:text-sage-600"
               }`}
             >
               {AGE_GROUP_LABELS[ag]}
@@ -169,7 +169,7 @@ export function ArticleFilter({ articles }: ArticleFilterProps) {
               <button
                 type="button"
                 onClick={handleClearFilters}
-                className="text-teal-600 hover:underline"
+                className="text-sage-600 hover:underline"
               >
                 フィルターをクリア
               </button>
@@ -196,7 +196,7 @@ export function ArticleFilter({ articles }: ArticleFilterProps) {
           <button
             type="button"
             onClick={handleClearFilters}
-            className="mt-4 rounded-full bg-teal-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-teal-700"
+            className="mt-4 rounded-full bg-sage-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-sage-700"
           >
             フィルターをクリア
           </button>

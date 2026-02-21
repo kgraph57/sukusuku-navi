@@ -84,11 +84,11 @@ export default async function ClinicDetailPage({ params }: PageProps) {
 
   return (
     <>
-      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
+      <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <Link
             href="/clinics"
-            className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+            className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
           >
             <ArrowLeft className="h-4 w-4" />
             小児科一覧に戻る
@@ -143,7 +143,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
 
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-              <MapPin className="h-5 w-5 text-teal-600" />
+              <MapPin className="h-5 w-5 text-sage-600" />
               基本情報
             </h2>
             <div className="mt-4 space-y-3">
@@ -161,7 +161,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
                 </span>
                 <a
                   href={`tel:${clinic.phone}`}
-                  className="flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-700"
+                  className="flex items-center gap-1 text-sm font-medium text-sage-600 hover:text-sage-700"
                 >
                   <Phone className="h-3.5 w-3.5" />
                   {clinic.phone}
@@ -172,7 +172,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
                   最寄駅
                 </span>
                 <span className="flex items-center gap-1 text-sm text-card-foreground">
-                  <Train className="h-3.5 w-3.5 shrink-0 text-teal-600" />
+                  <Train className="h-3.5 w-3.5 shrink-0 text-sage-600" />
                   {clinic.nearestStation}
                 </span>
               </div>
@@ -181,7 +181,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
                   駐車場
                 </span>
                 <span className="flex items-center gap-1 text-sm text-card-foreground">
-                  <Car className="h-3.5 w-3.5 shrink-0 text-teal-600" />
+                  <Car className="h-3.5 w-3.5 shrink-0 text-sage-600" />
                   {clinic.parkingAvailable ? "あり" : "なし"}
                 </span>
               </div>
@@ -190,7 +190,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
 
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-              <Clock className="h-5 w-5 text-teal-600" />
+              <Clock className="h-5 w-5 text-sage-600" />
               診療時間
             </h2>
             <div className="mt-4">
@@ -209,7 +209,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
               {clinic.features.map((feature) => (
                 <span
                   key={feature}
-                  className="rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-sm font-medium text-teal-700"
+                  className="rounded-full border border-sage-200 bg-sage-50 px-3 py-1 text-sm font-medium text-sage-700"
                 >
                   {feature}
                 </span>
@@ -235,7 +235,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
                 href={`https://www.google.com/maps/search/?api=1&query=${clinic.lat},${clinic.lng}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm font-medium text-teal-600 hover:text-teal-700"
+                className="inline-flex items-center gap-1 text-sm font-medium text-sage-600 hover:text-sage-700"
               >
                 Googleマップで開く
                 <ExternalLink className="h-3.5 w-3.5" />
@@ -247,7 +247,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
             href={`https://www.google.com/maps/dir/?api=1&destination=${clinic.lat},${clinic.lng}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-teal-600 px-6 py-3.5 text-base font-bold text-white shadow-sm transition-colors hover:bg-teal-700"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-sage-600 px-6 py-3.5 text-base font-bold text-white shadow-sm transition-colors hover:bg-sage-700"
           >
             <Navigation2 className="h-5 w-5" />
             現在地からルート案内
@@ -291,7 +291,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
                 href={clinic.onlineBookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-teal-600 px-6 py-3.5 text-base font-bold text-white shadow-sm transition-colors hover:bg-teal-700"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-sage-600 px-6 py-3.5 text-base font-bold text-white shadow-sm transition-colors hover:bg-sage-700"
               >
                 <Calendar className="h-5 w-5" />
                 Web予約する
@@ -301,7 +301,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
               href={clinic.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-full items-center justify-center gap-2 rounded-xl border border-teal-200 bg-white px-6 py-3.5 text-base font-bold text-teal-600 shadow-sm transition-colors hover:bg-teal-50"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-sage-200 bg-white px-6 py-3.5 text-base font-bold text-sage-600 shadow-sm transition-colors hover:bg-sage-50"
             >
               <ExternalLink className="h-5 w-5" />
               病院のウェブサイトを開く
@@ -318,9 +318,9 @@ export default async function ClinicDetailPage({ params }: PageProps) {
                   <Link
                     key={related.slug}
                     href={`/clinics/${related.slug}`}
-                    className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-teal-200"
+                    className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-sage-200"
                   >
-                    <Stethoscope className="h-4 w-4 shrink-0 text-teal-600" />
+                    <Stethoscope className="h-4 w-4 shrink-0 text-sage-600" />
                     <div className="min-w-0">
                       <p className="text-sm font-medium text-card-foreground">
                         {related.name}
@@ -336,7 +336,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
           <div className="pt-4">
             <Link
               href="/clinics"
-              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
             >
               <ArrowLeft className="h-4 w-4" />
               小児科一覧に戻る

@@ -62,8 +62,8 @@ function ChildSelector({
             onClick={() => onSelect(child.id)}
             className={`flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
               isActive
-                ? "bg-teal-500 text-white"
-                : "bg-warm-100 text-muted hover:bg-warm-200"
+                ? "bg-sage-500 text-white"
+                : "bg-ivory-100 text-muted hover:bg-ivory-200"
             }`}
           >
             <Users className="h-3.5 w-3.5" />
@@ -99,11 +99,11 @@ function ProgressSummary({
         <span className="font-medium text-card-foreground">
           達成: {achievedCount}/{total}項目
         </span>
-        <span className="font-medium text-teal-600">{percent}%</span>
+        <span className="font-medium text-sage-600">{percent}%</span>
       </div>
-      <div className="mt-2 h-3 overflow-hidden rounded-full bg-warm-100">
+      <div className="mt-2 h-3 overflow-hidden rounded-full bg-ivory-100">
         <div
-          className="h-full rounded-full bg-gradient-to-r from-teal-400 to-teal-600 transition-all duration-300"
+          className="h-full rounded-full bg-gradient-to-r from-sage-400 to-sage-600 transition-all duration-300"
           style={{ width: `${percent}%` }}
         />
       </div>
@@ -137,9 +137,9 @@ function MilestoneRow({
     <div
       className={`flex items-start gap-3 rounded-lg border p-3 transition-all ${
         isAchieved
-          ? "border-teal-200 bg-teal-50/50"
+          ? "border-sage-200 bg-sage-50/50"
           : isInRange
-            ? "border-teal-100 bg-white"
+            ? "border-sage-100 bg-white"
             : "border-border"
       }`}
     >
@@ -150,7 +150,7 @@ function MilestoneRow({
         aria-label={isAchieved ? "未達成に戻す" : "達成にする"}
       >
         {isAchieved ? (
-          <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-teal-500 bg-teal-500 text-white">
+          <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-sage-500 bg-sage-500 text-white">
             <Check className="h-3.5 w-3.5" />
           </div>
         ) : (
@@ -164,13 +164,13 @@ function MilestoneRow({
         <div className="flex flex-wrap items-center gap-2">
           <p
             className={`text-sm font-medium ${
-              isAchieved ? "text-teal-700 line-through" : "text-card-foreground"
+              isAchieved ? "text-sage-700 line-through" : "text-card-foreground"
             }`}
           >
             {milestone.title}
           </p>
           {isInRange && !isAchieved && (
-            <span className="rounded-full bg-teal-100 px-2 py-0.5 text-[10px] font-medium text-teal-700">
+            <span className="rounded-full bg-sage-100 px-2 py-0.5 text-[10px] font-medium text-sage-700">
               今の時期
             </span>
           )}
@@ -188,7 +188,7 @@ function MilestoneRow({
       </div>
 
       {isAchieved && record?.achievedDate && (
-        <div className="flex shrink-0 items-center gap-1 text-xs text-teal-600">
+        <div className="flex shrink-0 items-center gap-1 text-xs text-sage-600">
           <Calendar className="h-3 w-3" />
           <span>{record.achievedDate}</span>
         </div>
@@ -347,14 +347,14 @@ export default function MilestonesPage() {
 
   if (!isLoaded) {
     return (
-      <div className="min-h-screen bg-warm-50 px-4 py-12">
+      <div className="min-h-screen bg-ivory-50 px-4 py-12">
         <div className="mx-auto max-w-3xl">
-          <div className="h-8 w-48 animate-pulse rounded bg-warm-200" />
+          <div className="h-8 w-48 animate-pulse rounded bg-ivory-200" />
           <div className="mt-6 space-y-4">
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="h-20 animate-pulse rounded-xl bg-warm-200"
+                className="h-20 animate-pulse rounded-xl bg-ivory-200"
               />
             ))}
           </div>
@@ -365,7 +365,7 @@ export default function MilestonesPage() {
 
   if (!profile || profile.children.length === 0) {
     return (
-      <div className="min-h-screen bg-warm-50 px-4 py-12">
+      <div className="min-h-screen bg-ivory-50 px-4 py-12">
         <div className="mx-auto max-w-3xl">
           <Link
             href="/my"
@@ -374,9 +374,9 @@ export default function MilestonesPage() {
             <ArrowLeft className="h-3.5 w-3.5" />
             マイページに戻る
           </Link>
-          <div className="mt-8 rounded-2xl border-2 border-dashed border-teal-200 bg-white/60 p-10 text-center">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-teal-100">
-              <Baby className="h-7 w-7 text-teal-600" />
+          <div className="mt-8 rounded-2xl border-2 border-dashed border-sage-200 bg-white/60 p-10 text-center">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
+              <Baby className="h-7 w-7 text-sage-600" />
             </div>
             <h1 className="mt-4 font-heading text-lg font-bold text-foreground">
               お子さんを登録してください
@@ -386,7 +386,7 @@ export default function MilestonesPage() {
             </p>
             <Link
               href="/my"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-teal-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-teal-700"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-sage-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700"
             >
               <Baby className="h-4 w-4" />
               お子さんを登録する
@@ -399,7 +399,7 @@ export default function MilestonesPage() {
 
   return (
     <>
-      <section className="bg-gradient-to-b from-rose-50 to-warm-50 px-4 pb-6 pt-8 sm:pb-8 sm:pt-12">
+      <section className="bg-gradient-to-b from-rose-50 to-ivory-50 px-4 pb-6 pt-8 sm:pb-8 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <Link
             href="/my"

@@ -47,9 +47,9 @@ export function InstallPrompt() {
 
   return (
     <div className="fixed bottom-4 left-4 right-4 z-40 mx-auto max-w-lg animate-slide-up">
-      <div className="flex items-center gap-3 rounded-2xl border border-teal-200 bg-white p-4 shadow-lg">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-100">
-          <Download className="h-5 w-5 text-teal-600" />
+      <div className="flex items-center gap-3 rounded-2xl border border-sage-200 bg-white p-4 shadow-lg">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-100">
+          <Download className="h-5 w-5 text-sage-600" />
         </div>
         <div className="min-w-0 flex-1">
           <p className="text-sm font-medium text-foreground">
@@ -62,14 +62,14 @@ export function InstallPrompt() {
         <button
           type="button"
           onClick={handleInstall}
-          className="shrink-0 rounded-lg bg-teal-600 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-teal-700"
+          className="shrink-0 rounded-lg bg-sage-600 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-sage-700"
         >
           追加
         </button>
         <button
           type="button"
           onClick={handleDismiss}
-          className="shrink-0 rounded-lg p-1.5 text-muted transition-colors hover:bg-warm-100"
+          className="shrink-0 rounded-lg p-1.5 text-muted transition-colors hover:bg-ivory-100"
           aria-label="閉じる"
         >
           <X className="h-4 w-4" />

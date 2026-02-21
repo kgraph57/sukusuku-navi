@@ -137,7 +137,7 @@ function TypeSummaryCard({
         <h3 className="font-heading text-sm font-bold text-card-foreground">
           {NURSERY_TYPE_LABELS[type]}
         </h3>
-        <span className="rounded-full bg-teal-100 px-2 py-0.5 text-xs font-medium text-teal-700">
+        <span className="rounded-full bg-sage-100 px-2 py-0.5 text-xs font-medium text-sage-700">
           {count}園
         </span>
       </div>
@@ -157,10 +157,10 @@ export default function NurseriesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
+      <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">
-            <Building2 className="mr-2 inline-block h-8 w-8 text-teal-600" />
+            <Building2 className="mr-2 inline-block h-8 w-8 text-sage-600" />
             港区の保育園を探す
           </h1>
           <p className="mt-4 text-base leading-relaxed text-muted">
@@ -209,10 +209,10 @@ export default function NurseriesPage() {
       </section>
 
       {/* 保活ガイド */}
-      <section className="border-t border-border bg-teal-50/50 px-4 py-12 sm:py-16">
+      <section className="border-t border-border bg-sage-50/50 px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl">
           <h2 className="flex items-center gap-2 font-heading text-xl font-bold text-foreground">
-            <Calendar className="h-6 w-6 text-teal-600" />
+            <Calendar className="h-6 w-6 text-sage-600" />
             保活ガイド：4月入園までのスケジュール
           </h2>
           <p className="mt-2 text-sm text-muted">
@@ -225,12 +225,12 @@ export default function NurseriesPage() {
                 key={step.month}
                 className="flex gap-4 rounded-xl border border-border bg-card p-5"
               >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-600 text-sm font-bold text-white">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-600 text-sm font-bold text-white">
                   {i + 1}
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="rounded-full bg-teal-100 px-2.5 py-0.5 text-xs font-medium text-teal-700">
+                    <span className="rounded-full bg-sage-100 px-2.5 py-0.5 text-xs font-medium text-sage-700">
                       {step.month}
                     </span>
                     <h3 className="font-heading text-base font-bold text-card-foreground">
@@ -251,7 +251,7 @@ export default function NurseriesPage() {
       <section className="border-t border-border px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl">
           <h2 className="flex items-center gap-2 font-heading text-xl font-bold text-foreground">
-            <FileText className="h-6 w-6 text-teal-600" />
+            <FileText className="h-6 w-6 text-sage-600" />
             申込に必要な書類
           </h2>
           <div className="mt-6 space-y-2">
@@ -260,7 +260,7 @@ export default function NurseriesPage() {
                 key={doc.name}
                 className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
               >
-                <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" />
+                <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-sage-600" />
                 <div>
                   <p className="text-sm font-medium text-card-foreground">
                     {doc.name}
@@ -277,10 +277,10 @@ export default function NurseriesPage() {
       </section>
 
       {/* 利用調整指数 */}
-      <section className="border-t border-border bg-warm-100/50 px-4 py-12 sm:py-16">
+      <section className="border-t border-border bg-ivory-100/50 px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl">
           <h2 className="flex items-center gap-2 font-heading text-xl font-bold text-foreground">
-            <HelpCircle className="h-6 w-6 text-teal-600" />
+            <HelpCircle className="h-6 w-6 text-sage-600" />
             利用調整指数（選考のしくみ）
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -299,7 +299,7 @@ export default function NurseriesPage() {
                   </p>
                   <p className="mt-0.5 text-xs text-muted">{item.note}</p>
                 </div>
-                <span className="shrink-0 rounded-full bg-teal-100 px-3 py-1 text-sm font-bold text-teal-700">
+                <span className="shrink-0 rounded-full bg-sage-100 px-3 py-1 text-sm font-bold text-sage-700">
                   {item.points}
                 </span>
               </div>
@@ -325,7 +325,7 @@ export default function NurseriesPage() {
               href="https://www.city.minato.tokyo.jp/kodomo/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-teal-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-teal-700"
+              className="inline-flex items-center gap-2 rounded-full bg-sage-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-sage-700"
             >
               港区 子ども家庭支援部のページ
               <ArrowRight className="h-4 w-4" />

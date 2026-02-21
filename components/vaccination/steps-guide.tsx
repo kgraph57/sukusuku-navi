@@ -20,11 +20,11 @@ export function StepsGuide({ steps }: StepsGuideProps) {
           <div key={step.step} className="relative flex gap-4 pb-8">
             {!isLast && (
               <div
-                className="absolute left-[19px] top-10 h-[calc(100%-24px)] w-0.5 bg-teal-200"
+                className="absolute left-[19px] top-10 h-[calc(100%-24px)] w-0.5 bg-sage-200"
                 aria-hidden="true"
               />
             )}
-            <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-teal-400 bg-white text-sm font-bold text-teal-700">
+            <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-sage-400 bg-white text-sm font-bold text-sage-700">
               {step.step}
             </div>
             <div className="flex-1 pt-1">
@@ -41,8 +41,8 @@ export function StepsGuide({ steps }: StepsGuideProps) {
                 </p>
               )}
               {step.tip && (
-                <div className="mt-3 rounded-lg border border-teal-200 bg-teal-50 p-3">
-                  <p className="flex items-start gap-1.5 text-xs leading-relaxed text-teal-800">
+                <div className="mt-3 rounded-lg border border-sage-200 bg-sage-50 p-3">
+                  <p className="flex items-start gap-1.5 text-xs leading-relaxed text-sage-800">
                     <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0" />
                     {step.tip}
                   </p>
@@ -51,7 +51,7 @@ export function StepsGuide({ steps }: StepsGuideProps) {
               {step.url && (
                 <Link
                   href={step.url}
-                  className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-teal-600 hover:text-teal-700"
+                  className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-sage-600 hover:text-sage-700"
                 >
                   詳しく見る
                   <ExternalLink className="h-3 w-3" />
@@ -61,9 +61,9 @@ export function StepsGuide({ steps }: StepsGuideProps) {
           </div>
         );
       })}
-      <div className="flex items-center gap-3 rounded-lg border border-teal-200 bg-teal-50 p-4">
-        <CheckCircle2 className="h-5 w-5 shrink-0 text-teal-600" />
-        <p className="text-sm font-medium text-teal-800">
+      <div className="flex items-center gap-3 rounded-lg border border-sage-200 bg-sage-50 p-4">
+        <CheckCircle2 className="h-5 w-5 shrink-0 text-sage-600" />
+        <p className="text-sm font-medium text-sage-800">
           すべての定期接種を完了すると、お子さんは主要な感染症から守られます。
         </p>
       </div>

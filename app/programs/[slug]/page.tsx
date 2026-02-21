@@ -61,7 +61,7 @@ const CATEGORY_ICON_MAP: Record<string, typeof Heart> = {
 
 const CATEGORY_COLOR_MAP: Record<string, string> = {
   medical: "bg-red-50 text-red-600 border-red-200",
-  financial: "bg-teal-50 text-teal-600 border-teal-200",
+  financial: "bg-sage-50 text-sage-600 border-sage-200",
   childcare: "bg-blue-50 text-blue-600 border-blue-200",
   support: "bg-purple-50 text-purple-600 border-purple-200",
 };
@@ -108,11 +108,11 @@ export default async function ProgramDetailPage({ params }: PageProps) {
 
   return (
     <>
-      <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
+      <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <Link
             href="/programs"
-            className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+            className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
           >
             <ArrowLeft className="h-4 w-4" />
             制度一覧に戻る
@@ -146,7 +146,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
         <div className="mx-auto max-w-3xl space-y-6">
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-              <Users className="h-5 w-5 text-teal-600" />
+              <Users className="h-5 w-5 text-sage-600" />
               対象者
             </h2>
             <div className="mt-4 space-y-3">
@@ -181,7 +181,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                   <span className="shrink-0 text-sm font-medium text-muted">
                     所得制限
                   </span>
-                  <span className="text-sm font-medium text-teal-600">
+                  <span className="text-sm font-medium text-sage-600">
                     なし
                   </span>
                 </div>
@@ -208,7 +208,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
 
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-              <Banknote className="h-5 w-5 text-teal-600" />
+              <Banknote className="h-5 w-5 text-sage-600" />
               支給額・内容
             </h2>
             <div className="mt-4">
@@ -216,15 +216,15 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                 {program.amount.description}
               </p>
               {program.amount.value !== null && program.amount.value > 0 && (
-                <div className="mt-3 inline-flex items-baseline gap-1 rounded-lg bg-teal-50 px-4 py-2">
-                  <span className="text-sm text-teal-700">
+                <div className="mt-3 inline-flex items-baseline gap-1 rounded-lg bg-sage-50 px-4 py-2">
+                  <span className="text-sm text-sage-700">
                     {program.amount.unit === "yen-per-month" ? "月額" : "金額"}
                   </span>
-                  <span className="font-heading text-2xl font-bold text-teal-700">
+                  <span className="font-heading text-2xl font-bold text-sage-700">
                     {program.amount.value.toLocaleString()}円
                   </span>
                   {program.amount.unit === "yen-per-month" && (
-                    <span className="text-sm text-teal-600">/月</span>
+                    <span className="text-sm text-sage-600">/月</span>
                   )}
                 </div>
               )}
@@ -234,7 +234,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           {(program.deadline ?? program.processingTime) && (
             <div className="rounded-xl border border-border bg-card p-6">
               <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-                <Calendar className="h-5 w-5 text-teal-600" />
+                <Calendar className="h-5 w-5 text-sage-600" />
                 申請期限・処理期間
               </h2>
               <div className="mt-3 space-y-3">
@@ -250,7 +250,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                 )}
                 {program.processingTime && (
                   <div className="flex items-start gap-3">
-                    <Clock className="mt-0.5 h-4 w-4 shrink-0 text-teal-500" />
+                    <Clock className="mt-0.5 h-4 w-4 shrink-0 text-sage-500" />
                     <span className="text-sm text-card-foreground">
                       {program.processingTime}
                     </span>
@@ -261,12 +261,12 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           )}
 
           {program.notes && (
-            <div className="rounded-xl border border-coral-200 bg-coral-50 p-6">
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-coral-700">
+            <div className="rounded-xl border border-blush-200 bg-blush-50 p-6">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-blush-600">
                 <AlertCircle className="h-5 w-5" />
                 注意事項
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-coral-800">
+              <p className="mt-3 text-sm leading-relaxed text-blush-600">
                 {program.notes}
               </p>
             </div>
@@ -275,13 +275,13 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           {program.applicationSteps && program.applicationSteps.length > 0 && (
             <div className="rounded-xl border border-border bg-card p-6">
               <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-                <ClipboardList className="h-5 w-5 text-teal-600" />
+                <ClipboardList className="h-5 w-5 text-sage-600" />
                 申請の流れ
               </h2>
               <ol className="mt-4 space-y-4">
                 {program.applicationSteps.map((step) => (
                   <li key={step.step} className="flex gap-4">
-                    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal-100 text-sm font-bold text-teal-700">
+                    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sage-100 text-sm font-bold text-sage-700">
                       {step.step}
                     </div>
                     <div className="flex-1 pt-0.5">
@@ -292,7 +292,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                         {step.description}
                       </p>
                       {step.tip && (
-                        <p className="mt-1 rounded bg-teal-50 px-2 py-1 text-xs text-teal-700">
+                        <p className="mt-1 rounded bg-sage-50 px-2 py-1 text-xs text-sage-700">
                           💡 {step.tip}
                         </p>
                       )}
@@ -307,16 +307,16 @@ export default async function ProgramDetailPage({ params }: PageProps) {
             program.requiredDocuments.length > 0 && (
               <div className="rounded-xl border border-border bg-card p-6">
                 <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-                  <FileText className="h-5 w-5 text-teal-600" />
+                  <FileText className="h-5 w-5 text-sage-600" />
                   必要書類
                 </h2>
                 <ul className="mt-4 space-y-3">
                   {program.requiredDocuments.map((doc) => (
                     <li
                       key={doc.name}
-                      className="flex items-start gap-3 rounded-lg border border-border bg-warm-50 p-3"
+                      className="flex items-start gap-3 rounded-lg border border-border bg-ivory-50 p-3"
                     >
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-500" />
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-sage-500" />
                       <div className="flex-1">
                         <p className="text-sm font-medium text-card-foreground">
                           {doc.name}
@@ -325,7 +325,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                           {doc.obtainHow}
                         </p>
                         {doc.notes && (
-                          <p className="mt-0.5 text-xs text-coral-600">
+                          <p className="mt-0.5 text-xs text-blush-600">
                             ※ {doc.notes}
                           </p>
                         )}
@@ -334,7 +334,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                             href={doc.downloadUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mt-1 inline-flex items-center gap-1 text-xs text-teal-600 underline hover:text-teal-700"
+                            className="mt-1 inline-flex items-center gap-1 text-xs text-sage-600 underline hover:text-sage-700"
                           >
                             ダウンロード
                             <ExternalLink className="h-3 w-3" />
@@ -351,7 +351,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
             program.applicationMethods.length > 0 && (
               <div className="rounded-xl border border-border bg-card p-6">
                 <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-                  <Building2 className="h-5 w-5 text-teal-600" />
+                  <Building2 className="h-5 w-5 text-sage-600" />
                   申請方法
                 </h2>
                 <div className="mt-4 space-y-3">
@@ -368,7 +368,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                         className="rounded-lg border border-border p-4"
                       >
                         <div className="flex items-center gap-2">
-                          <MethodIcon className="h-4 w-4 text-teal-600" />
+                          <MethodIcon className="h-4 w-4 text-sage-600" />
                           <span className="text-sm font-medium text-card-foreground">
                             {method.label}
                           </span>
@@ -381,7 +381,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                             href={method.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-teal-600 hover:text-teal-700"
+                            className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-sage-600 hover:text-sage-700"
                           >
                             申請ページへ
                             <ExternalLink className="h-3 w-3" />
@@ -407,7 +407,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           {program.faq && program.faq.length > 0 && (
             <div className="rounded-xl border border-border bg-card p-6">
               <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
-                <HelpCircle className="h-5 w-5 text-teal-600" />
+                <HelpCircle className="h-5 w-5 text-sage-600" />
                 よくある質問
               </h2>
               <div className="mt-4 space-y-4">
@@ -443,7 +443,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                     <Link
                       key={rp.slug}
                       href={`/programs/${rp.slug}`}
-                      className="flex items-center gap-3 rounded-lg border border-border p-3 transition-colors hover:border-teal-200 hover:bg-teal-50/50"
+                      className="flex items-center gap-3 rounded-lg border border-border p-3 transition-colors hover:border-sage-200 hover:bg-sage-50/50"
                     >
                       <div
                         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border ${rpColor}`}
@@ -471,14 +471,14 @@ export default async function ProgramDetailPage({ params }: PageProps) {
               href={program.applicationUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-teal-600 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-teal-700"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-sage-600 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-sage-700"
             >
               申請ページを開く
               <ExternalLink className="h-4 w-4" />
             </a>
             <Link
               href="/simulator/start"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-teal-200 bg-white px-6 py-3 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-sage-200 bg-white px-6 py-3 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
             >
               <Calculator className="h-4 w-4" />
               シミュレーションする
@@ -488,7 +488,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           <div className="pt-4">
             <Link
               href="/programs"
-              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-teal-600"
+              className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
             >
               <ArrowLeft className="h-4 w-4" />
               制度一覧に戻る

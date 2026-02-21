@@ -23,7 +23,7 @@ const NurseryMap = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex h-[400px] items-center justify-center rounded-xl border border-border bg-warm-100 sm:h-[500px]">
+      <div className="flex h-[400px] items-center justify-center rounded-xl border border-border bg-ivory-100 sm:h-[500px]">
         <p className="text-sm text-muted">地図を読み込み中...</p>
       </div>
     ),
@@ -66,7 +66,7 @@ function NurseryCard({
       className={`group flex gap-4 rounded-xl border bg-card p-5 transition-all ${
         isSelected
           ? "border-blue-300 ring-1 ring-blue-200"
-          : "border-border hover:border-teal-200 hover:shadow-md"
+          : "border-border hover:border-sage-200 hover:shadow-md"
       }`}
     >
       <div className="flex shrink-0 flex-col items-center gap-2">
@@ -134,7 +134,7 @@ function NurseryCard({
             <Clock className="h-3.5 w-3.5 shrink-0" />
             {nursery.hours.standard}
             {nursery.hours.extended != null && (
-              <span className="text-xs text-teal-600">
+              <span className="text-xs text-sage-600">
                 （延長 〜{nursery.hours.extended.split("-")[1]}）
               </span>
             )}
@@ -149,14 +149,14 @@ function NurseryCard({
           {nursery.features.slice(0, 4).map((feature) => (
             <span
               key={feature}
-              className="rounded-full bg-warm-100 px-2 py-0.5 text-xs text-muted"
+              className="rounded-full bg-ivory-100 px-2 py-0.5 text-xs text-muted"
             >
               {feature}
             </span>
           ))}
         </div>
 
-        <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
+        <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
           詳細を見る
           <ArrowRight className="h-3 w-3" />
         </span>
@@ -246,10 +246,10 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
     <div>
       <div className="rounded-xl border border-border bg-card p-4">
         <div className="flex items-center gap-2 text-sm font-medium text-card-foreground">
-          <Filter className="h-4 w-4 text-teal-600" />
+          <Filter className="h-4 w-4 text-sage-600" />
           絞り込み
           {activeFilterCount > 0 && (
-            <span className="rounded-full bg-teal-100 px-2 py-0.5 text-xs font-medium text-teal-700">
+            <span className="rounded-full bg-sage-100 px-2 py-0.5 text-xs font-medium text-sage-700">
               {activeFilterCount}件
             </span>
           )}
@@ -264,8 +264,8 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
                 onClick={() => setSelectedType("all")}
                 className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                   selectedType === "all"
-                    ? "bg-teal-600 text-white"
-                    : "bg-warm-100 text-muted hover:bg-warm-200"
+                    ? "bg-sage-600 text-white"
+                    : "bg-ivory-100 text-muted hover:bg-ivory-200"
                 }`}
               >
                 すべて
@@ -279,8 +279,8 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
                   }
                   className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                     selectedType === type
-                      ? "bg-teal-600 text-white"
-                      : "bg-warm-100 text-muted hover:bg-warm-200"
+                      ? "bg-sage-600 text-white"
+                      : "bg-ivory-100 text-muted hover:bg-ivory-200"
                   }`}
                 >
                   {NURSERY_TYPE_LABELS[type]}
@@ -297,8 +297,8 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
                 onClick={() => setSelectedArea("all")}
                 className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                   selectedArea === "all"
-                    ? "bg-teal-600 text-white"
-                    : "bg-warm-100 text-muted hover:bg-warm-200"
+                    ? "bg-sage-600 text-white"
+                    : "bg-ivory-100 text-muted hover:bg-ivory-200"
                 }`}
               >
                 すべて
@@ -312,8 +312,8 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
                   }
                   className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                     selectedArea === area
-                      ? "bg-teal-600 text-white"
-                      : "bg-warm-100 text-muted hover:bg-warm-200"
+                      ? "bg-sage-600 text-white"
+                      : "bg-ivory-100 text-muted hover:bg-ivory-200"
                   }`}
                 >
                   {NURSERY_AREA_LABELS[area]}
@@ -337,8 +337,8 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
                     onClick={() => setSelectedAge(key)}
                     className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                       selectedAge === key
-                        ? "bg-teal-600 text-white"
-                        : "bg-warm-100 text-muted hover:bg-warm-200"
+                        ? "bg-sage-600 text-white"
+                        : "bg-ivory-100 text-muted hover:bg-ivory-200"
                     }`}
                   >
                     {label}
@@ -355,7 +355,7 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
                 className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                   gardenOnly
                     ? "bg-green-600 text-white"
-                    : "bg-warm-100 text-muted hover:bg-warm-200"
+                    : "bg-ivory-100 text-muted hover:bg-ivory-200"
                 }`}
               >
                 <Trees className="h-3 w-3" />
@@ -373,7 +373,7 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
             <button
               type="button"
               onClick={resetFilters}
-              className="text-xs font-medium text-teal-600 hover:text-teal-700"
+              className="text-xs font-medium text-sage-600 hover:text-sage-700"
             >
               フィルターをリセット
             </button>
@@ -386,8 +386,8 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
             onClick={() => setViewMode("list")}
             className={`flex items-center gap-1.5 rounded-l-lg px-3 py-1.5 text-xs font-medium transition-colors ${
               viewMode === "list"
-                ? "bg-teal-600 text-white"
-                : "text-muted hover:bg-warm-100"
+                ? "bg-sage-600 text-white"
+                : "text-muted hover:bg-ivory-100"
             }`}
           >
             <List className="h-3.5 w-3.5" />
@@ -398,8 +398,8 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
             onClick={() => setViewMode("map")}
             className={`flex items-center gap-1.5 rounded-r-lg px-3 py-1.5 text-xs font-medium transition-colors ${
               viewMode === "map"
-                ? "bg-teal-600 text-white"
-                : "text-muted hover:bg-warm-100"
+                ? "bg-sage-600 text-white"
+                : "text-muted hover:bg-ivory-100"
             }`}
           >
             <MapIcon className="h-3.5 w-3.5" />
@@ -429,7 +429,7 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
                 <button
                   type="button"
                   onClick={resetFilters}
-                  className="mt-2 text-sm font-medium text-teal-600 hover:text-teal-700"
+                  className="mt-2 text-sm font-medium text-sage-600 hover:text-sage-700"
                 >
                   フィルターをリセット
                 </button>
@@ -446,7 +446,7 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
             <button
               type="button"
               onClick={resetFilters}
-              className="mt-2 text-sm font-medium text-teal-600 hover:text-teal-700"
+              className="mt-2 text-sm font-medium text-sage-600 hover:text-sage-700"
             >
               フィルターをリセット
             </button>
@@ -473,7 +473,7 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
               <button
                 type="button"
                 onClick={() => setCompareSlugs([])}
-                className="flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted transition-colors hover:bg-warm-100"
+                className="flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted transition-colors hover:bg-ivory-100"
               >
                 <X className="h-3 w-3" />
                 クリア

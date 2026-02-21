@@ -39,13 +39,13 @@ export function BookmarkButton({ articleSlug }: BookmarkButtonProps) {
       onClick={handleToggle}
       className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
         isSaved
-          ? "bg-teal-100 text-teal-700 hover:bg-teal-200"
-          : "bg-warm-100 text-muted hover:bg-warm-200 hover:text-foreground"
+          ? "bg-sage-100 text-sage-700 hover:bg-sage-200"
+          : "bg-ivory-100 text-muted hover:bg-ivory-200 hover:text-foreground"
       }`}
       aria-label={isSaved ? "ブックマークを解除" : "ブックマークに追加"}
     >
       <Bookmark
-        className={`h-3.5 w-3.5 ${isSaved ? "fill-teal-600" : ""}`}
+        className={`h-3.5 w-3.5 ${isSaved ? "fill-sage-600" : ""}`}
       />
       {isSaved ? "保存済み" : "保存する"}
     </button>

@@ -15,7 +15,7 @@ const CATEGORY_COLORS: Record<ArticleCategory, string> = {
   development: "bg-green-50 text-green-700 border-green-200",
   nutrition: "bg-yellow-50 text-yellow-700 border-yellow-200",
   emergency: "bg-red-50 text-red-700 border-red-200",
-  checkup: "bg-teal-50 text-teal-700 border-teal-200",
+  checkup: "bg-sage-50 text-sage-700 border-sage-200",
   "mental-health": "bg-purple-50 text-purple-700 border-purple-200",
   "municipal-service": "bg-indigo-50 text-indigo-700 border-indigo-200",
 } as const;
@@ -28,7 +28,7 @@ const CATEGORY_ACCENT: Record<ArticleCategory, string> = {
   development: "border-l-green-400",
   nutrition: "border-l-yellow-400",
   emergency: "border-l-red-500",
-  checkup: "border-l-teal-400",
+  checkup: "border-l-sage-400",
   "mental-health": "border-l-purple-400",
   "municipal-service": "border-l-indigo-400",
 } as const;
@@ -45,7 +45,7 @@ function CategoryBadge({ category }: { readonly category: ArticleCategory }) {
 
 function AgeGroupBadge({ ageGroup }: { readonly ageGroup: AgeGroup }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-teal-200 bg-teal-50 px-2 py-0.5 text-xs font-medium text-teal-700">
+    <span className="inline-flex items-center rounded-full border border-sage-200 bg-sage-50 px-2 py-0.5 text-xs font-medium text-sage-700">
       {AGE_GROUP_LABELS[ageGroup]}
     </span>
   );
@@ -63,18 +63,18 @@ export function ArticleCard({ frontmatter }: ArticleCardProps) {
   return (
     <Link
       href={`/articles/${slug}`}
-      className={`group flex flex-col rounded-xl border border-border border-l-4 bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md ${CATEGORY_ACCENT[category]}`}
+      className={`group flex flex-col rounded-xl border border-border border-l-4 bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md ${CATEGORY_ACCENT[category]}`}
     >
       {/* Header row */}
       <div className="flex flex-wrap items-center gap-2">
-        <span className="rounded-full bg-teal-100 px-2.5 py-0.5 text-xs font-bold text-teal-700">
+        <span className="rounded-full bg-sage-100 px-2.5 py-0.5 text-xs font-bold text-sage-700">
           Vol.{vol}
         </span>
         <CategoryBadge category={category} />
       </div>
 
       {/* Title */}
-      <h3 className="mt-3 font-heading text-[1.05rem] font-bold leading-snug text-card-foreground group-hover:text-teal-700">
+      <h3 className="mt-3 font-heading text-[1.05rem] font-bold leading-snug text-card-foreground group-hover:text-sage-700">
         {title}
       </h3>
 
@@ -85,13 +85,13 @@ export function ArticleCard({ frontmatter }: ArticleCardProps) {
 
       {/* Key points */}
       {keyPoints.length > 0 && (
-        <ul className="mt-3 space-y-1.5 rounded-lg bg-warm-100 px-3 py-2.5">
+        <ul className="mt-3 space-y-1.5 rounded-lg bg-ivory-100 px-3 py-2.5">
           {keyPoints.slice(0, 2).map((point) => (
             <li
               key={point}
               className="flex items-start gap-2 text-xs leading-relaxed text-muted"
             >
-              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-500" />
+              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-sage-500" />
               <span className="line-clamp-1">{point}</span>
             </li>
           ))}
@@ -104,7 +104,7 @@ export function ArticleCard({ frontmatter }: ArticleCardProps) {
           <Users className="h-3.5 w-3.5" />
           <span>{ageGroups.map((ag) => AGE_GROUP_LABELS[ag]).join("・")}</span>
         </div>
-        <span className="flex items-center gap-0.5 text-xs font-medium text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
+        <span className="flex items-center gap-0.5 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
           読む <ArrowRight className="h-3 w-3" />
         </span>
       </div>

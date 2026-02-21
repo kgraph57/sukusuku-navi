@@ -30,12 +30,12 @@ function LocateButton() {
       type="button"
       onClick={handleLocate}
       disabled={locating}
-      className="absolute right-3 top-3 z-[1000] flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-white shadow-md transition-colors hover:bg-warm-100 disabled:opacity-50"
+      className="absolute right-3 top-3 z-[1000] flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-white shadow-md transition-colors hover:bg-ivory-100 disabled:opacity-50"
       aria-label="現在地を表示"
       title="現在地を表示"
     >
       <LocateFixed
-        className={`h-4 w-4 text-teal-600 ${locating ? "animate-pulse" : ""}`}
+        className={`h-4 w-4 text-sage-600 ${locating ? "animate-pulse" : ""}`}
       />
     </button>
   );
