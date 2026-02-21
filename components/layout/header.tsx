@@ -17,7 +17,9 @@ import {
   MapPin,
   Building2,
   AlertTriangle,
+  LogOut,
 } from "lucide-react";
+import { useAuth } from "@/lib/auth/auth-provider";
 
 interface NavGroup {
   readonly label: string;
@@ -177,6 +179,134 @@ function DropdownMenu({
   );
 }
 
+// ---------------------------------------------------------------------------
+// Mobile auth links
+// ---------------------------------------------------------------------------
+
+function MobileAuthLinks({ onClose }: { readonly onClose: () => void }) {
+  const { user, loading, signOut } = useAuth();
+
+  if (loading) {
+    return <div className="h-10 animate-pulse rounded-lg bg-warm-50" />;
+  }
+
+  if (!user) {
+    return (
+      <Link
+        href="/auth/login"
+        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-teal-600 transition-colors hover:bg-teal-50"
+        onClick={onClose}
+      >
+        <User className="h-4 w-4" />
+        ログイン
+      </Link>
+    );
+  }
+
+  return (
+    <>
+      <Link
+        href="/my"
+        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-teal-50 hover:text-teal-700"
+        onClick={onClose}
+      >
+        <User className="h-4 w-4 text-teal-600" />
+        マイページ
+      </Link>
+      <button
+        type="button"
+        onClick={async () => {
+          await signOut();
+          onClose();
+        }}
+        className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-muted transition-colors hover:bg-warm-50 hover:text-foreground"
+      >
+        <LogOut className="h-4 w-4" />
+        ログアウト
+      </button>
+    </>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Desktop user menu (auth-aware)
+// ---------------------------------------------------------------------------
+
+function UserMenu() {
+  const { user, loading, signOut } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  if (loading) {
+    return <div className="h-8 w-8 animate-pulse rounded-full bg-warm-100" />;
+  }
+
+  if (!user) {
+    return (
+      <Link
+        href="/auth/login"
+        className="rounded-lg px-3 py-2 text-sm font-medium text-teal-600 transition-colors hover:bg-teal-50 hover:text-teal-700"
+      >
+        ログイン
+      </Link>
+    );
+  }
+
+  const initial = user.email?.charAt(0).toUpperCase() ?? "U";
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="flex h-8 w-8 items-center justify-center rounded-full bg-teal-100 text-sm font-bold text-teal-700 transition-colors hover:bg-teal-200"
+        aria-label="ユーザーメニュー"
+        aria-expanded={isOpen}
+      >
+        {initial}
+      </button>
+
+      {isOpen && (
+        <div className="absolute right-0 top-full z-50 mt-2 w-48 rounded-xl border border-border bg-white p-2 shadow-lg">
+          <Link
+            href="/my"
+            className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-teal-50"
+            onClick={() => setIsOpen(false)}
+          >
+            <User className="h-4 w-4 text-teal-600" />
+            マイページ
+          </Link>
+          <button
+            type="button"
+            onClick={async () => {
+              await signOut();
+              setIsOpen(false);
+            }}
+            className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-warm-50 hover:text-foreground"
+          >
+            <LogOut className="h-4 w-4" />
+            ログアウト
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Main header
+// ---------------------------------------------------------------------------
+
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -210,13 +340,7 @@ export function Header() {
             {STANDALONE_NAV.label}
           </Link>
           <div className="mx-1 h-5 w-px bg-border" />
-          <Link
-            href="/my"
-            className="rounded-lg p-2 text-muted transition-colors hover:bg-teal-50 hover:text-teal-700"
-            aria-label="マイページ"
-          >
-            <User className="h-5 w-5" />
-          </Link>
+          <UserMenu />
           <Link
             href="/search"
             className="rounded-lg p-2 text-muted transition-colors hover:bg-teal-50 hover:text-teal-700"
@@ -279,14 +403,7 @@ export function Header() {
               <STANDALONE_NAV.icon className="h-4 w-4" />
               {STANDALONE_NAV.label}
             </Link>
-            <Link
-              href="/my"
-              className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-teal-50 hover:text-teal-700"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <User className="h-4 w-4 text-teal-600" />
-              マイページ
-            </Link>
+            <MobileAuthLinks onClose={() => setIsMenuOpen(false)} />
           </div>
         </nav>
       )}
