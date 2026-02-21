@@ -1,0 +1,540 @@
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
+import {
+  Syringe,
+  Baby,
+  Check,
+  Circle,
+  Calendar,
+  ArrowLeft,
+  Shield,
+  Star,
+  ChevronDown,
+  ChevronUp,
+  Users,
+} from "lucide-react";
+import { useStore } from "@/lib/store";
+import type {
+  FamilyProfile,
+  ChildProfile,
+  VaccinationRecord,
+} from "@/lib/store";
+import { getAllVaccines, VACCINE_TYPE_LABELS } from "@/lib/vaccines";
+import { getChildAge, formatAge } from "@/lib/utils/age";
+import type { Vaccine, VaccineDose } from "@/lib/types";
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+
+interface DoseStatus {
+  readonly dose: VaccineDose;
+  readonly record: VaccinationRecord | null;
+  readonly isCompleted: boolean;
+}
+
+// ---------------------------------------------------------------------------
+// Child selector
+// ---------------------------------------------------------------------------
+
+function ChildSelector({
+  children,
+  selectedId,
+  onSelect,
+}: {
+  readonly children: readonly ChildProfile[];
+  readonly selectedId: string;
+  readonly onSelect: (id: string) => void;
+}) {
+  return (
+    <div className="flex gap-2 overflow-x-auto pb-1">
+      {children.map((child) => {
+        const isActive = child.id === selectedId;
+        return (
+          <button
+            key={child.id}
+            type="button"
+            onClick={() => onSelect(child.id)}
+            className={`flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+              isActive
+                ? "bg-teal-500 text-white"
+                : "bg-warm-100 text-muted hover:bg-warm-200"
+            }`}
+          >
+            <Users className="h-3.5 w-3.5" />
+            <span>{child.nickname}</span>
+            <span className="text-xs opacity-80">
+              ({formatAge(child.birthDate)})
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Progress summary
+// ---------------------------------------------------------------------------
+
+function ProgressSummary({
+  vaccines,
+  records,
+}: {
+  readonly vaccines: readonly Vaccine[];
+  readonly records: readonly VaccinationRecord[];
+}) {
+  const totalDoses = vaccines.reduce((sum, v) => sum + v.doses.length, 0);
+  const completedDoses = records.filter((r) => r.status === "completed").length;
+  const percent =
+    totalDoses > 0 ? Math.round((completedDoses / totalDoses) * 100) : 0;
+
+  return (
+    <div className="rounded-xl border border-border bg-card p-5">
+      <div className="flex items-center justify-between text-sm">
+        <span className="font-medium text-card-foreground">
+          接種進捗: {completedDoses}/{totalDoses}回完了
+        </span>
+        <span className="font-medium text-teal-600">{percent}%</span>
+      </div>
+      <div className="mt-2 h-3 overflow-hidden rounded-full bg-warm-100">
+        <div
+          className="h-full rounded-full bg-teal-500 transition-all duration-300"
+          style={{ width: `${percent}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Dose row with toggle
+// ---------------------------------------------------------------------------
+
+function DoseRow({
+  vaccineSlug,
+  childId,
+  doseStatus,
+  onToggle,
+}: {
+  readonly vaccineSlug: string;
+  readonly childId: string;
+  readonly doseStatus: DoseStatus;
+  readonly onToggle: (
+    vaccineSlug: string,
+    dose: VaccineDose,
+    currentRecord: VaccinationRecord | null,
+  ) => void;
+}) {
+  const { dose, record, isCompleted } = doseStatus;
+
+  return (
+    <div
+      className={`flex items-center gap-3 rounded-lg border p-3 transition-all ${
+        isCompleted ? "border-teal-200 bg-teal-50/50" : "border-border"
+      }`}
+    >
+      <button
+        type="button"
+        onClick={() => onToggle(vaccineSlug, dose, record)}
+        className="shrink-0"
+        aria-label={isCompleted ? "接種を取り消す" : "接種済みにする"}
+      >
+        {isCompleted ? (
+          <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-teal-500 bg-teal-500 text-white">
+            <Check className="h-4 w-4" />
+          </div>
+        ) : (
+          <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-gray-300 bg-white">
+            <Circle className="h-4 w-4 text-gray-300" />
+          </div>
+        )}
+      </button>
+
+      <div className="min-w-0 flex-1">
+        <p
+          className={`text-sm font-medium ${
+            isCompleted
+              ? "text-teal-700 line-through"
+              : "text-card-foreground"
+          }`}
+        >
+          {dose.label}
+        </p>
+        <p className="text-xs text-muted">
+          標準: {dose.ageMonthsStandard < 12
+            ? `${dose.ageMonthsStandard}ヶ月`
+            : `${Math.floor(dose.ageMonthsStandard / 12)}歳${dose.ageMonthsStandard % 12 > 0 ? `${dose.ageMonthsStandard % 12}ヶ月` : ""}`}
+        </p>
+      </div>
+
+      {record?.administeredDate && (
+        <div className="flex items-center gap-1 text-xs text-teal-600">
+          <Calendar className="h-3 w-3" />
+          <span>{record.administeredDate}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Vaccine card (expandable)
+// ---------------------------------------------------------------------------
+
+function VaccineCard({
+  vaccine,
+  childId,
+  records,
+  onToggleDose,
+}: {
+  readonly vaccine: Vaccine;
+  readonly childId: string;
+  readonly records: readonly VaccinationRecord[];
+  readonly onToggleDose: (
+    vaccineSlug: string,
+    dose: VaccineDose,
+    currentRecord: VaccinationRecord | null,
+  ) => void;
+}) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const doseStatuses: readonly DoseStatus[] = vaccine.doses.map((dose) => {
+    const record =
+      records.find(
+        (r) =>
+          r.vaccineSlug === vaccine.slug && r.doseNumber === dose.doseNumber,
+      ) ?? null;
+    return {
+      dose,
+      record,
+      isCompleted: record?.status === "completed",
+    };
+  });
+
+  const completedCount = doseStatuses.filter((d) => d.isCompleted).length;
+  const totalCount = doseStatuses.length;
+  const allCompleted = completedCount === totalCount;
+  const isRoutine = vaccine.type === "routine";
+
+  return (
+    <div
+      className={`rounded-xl border bg-card transition-all ${
+        allCompleted ? "border-teal-200" : "border-border"
+      }`}
+    >
+      <button
+        type="button"
+        onClick={() => setIsExpanded((prev) => !prev)}
+        className="flex w-full items-center gap-3 p-4 text-left"
+      >
+        <div
+          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${
+            isRoutine
+              ? "bg-teal-50 text-teal-600"
+              : "bg-coral-50 text-coral-500"
+          }`}
+        >
+          <Syringe className="h-5 w-5" />
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2">
+            <h3 className="font-heading text-sm font-bold text-card-foreground">
+              {vaccine.nameShort}
+            </h3>
+            <span
+              className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${
+                isRoutine
+                  ? "bg-teal-50 text-teal-700"
+                  : "bg-coral-50 text-coral-600"
+              }`}
+            >
+              {VACCINE_TYPE_LABELS[vaccine.type]}
+            </span>
+          </div>
+          <div className="mt-1 flex items-center gap-2">
+            <div className="h-1.5 w-20 overflow-hidden rounded-full bg-warm-100">
+              <div
+                className="h-full rounded-full bg-teal-500 transition-all"
+                style={{
+                  width: `${totalCount > 0 ? (completedCount / totalCount) * 100 : 0}%`,
+                }}
+              />
+            </div>
+            <span className="text-xs text-muted">
+              {completedCount}/{totalCount}
+            </span>
+          </div>
+        </div>
+        {isExpanded ? (
+          <ChevronUp className="h-4 w-4 shrink-0 text-muted" />
+        ) : (
+          <ChevronDown className="h-4 w-4 shrink-0 text-muted" />
+        )}
+      </button>
+
+      {isExpanded && (
+        <div className="border-t border-border px-4 pb-4 pt-3">
+          <p className="mb-3 text-xs text-muted">{vaccine.disease}</p>
+          <div className="space-y-2">
+            {doseStatuses.map((ds) => (
+              <DoseRow
+                key={ds.dose.doseNumber}
+                vaccineSlug={vaccine.slug}
+                childId={childId}
+                doseStatus={ds}
+                onToggle={onToggleDose}
+              />
+            ))}
+          </div>
+          <Link
+            href={`/vaccines/${vaccine.slug}`}
+            className="mt-3 inline-block text-xs font-medium text-teal-600 hover:text-teal-700"
+          >
+            詳細を見る →
+          </Link>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Main page
+// ---------------------------------------------------------------------------
+
+export default function VaccinationsPage() {
+  const store = useStore();
+  const [profile, setProfile] = useState<FamilyProfile | null>(null);
+  const [selectedChildId, setSelectedChildId] = useState<string | null>(null);
+  const [records, setRecords] = useState<readonly VaccinationRecord[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const vaccines = getAllVaccines();
+
+  // Load profile
+  useEffect(() => {
+    let cancelled = false;
+    store.getFamilyProfile().then((loaded) => {
+      if (cancelled) return;
+      setProfile(loaded);
+      if (loaded && loaded.children.length > 0) {
+        setSelectedChildId(loaded.children[0].id);
+      }
+      setIsLoaded(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [store]);
+
+  // Load vaccination records when child changes
+  useEffect(() => {
+    if (!selectedChildId) return;
+    let cancelled = false;
+    store.getVaccinationRecords(selectedChildId).then((loaded) => {
+      if (!cancelled) {
+        setRecords(loaded);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedChildId, store]);
+
+  const handleToggleDose = useCallback(
+    async (
+      vaccineSlug: string,
+      dose: VaccineDose,
+      currentRecord: VaccinationRecord | null,
+    ) => {
+      if (!selectedChildId) return;
+
+      const isCurrentlyCompleted = currentRecord?.status === "completed";
+      const today = new Date().toISOString().split("T")[0];
+
+      await store.upsertVaccinationRecord({
+        childId: selectedChildId,
+        vaccineSlug,
+        doseNumber: dose.doseNumber,
+        administeredDate: isCurrentlyCompleted ? null : today,
+        scheduledDate: null,
+        clinicName: null,
+        lotNumber: null,
+        notes: null,
+        status: isCurrentlyCompleted ? "scheduled" : "completed",
+      });
+
+      // Reload records
+      const updated = await store.getVaccinationRecords(selectedChildId);
+      setRecords(updated);
+    },
+    [selectedChildId, store],
+  );
+
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen bg-warm-50 px-4 py-12">
+        <div className="mx-auto max-w-3xl">
+          <div className="h-8 w-48 animate-pulse rounded bg-warm-200" />
+          <div className="mt-6 space-y-4">
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="h-20 animate-pulse rounded-xl bg-warm-200"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!profile || profile.children.length === 0) {
+    return (
+      <div className="min-h-screen bg-warm-50 px-4 py-12">
+        <div className="mx-auto max-w-3xl">
+          <Link
+            href="/my"
+            className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
+            マイページに戻る
+          </Link>
+          <div className="mt-8 rounded-2xl border-2 border-dashed border-teal-200 bg-white/60 p-10 text-center">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-teal-100">
+              <Baby className="h-7 w-7 text-teal-600" />
+            </div>
+            <h1 className="mt-4 font-heading text-lg font-bold text-foreground">
+              お子さんを登録してください
+            </h1>
+            <p className="mt-2 text-sm text-muted">
+              予防接種記録を管理するには、まずお子さんの登録が必要です。
+            </p>
+            <Link
+              href="/my"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-teal-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-teal-700"
+            >
+              <Baby className="h-4 w-4" />
+              お子さんを登録する
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const selectedChild =
+    profile.children.find((c) => c.id === selectedChildId) ?? null;
+  const routineVaccines = vaccines.filter((v) => v.type === "routine");
+  const optionalVaccines = vaccines.filter((v) => v.type === "optional");
+
+  return (
+    <>
+      <section className="bg-gradient-to-b from-purple-50 to-warm-50 px-4 pb-6 pt-8 sm:pb-8 sm:pt-12">
+        <div className="mx-auto max-w-3xl">
+          <Link
+            href="/my"
+            className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
+            マイページ
+          </Link>
+          <h1 className="mt-4 font-heading text-2xl font-bold text-foreground sm:text-3xl">
+            <Syringe className="mr-2 inline-block h-7 w-7 text-purple-600" />
+            予防接種記録
+          </h1>
+          <p className="mt-2 text-sm text-muted">
+            お子さんの予防接種の接種状況を記録・管理できます。
+          </p>
+        </div>
+      </section>
+
+      <section className="px-4 py-6 sm:py-8">
+        <div className="mx-auto max-w-3xl space-y-6">
+          {/* Child selector */}
+          {profile.children.length > 1 && selectedChildId && (
+            <ChildSelector
+              children={profile.children}
+              selectedId={selectedChildId}
+              onSelect={setSelectedChildId}
+            />
+          )}
+
+          {/* Child info & progress */}
+          {selectedChild && (
+            <div className="flex items-center gap-3 rounded-xl border border-border bg-card p-4">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-100">
+                <Baby className="h-5 w-5 text-purple-600" />
+              </div>
+              <div>
+                <p className="font-heading text-base font-bold text-card-foreground">
+                  {selectedChild.nickname}
+                </p>
+                <p className="text-xs text-muted">
+                  {formatAge(selectedChild.birthDate)}
+                </p>
+              </div>
+            </div>
+          )}
+
+          <ProgressSummary vaccines={vaccines} records={records} />
+
+          {/* Routine vaccines */}
+          <div>
+            <h2 className="flex items-center gap-1.5 font-heading text-base font-bold text-teal-700">
+              <Shield className="h-4 w-4" />
+              {VACCINE_TYPE_LABELS.routine}（公費・無料）
+            </h2>
+            <div className="mt-3 space-y-3">
+              {routineVaccines.map((vaccine) => (
+                <VaccineCard
+                  key={vaccine.slug}
+                  vaccine={vaccine}
+                  childId={selectedChildId ?? ""}
+                  records={records}
+                  onToggleDose={handleToggleDose}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Optional vaccines */}
+          <div>
+            <h2 className="flex items-center gap-1.5 font-heading text-base font-bold text-coral-600">
+              <Star className="h-4 w-4" />
+              {VACCINE_TYPE_LABELS.optional}（一部助成あり）
+            </h2>
+            <div className="mt-3 space-y-3">
+              {optionalVaccines.map((vaccine) => (
+                <VaccineCard
+                  key={vaccine.slug}
+                  vaccine={vaccine}
+                  childId={selectedChildId ?? ""}
+                  records={records}
+                  onToggleDose={handleToggleDose}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Link to vaccine info */}
+          <div className="rounded-xl border border-border bg-card p-5 text-center">
+            <p className="text-sm text-muted">
+              各ワクチンの詳細情報は予防接種ページで確認できます
+            </p>
+            <Link
+              href="/vaccines"
+              className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-teal-600 hover:text-teal-700"
+            >
+              予防接種一覧を見る
+              <ArrowLeft className="h-3.5 w-3.5 rotate-180" />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
