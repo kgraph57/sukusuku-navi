@@ -14,15 +14,89 @@ import {
   Calendar,
   Bookmark,
   FileText,
+  LogOut,
+  Cloud,
+  Shield,
 } from "lucide-react";
 import { FamilyProfileSetup } from "@/components/family/family-profile-setup";
-import { getFamilyProfile, getChildAge } from "@/lib/family-store";
-import type { FamilyProfile, ChildProfile } from "@/lib/family-store";
+import { MigrationDialog } from "@/components/auth/migration-dialog";
+import { useStore } from "@/lib/store";
+import { useAuth } from "@/lib/auth/auth-provider";
+import type { FamilyProfile, ChildProfile } from "@/lib/store";
+import { getChildAge } from "@/lib/utils/age";
 import { getAllChecklists } from "@/lib/checklists";
 
 interface MyPageClientProps {
   readonly articleTitles: Record<string, string>;
 }
+
+// ---------------------------------------------------------------------------
+// Account status banner
+// ---------------------------------------------------------------------------
+
+function AccountBanner() {
+  const { user, signOut } = useAuth();
+
+  if (!user) {
+    return (
+      <div className="rounded-xl border border-teal-200 bg-gradient-to-r from-teal-50 to-white p-5">
+        <div className="flex items-start gap-3">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-100">
+            <Cloud className="h-5 w-5 text-teal-600" />
+          </div>
+          <div className="flex-1">
+            <h3 className="font-heading text-sm font-bold text-card-foreground">
+              ログインでデータをクラウド保存
+            </h3>
+            <p className="mt-1 text-xs leading-relaxed text-muted">
+              ログインすると、お子さんのデータがクラウドに保存され、どのデバイスからでもアクセスできます。
+            </p>
+            <Link
+              href="/auth/login"
+              className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-teal-600 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-teal-700"
+            >
+              <Shield className="h-3.5 w-3.5" />
+              ログイン / 新規登録
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-xl border border-border bg-card p-4">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-teal-100 text-sm font-bold text-teal-700">
+            {user.email?.charAt(0).toUpperCase() ?? "U"}
+          </div>
+          <div>
+            <p className="text-sm font-medium text-card-foreground">
+              {user.email}
+            </p>
+            <p className="flex items-center gap-1 text-xs text-teal-600">
+              <Cloud className="h-3 w-3" />
+              クラウド同期オン
+            </p>
+          </div>
+        </div>
+        <button
+          type="button"
+          onClick={() => signOut()}
+          className="rounded-lg p-2 text-muted transition-colors hover:bg-warm-50 hover:text-foreground"
+          aria-label="ログアウト"
+        >
+          <LogOut className="h-4 w-4" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Checklist progress card
+// ---------------------------------------------------------------------------
 
 function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
   const checklists = getAllChecklists();
@@ -92,6 +166,10 @@ function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
   );
 }
 
+// ---------------------------------------------------------------------------
+// Saved articles section
+// ---------------------------------------------------------------------------
+
 function SavedArticlesSection({
   savedSlugs,
   articleTitles,
@@ -133,6 +211,10 @@ function SavedArticlesSection({
   );
 }
 
+// ---------------------------------------------------------------------------
+// Quick actions
+// ---------------------------------------------------------------------------
+
 function QuickActions() {
   return (
     <div className="grid gap-3 sm:grid-cols-2">
@@ -165,27 +247,27 @@ function QuickActions() {
         </div>
       </Link>
       <Link
-        href="/vaccines"
+        href="/my/vaccinations"
         className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
       >
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blue-200 bg-blue-50">
-          <Syringe className="h-5 w-5 text-blue-600" />
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-purple-200 bg-purple-50">
+          <Syringe className="h-5 w-5 text-purple-600" />
         </div>
         <div>
           <h3 className="font-heading text-sm font-bold text-card-foreground">
-            予防接種
+            予防接種記録
           </h3>
-          <p className="text-xs text-muted">接種スケジュールを確認する</p>
+          <p className="text-xs text-muted">接種記録を管理する</p>
         </div>
       </Link>
       <Link
         href="/my/timeline"
-        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md sm:col-span-2"
+        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-teal-200 bg-teal-50">
           <Calendar className="h-5 w-5 text-teal-600" />
         </div>
-        <div className="flex-1">
+        <div>
           <h3 className="font-heading text-sm font-bold text-card-foreground">
             タイムライン
           </h3>
@@ -193,21 +275,27 @@ function QuickActions() {
             今やるべき手続き・健診・予防接種を時系列で確認
           </p>
         </div>
-        <ArrowRight className="h-4 w-4 shrink-0 text-teal-600" />
       </Link>
     </div>
   );
 }
 
+// ---------------------------------------------------------------------------
+// Main component
+// ---------------------------------------------------------------------------
+
 export function MyPageClient({ articleTitles }: MyPageClientProps) {
+  const store = useStore();
+  const { user } = useAuth();
   const [profile, setProfile] = useState<FamilyProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [showMigration, setShowMigration] = useState(false);
 
-  const loadProfile = useCallback(() => {
-    const loaded = getFamilyProfile();
+  const loadProfile = useCallback(async () => {
+    const loaded = await store.getFamilyProfile();
     setProfile(loaded);
     setIsLoading(false);
-  }, []);
+  }, [store]);
 
   useEffect(() => {
     loadProfile();
@@ -220,6 +308,22 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
     window.addEventListener("storage", handleStorage);
     return () => window.removeEventListener("storage", handleStorage);
   }, [loadProfile]);
+
+  // Show migration dialog when user just logged in and has local data
+  useEffect(() => {
+    if (!user) return;
+    try {
+      const raw = localStorage.getItem("sukusuku-family");
+      if (raw) {
+        const data = JSON.parse(raw);
+        if (data.children && data.children.length > 0) {
+          setShowMigration(true);
+        }
+      }
+    } catch {
+      // Ignore
+    }
+  }, [user]);
 
   if (isLoading) {
     return (
@@ -234,6 +338,16 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
 
   return (
     <>
+      {/* Migration dialog */}
+      {showMigration && (
+        <MigrationDialog
+          onComplete={() => {
+            setShowMigration(false);
+            loadProfile();
+          }}
+        />
+      )}
+
       <section className="bg-gradient-to-b from-teal-50 to-warm-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <h1 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
@@ -248,6 +362,10 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
 
       <section className="px-4 py-8 sm:py-12">
         <div className="mx-auto max-w-3xl space-y-8">
+          {/* Account status */}
+          <AccountBanner />
+
+          {/* Family profile */}
           <div>
             <h2 className="font-heading text-lg font-bold text-foreground">
               お子さんの登録
@@ -257,6 +375,7 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
             </div>
           </div>
 
+          {/* Checklist progress */}
           {profile && profile.children.length > 0 && (
             <div>
               <h2 className="font-heading text-lg font-bold text-foreground">
@@ -270,6 +389,7 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
             </div>
           )}
 
+          {/* Saved articles */}
           {profile != null && profile.savedArticles.length > 0 && (
             <SavedArticlesSection
               savedSlugs={profile.savedArticles}
@@ -277,6 +397,7 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
             />
           )}
 
+          {/* Quick actions */}
           <div>
             <h2 className="font-heading text-lg font-bold text-foreground">
               クイックアクション

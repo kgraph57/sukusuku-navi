@@ -10,7 +10,7 @@ import {
   Calculator,
   X,
 } from "lucide-react";
-import { getFamilyProfile } from "@/lib/family-store";
+import { useStore } from "@/lib/store";
 
 const ONBOARDING_STEPS = [
   {
@@ -46,16 +46,23 @@ const ONBOARDING_STEPS = [
 const DISMISSED_KEY = "sukusuku-onboarding-dismissed";
 
 export function OnboardingBanner() {
+  const store = useStore();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const profile = getFamilyProfile();
+    let cancelled = false;
     const dismissed = localStorage.getItem(DISMISSED_KEY);
+    if (dismissed === "true") return;
 
-    if (profile === null && dismissed !== "true") {
-      setIsVisible(true);
-    }
-  }, []);
+    store.getFamilyProfile().then((profile) => {
+      if (!cancelled && profile === null) {
+        setIsVisible(true);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [store]);
 
   if (!isVisible) {
     return null;

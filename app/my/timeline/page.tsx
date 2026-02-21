@@ -18,13 +18,9 @@ import {
   CheckCircle2,
   Circle,
 } from "lucide-react";
-import {
-  getFamilyProfile,
-  getChildAge,
-  toggleChecklistItem,
-  saveFamilyProfile,
-} from "@/lib/family-store";
-import type { FamilyProfile, ChildProfile } from "@/lib/family-store";
+import { useStore } from "@/lib/store";
+import type { FamilyProfile, ChildProfile } from "@/lib/store";
+import { getChildAge } from "@/lib/utils/age";
 import {
   generateTimeline,
   groupTimelineByUrgency,
@@ -128,7 +124,6 @@ function TimelineItemCard({
       }`}
     >
       <div className="flex-1 p-4">
-        {/* Header row */}
         <div className="flex items-start gap-3">
           <button
             type="button"
@@ -181,7 +176,6 @@ function TimelineItemCard({
           </div>
         </div>
 
-        {/* Action button */}
         {!item.completed && (
           <div className="mt-3 flex justify-end">
             {isExternal ? (
@@ -259,8 +253,7 @@ const SECTIONS: readonly SectionConfig[] = [
 ] as const;
 
 // ---------------------------------------------------------------------------
-// Grouped items type (mirrors what groupTimelineByUrgency returns, plus a
-// convenience merged key for overdue+urgent)
+// Grouped items type
 // ---------------------------------------------------------------------------
 
 interface GroupedSections {
@@ -303,7 +296,6 @@ function TimelineSection({
 
   return (
     <div className="space-y-3">
-      {/* Section header */}
       <div
         className={`flex items-center gap-2 rounded-lg px-4 py-2.5 ${config.headerBg} ${config.headerTextColor}`}
       >
@@ -338,7 +330,6 @@ function TimelineSection({
         )}
       </div>
 
-      {/* Cards */}
       {isExpanded && (
         <div className="space-y-3 pl-0">
           {items.map((item) => (
@@ -472,19 +463,26 @@ function LoadingSkeleton() {
 type ViewMode = "list" | "calendar";
 
 export default function TimelinePage() {
+  const store = useStore();
   const [profile, setProfile] = useState<FamilyProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedChildId, setSelectedChildId] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>("list");
 
   useEffect(() => {
-    const loaded = getFamilyProfile();
-    setProfile(loaded);
-    if (loaded && loaded.children.length > 0) {
-      setSelectedChildId(loaded.children[0].id);
-    }
-    setIsLoading(false);
-  }, []);
+    let cancelled = false;
+    store.getFamilyProfile().then((loaded) => {
+      if (cancelled) return;
+      setProfile(loaded);
+      if (loaded && loaded.children.length > 0) {
+        setSelectedChildId(loaded.children[0].id);
+      }
+      setIsLoading(false);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [store]);
 
   const hasChildren = profile != null && profile.children.length > 0;
 
@@ -495,14 +493,16 @@ export default function TimelinePage() {
       : null;
 
   const handleToggleComplete = useCallback(
-    (itemId: string) => {
+    async (itemId: string) => {
       if (profile == null || selectedChild == null) return;
 
-      const updated = toggleChecklistItem(profile, selectedChild.id, itemId);
+      const updated = await store.toggleCompletedItem(
+        selectedChild.id,
+        itemId,
+      );
       setProfile(updated);
-      saveFamilyProfile(updated);
     },
-    [profile, selectedChild],
+    [profile, selectedChild, store],
   );
 
   const timelineItems: readonly TimelineItem[] | null =
@@ -539,7 +539,6 @@ export default function TimelinePage() {
             <NoProfileCTA />
           ) : (
             <>
-              {/* Child selector */}
               {profile.children.length > 1 && (
                 <ChildTabs
                   children={profile.children}
@@ -548,10 +547,8 @@ export default function TimelinePage() {
                 />
               )}
 
-              {/* Child name + age */}
               {selectedChild != null && <ChildAgeBadge child={selectedChild} />}
 
-              {/* View mode toggle */}
               {selectedChild != null && (
                 <div className="flex gap-1 rounded-lg border border-border bg-warm-50 p-1">
                   <button
@@ -581,7 +578,6 @@ export default function TimelinePage() {
                 </div>
               )}
 
-              {/* Calendar view */}
               {viewMode === "calendar" &&
                 timelineItems != null &&
                 selectedChild != null && (
@@ -592,7 +588,6 @@ export default function TimelinePage() {
                   />
                 )}
 
-              {/* List view (timeline sections) */}
               {viewMode === "list" && groupedSections != null && (
                 <div className="space-y-6">
                   {SECTIONS.map((sectionConfig) => (

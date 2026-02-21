@@ -13,8 +13,9 @@ import {
   Heart,
   Sparkles,
 } from "lucide-react";
-import { getFamilyProfile, getChildAge } from "@/lib/family-store";
-import type { ChildProfile } from "@/lib/family-store";
+import { useStore } from "@/lib/store";
+import type { ChildProfile } from "@/lib/store";
+import { getChildAge } from "@/lib/utils/age";
 import { generateTimeline } from "@/lib/timeline-engine";
 import type { TimelineItem, TimelineCategory } from "@/lib/timeline-engine";
 
@@ -74,36 +75,44 @@ function DigestItem({ item }: { readonly item: TimelineItem }) {
 }
 
 export function WeeklyDigest() {
+  const store = useStore();
   const [child, setChild] = useState<ChildProfile | null>(null);
   const [urgentItems, setUrgentItems] = useState<readonly TimelineItem[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const profile = getFamilyProfile();
-    if (profile == null || profile.children.length === 0) {
+    let cancelled = false;
+    store.getFamilyProfile().then((profile) => {
+      if (cancelled) return;
+
+      if (profile == null || profile.children.length === 0) {
+        setIsLoaded(true);
+        return;
+      }
+
+      const firstChild = profile.children[0];
+      setChild(firstChild);
+
+      const timeline = generateTimeline(
+        firstChild.birthDate,
+        firstChild.completedItems,
+      );
+
+      const actionable = timeline.filter(
+        (item) =>
+          !item.completed &&
+          (item.urgency === "overdue" ||
+            item.urgency === "urgent" ||
+            item.urgency === "soon"),
+      );
+
+      setUrgentItems(actionable.slice(0, 5));
       setIsLoaded(true);
-      return;
-    }
-
-    const firstChild = profile.children[0];
-    setChild(firstChild);
-
-    const timeline = generateTimeline(
-      firstChild.birthDate,
-      firstChild.completedItems,
-    );
-
-    const actionable = timeline.filter(
-      (item) =>
-        !item.completed &&
-        (item.urgency === "overdue" ||
-          item.urgency === "urgent" ||
-          item.urgency === "soon"),
-    );
-
-    setUrgentItems(actionable.slice(0, 5));
-    setIsLoaded(true);
-  }, []);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [store]);
 
   if (!isLoaded) {
     return null;

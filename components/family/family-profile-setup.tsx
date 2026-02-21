@@ -1,37 +1,17 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useCallback } from "react"
-import { Baby, Plus, Trash2, Calendar } from "lucide-react"
-import {
-  getFamilyProfile,
-  saveFamilyProfile,
-  createFamilyProfile,
-  addChild,
-  removeChild,
-  getChildAge,
-} from "@/lib/family-store"
-import type { FamilyProfile } from "@/lib/family-store"
-
-function formatAge(birthDate: string): string {
-  const { years, months } = getChildAge(birthDate)
-
-  if (years === 0) {
-    return `${months}ヶ月`
-  }
-
-  if (months === 0) {
-    return `${years}歳`
-  }
-
-  return `${years}歳${months}ヶ月`
-}
+import { useState, useEffect, useCallback } from "react";
+import { Baby, Plus, Trash2, Calendar } from "lucide-react";
+import { useStore } from "@/lib/store";
+import type { FamilyProfile } from "@/lib/store";
+import { formatAge } from "@/lib/utils/age";
 
 function formatDate(dateString: string): string {
-  const date = new Date(dateString)
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  return `${year}年${month}月${day}日`
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return `${year}年${month}月${day}日`;
 }
 
 function EmptyState({ onAdd }: { readonly onAdd: () => void }) {
@@ -55,31 +35,31 @@ function EmptyState({ onAdd }: { readonly onAdd: () => void }) {
         お子さんを追加
       </button>
     </div>
-  )
+  );
 }
 
 function AddChildForm({
   onSubmit,
   onCancel,
 }: {
-  readonly onSubmit: (nickname: string, birthDate: string) => void
-  readonly onCancel: () => void
+  readonly onSubmit: (nickname: string, birthDate: string) => void;
+  readonly onCancel: () => void;
 }) {
-  const [nickname, setNickname] = useState("")
-  const [birthDate, setBirthDate] = useState("")
+  const [nickname, setNickname] = useState("");
+  const [birthDate, setBirthDate] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const trimmed = nickname.trim()
+    const trimmed = nickname.trim();
     if (!trimmed || !birthDate) {
-      return
+      return;
     }
 
-    onSubmit(trimmed, birthDate)
-  }
+    onSubmit(trimmed, birthDate);
+  };
 
-  const isValid = nickname.trim().length > 0 && birthDate.length > 0
+  const isValid = nickname.trim().length > 0 && birthDate.length > 0;
 
   return (
     <form
@@ -144,7 +124,7 @@ function AddChildForm({
         </button>
       </div>
     </form>
-  )
+  );
 }
 
 function ChildCard({
@@ -152,16 +132,16 @@ function ChildCard({
   birthDate,
   onRemove,
 }: {
-  readonly nickname: string
-  readonly birthDate: string
-  readonly onRemove: () => void
+  readonly nickname: string;
+  readonly birthDate: string;
+  readonly onRemove: () => void;
 }) {
-  const [showConfirm, setShowConfirm] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const handleRemove = () => {
-    onRemove()
-    setShowConfirm(false)
-  }
+    onRemove();
+    setShowConfirm(false);
+  };
 
   return (
     <div className="rounded-xl border border-border bg-card p-5 transition-all">
@@ -218,66 +198,58 @@ function ChildCard({
         </div>
       )}
     </div>
-  )
+  );
 }
 
 export function FamilyProfileSetup() {
-  const [profile, setProfile] = useState<FamilyProfile | null>(null)
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [showForm, setShowForm] = useState(false)
+  const store = useStore();
+  const [profile, setProfile] = useState<FamilyProfile | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    const stored = getFamilyProfile()
-    setProfile(stored)
-    setIsLoaded(true)
-  }, [])
-
-  const saveAndUpdate = useCallback((updated: FamilyProfile) => {
-    saveFamilyProfile(updated)
-    setProfile(updated)
-  }, [])
-
-  const ensureProfile = useCallback((): FamilyProfile => {
-    if (profile) {
-      return profile
-    }
-    const fresh = createFamilyProfile()
-    saveFamilyProfile(fresh)
-    setProfile(fresh)
-    return fresh
-  }, [profile])
+    let cancelled = false;
+    store.getFamilyProfile().then((loaded) => {
+      if (!cancelled) {
+        setProfile(loaded);
+        setIsLoaded(true);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [store]);
 
   const handleAddChild = useCallback(
-    (nickname: string, birthDate: string) => {
-      const current = ensureProfile()
-      const updated = addChild(current, nickname, birthDate)
-      saveAndUpdate(updated)
-      setShowForm(false)
+    async (nickname: string, birthDate: string) => {
+      if (!profile) {
+        await store.createFamilyProfile();
+      }
+      const updated = await store.addChild(nickname, birthDate);
+      setProfile(updated);
+      setShowForm(false);
     },
-    [ensureProfile, saveAndUpdate]
-  )
+    [profile, store],
+  );
 
   const handleRemoveChild = useCallback(
-    (childId: string) => {
-      if (!profile) {
-        return
-      }
-      const updated = removeChild(profile, childId)
-      saveAndUpdate(updated)
+    async (childId: string) => {
+      const updated = await store.removeChild(childId);
+      setProfile(updated);
     },
-    [profile, saveAndUpdate]
-  )
+    [store],
+  );
 
   if (!isLoaded) {
     return (
       <div className="space-y-4">
         <div className="h-32 animate-pulse rounded-xl border border-border bg-warm-50" />
       </div>
-    )
+    );
   }
 
-  const children = profile?.children ?? []
-  const hasChildren = children.length > 0
+  const children = profile?.children ?? [];
+  const hasChildren = children.length > 0;
 
   return (
     <div>
@@ -321,5 +293,5 @@ export function FamilyProfileSetup() {
         )}
       </div>
     </div>
-  )
+  );
 }

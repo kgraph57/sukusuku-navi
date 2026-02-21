@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useCallback } from "react"
-import Link from "next/link"
+import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import {
   Check,
   Circle,
@@ -11,23 +11,19 @@ import {
   Lightbulb,
   ArrowRight,
   Users,
-} from "lucide-react"
-import type { ChecklistItem } from "@/lib/checklists"
-import {
-  getFamilyProfile,
-  saveFamilyProfile,
-  toggleChecklistItem,
-  getChildAge,
-} from "@/lib/family-store"
-import type { FamilyProfile, ChildProfile } from "@/lib/family-store"
+} from "lucide-react";
+import type { ChecklistItem } from "@/lib/checklists";
+import { useStore } from "@/lib/store";
+import type { FamilyProfile, ChildProfile } from "@/lib/store";
+import { formatAge } from "@/lib/utils/age";
 
 // ---------------------------------------------------------------------------
 // Props
 // ---------------------------------------------------------------------------
 
 interface ChecklistContentProps {
-  readonly slug: string
-  readonly items: readonly ChecklistItem[]
+  readonly slug: string;
+  readonly items: readonly ChecklistItem[];
 }
 
 // ---------------------------------------------------------------------------
@@ -40,7 +36,7 @@ const STAMP_KEYFRAMES = `
   50% { transform: scale(1.2); }
   100% { transform: scale(1); opacity: 1; }
 }
-`
+`;
 
 // ---------------------------------------------------------------------------
 // Local-only checked items hook (fallback when no family profile)
@@ -48,87 +44,69 @@ const STAMP_KEYFRAMES = `
 
 function useLocalCheckedItems(slug: string) {
   const [checkedItems, setCheckedItems] = useState<ReadonlySet<string>>(
-    new Set()
-  )
-  const [isLoaded, setIsLoaded] = useState(false)
+    new Set(),
+  );
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem(`checklist-${slug}`)
+      const stored = localStorage.getItem(`checklist-${slug}`);
       if (stored) {
-        const parsed = JSON.parse(stored) as string[]
-        setCheckedItems(new Set(parsed))
+        const parsed = JSON.parse(stored) as string[];
+        setCheckedItems(new Set(parsed));
       }
     } catch {
       // Ignore localStorage errors
     }
-    setIsLoaded(true)
-  }, [slug])
+    setIsLoaded(true);
+  }, [slug]);
 
   const toggle = useCallback(
     (itemId: string) => {
       setCheckedItems((prev) => {
-        const next = new Set(prev)
+        const next = new Set(prev);
         if (next.has(itemId)) {
-          next.delete(itemId)
+          next.delete(itemId);
         } else {
-          next.add(itemId)
+          next.add(itemId);
         }
         try {
           localStorage.setItem(
             `checklist-${slug}`,
-            JSON.stringify([...next])
-          )
+            JSON.stringify([...next]),
+          );
         } catch {
           // Ignore localStorage errors
         }
-        return next
-      })
+        return next;
+      });
     },
-    [slug]
-  )
+    [slug],
+  );
 
   const setAll = useCallback(
     (itemIds: readonly string[]) => {
-      const next = new Set(itemIds)
-      setCheckedItems(next)
+      const next = new Set(itemIds);
+      setCheckedItems(next);
       try {
-        localStorage.setItem(
-          `checklist-${slug}`,
-          JSON.stringify([...next])
-        )
+        localStorage.setItem(`checklist-${slug}`, JSON.stringify([...next]));
       } catch {
         // Ignore localStorage errors
       }
     },
-    [slug]
-  )
+    [slug],
+  );
 
   const clearAll = useCallback(() => {
-    setCheckedItems(new Set())
+    setCheckedItems(new Set());
     try {
-      localStorage.setItem(`checklist-${slug}`, JSON.stringify([]))
+      localStorage.setItem(`checklist-${slug}`, JSON.stringify([]));
     } catch {
       // Ignore localStorage errors
     }
-  }, [slug])
+  }, [slug]);
 
-  return { checkedItems, isLoaded, toggle, setAll, clearAll }
-}
-
-// ---------------------------------------------------------------------------
-// Format child age as readable string
-// ---------------------------------------------------------------------------
-
-function formatAge(birthDate: string): string {
-  const { years, months } = getChildAge(birthDate)
-  if (years === 0) {
-    return `${months}ヶ月`
-  }
-  if (months === 0) {
-    return `${years}歳`
-  }
-  return `${years}歳${months}ヶ月`
+  return { checkedItems, isLoaded, toggle, setAll, clearAll };
 }
 
 // ---------------------------------------------------------------------------
@@ -140,9 +118,9 @@ function StampCircle({
   justStamped,
   onToggle,
 }: {
-  readonly isChecked: boolean
-  readonly justStamped: boolean
-  readonly onToggle: () => void
+  readonly isChecked: boolean;
+  readonly justStamped: boolean;
+  readonly onToggle: () => void;
 }) {
   return (
     <button
@@ -168,7 +146,7 @@ function StampCircle({
         </div>
       )}
     </button>
-  )
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -181,10 +159,10 @@ function StampItemCard({
   justStamped,
   onToggle,
 }: {
-  readonly item: ChecklistItem
-  readonly isChecked: boolean
-  readonly justStamped: boolean
-  readonly onToggle: () => void
+  readonly item: ChecklistItem;
+  readonly isChecked: boolean;
+  readonly justStamped: boolean;
+  readonly onToggle: () => void;
 }) {
   return (
     <div
@@ -268,7 +246,7 @@ function StampItemCard({
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -278,7 +256,6 @@ function StampItemCard({
 function CelebrationBanner() {
   return (
     <div className="relative overflow-hidden rounded-xl border-2 border-teal-300 bg-gradient-to-r from-teal-50 via-white to-teal-50 p-6 text-center">
-      {/* CSS confetti dots */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {[
           { top: "10%", left: "5%", bg: "bg-teal-400", delay: "0s" },
@@ -304,10 +281,10 @@ function CelebrationBanner() {
       </div>
 
       <p className="relative text-lg font-bold text-teal-700">
-        おめでとうございます！すべての手続きが完了しました 🎉
+        おめでとうございます！すべての手続きが完了しました
       </p>
     </div>
-  )
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -319,14 +296,14 @@ function ChildSelector({
   selectedChildId,
   onSelect,
 }: {
-  readonly children: readonly ChildProfile[]
-  readonly selectedChildId: string
-  readonly onSelect: (childId: string) => void
+  readonly children: readonly ChildProfile[];
+  readonly selectedChildId: string;
+  readonly onSelect: (childId: string) => void;
 }) {
   return (
     <div className="mb-4 flex gap-2 overflow-x-auto pb-1">
       {children.map((child) => {
-        const isActive = child.id === selectedChildId
+        const isActive = child.id === selectedChildId;
         return (
           <button
             key={child.id}
@@ -344,10 +321,10 @@ function ChildSelector({
               ({formatAge(child.birthDate)})
             </span>
           </button>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -358,10 +335,10 @@ function ProgressBar({
   completed,
   total,
 }: {
-  readonly completed: number
-  readonly total: number
+  readonly completed: number;
+  readonly total: number;
 }) {
-  const percent = total > 0 ? Math.round((completed / total) * 100) : 0
+  const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
 
   return (
     <div>
@@ -378,7 +355,7 @@ function ProgressBar({
         />
       </div>
     </div>
-  )
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -386,106 +363,107 @@ function ProgressBar({
 // ---------------------------------------------------------------------------
 
 export function ChecklistContent({ slug, items }: ChecklistContentProps) {
+  const store = useStore();
+
   // Family profile state
   const [familyProfile, setFamilyProfile] = useState<FamilyProfile | null>(
-    null
-  )
-  const [selectedChildId, setSelectedChildId] = useState<string | null>(null)
-  const [profileLoaded, setProfileLoaded] = useState(false)
+    null,
+  );
+  const [selectedChildId, setSelectedChildId] = useState<string | null>(null);
+  const [profileLoaded, setProfileLoaded] = useState(false);
 
   // Track recently stamped items for animation
-  const [justStampedId, setJustStampedId] = useState<string | null>(null)
+  const [justStampedId, setJustStampedId] = useState<string | null>(null);
 
   // Local-only fallback
-  const localStore = useLocalCheckedItems(slug)
+  const localStore = useLocalCheckedItems(slug);
 
   // Load family profile on mount
   useEffect(() => {
-    const profile = getFamilyProfile()
-    setFamilyProfile(profile)
-
-    if (profile && profile.children.length > 0) {
-      setSelectedChildId(profile.children[0].id)
-    }
-
-    setProfileLoaded(true)
-  }, [])
+    let cancelled = false;
+    store.getFamilyProfile().then((profile) => {
+      if (cancelled) return;
+      setFamilyProfile(profile);
+      if (profile && profile.children.length > 0) {
+        setSelectedChildId(profile.children[0].id);
+      }
+      setProfileLoaded(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [store]);
 
   // Clear animation after delay
   useEffect(() => {
     if (justStampedId === null) {
-      return
+      return;
     }
 
     const timer = setTimeout(() => {
-      setJustStampedId(null)
-    }, 500)
+      setJustStampedId(null);
+    }, 500);
 
-    return () => clearTimeout(timer)
-  }, [justStampedId])
+    return () => clearTimeout(timer);
+  }, [justStampedId]);
 
   // Determine which child is selected
   const selectedChild =
-    familyProfile?.children.find((c) => c.id === selectedChildId) ?? null
+    familyProfile?.children.find((c) => c.id === selectedChildId) ?? null;
 
   // Build the set of completed item IDs
   const checkedItems: ReadonlySet<string> = selectedChild
     ? new Set(selectedChild.completedItems)
-    : localStore.checkedItems
+    : localStore.checkedItems;
 
-  const isLoaded = profileLoaded && (selectedChild ? true : localStore.isLoaded)
+  const isLoaded =
+    profileLoaded && (selectedChild ? true : localStore.isLoaded);
 
   // Toggle handler
   const handleToggle = useCallback(
-    (itemId: string) => {
-      setJustStampedId(itemId)
+    async (itemId: string) => {
+      setJustStampedId(itemId);
 
       if (familyProfile && selectedChildId) {
-        const updated = toggleChecklistItem(
-          familyProfile,
+        const updated = await store.toggleCompletedItem(
           selectedChildId,
-          itemId
-        )
-        setFamilyProfile(updated)
-        saveFamilyProfile(updated)
+          itemId,
+        );
+        setFamilyProfile(updated);
       } else {
-        localStore.toggle(itemId)
+        localStore.toggle(itemId);
       }
     },
-    [familyProfile, selectedChildId, localStore]
-  )
+    [familyProfile, selectedChildId, localStore, store],
+  );
 
   // Toggle all handler
-  const handleToggleAll = useCallback(() => {
-    const allIds = items.map((item) => item.id)
-    const allCompleted = allIds.every((id) => checkedItems.has(id))
+  const handleToggleAll = useCallback(async () => {
+    const allIds = items.map((item) => item.id);
+    const allCompleted = allIds.every((id) => checkedItems.has(id));
 
     if (familyProfile && selectedChildId) {
-      let updated = familyProfile
-
+      let current = familyProfile;
       for (const id of allIds) {
-        const isCompleted = checkedItems.has(id)
-        // If all are completed, we uncomplete everything; otherwise complete everything
+        const isCompleted = checkedItems.has(id);
         if (allCompleted ? isCompleted : !isCompleted) {
-          updated = toggleChecklistItem(updated, selectedChildId, id)
+          current = await store.toggleCompletedItem(selectedChildId, id);
         }
       }
-
-      setFamilyProfile(updated)
-      saveFamilyProfile(updated)
+      setFamilyProfile(current);
     } else {
       if (allCompleted) {
-        localStore.clearAll()
+        localStore.clearAll();
       } else {
-        localStore.setAll(allIds)
+        localStore.setAll(allIds);
       }
     }
-  }, [items, checkedItems, familyProfile, selectedChildId, localStore])
+  }, [items, checkedItems, familyProfile, selectedChildId, localStore, store]);
 
   // Computed values
-  const checkedCount = items.filter((item) => checkedItems.has(item.id)).length
-  const totalCount = items.length
-  const allCompleted = checkedCount === totalCount && totalCount > 0
+  const checkedCount = items.filter((item) => checkedItems.has(item.id)).length;
+  const totalCount = items.length;
+  const allCompleted = checkedCount === totalCount && totalCount > 0;
 
   // Loading skeleton
   if (!isLoaded) {
@@ -498,7 +476,7 @@ export function ChecklistContent({ slug, items }: ChecklistContentProps) {
           />
         ))}
       </div>
-    )
+    );
   }
 
   return (
@@ -566,5 +544,5 @@ export function ChecklistContent({ slug, items }: ChecklistContentProps) {
         ))}
       </div>
     </div>
-  )
+  );
 }
