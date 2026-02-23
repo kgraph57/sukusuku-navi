@@ -1,6 +1,4 @@
-"use client"
-
-;
+"use client";
 
 import { useState } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
@@ -77,11 +75,19 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
       {/* Legend */}
       <div className="flex gap-4 px-1 text-xs text-muted">
         <span className="flex items-center gap-1">
-          <WatercolorIcon name="mappin" size={12} className=".5 .5 fill-sage-600 text-sage-600" />
+          <WatercolorIcon
+            name="mappin"
+            size={12}
+            className=".5 .5 fill-sage-600 text-sage-600"
+          />
           クリニック
         </span>
         <span className="flex items-center gap-1">
-          <WatercolorIcon name="mappin" size={12} className=".5 .5 fill-red-500 text-red-500" />
+          <WatercolorIcon
+            name="mappin"
+            size={12}
+            className=".5 .5 fill-red-500 text-red-500"
+          />
           救急対応
         </span>
       </div>
@@ -127,10 +133,12 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
                 {selectedClinic.phone}
               </a>
             </p>
-            <p className="flex items-center gap-1.5">
-              <WatercolorIcon name="clock" size={12} className="shrink-0" />
-              平日 {selectedClinic.hours.weekday}
-            </p>
+            {selectedClinic.hours.weekday != null && (
+              <p className="flex items-center gap-1.5">
+                <WatercolorIcon name="clock" size={12} className="shrink-0" />
+                平日 {selectedClinic.hours.weekday}
+              </p>
+            )}
           </div>
           <div className="mt-2 flex flex-wrap gap-1">
             {selectedClinic.features.slice(0, 4).map((feature) => (

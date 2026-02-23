@@ -12,6 +12,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   typescript: {
+    // PostHog パッケージが .ts ソースファイルを同梱しており Next.js の型チェッカーが拾うため抑制
+    // 自プロジェクトの TypeScript エラーは tsc --noEmit で別途確認済み
     ignoreBuildErrors: true,
   },
   experimental: {

@@ -199,7 +199,8 @@
         "doseNumber": 1,
         "label": "1回目（生後2〜14週6日までに）",
         "ageMonthsMin": 2,
-        "ageMonthsMax": 3,
+        "ageMonthsMax": 4,
+        "ageMonthsMaxNote": "実際の上限は生後14週6日（約3ヶ月半）。月単位での切り上げ値として4ヶ月を使用",
         "ageMonthsStandard": 2
       },
       {
@@ -535,7 +536,7 @@
         "doseNumber": 1,
         "label": "1回目（毎年10〜11月）",
         "ageMonthsMin": 6,
-        "ageMonthsMax": 999,
+        "ageMonthsMax": null,
         "ageMonthsStandard": 6
       },
       {

@@ -4,7 +4,6 @@ import type {
   EligibleProgram,
   Program,
   ChildInfo,
-  IncomeRange,
 } from "@/lib/types";
 import { getAllPrograms } from "@/lib/programs";
 
@@ -144,11 +143,8 @@ function estimateProgramAmount(
     }
 
     case "infant-health-checkup": {
-      const eligibleCount = input.children.filter((child) => {
-        const ageYears = computeChildAgeInYears(child.birthDate, referenceDate);
-        return ageYears <= 3;
-      }).length;
-      return eligibleCount * 0;
+      // 公費で無料のため金額は0（サービス給付として表示）
+      return 0;
     }
 
     default:

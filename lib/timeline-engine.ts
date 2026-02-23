@@ -20,9 +20,10 @@ export interface TimelineItem {
   readonly actionLabel: string;
   readonly tip?: string;
   readonly completed: boolean;
+  readonly isExpired: boolean;
 }
 
-type Def = Omit<TimelineItem, "urgency" | "completed">;
+type Def = Omit<TimelineItem, "urgency" | "completed" | "isExpired">;
 
 // prettier-ignore
 const DEFINITIONS: readonly Def[] = [
@@ -84,6 +85,12 @@ function calculateUrgency(
   return ageInDays >= daysFromBirth ? "upcoming" : "future";
 }
 
+// Returns true when today falls within Japan's influenza season (October–January).
+function isFluSeason(date: Date): boolean {
+  const month = date.getMonth() + 1; // getMonth() is 0-indexed
+  return month === 10 || month === 11 || month === 12 || month === 1;
+}
+
 export function generateTimeline(
   birthDate: string,
   completedItems: readonly string[] = [],
@@ -99,21 +106,25 @@ export function generateTimeline(
   return DEFINITIONS.flatMap((def) => {
     const isCompleted = completedSet.has(def.id);
 
-    if (
+    const isExpired =
       !isCompleted &&
       def.expiryDaysFromBirth !== undefined &&
-      ageInDays > def.expiryDaysFromBirth
-    ) {
-      return [];
-    }
+      ageInDays > def.expiryDaysFromBirth;
 
-    const urgency = calculateUrgency(
+    let urgency = calculateUrgency(
       ageInDays,
       def.daysFromBirth,
       def.deadlineDaysFromBirth,
     );
 
-    return [{ ...def, urgency, completed: isCompleted }];
+    // Influenza vaccine: show as "upcoming" only during flu season (Oct–Jan)
+    // and when the child is at least 6 months old (180 days).
+    if (def.id === "vaccine-influenza" && !isCompleted) {
+      const childOldEnough = ageInDays >= 180;
+      urgency = childOldEnough && isFluSeason(today) ? "upcoming" : "future";
+    }
+
+    return [{ ...def, urgency, completed: isCompleted, isExpired }];
   });
 }
 
@@ -123,12 +134,22 @@ export function groupTimelineByUrgency(items: readonly TimelineItem[]): {
   readonly soon: readonly TimelineItem[];
   readonly upcoming: readonly TimelineItem[];
   readonly future: readonly TimelineItem[];
+  readonly expired: readonly TimelineItem[];
 } {
   return {
-    overdue: items.filter((item) => item.urgency === "overdue"),
-    urgent: items.filter((item) => item.urgency === "urgent"),
-    soon: items.filter((item) => item.urgency === "soon"),
-    upcoming: items.filter((item) => item.urgency === "upcoming"),
-    future: items.filter((item) => item.urgency === "future"),
+    overdue: items.filter(
+      (item) => !item.isExpired && item.urgency === "overdue",
+    ),
+    urgent: items.filter(
+      (item) => !item.isExpired && item.urgency === "urgent",
+    ),
+    soon: items.filter((item) => !item.isExpired && item.urgency === "soon"),
+    upcoming: items.filter(
+      (item) => !item.isExpired && item.urgency === "upcoming",
+    ),
+    future: items.filter(
+      (item) => !item.isExpired && item.urgency === "future",
+    ),
+    expired: items.filter((item) => item.isExpired),
   };
 }
