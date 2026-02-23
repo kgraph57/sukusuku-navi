@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Syringe,
@@ -119,17 +120,42 @@ export default function VaccinesPage() {
     <>
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-10 pt-10 sm:pb-16 sm:pt-14">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-sage-100">
-            <Syringe className="h-7 w-7 text-sage-600" />
+        <div className="mx-auto max-w-3xl">
+          <div className="flex flex-col items-center sm:flex-row sm:items-end sm:justify-center sm:gap-8">
+            {/* キャラクター左 */}
+            <div className="hidden sm:block">
+              <Image
+                src="/characters/poses/konkon_thumbsup.png"
+                alt="コンコン先生"
+                width={120}
+                height={120}
+                className="drop-shadow-sm"
+              />
+            </div>
+            {/* テキスト中央 */}
+            <div className="text-center">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-sage-100">
+                <Syringe className="h-7 w-7 text-sage-600" />
+              </div>
+              <h1 className="mt-5 font-heading text-3xl font-semibold text-foreground sm:text-4xl">
+                予防接種ガイド
+              </h1>
+              <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted">
+                全{allVaccines.length}
+                種類のワクチン情報と接種スケジュール、港区での手順、科学的エビデンスをまとめた総合ガイドです。
+              </p>
+            </div>
+            {/* キャラクター右 */}
+            <div className="hidden sm:block">
+              <Image
+                src="/characters/poses/usagi_cheering.png"
+                alt="うさぎーさん"
+                width={110}
+                height={110}
+                className="drop-shadow-sm"
+              />
+            </div>
           </div>
-          <h1 className="mt-5 font-heading text-3xl font-semibold text-foreground sm:text-4xl">
-            予防接種ガイド
-          </h1>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted">
-            全{allVaccines.length}
-            種類のワクチン情報と接種スケジュール、港区での手順、科学的エビデンスをまとめた総合ガイドです。
-          </p>
 
           {/* Jump Links */}
           <nav className="mt-8 flex flex-wrap items-center justify-center gap-2">
@@ -151,8 +177,14 @@ export default function VaccinesPage() {
       <section className="px-4 py-10">
         <div className="mx-auto max-w-4xl">
           <div className="flex gap-4 rounded-xl border border-sage-200 bg-sage-50/50 p-5 sm:p-6">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sage-600">
-              <Stethoscope className="h-6 w-6 text-white" />
+            <div className="shrink-0">
+              <Image
+                src="/characters/poses/konkon_reading.png"
+                alt="コンコン先生"
+                width={64}
+                height={64}
+                className="rounded-full"
+              />
             </div>
             <div>
               <p className="text-sm font-bold text-sage-800">

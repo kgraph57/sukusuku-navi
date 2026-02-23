@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import {
   Calculator,
@@ -19,16 +20,22 @@ const FEATURES = [
     icon: Clock,
     title: "約2分で完了",
     description: "4ステップの簡単な質問に答えるだけ。",
+    character: "/characters/poses/haruto_running.png",
+    charAlt: "ハルト",
   },
   {
     icon: Shield,
     title: "個人情報不要",
     description: "入力内容はサーバーに保存されません。",
+    character: "/characters/poses/pochi_sitting.png",
+    charAlt: "ぽち",
   },
   {
     icon: CheckCircle2,
     title: "17制度を一括チェック",
     description: "港区の子育て支援制度をまとめて確認。",
+    character: "/characters/poses/risu_acorn.png",
+    charAlt: "りすちゃん",
   },
 ] as const
 
@@ -36,30 +43,55 @@ export default function SimulatorPage() {
   return (
     <>
       <section className="bg-gradient-to-b from-blush-50 to-ivory-50 px-4 pb-16 pt-12 sm:pb-24 sm:pt-20">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-blush-500 text-white">
-            <Calculator className="h-8 w-8" />
+        <div className="mx-auto max-w-3xl">
+          <div className="flex flex-col items-center sm:flex-row sm:items-end sm:justify-center sm:gap-8">
+            {/* キャラクター左 */}
+            <div className="hidden sm:block">
+              <Image
+                src="/characters/poses/pankun_pointing.png"
+                alt="ぱんくん"
+                width={130}
+                height={130}
+                className="drop-shadow-sm"
+              />
+            </div>
+            {/* テキスト中央 */}
+            <div className="text-center">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-blush-500 text-white">
+                <Calculator className="h-8 w-8" />
+              </div>
+
+              <h1 className="mt-6 font-heading text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
+                給付金シミュレーター
+              </h1>
+
+              <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+                お子さんの年齢と世帯の情報から、港区で受けられる
+                <strong className="text-foreground">
+                  給付金・助成・子育て支援制度
+                </strong>
+                を一括検索します。
+              </p>
+
+              <Link
+                href="/simulator/start"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-blush-500 px-8 py-4 text-base font-bold text-white transition-colors hover:bg-blush-600"
+              >
+                シミュレーションを始める
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            </div>
+            {/* キャラクター右 */}
+            <div className="hidden sm:block">
+              <Image
+                src="/characters/poses/usagi_happy.png"
+                alt="うさぎーさん"
+                width={120}
+                height={120}
+                className="drop-shadow-sm"
+              />
+            </div>
           </div>
-
-          <h1 className="mt-6 font-heading text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
-            給付金シミュレーター
-          </h1>
-
-          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-            お子さんの年齢と世帯の情報から、港区で受けられる
-            <strong className="text-foreground">
-              給付金・助成・子育て支援制度
-            </strong>
-            を一括検索します。
-          </p>
-
-          <Link
-            href="/simulator/start"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-blush-500 px-8 py-4 text-base font-bold text-white transition-colors hover:bg-blush-600"
-          >
-            シミュレーションを始める
-            <ArrowRight className="h-5 w-5" />
-          </Link>
         </div>
       </section>
 
@@ -75,6 +107,15 @@ export default function SimulatorPage() {
                 key={feature.title}
                 className="rounded-xl border border-border bg-card p-6 text-center"
               >
+                <div className="mx-auto mb-3 flex justify-center">
+                  <Image
+                    src={feature.character}
+                    alt={feature.charAlt}
+                    width={72}
+                    height={72}
+                    className="drop-shadow-sm"
+                  />
+                </div>
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-sage-50 text-sage-600">
                   <feature.icon className="h-6 w-6" />
                 </div>

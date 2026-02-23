@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Stethoscope,
@@ -95,14 +96,36 @@ export default function TriagePage() {
   return (
     <>
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
-        <div className="mx-auto max-w-3xl text-center">
-          <h1 className="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
-            <Stethoscope className="mr-2 inline-block h-8 w-8 text-sage-600" />
-            症状チェック
-          </h1>
-          <p className="mt-4 text-base leading-relaxed text-muted">
-            質問に答えていくだけで、受診の緊急度を判断します。
-          </p>
+        <div className="mx-auto max-w-3xl">
+          <div className="flex flex-col items-center sm:flex-row sm:items-end sm:justify-center sm:gap-8">
+            <div className="hidden sm:block">
+              <Image
+                src="/characters/poses/konkon_worried.png"
+                alt="コンコン先生"
+                width={120}
+                height={120}
+                className="drop-shadow-sm"
+              />
+            </div>
+            <div className="text-center">
+              <h1 className="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
+                <Stethoscope className="mr-2 inline-block h-8 w-8 text-sage-600" />
+                症状チェック
+              </h1>
+              <p className="mt-4 text-base leading-relaxed text-muted">
+                質問に答えていくだけで、受診の緊急度を判断します。
+              </p>
+            </div>
+            <div className="hidden sm:block">
+              <Image
+                src="/characters/poses/tama_curious.png"
+                alt="たま"
+                width={100}
+                height={100}
+                className="drop-shadow-sm"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
