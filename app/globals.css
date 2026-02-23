@@ -32,6 +32,29 @@
   --color-gold-500: #909090;
   --color-gold-600: #707070;
 
+  /* ── teal/coral/warm（sage/blush/ivory と同じ値・サービス全体でクラス名が混在するため） ── */
+  --color-teal-50: #F0FDFA;
+  --color-teal-100: #CCFBF1;
+  --color-teal-200: #99F6E4;
+  --color-teal-300: #5EEAD4;
+  --color-teal-400: #2DD4BF;
+  --color-teal-500: #14B8A6;
+  --color-teal-600: #0D9488;
+  --color-teal-700: #0F766E;
+  --color-teal-800: #115E59;
+  --color-teal-900: #134E4A;
+  --color-coral-50: #FFF7ED;
+  --color-coral-100: #FFEDD5;
+  --color-coral-200: #FED7AA;
+  --color-coral-300: #FDBA74;
+  --color-coral-400: #FB923C;
+  --color-coral-500: #F97316;
+  --color-coral-600: #EA580C;
+  --color-warm-50: #FEFDFB;
+  --color-warm-100: #FDF8F0;
+  --color-warm-200: #F5EFE6;
+  --color-warm-300: #EDE6DC;
+
   /* ── Semantic Colors ── */
   --color-background: var(--color-ivory-50);
   --color-foreground: #1A1A2E;
