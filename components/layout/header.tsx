@@ -3,22 +3,22 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import {
-  Menu,
-  X,
-  Search,
-  Baby,
-  User,
-  ChevronDown,
-  BookOpen,
-  Syringe,
-  Stethoscope,
-  ClipboardList,
-  Calculator,
-  MapPin,
-  Building2,
-  AlertTriangle,
-  LogOut,
-} from "lucide-react";
+  IconMenu,
+  IconX,
+  IconSearch,
+  IconBaby,
+  IconUser,
+  IconChevronDown,
+  IconBook,
+  IconSyringe,
+  IconStethoscope,
+  IconClipboard,
+  IconCalculator,
+  IconMapPin,
+  IconBuilding,
+  IconAlertTriangle,
+  IconLogOut,
+} from "@/components/icons/custom-icons";
 import { useAuth } from "@/lib/auth/auth-provider";
 
 interface NavGroup {
@@ -26,7 +26,7 @@ interface NavGroup {
   readonly items: readonly {
     readonly href: string;
     readonly label: string;
-    readonly icon: typeof BookOpen;
+    readonly icon: typeof IconBook;
     readonly description: string;
   }[];
 }
@@ -38,19 +38,19 @@ const NAV_GROUPS: readonly NavGroup[] = [
       {
         href: "/articles",
         label: "記事一覧",
-        icon: BookOpen,
+        icon: IconBook,
         description: "小児科医監修の子育て情報",
       },
       {
         href: "/vaccines",
         label: "予防接種",
-        icon: Syringe,
+        icon: IconSyringe,
         description: "接種スケジュールと詳細",
       },
       {
         href: "/checkups",
         label: "健診ガイド",
-        icon: Stethoscope,
+        icon: IconStethoscope,
         description: "乳幼児健診の時期と内容",
       },
     ],
@@ -61,19 +61,19 @@ const NAV_GROUPS: readonly NavGroup[] = [
       {
         href: "/programs",
         label: "制度一覧",
-        icon: ClipboardList,
+        icon: IconClipboard,
         description: "助成金・給付金・支援制度",
       },
       {
         href: "/simulator",
         label: "給付金シミュレーター",
-        icon: Calculator,
+        icon: IconCalculator,
         description: "受給額をかんたん計算",
       },
       {
         href: "/checklists",
         label: "手続きガイド",
-        icon: ClipboardList,
+        icon: IconClipboard,
         description: "出産前後のやることリスト",
       },
     ],
@@ -84,13 +84,13 @@ const NAV_GROUPS: readonly NavGroup[] = [
       {
         href: "/clinics",
         label: "小児科マップ",
-        icon: MapPin,
+        icon: IconMapPin,
         description: "港区の小児科・夜間対応",
       },
       {
         href: "/nurseries",
         label: "保育園探し",
-        icon: Building2,
+        icon: IconBuilding,
         description: "認可・認証保育園の情報",
       },
     ],
@@ -100,7 +100,7 @@ const NAV_GROUPS: readonly NavGroup[] = [
 const STANDALONE_NAV = {
   href: "/triage",
   label: "受診判断",
-  icon: AlertTriangle,
+  icon: IconAlertTriangle,
 } as const;
 
 function DropdownMenu({
@@ -150,7 +150,7 @@ function DropdownMenu({
         aria-expanded={isOpen}
       >
         {group.label}
-        <ChevronDown
+        <IconChevronDown
           className={`h-3.5 w-3.5 transition-transform ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
@@ -193,7 +193,7 @@ function MobileAuthLinks({ onClose }: { readonly onClose: () => void }) {
         className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-sage-50 hover:text-sage-700"
         onClick={onClose}
       >
-        <User className="h-4 w-4 text-sage-600" />
+        <IconUser className="h-4 w-4 text-sage-600" />
         マイページ
       </Link>
     );
@@ -210,7 +210,7 @@ function MobileAuthLinks({ onClose }: { readonly onClose: () => void }) {
         className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-sage-600 transition-colors hover:bg-sage-50"
         onClick={onClose}
       >
-        <User className="h-4 w-4" />
+        <IconUser className="h-4 w-4" />
         ログイン
       </Link>
     );
@@ -223,7 +223,7 @@ function MobileAuthLinks({ onClose }: { readonly onClose: () => void }) {
         className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-sage-50 hover:text-sage-700"
         onClick={onClose}
       >
-        <User className="h-4 w-4 text-sage-600" />
+        <IconUser className="h-4 w-4 text-sage-600" />
         マイページ
       </Link>
       <button
@@ -234,7 +234,7 @@ function MobileAuthLinks({ onClose }: { readonly onClose: () => void }) {
         }}
         className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-muted transition-colors hover:bg-ivory-50 hover:text-foreground"
       >
-        <LogOut className="h-4 w-4" />
+        <IconLogOut className="h-4 w-4" />
         ログアウト
       </button>
     </>
@@ -307,7 +307,7 @@ function UserMenu() {
             className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-sage-50"
             onClick={() => setIsOpen(false)}
           >
-            <User className="h-4 w-4 text-sage-600" />
+            <IconUser className="h-4 w-4 text-sage-600" />
             マイページ
           </Link>
           <button
@@ -318,7 +318,7 @@ function UserMenu() {
             }}
             className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-ivory-50 hover:text-foreground"
           >
-            <LogOut className="h-4 w-4" />
+            <IconLogOut className="h-4 w-4" />
             ログアウト
           </button>
         </div>
@@ -340,7 +340,7 @@ export function Header() {
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2.5">
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-sage-700">
-            <Baby className="h-4 w-4 text-white" />
+            <IconBaby className="h-4 w-4 text-white" />
           </div>
           <span className="font-heading text-lg tracking-wide text-foreground">
             すくすくナビ
@@ -370,7 +370,7 @@ export function Header() {
             className="rounded-lg p-2 text-muted transition-colors hover:bg-sage-50 hover:text-sage-700"
             aria-label="検索"
           >
-            <Search className="h-5 w-5" />
+            <IconSearch className="h-5 w-5" />
           </Link>
         </nav>
 
@@ -380,7 +380,7 @@ export function Header() {
             className="rounded-lg p-2 text-muted"
             aria-label="検索"
           >
-            <Search className="h-5 w-5" />
+            <IconSearch className="h-5 w-5" />
           </Link>
           <button
             type="button"
@@ -390,9 +390,9 @@ export function Header() {
             aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? (
-              <X className="h-6 w-6" />
+              <IconX className="h-6 w-6" />
             ) : (
-              <Menu className="h-6 w-6" />
+              <IconMenu className="h-6 w-6" />
             )}
           </button>
         </div>
@@ -411,7 +411,7 @@ export function Header() {
                 onClick={() => setIsMenuOpen(false)}
                 aria-label="メニューを閉じる"
               >
-                <X className="h-6 w-6" />
+                <IconX className="h-6 w-6" />
               </button>
             </div>
             <nav className="mt-8 flex-1 space-y-6 overflow-y-auto">
