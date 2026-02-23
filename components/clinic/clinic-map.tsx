@@ -38,7 +38,7 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage:
-              "linear-gradient(to right, #2563EB 1px, transparent 1px), linear-gradient(to bottom, #2563EB 1px, transparent 1px)",
+              "linear-gradient(to right, #0D9488 1px, transparent 1px), linear-gradient(to bottom, #0D9488 1px, transparent 1px)",
             backgroundSize: "10% 10%",
           }}
         />
