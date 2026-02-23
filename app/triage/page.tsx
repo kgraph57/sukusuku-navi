@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getAllSymptoms } from "@/lib/triage/engine";
 import type { TriageSymptom } from "@/lib/triage/engine";
 import { GuidedTriageFlow } from "@/components/triage/guided-triage-flow";
+import { withBasePath } from "@/lib/image-path";
 
 export const metadata: Metadata = {
   title: "症状チェック（トリアージ）",
@@ -85,7 +86,7 @@ export default function TriagePage() {
           <div className="flex flex-col items-center sm:flex-row sm:items-end sm:justify-center sm:gap-8">
             <div className="hidden sm:block">
               <Image
-                src="/characters/poses/konkon_worried.png"
+                src={withBasePath("/characters/poses/konkon_worried.png")}
                 alt="コンコン先生"
                 width={120}
                 height={120}
@@ -103,7 +104,7 @@ export default function TriagePage() {
             </div>
             <div className="hidden sm:block">
               <Image
-                src="/characters/poses/tama_curious.png"
+                src={withBasePath("/characters/poses/tama_curious.png")}
                 alt="たま"
                 width={100}
                 height={100}

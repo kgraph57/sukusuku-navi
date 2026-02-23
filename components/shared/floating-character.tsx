@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { withBasePath } from "@/lib/image-path";
 
 interface FloatingCharacterProps {
   src: string;
@@ -29,7 +30,7 @@ export function FloatingCharacter({
       }}
     >
       <Image
-        src={src}
+        src={withBasePath(src)}
         alt={alt}
         width={width}
         height={height}

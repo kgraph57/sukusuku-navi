@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { withBasePath } from "@/lib/image-path";
 
 interface CharacterDividerProps {
   className?: string;
@@ -27,7 +28,7 @@ export function CharacterDivider({ className = "", variant = "walk" }: Character
             style={{ marginTop: i % 2 === 0 ? "0px" : "8px" }}
           >
             <Image
-              src={char.src}
+              src={withBasePath(char.src)}
               alt={char.alt}
               width={char.size}
               height={char.size}
@@ -52,7 +53,7 @@ export function CharacterDivider({ className = "", variant = "walk" }: Character
             }}
           >
             <Image
-              src={char.src}
+              src={withBasePath(char.src)}
               alt={char.alt}
               width={char.size}
               height={char.size}

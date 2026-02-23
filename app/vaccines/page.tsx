@@ -23,6 +23,7 @@ import { FaqSection } from "@/components/vaccination/faq-section";
 import { EvidenceSection } from "@/components/vaccination/evidence-section";
 import { Badge } from "@/components/shared/badge";
 import type { Vaccine } from "@/lib/types";
+import { withBasePath } from "@/lib/image-path";
 
 export const metadata: Metadata = {
   title: "予防接種ガイド",
@@ -112,7 +113,7 @@ export default function VaccinesPage() {
             {/* キャラクター左 */}
             <div className="hidden sm:block">
               <Image
-                src="/characters/poses/konkon_thumbsup.png"
+                src={withBasePath("/characters/poses/konkon_thumbsup.png")}
                 alt="コンコン先生"
                 width={120}
                 height={120}
@@ -135,7 +136,7 @@ export default function VaccinesPage() {
             {/* キャラクター右 */}
             <div className="hidden sm:block">
               <Image
-                src="/characters/poses/usagi_cheering.png"
+                src={withBasePath("/characters/poses/usagi_cheering.png")}
                 alt="うさぎーさん"
                 width={110}
                 height={110}
@@ -166,7 +167,7 @@ export default function VaccinesPage() {
           <div className="flex gap-4 rounded-xl border border-sage-200 bg-sage-50/50 p-5 sm:p-6">
             <div className="shrink-0">
               <Image
-                src="/characters/poses/konkon_reading.png"
+                src={withBasePath("/characters/poses/konkon_reading.png")}
                 alt="コンコン先生"
                 width={64}
                 height={64}

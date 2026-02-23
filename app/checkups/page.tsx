@@ -9,6 +9,7 @@ import {
 } from "@/lib/checkups";
 import { SectionHeading } from "@/components/shared/section-heading";
 import type { Checkup } from "@/lib/types";
+import { withBasePath } from "@/lib/image-path";
 
 export const metadata: Metadata = {
   title: "乳幼児健診ガイド",
@@ -234,7 +235,7 @@ export default function CheckupsPage() {
           <div className="flex flex-col items-center sm:flex-row sm:items-end sm:justify-center sm:gap-8">
             <div className="hidden sm:block">
               <Image
-                src="/characters/poses/pankun_happy.png"
+                src={withBasePath("/characters/poses/pankun_happy.png")}
                 alt="ぱんくん"
                 width={110}
                 height={110}
@@ -255,7 +256,7 @@ export default function CheckupsPage() {
             </div>
             <div className="hidden sm:block">
               <Image
-                src="/characters/poses/amara_reading.png"
+                src={withBasePath("/characters/poses/amara_reading.png")}
                 alt="アマラ"
                 width={100}
                 height={100}
@@ -286,7 +287,7 @@ export default function CheckupsPage() {
           <div className="flex gap-4 rounded-xl border border-sage-200 bg-sage-50/50 p-5 sm:p-6">
             <div className="shrink-0">
               <Image
-                src="/characters/poses/konkon_thinking.png"
+                src={withBasePath("/characters/poses/konkon_thinking.png")}
                 alt="コンコン先生"
                 width={64}
                 height={64}

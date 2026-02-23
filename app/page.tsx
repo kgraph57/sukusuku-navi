@@ -9,6 +9,7 @@ import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { CharacterDivider } from "@/components/shared/character-divider";
 import type { ArticleCategory } from "@/lib/types";
 import { CATEGORY_LABELS } from "@/lib/types";
+import { withBasePath } from "@/lib/image-path";
 
 const FEATURES = [
   {
@@ -126,7 +127,7 @@ export default function HomePage() {
             <div className="order-3 hidden lg:order-1 lg:block lg:w-48 lg:shrink-0">
               <ScrollReveal direction="left" delay={200}>
                 <Image
-                  src="/characters/poses/usagi_happy.png"
+                  src={withBasePath("/characters/poses/usagi_happy.png")}
                   alt="うさぎーさん"
                   width={180}
                   height={220}
@@ -185,7 +186,7 @@ export default function HomePage() {
             <div className="order-2 hidden lg:order-3 lg:block lg:w-48 lg:shrink-0">
               <ScrollReveal direction="right" delay={200}>
                 <Image
-                  src="/characters/poses/konkon_wave.png"
+                  src={withBasePath("/characters/poses/konkon_wave.png")}
                   alt="コンコン先生"
                   width={180}
                   height={220}
@@ -200,7 +201,7 @@ export default function HomePage() {
           <div className="flex justify-center gap-8 lg:hidden">
             <ScrollReveal direction="left" delay={300}>
               <Image
-                src="/characters/poses/usagi_happy.png"
+                src={withBasePath("/characters/poses/usagi_happy.png")}
                 alt="うさぎーさん"
                 width={100}
                 height={120}
@@ -210,7 +211,7 @@ export default function HomePage() {
             </ScrollReveal>
             <ScrollReveal direction="right" delay={300}>
               <Image
-                src="/characters/poses/konkon_wave.png"
+                src={withBasePath("/characters/poses/konkon_wave.png")}
                 alt="コンコン先生"
                 width={100}
                 height={120}
@@ -233,7 +234,7 @@ export default function HomePage() {
         <div className="pointer-events-none absolute right-0 top-8 hidden xl:block">
           <ScrollReveal direction="right" delay={400}>
             <Image
-              src="/characters/poses/pankun_happy.png"
+              src={withBasePath("/characters/poses/pankun_happy.png")}
               alt="ぱんくん"
               width={100}
               height={120}
@@ -259,7 +260,7 @@ export default function HomePage() {
                   {/* カード右下にキャラクター */}
                   <div className="absolute bottom-2 right-3 opacity-20 transition-opacity group-hover:opacity-40">
                     <Image
-                      src={feature.char}
+                      src={withBasePath(feature.char)}
                       alt={feature.charAlt}
                       width={60}
                       height={60}
@@ -296,7 +297,7 @@ export default function HomePage() {
           <div className="pointer-events-none absolute left-0 top-12 hidden xl:block">
             <ScrollReveal direction="left" delay={300}>
               <Image
-                src="/characters/poses/tama_curious.png"
+                src={withBasePath("/characters/poses/tama_curious.png")}
                 alt="たま"
                 width={90}
                 height={110}
@@ -375,7 +376,7 @@ export default function HomePage() {
                 className={`shrink-0 drop-shadow-sm animate-float-${i}`}
               >
                 <Image
-                  src={char.src}
+                  src={withBasePath(char.src)}
                   alt={char.alt}
                   width={char.size}
                   height={char.size}
@@ -394,7 +395,7 @@ export default function HomePage() {
         <div className="pointer-events-none absolute right-2 top-16 hidden xl:block">
           <ScrollReveal direction="right" delay={300}>
             <Image
-              src="/characters/poses/kuma_strong.png"
+              src={withBasePath("/characters/poses/kuma_strong.png")}
               alt="くまくん"
               width={90}
               height={110}
@@ -417,7 +418,7 @@ export default function HomePage() {
                   {/* カード右上にキャラクター */}
                   <div className="absolute -right-2 -top-2 opacity-15">
                     <Image
-                      src={rec.char}
+                      src={withBasePath(rec.char)}
                       alt={CATEGORY_LABELS[rec.category]}
                       width={80}
                       height={80}
@@ -476,7 +477,7 @@ export default function HomePage() {
             <ScrollReveal direction="left" delay={100}>
               <div className="shrink-0">
                 <Image
-                  src="/characters/illustrations/about_konkon_doctor.png"
+                  src={withBasePath("/characters/illustrations/about_konkon_doctor.png")}
                   alt="コンコン先生"
                   width={160}
                   height={180}
@@ -516,22 +517,22 @@ export default function HomePage() {
           <div
             className="pointer-events-none absolute left-8 top-8 opacity-10 animate-float-0"
           >
-            <Image src="/characters/poses/usagi_jumping.png" alt="" width={80} height={96} unoptimized />
+            <Image src={withBasePath("/characters/poses/usagi_jumping.png")} alt="" width={80} height={96} unoptimized />
           </div>
           <div
             className="absolute right-8 top-12 opacity-10 animate-float-2"
           >
-            <Image src="/characters/poses/pankun_happy.png" alt="" width={70} height={84} unoptimized />
+            <Image src={withBasePath("/characters/poses/pankun_happy.png")} alt="" width={70} height={84} unoptimized />
           </div>
           <div
             className="absolute bottom-8 left-16 opacity-10 animate-float-4"
           >
-            <Image src="/characters/poses/tama_happy.png" alt="" width={64} height={76} unoptimized />
+            <Image src={withBasePath("/characters/poses/tama_happy.png")} alt="" width={64} height={76} unoptimized />
           </div>
           <div
             className="absolute bottom-6 right-16 opacity-10 animate-float-1"
           >
-            <Image src="/characters/poses/mia_waving.png" alt="" width={68} height={80} unoptimized />
+            <Image src={withBasePath("/characters/poses/mia_waving.png")} alt="" width={68} height={80} unoptimized />
           </div>
         </div>
 
@@ -541,7 +542,7 @@ export default function HomePage() {
               {/* CTAのキャラクター */}
               <div className="mb-4 flex justify-center gap-4">
                 <Image
-                  src="/characters/poses/usagi_cheering.png"
+                  src={withBasePath("/characters/poses/usagi_cheering.png")}
                   alt="うさぎーさん"
                   width={72}
                   height={88}
@@ -549,7 +550,7 @@ export default function HomePage() {
                   unoptimized
                 />
                 <Image
-                  src="/characters/poses/konkon_guts.png"
+                  src={withBasePath("/characters/poses/konkon_guts.png")}
                   alt="コンコン先生"
                   width={80}
                   height={96}
@@ -557,7 +558,7 @@ export default function HomePage() {
                   unoptimized
                 />
                 <Image
-                  src="/characters/poses/pankun_happy.png"
+                  src={withBasePath("/characters/poses/pankun_happy.png")}
                   alt="ぱんくん"
                   width={68}
                   height={82}

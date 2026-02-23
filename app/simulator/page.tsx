@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Image from "next/image"
+import { withBasePath } from "@/lib/image-path"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -42,7 +43,7 @@ export default function SimulatorPage() {
             {/* キャラクター左 */}
             <div className="hidden sm:block">
               <Image
-                src="/characters/poses/pankun_pointing.png"
+                src={withBasePath("/characters/poses/pankun_pointing.png")}
                 alt="ぱんくん"
                 width={130}
                 height={130}
@@ -78,7 +79,7 @@ export default function SimulatorPage() {
             {/* キャラクター右 */}
             <div className="hidden sm:block">
               <Image
-                src="/characters/poses/usagi_happy.png"
+                src={withBasePath("/characters/poses/usagi_happy.png")}
                 alt="うさぎーさん"
                 width={120}
                 height={120}
@@ -103,7 +104,7 @@ export default function SimulatorPage() {
               >
                 <div className="mx-auto mb-3 flex justify-center">
                   <Image
-                    src={feature.character}
+                    src={withBasePath(feature.character)}
                     alt={feature.charAlt}
                     width={72}
                     height={72}

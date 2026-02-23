@@ -110,6 +110,17 @@ const ICON_MAP: Record<WatercolorIconName, string> = {
   work: "/icons/icon_work.png",
 };
 
+// GitHub Pages デプロイ時のbasePath対応
+// unoptimized: true の場合、Next.jsのImageコンポーネントはbasePath付与しないため手動で対応
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function withBasePath(path: string): string {
+  if (BASE_PATH && path.startsWith("/")) {
+    return `${BASE_PATH}${path}`;
+  }
+  return path;
+}
+
 interface WatercolorIconProps {
   name: WatercolorIconName;
   size?: number;
@@ -123,13 +134,14 @@ export function WatercolorIcon({
   className = "",
   alt = "",
 }: WatercolorIconProps) {
-  const src = ICON_MAP[name];
+  const src = withBasePath(ICON_MAP[name]);
   return (
     <Image
       src={src}
       alt={alt}
       width={size}
       height={size}
+      unoptimized
       className={`object-contain drop-shadow-sm ${className}`}
     />
   );
@@ -147,7 +159,7 @@ export function WatercolorIconInline({
   className?: string;
   alt?: string;
 }) {
-  const src = ICON_MAP[name];
+  const src = withBasePath(ICON_MAP[name]);
   // className から h-X / w-X を抽出してサイズを推定
   const sizeMatch = className.match(/h-(\d+)/);
   const size = sizeMatch ? parseInt(sizeMatch[1]) * 4 : 24;
@@ -157,6 +169,7 @@ export function WatercolorIconInline({
       alt={alt}
       width={size}
       height={size}
+      unoptimized
       className={`inline-block object-contain drop-shadow-sm ${className}`}
     />
   );
