@@ -167,17 +167,15 @@ export default function HomePage() {
               </ScrollReveal>
              </div>
             {/* 集合イラスト */}
-            <ScrollReveal direction="up" delay={400}>
-              <Image
-                src={withBasePath("/characters/illustrations/hero_all_characters.png")}
-                alt="すくすくナビのキャラクターたち"
-                width={900}
-                height={501}
-                className="mx-auto w-full max-w-3xl"
-                unoptimized
-                priority
-              />
-            </ScrollReveal>
+            <Image
+              src={withBasePath("/characters/illustrations/hero_all_characters.png")}
+              alt="すくすくナビのキャラクターたち"
+              width={900}
+              height={501}
+              className="mx-auto w-full max-w-3xl"
+              unoptimized
+              priority
+            />
           </div>
         </div>
 
