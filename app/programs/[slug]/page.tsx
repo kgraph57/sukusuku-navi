@@ -130,7 +130,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
               >
                 {categoryLabel}
               </span>
-              <h1 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">
+              <h1 className="mt-2 font-heading text-2xl font-semibold text-foreground sm:text-3xl">
                 {program.name}
               </h1>
             </div>
@@ -145,7 +145,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
       <section className="px-4 py-8 sm:py-12">
         <div className="mx-auto max-w-3xl space-y-6">
           <div className="rounded-xl border border-border bg-card p-6">
-            <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+            <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
               <Users className="h-5 w-5 text-sage-600" />
               対象者
             </h2>
@@ -207,7 +207,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           </div>
 
           <div className="rounded-xl border border-border bg-card p-6">
-            <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+            <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
               <Banknote className="h-5 w-5 text-sage-600" />
               支給額・内容
             </h2>
@@ -220,7 +220,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                   <span className="text-sm text-sage-700">
                     {program.amount.unit === "yen-per-month" ? "月額" : "金額"}
                   </span>
-                  <span className="font-heading text-2xl font-bold text-sage-700">
+                  <span className="font-heading text-2xl font-semibold text-sage-700">
                     {program.amount.value.toLocaleString()}円
                   </span>
                   {program.amount.unit === "yen-per-month" && (
@@ -233,7 +233,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
 
           {(program.deadline ?? program.processingTime) && (
             <div className="rounded-xl border border-border bg-card p-6">
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
                 <Calendar className="h-5 w-5 text-sage-600" />
                 申請期限・処理期間
               </h2>
@@ -262,7 +262,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
 
           {program.notes && (
             <div className="rounded-xl border border-blush-200 bg-blush-50 p-6">
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-blush-600">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-blush-600">
                 <AlertCircle className="h-5 w-5" />
                 注意事項
               </h2>
@@ -274,7 +274,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
 
           {program.applicationSteps && program.applicationSteps.length > 0 && (
             <div className="rounded-xl border border-border bg-card p-6">
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
                 <ClipboardList className="h-5 w-5 text-sage-600" />
                 申請の流れ
               </h2>
@@ -306,7 +306,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           {program.requiredDocuments &&
             program.requiredDocuments.length > 0 && (
               <div className="rounded-xl border border-border bg-card p-6">
-                <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+                <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
                   <FileText className="h-5 w-5 text-sage-600" />
                   必要書類
                 </h2>
@@ -350,7 +350,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           {program.applicationMethods &&
             program.applicationMethods.length > 0 && (
               <div className="rounded-xl border border-border bg-card p-6">
-                <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+                <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
                   <Building2 className="h-5 w-5 text-sage-600" />
                   申請方法
                 </h2>
@@ -406,7 +406,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
 
           {program.faq && program.faq.length > 0 && (
             <div className="rounded-xl border border-border bg-card p-6">
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
                 <HelpCircle className="h-5 w-5 text-sage-600" />
                 よくある質問
               </h2>
@@ -430,7 +430,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
 
           {relatedPrograms.length > 0 && (
             <div className="rounded-xl border border-border bg-card p-6">
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
                 関連する制度
               </h2>
               <div className="mt-4 space-y-2">

@@ -13,11 +13,7 @@ const BOUNDS = {
   maxLng: 139.775,
 } as const;
 
-function toPercent(
-  value: number,
-  min: number,
-  max: number,
-): number {
+function toPercent(value: number, min: number, max: number): number {
   const clamped = Math.max(min, Math.min(max, value));
   return ((clamped - min) / (max - min)) * 100;
 }
@@ -31,7 +27,7 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
 
   const selectedClinic =
     selectedSlug != null
-      ? clinics.find((c) => c.slug === selectedSlug) ?? null
+      ? (clinics.find((c) => c.slug === selectedSlug) ?? null)
       : null;
 
   return (
@@ -42,7 +38,7 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage:
-              "linear-gradient(to right, #0d9488 1px, transparent 1px), linear-gradient(to bottom, #0d9488 1px, transparent 1px)",
+              "linear-gradient(to right, #5B7553 1px, transparent 1px), linear-gradient(to bottom, #5B7553 1px, transparent 1px)",
             backgroundSize: "10% 10%",
           }}
         />
@@ -55,17 +51,14 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
         {/* Clinic pins */}
         {clinics.map((clinic) => {
           const left = toPercent(clinic.lng, BOUNDS.minLng, BOUNDS.maxLng);
-          const top =
-            100 - toPercent(clinic.lat, BOUNDS.minLat, BOUNDS.maxLat);
+          const top = 100 - toPercent(clinic.lat, BOUNDS.minLat, BOUNDS.maxLat);
           const isSelected = selectedSlug === clinic.slug;
 
           return (
             <button
               key={clinic.slug}
               type="button"
-              onClick={() =>
-                setSelectedSlug(isSelected ? null : clinic.slug)
-              }
+              onClick={() => setSelectedSlug(isSelected ? null : clinic.slug)}
               className="absolute -translate-x-1/2 -translate-y-full transition-transform hover:scale-110"
               style={{ left: `${left}%`, top: `${top}%` }}
               aria-label={clinic.name}
@@ -108,7 +101,7 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
             <div>
               <Link
                 href={`/clinics/${selectedClinic.slug}`}
-                className="font-heading text-sm font-bold text-foreground hover:text-sage-700"
+                className="font-heading text-sm font-semibold text-foreground hover:text-sage-700"
               >
                 {selectedClinic.name}
               </Link>

@@ -37,7 +37,7 @@ export function EmergencyFab() {
       {isOpen && (
         <div className="mb-2 w-72 rounded-2xl border border-red-100 bg-white p-4 shadow-xl">
           <div className="flex items-center justify-between">
-            <h3 className="font-heading text-sm font-bold text-foreground">
+            <h3 className="font-heading text-sm font-semibold text-foreground">
               緊急・受診相談
             </h3>
             <button

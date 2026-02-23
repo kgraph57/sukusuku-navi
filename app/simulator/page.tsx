@@ -41,7 +41,7 @@ export default function SimulatorPage() {
             <Calculator className="h-8 w-8" />
           </div>
 
-          <h1 className="mt-6 font-heading text-3xl font-bold leading-tight text-foreground sm:text-4xl">
+          <h1 className="mt-6 font-heading text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
             給付金シミュレーター
           </h1>
 
@@ -65,7 +65,7 @@ export default function SimulatorPage() {
 
       <section className="px-4 py-16 sm:py-24">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-center font-heading text-2xl font-bold text-foreground">
+          <h2 className="text-center font-heading text-2xl font-semibold text-foreground">
             かんたん3つのポイント
           </h2>
 
@@ -78,7 +78,7 @@ export default function SimulatorPage() {
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-sage-50 text-sage-600">
                   <feature.icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-4 font-heading text-lg font-bold text-card-foreground">
+                <h3 className="mt-4 font-heading text-lg font-semibold text-card-foreground">
                   {feature.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">

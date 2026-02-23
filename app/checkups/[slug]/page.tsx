@@ -98,7 +98,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
                   </span>
                 )}
               </div>
-              <h1 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">
+              <h1 className="mt-2 font-heading text-2xl font-semibold text-foreground sm:text-3xl">
                 {checkup.name}
               </h1>
               <p className="mt-1 text-sm text-muted">{checkup.ageLabel}</p>
@@ -120,7 +120,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
               id="doctor-checks"
               className="scroll-mt-20 rounded-xl border border-border bg-card p-6"
             >
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
                 <Stethoscope className="h-5 w-5 text-sage-600" />
                 医師のチェックポイント
               </h2>
@@ -163,7 +163,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
               id="preparation"
               className="scroll-mt-20 rounded-xl border border-border bg-card p-6"
             >
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
                 <ClipboardList className="h-5 w-5 text-sage-600" />
                 持ち物・準備リスト
               </h2>
@@ -191,7 +191,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
               id="faq"
               className="scroll-mt-20 rounded-xl border border-border bg-card p-6"
             >
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
                 <HelpCircle className="h-5 w-5 text-sage-600" />
                 よくある質問
               </h2>
@@ -225,7 +225,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
               id="tips"
               className="scroll-mt-20 rounded-xl border border-border bg-card p-6"
             >
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
                 <Lightbulb className="h-5 w-5 text-sage-600" />
                 ワンポイントアドバイス
               </h2>
@@ -258,7 +258,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
           {/* Developmental Support CTA (5-year checkup only) */}
           {checkup.slug === "5year" && (
             <div className="rounded-xl border-2 border-amber-200 bg-amber-50 p-6">
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-amber-900">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-amber-900">
                 <HelpCircle className="h-5 w-5 text-amber-600" />
                 発達が気になったら
               </h2>
@@ -292,7 +292,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
             >
               <div>
                 <p className="text-xs font-medium text-sage-600">次の健診</p>
-                <p className="mt-1 font-heading text-base font-bold text-sage-800">
+                <p className="mt-1 font-heading text-base font-semibold text-sage-800">
                   {nextCheckupData.name}
                 </p>
                 <p className="mt-0.5 text-sm text-sage-600">

@@ -21,7 +21,7 @@ export default function SignupPage() {
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
           <Baby className="h-7 w-7 text-sage-600" />
         </div>
-        <h1 className="mt-4 font-heading text-2xl font-bold text-foreground">
+        <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground">
           アカウント登録は準備中です
         </h1>
         <p className="mt-2 text-sm text-muted">
@@ -76,7 +76,7 @@ export default function SignupPage() {
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
           <CheckCircle className="h-7 w-7 text-sage-600" />
         </div>
-        <h1 className="mt-4 font-heading text-2xl font-bold text-foreground">
+        <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground">
           メールを確認してください
         </h1>
         <p className="mt-3 text-sm leading-relaxed text-muted">
@@ -100,7 +100,7 @@ export default function SignupPage() {
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
           <Baby className="h-7 w-7 text-sage-600" />
         </div>
-        <h1 className="mt-4 font-heading text-2xl font-bold text-foreground">
+        <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground">
           新規登録
         </h1>
         <p className="mt-2 text-sm text-muted">

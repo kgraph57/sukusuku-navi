@@ -58,7 +58,7 @@ export default async function ChecklistDetailPage({ params }: PageProps) {
             チェックリスト一覧に戻る
           </Link>
 
-          <h1 className="mt-4 font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground sm:text-3xl">
             {checklist.name}
           </h1>
           <p className="mt-2 text-base leading-relaxed text-muted">

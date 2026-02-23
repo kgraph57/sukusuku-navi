@@ -28,7 +28,7 @@ export function StepsGuide({ steps }: StepsGuideProps) {
               {step.step}
             </div>
             <div className="flex-1 pt-1">
-              <h4 className="font-heading text-base font-bold text-foreground">
+              <h4 className="font-heading text-base font-semibold text-foreground">
                 {step.title}
               </h4>
               <p className="mt-1.5 text-sm leading-relaxed text-muted">

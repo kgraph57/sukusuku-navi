@@ -52,7 +52,7 @@ export default function ContactPage() {
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-sage-50">
             <Mail className="h-8 w-8 text-sage-600" />
           </div>
-          <h2 className="mt-5 font-heading text-xl font-bold text-foreground">
+          <h2 className="mt-5 font-heading text-xl font-semibold text-foreground">
             メールでのお問い合わせ
           </h2>
           <p className="mt-2 text-sm text-muted">
@@ -72,7 +72,7 @@ export default function ContactPage() {
 
         {/* Guidelines */}
         <div className="mt-10">
-          <h2 className="font-heading text-lg font-bold text-foreground">
+          <h2 className="font-heading text-lg font-semibold text-foreground">
             お問い合わせの際のお願い
           </h2>
           <div className="mt-6 grid gap-6 sm:grid-cols-3">
@@ -81,7 +81,7 @@ export default function ContactPage() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sage-50 text-sage-600">
                   <guideline.icon className="h-5 w-5" />
                 </div>
-                <h3 className="mt-3 font-heading text-sm font-bold text-foreground">
+                <h3 className="mt-3 font-heading text-sm font-semibold text-foreground">
                   {guideline.title}
                 </h3>
                 <p className="mt-1 text-sm leading-relaxed text-muted">
@@ -94,7 +94,7 @@ export default function ContactPage() {
 
         {/* FAQ-like section */}
         <div className="mt-10 rounded-xl bg-ivory-100 p-6">
-          <h2 className="font-heading text-base font-bold text-foreground">
+          <h2 className="font-heading text-base font-semibold text-foreground">
             よくあるお問い合わせ
           </h2>
           <div className="mt-4 space-y-4">

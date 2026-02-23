@@ -51,7 +51,7 @@ function AccountBanner() {
             <Cloud className="h-5 w-5 text-sage-600" />
           </div>
           <div className="flex-1">
-            <h3 className="font-heading text-sm font-bold text-card-foreground">
+            <h3 className="font-heading text-sm font-semibold text-card-foreground">
               ログインでデータをクラウド保存
             </h3>
             <p className="mt-1 text-xs leading-relaxed text-muted">
@@ -115,7 +115,7 @@ function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
           <Baby className="h-5 w-5 text-sage-600" />
         </div>
         <div>
-          <h3 className="font-heading text-base font-bold text-card-foreground">
+          <h3 className="font-heading text-base font-semibold text-card-foreground">
             {child.nickname}
           </h3>
           <p className="text-xs text-muted">
@@ -189,7 +189,7 @@ function SavedArticlesSection({
 
   return (
     <div>
-      <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-foreground">
+      <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-foreground">
         <Bookmark className="h-5 w-5 text-sage-600" />
         保存した記事
         <span className="rounded-full bg-sage-100 px-2 py-0.5 text-xs font-medium text-sage-700">
@@ -232,7 +232,7 @@ function QuickActions() {
           <Calculator className="h-5 w-5 text-sage-600" />
         </div>
         <div>
-          <h3 className="font-heading text-sm font-bold text-card-foreground">
+          <h3 className="font-heading text-sm font-semibold text-card-foreground">
             給付金シミュレーション
           </h3>
           <p className="text-xs text-muted">受給額を確認する</p>
@@ -246,7 +246,7 @@ function QuickActions() {
           <ClipboardList className="h-5 w-5 text-blush-600" />
         </div>
         <div>
-          <h3 className="font-heading text-sm font-bold text-card-foreground">
+          <h3 className="font-heading text-sm font-semibold text-card-foreground">
             手続きガイド
           </h3>
           <p className="text-xs text-muted">やることを確認する</p>
@@ -260,7 +260,7 @@ function QuickActions() {
           <Syringe className="h-5 w-5 text-purple-600" />
         </div>
         <div>
-          <h3 className="font-heading text-sm font-bold text-card-foreground">
+          <h3 className="font-heading text-sm font-semibold text-card-foreground">
             予防接種記録
           </h3>
           <p className="text-xs text-muted">接種記録を管理する</p>
@@ -274,7 +274,7 @@ function QuickActions() {
           <Calendar className="h-5 w-5 text-sage-600" />
         </div>
         <div>
-          <h3 className="font-heading text-sm font-bold text-card-foreground">
+          <h3 className="font-heading text-sm font-semibold text-card-foreground">
             タイムライン
           </h3>
           <p className="text-xs text-muted">
@@ -290,7 +290,7 @@ function QuickActions() {
           <Sparkles className="h-5 w-5 text-rose-500" />
         </div>
         <div>
-          <h3 className="font-heading text-sm font-bold text-card-foreground">
+          <h3 className="font-heading text-sm font-semibold text-card-foreground">
             成長マイルストーン
           </h3>
           <p className="text-xs text-muted">「はじめて」の記録をつける</p>
@@ -370,7 +370,7 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
 
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
-          <h1 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h1 className="font-heading text-2xl font-semibold text-foreground sm:text-3xl">
             <User className="mr-2 inline-block h-7 w-7 text-sage-600" />
             マイページ
           </h1>
@@ -387,7 +387,7 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
 
           {/* Family profile */}
           <div>
-            <h2 className="font-heading text-lg font-bold text-foreground">
+            <h2 className="font-heading text-lg font-semibold text-foreground">
               お子さんの登録
             </h2>
             <div className="mt-4">
@@ -398,7 +398,7 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
           {/* Checklist progress */}
           {profile && profile.children.length > 0 && (
             <div>
-              <h2 className="font-heading text-lg font-bold text-foreground">
+              <h2 className="font-heading text-lg font-semibold text-foreground">
                 手続きの進捗
               </h2>
               <div className="mt-4 space-y-4">
@@ -419,7 +419,7 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
 
           {/* Quick actions */}
           <div>
-            <h2 className="font-heading text-lg font-bold text-foreground">
+            <h2 className="font-heading text-lg font-semibold text-foreground">
               クイックアクション
             </h2>
             <div className="mt-4">

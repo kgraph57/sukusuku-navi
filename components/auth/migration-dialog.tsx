@@ -61,7 +61,7 @@ export function MigrationDialog({ onComplete }: MigrationDialogProps) {
         {step === "prompt" && (
           <>
             <div className="mb-4 text-center text-3xl">📦</div>
-            <h2 className="font-heading text-center text-lg font-bold text-gray-900">
+            <h2 className="font-heading text-center text-lg font-semibold text-gray-900">
               データの移行
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
@@ -97,7 +97,7 @@ export function MigrationDialog({ onComplete }: MigrationDialogProps) {
         {step === "done" && (
           <>
             <div className="mb-4 text-center text-3xl">🎉</div>
-            <h2 className="font-heading text-center text-lg font-bold text-gray-900">
+            <h2 className="font-heading text-center text-lg font-semibold text-gray-900">
               移行完了
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
@@ -116,7 +116,7 @@ export function MigrationDialog({ onComplete }: MigrationDialogProps) {
         {step === "error" && (
           <>
             <div className="mb-4 text-center text-3xl">⚠️</div>
-            <h2 className="font-heading text-center text-lg font-bold text-gray-900">
+            <h2 className="font-heading text-center text-lg font-semibold text-gray-900">
               移行エラー
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">

@@ -42,7 +42,7 @@ function ClinicCard({ clinic }: { readonly clinic: Clinic }) {
 
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <h3 className="font-heading text-base font-bold text-card-foreground">
+          <h3 className="font-heading text-base font-semibold text-card-foreground">
             {clinic.name}
           </h3>
           <span
@@ -106,7 +106,7 @@ export default function ClinicsPage() {
     <>
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">
+          <h1 className="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
             <MapPin className="mr-2 inline-block h-8 w-8 text-sage-600" />
             港区の小児科マップ
           </h1>
@@ -126,7 +126,7 @@ export default function ClinicsPage() {
 
       <section className="border-b border-border bg-red-50 px-4 py-6">
         <div className="mx-auto max-w-4xl">
-          <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-red-700">
+          <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-red-700">
             <AlertTriangle className="h-5 w-5" />
             緊急連絡先
           </h2>
@@ -163,7 +163,7 @@ export default function ClinicsPage() {
           <div className="mb-12">
             <div className="flex items-center gap-3">
               <Building2 className="h-6 w-6 text-red-600" />
-              <h2 className="font-heading text-xl font-bold text-foreground">
+              <h2 className="font-heading text-xl font-semibold text-foreground">
                 救急対応のある病院
               </h2>
               <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-600">
@@ -180,7 +180,7 @@ export default function ClinicsPage() {
           <div>
             <div className="flex items-center gap-3">
               <Stethoscope className="h-6 w-6 text-sage-600" />
-              <h2 className="font-heading text-xl font-bold text-foreground">
+              <h2 className="font-heading text-xl font-semibold text-foreground">
                 クリニック
               </h2>
               <span className="rounded-full bg-ivory-200 px-2 py-0.5 text-xs font-medium text-muted">

@@ -15,7 +15,7 @@ export default function ErrorPage({
       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blush-50">
         <Baby className="h-8 w-8 text-blush-500" />
       </div>
-      <h1 className="mt-6 font-heading text-xl font-bold text-foreground">
+      <h1 className="mt-6 font-heading text-xl font-semibold text-foreground">
         エラーが発生しました
       </h1>
       <p className="mt-2 max-w-md text-center text-sm text-muted">

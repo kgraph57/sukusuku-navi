@@ -129,7 +129,7 @@ export function CalendarView({
         >
           <ChevronLeft className="h-4 w-4 text-muted" />
         </button>
-        <span className="font-heading text-sm font-bold text-foreground">
+        <span className="font-heading text-sm font-semibold text-foreground">
           {viewYear}年{viewMonth + 1}月
         </span>
         <button
@@ -252,7 +252,7 @@ export function CalendarView({
       {/* Selected day panel */}
       {selectedDate != null && (
         <div className="rounded-xl border border-sage-100 bg-sage-50/40 p-4">
-          <p className="font-heading text-sm font-bold text-foreground">
+          <p className="font-heading text-sm font-semibold text-foreground">
             {selectedDate.getMonth() + 1}月{selectedDate.getDate()}日
           </p>
           {selectedItems.length === 0 ? (

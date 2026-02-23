@@ -89,7 +89,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
                   </span>
                 )}
               </div>
-              <h1 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">
+              <h1 className="mt-2 font-heading text-2xl font-semibold text-foreground sm:text-3xl">
                 {vaccine.name}
               </h1>
               <p className="mt-1 text-sm text-muted">{vaccine.disease}</p>
@@ -105,7 +105,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
       <section className="px-4 py-8 sm:py-12">
         <div className="mx-auto max-w-3xl space-y-6">
           <div className="rounded-xl border border-border bg-card p-6">
-            <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+            <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
               <Clock className="h-5 w-5 text-sage-600" />
               接種スケジュール
             </h2>
@@ -140,7 +140,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
           </div>
 
           <div className="rounded-xl border border-border bg-card p-6">
-            <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+            <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
               <Info className="h-5 w-5 text-sage-600" />
               主な副反応
             </h2>
@@ -150,7 +150,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
           </div>
 
           <div className="rounded-xl border border-amber-200 bg-amber-50 p-6">
-            <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-amber-800">
+            <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-amber-800">
               <AlertCircle className="h-5 w-5" />
               接種の注意事項・禁忌
             </h2>
@@ -161,7 +161,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
 
           {relatedProgram && (
             <div className="rounded-xl border border-blush-200 bg-blush-50 p-6">
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-blush-600">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-blush-600">
                 <ShieldCheck className="h-5 w-5" />
                 港区の助成制度
               </h2>
@@ -183,7 +183,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
 
           {vaccine.faq && vaccine.faq.length > 0 && (
             <div className="rounded-xl border border-border bg-card p-6">
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
                 <HelpCircle className="h-5 w-5 text-sage-600" />
                 よくある質問
               </h2>
@@ -204,7 +204,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
 
           {vaccine.relatedArticleSlug && (
             <div className="rounded-xl border border-border bg-card p-6">
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
                 <CheckCircle2 className="h-5 w-5 text-sage-600" />
                 関連記事
               </h2>
@@ -220,7 +220,7 @@ export default async function VaccineDetailPage({ params }: PageProps) {
 
           {vaccine.knowVpdUrl && (
             <div className="rounded-xl border border-border bg-card p-6">
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
                 <BookOpen className="h-5 w-5 text-sage-600" />
                 公式情報・参考サイト
               </h2>

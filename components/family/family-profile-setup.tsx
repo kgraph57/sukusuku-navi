@@ -20,7 +20,7 @@ function EmptyState({ onAdd }: { readonly onAdd: () => void }) {
       <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-sage-50">
         <Baby className="h-8 w-8 text-sage-600" />
       </div>
-      <h3 className="font-heading text-lg font-bold text-card-foreground">
+      <h3 className="font-heading text-lg font-semibold text-card-foreground">
         お子さんの情報を登録しましょう
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -66,7 +66,7 @@ function AddChildForm({
       onSubmit={handleSubmit}
       className="rounded-xl border border-sage-200 bg-sage-50/50 p-5"
     >
-      <h4 className="font-heading text-base font-bold text-card-foreground">
+      <h4 className="font-heading text-base font-semibold text-card-foreground">
         お子さんの情報
       </h4>
 
@@ -151,7 +151,7 @@ function ChildCard({
             <Baby className="h-5 w-5 text-sage-600" />
           </div>
           <div>
-            <h4 className="font-heading text-base font-bold text-card-foreground">
+            <h4 className="font-heading text-base font-semibold text-card-foreground">
               {nickname}
             </h4>
             <div className="mt-1 flex items-center gap-1.5 text-sm text-muted">
@@ -253,7 +253,7 @@ export function FamilyProfileSetup() {
 
   return (
     <div>
-      <h2 className="font-heading text-xl font-bold text-foreground">
+      <h2 className="font-heading text-xl font-semibold text-foreground">
         家族プロフィール
       </h2>
       <p className="mt-1 text-sm text-muted">

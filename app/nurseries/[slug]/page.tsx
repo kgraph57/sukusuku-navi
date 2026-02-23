@@ -124,7 +124,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                   </span>
                 )}
               </div>
-              <h1 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">
+              <h1 className="mt-2 font-heading text-2xl font-semibold text-foreground sm:text-3xl">
                 {nursery.name}
               </h1>
             </div>
@@ -143,7 +143,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
         <div className="mx-auto max-w-3xl space-y-6">
           {/* 基本情報 */}
           <div className="rounded-xl border border-border bg-card p-6">
-            <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+            <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
               <MapPin className="h-5 w-5 text-sage-600" />
               基本情報
             </h2>
@@ -189,7 +189,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
 
           {/* 保育時間 */}
           <div className="rounded-xl border border-border bg-card p-6">
-            <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+            <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
               <Clock className="h-5 w-5 text-sage-600" />
               保育時間
             </h2>
@@ -228,7 +228,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
 
           {/* 特徴 */}
           <div className="rounded-xl border border-border bg-card p-6">
-            <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+            <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
               <Briefcase className="h-5 w-5 text-sage-600" />
               特徴・対応
             </h2>
@@ -300,7 +300,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
           {/* 同エリアの保育施設 */}
           {relatedNurseries.length > 0 && (
             <div>
-              <h2 className="font-heading text-lg font-bold text-foreground">
+              <h2 className="font-heading text-lg font-semibold text-foreground">
                 {NURSERY_AREA_LABELS[nursery.area]}エリアの他の保育施設
               </h2>
               <div className="mt-3 space-y-2">

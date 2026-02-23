@@ -145,7 +145,7 @@ function TimelineItemCard({
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
               <h3
-                className={`font-heading text-sm font-bold ${
+                className={`font-heading text-sm font-semibold ${
                   item.completed
                     ? "text-muted line-through"
                     : "text-card-foreground"
@@ -307,7 +307,7 @@ function TimelineSection({
           <button
             type="button"
             onClick={() => setIsExpanded((prev) => !prev)}
-            className="flex w-full items-center gap-2 font-heading text-sm font-bold"
+            className="flex w-full items-center gap-2 font-heading text-sm font-semibold"
             aria-expanded={isExpanded}
           >
             {config.icon}
@@ -324,7 +324,7 @@ function TimelineSection({
         ) : (
           <div className="flex w-full items-center gap-2">
             {config.icon}
-            <span className="font-heading text-sm font-bold flex-1">
+            <span className="font-heading text-sm font-semibold flex-1">
               {config.label}
             </span>
             <span className="text-xs opacity-70">
@@ -405,7 +405,7 @@ function ChildAgeBadge({ child }: { readonly child: ChildProfile }) {
         <Baby className="h-5 w-5 text-sage-600" />
       </div>
       <div>
-        <h2 className="font-heading text-lg font-bold text-foreground">
+        <h2 className="font-heading text-lg font-semibold text-foreground">
           {child.nickname}ちゃん
         </h2>
         <span className="inline-flex items-center rounded-full bg-sage-50 px-2.5 py-0.5 text-xs font-medium text-sage-700">
@@ -426,7 +426,7 @@ function NoProfileCTA() {
       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-sage-100">
         <Baby className="h-8 w-8 text-sage-600" />
       </div>
-      <h2 className="mt-4 font-heading text-lg font-bold text-foreground">
+      <h2 className="mt-4 font-heading text-lg font-semibold text-foreground">
         お子さんの情報を登録しましょう
       </h2>
       <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -526,7 +526,7 @@ export default function TimelinePage() {
       {/* Hero */}
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
-          <h1 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h1 className="font-heading text-2xl font-semibold text-foreground sm:text-3xl">
             <Calendar className="mr-2 inline-block h-6 w-6 text-sage-600" />
             タイムライン
           </h1>

@@ -179,7 +179,7 @@ function StampItemCard({
 
         <div className="min-w-0 flex-1">
           <h3
-            className={`font-heading text-base font-bold ${
+            className={`font-heading text-base font-semibold ${
               isChecked
                 ? "text-sage-700 line-through"
                 : "text-card-foreground"

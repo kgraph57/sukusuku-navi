@@ -135,7 +135,7 @@ export default function AboutPage() {
           <Stethoscope className="h-3.5 w-3.5" />
           About
         </p>
-        <h1 className="mt-4 font-heading text-3xl font-bold text-foreground sm:text-4xl">
+        <h1 className="mt-4 font-heading text-3xl font-semibold text-foreground sm:text-4xl">
           すくすくナビとは
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
@@ -147,7 +147,7 @@ export default function AboutPage() {
       {/* Mission Statement */}
       <section className="mx-auto mt-16 max-w-3xl sm:mt-24">
         <div className="rounded-xl border-l-4 border-sage-500 bg-sage-50/50 p-6 sm:p-8">
-          <p className="font-heading text-lg font-bold text-sage-800 sm:text-xl">
+          <p className="font-heading text-lg font-semibold text-sage-800 sm:text-xl">
             港区で子どもが生まれた日から卒業まで伴走するパートナー。
           </p>
           <p className="mt-3 text-sm leading-relaxed text-sage-700">
@@ -203,7 +203,7 @@ export default function AboutPage() {
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-sage-50 text-sage-600">
               <ShieldCheck className="h-7 w-7" />
             </div>
-            <h3 className="mt-4 font-heading text-base font-bold text-foreground">
+            <h3 className="mt-4 font-heading text-base font-semibold text-foreground">
               医療の信頼性
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -214,7 +214,7 @@ export default function AboutPage() {
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-blush-50 text-blush-500">
               <TrendingUp className="h-7 w-7" />
             </div>
-            <h3 className="mt-4 font-heading text-base font-bold text-foreground">
+            <h3 className="mt-4 font-heading text-base font-semibold text-foreground">
               行政アクション
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -225,7 +225,7 @@ export default function AboutPage() {
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-500">
               <MapPin className="h-7 w-7" />
             </div>
-            <h3 className="mt-4 font-heading text-base font-bold text-foreground">
+            <h3 className="mt-4 font-heading text-base font-semibold text-foreground">
               地域特化
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -264,7 +264,7 @@ export default function AboutPage() {
             <Stethoscope className="h-14 w-14 text-white" />
           </div>
           <div>
-            <h3 className="font-heading text-xl font-bold text-foreground">
+            <h3 className="font-heading text-xl font-semibold text-foreground">
               岡本 賢
             </h3>
             <p className="mt-1 text-sm font-medium text-sage-600">
@@ -300,7 +300,7 @@ export default function AboutPage() {
 
       {/* Disclaimer */}
       <section className="mx-auto mt-16 max-w-3xl rounded-xl bg-ivory-100 p-6 sm:mt-24">
-        <h3 className="font-heading text-base font-bold text-foreground">
+        <h3 className="font-heading text-base font-semibold text-foreground">
           医療情報に関する免責事項
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-muted">

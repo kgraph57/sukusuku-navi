@@ -126,7 +126,7 @@ function CheckupCard({ checkup }: { readonly checkup: Checkup }) {
 
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
-          <h3 className="font-heading text-base font-bold text-card-foreground">
+          <h3 className="font-heading text-base font-semibold text-card-foreground">
             {checkup.name}
           </h3>
           <span
@@ -193,7 +193,7 @@ function ScheduleTimeline({
               >
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="font-heading text-sm font-bold text-card-foreground sm:text-base">
+                    <h3 className="font-heading text-sm font-semibold text-card-foreground sm:text-base">
                       {checkup.name}
                     </h3>
                     <span
@@ -247,7 +247,7 @@ export default function CheckupsPage() {
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-sage-100">
             <ClipboardCheck className="h-7 w-7 text-sage-600" />
           </div>
-          <h1 className="mt-5 font-heading text-3xl font-bold text-foreground sm:text-4xl">
+          <h1 className="mt-5 font-heading text-3xl font-semibold text-foreground sm:text-4xl">
             乳幼児健診ガイド
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted">
@@ -395,7 +395,7 @@ export default function CheckupsPage() {
                   <ListChecks className="h-5 w-5 text-sage-600" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="font-heading text-sm font-bold text-card-foreground">
+                  <h3 className="font-heading text-sm font-semibold text-card-foreground">
                     {prep.item}
                   </h3>
                   <p className="mt-1 text-sm leading-relaxed text-muted">
@@ -529,7 +529,7 @@ export default function CheckupsPage() {
                 <MapPin className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-heading text-sm font-bold text-card-foreground">
+                <h3 className="font-heading text-sm font-semibold text-card-foreground">
                   健診できる医療機関を探す
                 </h3>
                 <p className="mt-0.5 text-xs text-muted">港区の小児科マップ</p>
@@ -543,7 +543,7 @@ export default function CheckupsPage() {
                 <Heart className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-heading text-sm font-bold text-card-foreground">
+                <h3 className="font-heading text-sm font-semibold text-card-foreground">
                   子育て支援制度を確認する
                 </h3>
                 <p className="mt-0.5 text-xs text-muted">

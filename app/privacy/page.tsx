@@ -93,7 +93,7 @@ export default function PrivacyPage() {
         <div className="mt-12 space-y-10">
           {SECTIONS.map((section) => (
             <div key={section.title}>
-              <h2 className="font-heading text-lg font-bold text-foreground">
+              <h2 className="font-heading text-lg font-semibold text-foreground">
                 {section.title}
               </h2>
               {"content" in section && section.content && (

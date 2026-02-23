@@ -74,7 +74,7 @@ export function ArticleCard({ frontmatter }: ArticleCardProps) {
       </div>
 
       {/* Title */}
-      <h3 className="mt-3 font-heading text-[1.05rem] font-bold leading-snug text-card-foreground group-hover:text-sage-700">
+      <h3 className="mt-3 font-heading text-[1.05rem] font-semibold leading-snug text-card-foreground group-hover:text-sage-700">
         {title}
       </h3>
 

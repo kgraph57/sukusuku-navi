@@ -111,7 +111,7 @@ function ArticleResult({
         <Badge category={item.category as ArticleCategory} />
         <span className="text-xs text-muted">Vol.{item.vol}</span>
       </div>
-      <h3 className="mt-2 font-heading text-base font-bold text-card-foreground group-hover:text-sage-700 sm:text-lg">
+      <h3 className="mt-2 font-heading text-base font-semibold text-card-foreground group-hover:text-sage-700 sm:text-lg">
         {item.title}
       </h3>
       <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-muted">
@@ -174,7 +174,7 @@ function ProgramResult({
             制度
           </span>
         </div>
-        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-sage-700">
+        <h3 className="mt-1 font-heading text-base font-semibold text-card-foreground group-hover:text-sage-700">
           {item.name}
         </h3>
         <p className="mt-1 line-clamp-2 text-sm text-muted">
@@ -209,7 +209,7 @@ function VaccineResult({
             {item.vaccineType === "routine" ? "定期接種" : "任意接種"}
           </span>
         </div>
-        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-sage-700">
+        <h3 className="mt-1 font-heading text-base font-semibold text-card-foreground group-hover:text-sage-700">
           {item.name}
         </h3>
         <p className="mt-1 text-xs text-muted">対象疾患: {item.disease}</p>
@@ -246,7 +246,7 @@ function ClinicResult({
             </span>
           )}
         </div>
-        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-sage-700">
+        <h3 className="mt-1 font-heading text-base font-semibold text-card-foreground group-hover:text-sage-700">
           {item.name}
         </h3>
         <p className="mt-1 text-xs text-muted">{item.address}</p>
@@ -277,7 +277,7 @@ function NurseryResult({
             保育園
           </span>
         </div>
-        <h3 className="mt-1 font-heading text-base font-bold text-card-foreground group-hover:text-sage-700">
+        <h3 className="mt-1 font-heading text-base font-semibold text-card-foreground group-hover:text-sage-700">
           {item.name}
         </h3>
         <p className="mt-1 text-xs text-muted">{item.address}</p>

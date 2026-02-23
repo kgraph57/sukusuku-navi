@@ -64,7 +64,7 @@ function ResultsContent() {
       <div className="min-h-screen bg-ivory-50 px-4 pb-16 pt-12">
         <div className="mx-auto max-w-2xl text-center">
           <AlertTriangle className="mx-auto h-12 w-12 text-blush-500" />
-          <h1 className="mt-4 font-heading text-2xl font-bold text-foreground">
+          <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground">
             データが見つかりません
           </h1>
           <p className="mt-2 text-sm text-muted">
@@ -94,7 +94,7 @@ function ResultsContent() {
         <div className="rounded-2xl bg-gradient-to-br from-sage-600 to-sage-700 p-6 text-white shadow-lg sm:p-8">
           <div className="flex items-center gap-3">
             <Calculator className="h-6 w-6 text-sage-200" />
-            <h1 className="font-heading text-lg font-bold">
+            <h1 className="font-heading text-lg font-semibold">
               シミュレーション結果
             </h1>
           </div>
@@ -103,7 +103,7 @@ function ResultsContent() {
             <p className="text-sm text-sage-200">年間推定受給額</p>
             <div className="mt-2 flex items-baseline justify-center gap-1">
               <TrendingUp className="h-8 w-8 text-sage-200" />
-              <span className="font-heading text-5xl font-bold tracking-tight sm:text-6xl">
+              <span className="font-heading text-5xl font-semibold tracking-tight sm:text-6xl">
                 {formatTotalAmount(result.totalAnnualEstimate)}
               </span>
             </div>
@@ -124,7 +124,7 @@ function ResultsContent() {
 
         {financialPrograms.length > 0 && (
           <section className="mt-8">
-            <h2 className="font-heading text-xl font-bold text-foreground">
+            <h2 className="font-heading text-xl font-semibold text-foreground">
               受給できる給付金・助成
             </h2>
             <p className="mt-1 text-sm text-muted">
@@ -140,7 +140,7 @@ function ResultsContent() {
 
         {servicePrograms.length > 0 && (
           <section className="mt-8">
-            <h2 className="font-heading text-xl font-bold text-foreground">
+            <h2 className="font-heading text-xl font-semibold text-foreground">
               利用できるサービス・制度
             </h2>
             <p className="mt-1 text-sm text-muted">
@@ -155,7 +155,7 @@ function ResultsContent() {
         )}
 
         <section className="mt-8">
-          <h2 className="font-heading text-xl font-bold text-foreground">
+          <h2 className="font-heading text-xl font-semibold text-foreground">
             お子さんのライフプラン
           </h2>
           <p className="mt-1 text-sm text-muted">

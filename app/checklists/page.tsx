@@ -40,7 +40,7 @@ export default function ChecklistsPage() {
     <>
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">
+          <h1 className="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
             <ClipboardCheck className="mr-2 inline-block h-8 w-8 text-sage-600" />
             手続きチェックリスト
           </h1>
@@ -76,7 +76,7 @@ export default function ChecklistsPage() {
                     <div className="flex-1 rounded-xl border border-border bg-card p-5 transition-all group-hover:border-sage-200 group-hover:shadow-md">
                       <div className="flex items-center gap-3">
                         <IconComponent className="h-5 w-5 text-sage-600" />
-                        <h2 className="font-heading text-lg font-bold text-card-foreground">
+                        <h2 className="font-heading text-lg font-semibold text-card-foreground">
                           {checklist.name}
                         </h2>
                         <span className="rounded-full bg-ivory-100 px-2 py-0.5 text-xs font-medium text-muted">

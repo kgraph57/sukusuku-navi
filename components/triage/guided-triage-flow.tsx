@@ -138,7 +138,7 @@ function InlineResult({
           )}
         </div>
 
-        <h2 className={`mt-4 font-heading text-xl font-bold ${config.color}`}>
+        <h2 className={`mt-4 font-heading text-xl font-semibold ${config.color}`}>
           {result.title}
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-foreground">
@@ -313,7 +313,7 @@ export function GuidedTriageFlow() {
             </div>
 
             <div className="rounded-xl border border-border bg-white p-5">
-              <h3 className="font-heading text-lg font-bold text-card-foreground">
+              <h3 className="font-heading text-lg font-semibold text-card-foreground">
                 {currentScreening.text}
               </h3>
 
@@ -360,7 +360,7 @@ export function GuidedTriageFlow() {
         {step === "age-select" && (
           <div className="space-y-5">
             <div className="rounded-xl border border-border bg-white p-5">
-              <h3 className="font-heading text-lg font-bold text-card-foreground">
+              <h3 className="font-heading text-lg font-semibold text-card-foreground">
                 お子さんの年齢を選んでください
               </h3>
               <p className="mt-1 text-sm text-muted">
@@ -393,7 +393,7 @@ export function GuidedTriageFlow() {
         {step === "symptom-group" && (
           <div className="space-y-5">
             <div className="rounded-xl border border-border bg-white p-5">
-              <h3 className="font-heading text-lg font-bold text-card-foreground">
+              <h3 className="font-heading text-lg font-semibold text-card-foreground">
                 一番気になる症状を選んでください
               </h3>
               <p className="mt-1 text-sm text-muted">
@@ -433,7 +433,7 @@ export function GuidedTriageFlow() {
         {step === "sub-symptom" && selectedGroup && (
           <div className="space-y-5">
             <div className="rounded-xl border border-border bg-white p-5">
-              <h3 className="font-heading text-lg font-bold text-card-foreground">
+              <h3 className="font-heading text-lg font-semibold text-card-foreground">
                 もう少し詳しく教えてください
               </h3>
               <p className="mt-1 text-sm text-muted">

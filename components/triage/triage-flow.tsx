@@ -46,7 +46,7 @@ function SeverityCard({ result }: { readonly result: SeverityResult }) {
         )}
       </div>
 
-      <h2 className={`mt-4 font-heading text-xl font-bold ${config.color}`}>
+      <h2 className={`mt-4 font-heading text-xl font-semibold ${config.color}`}>
         {result.title}
       </h2>
       <p className="mt-2 text-sm leading-relaxed text-foreground">
@@ -121,7 +121,7 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
             症状一覧に戻る
           </Link>
 
-          <h1 className="mt-4 font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground sm:text-3xl">
             {symptom.name}の症状チェック
           </h1>
           <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -185,7 +185,7 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
           ) : currentQuestion ? (
             <div className="space-y-6">
               <div className="rounded-xl border border-border bg-card p-6">
-                <h2 className="font-heading text-lg font-bold text-card-foreground">
+                <h2 className="font-heading text-lg font-semibold text-card-foreground">
                   {currentQuestion.text}
                 </h2>
 

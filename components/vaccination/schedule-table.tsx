@@ -215,7 +215,7 @@ function MobileVaccineCard({ vaccine }: { readonly vaccine: Vaccine }) {
     <div className={`rounded-lg border ${borderColor} bg-card p-4`}>
       <div className="flex items-start justify-between gap-2">
         <div>
-          <h4 className="font-heading text-sm font-bold text-card-foreground">
+          <h4 className="font-heading text-sm font-semibold text-card-foreground">
             {vaccine.name}
           </h4>
           <p className="mt-0.5 text-xs text-muted">{vaccine.disease}</p>

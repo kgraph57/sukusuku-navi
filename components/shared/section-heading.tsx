@@ -15,7 +15,7 @@ export function SectionHeading({
 
   return (
     <div className={alignClass}>
-      <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
+      <h2 className="font-heading text-2xl font-semibold tracking-wide text-foreground sm:text-3xl">
         {children}
       </h2>
       {subtitle && (
@@ -24,7 +24,7 @@ export function SectionHeading({
         </p>
       )}
       <div
-        className={`mt-4 h-1 w-12 rounded-full bg-sage-400 ${
+        className={`mt-5 h-px w-12 bg-gradient-to-r from-gold-500 to-transparent ${
           align === "center" ? "mx-auto" : ""
         }`}
         aria-hidden="true"

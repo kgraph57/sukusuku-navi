@@ -91,7 +91,7 @@ export function OnboardingBanner() {
               <Sparkles className="h-3 w-3" />
               はじめての方へ
             </p>
-            <h2 className="mt-3 font-heading text-lg font-bold text-foreground sm:text-xl">
+            <h2 className="mt-3 font-heading text-lg font-semibold text-foreground sm:text-xl">
               4ステップで始めるすくすくナビ
             </h2>
             <p className="mt-1 text-sm text-muted">

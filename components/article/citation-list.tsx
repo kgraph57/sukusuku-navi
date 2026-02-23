@@ -22,7 +22,7 @@ export function CitationList({ citations }: CitationListProps) {
       >
         <div className="flex items-center gap-2">
           <BookOpen className="h-4.5 w-4.5 text-sage-600" />
-          <span className="font-heading text-sm font-bold text-foreground">
+          <span className="font-heading text-sm font-semibold text-foreground">
             参考文献（{citations.length}件）
           </span>
         </div>

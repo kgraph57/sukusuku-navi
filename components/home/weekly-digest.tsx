@@ -126,7 +126,7 @@ export function WeeklyDigest() {
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
               <Sparkles className="h-7 w-7 text-sage-600" />
             </div>
-            <h2 className="mt-4 font-heading text-lg font-bold text-foreground">
+            <h2 className="mt-4 font-heading text-lg font-semibold text-foreground">
               お子さんに合わせた「今週やること」を表示
             </h2>
             <p className="mt-2 max-w-md text-sm leading-relaxed text-muted">
@@ -153,7 +153,7 @@ export function WeeklyDigest() {
       <section className="border-t border-border bg-gradient-to-br from-sage-50 to-ivory-50 px-4 py-12">
         <div className="mx-auto max-w-3xl">
           <div className="rounded-2xl border border-sage-100 bg-white/80 p-6 text-center">
-            <h2 className="font-heading text-lg font-bold text-foreground">
+            <h2 className="font-heading text-lg font-semibold text-foreground">
               {child.nickname}ちゃん（{ageLabel}）
             </h2>
             <p className="mt-2 text-sm text-sage-600">
@@ -185,7 +185,7 @@ export function WeeklyDigest() {
               <Calendar className="h-5 w-5 text-sage-600" />
             </div>
             <div>
-              <h2 className="font-heading text-lg font-bold text-foreground">
+              <h2 className="font-heading text-lg font-semibold text-foreground">
                 {child.nickname}ちゃんの今週やること
               </h2>
               <p className="text-xs text-muted">{ageLabel}</p>

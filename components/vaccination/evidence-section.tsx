@@ -16,7 +16,7 @@ export function EvidenceSection({ evidence }: EvidenceSectionProps) {
           <div className="flex items-start gap-3">
             <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-sage-600" />
             <div className="flex-1">
-              <h4 className="font-heading text-sm font-bold text-sage-800">
+              <h4 className="font-heading text-sm font-semibold text-sage-800">
                 {item.claim}
               </h4>
               <p className="mt-2 text-sm leading-relaxed text-muted">

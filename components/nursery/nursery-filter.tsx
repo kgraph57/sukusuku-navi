@@ -105,7 +105,7 @@ function NurseryCard({
 
       <Link href={`/nurseries/${nursery.slug}`} className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
-          <h3 className="font-heading text-base font-bold text-card-foreground">
+          <h3 className="font-heading text-base font-semibold text-card-foreground">
             {nursery.name}
           </h3>
           <span

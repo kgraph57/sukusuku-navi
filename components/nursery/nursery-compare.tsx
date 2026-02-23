@@ -139,7 +139,7 @@ export function NurseryCompare({
       <div className="relative max-h-[85vh] w-full max-w-4xl overflow-hidden rounded-t-2xl bg-card shadow-xl sm:mx-4 sm:rounded-2xl">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-border px-4 py-3 sm:px-6">
-          <h2 className="font-heading text-base font-bold text-foreground">
+          <h2 className="font-heading text-base font-semibold text-foreground">
             保育園を比較（{nurseries.length}園）
           </h2>
           <button
@@ -169,7 +169,7 @@ export function NurseryCompare({
                     <div className="flex items-start justify-between gap-2">
                       <Link
                         href={`/nurseries/${n.slug}`}
-                        className="font-heading text-sm font-bold text-sage-700 hover:underline"
+                        className="font-heading text-sm font-semibold text-sage-700 hover:underline"
                       >
                         {n.name}
                       </Link>

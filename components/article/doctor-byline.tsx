@@ -18,7 +18,7 @@ export function DoctorByline({ qaCount, referenceCount }: DoctorBylineProps) {
 
       <div className="flex-1 min-w-0">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-heading text-sm font-bold text-foreground">
+          <span className="font-heading text-sm font-semibold text-foreground">
             おかもん先生
           </span>
           <span className="rounded-full bg-sage-100 px-2 py-0.5 text-xs font-medium text-sage-700">

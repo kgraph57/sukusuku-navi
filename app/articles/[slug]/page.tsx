@@ -91,7 +91,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <CategoryBadge category={category} />
         </div>
 
-        <h1 className="mt-5 font-heading text-2xl font-bold leading-[1.45] text-foreground sm:text-3xl sm:leading-[1.4]">
+        <h1 className="mt-5 font-heading text-2xl font-semibold leading-[1.45] text-foreground sm:text-3xl sm:leading-[1.4]">
           {title}
         </h1>
 
@@ -164,7 +164,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       {/* Related articles */}
       {relatedArticles.length > 0 && (
         <section className="mt-12 border-t border-border pt-10">
-          <h2 className="font-heading text-xl font-bold text-foreground">
+          <h2 className="font-heading text-xl font-semibold text-foreground">
             関連記事
           </h2>
           <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

@@ -60,7 +60,7 @@ function ProgramCard({ program }: { readonly program: Program }) {
       </div>
 
       <div className="min-w-0 flex-1">
-        <h3 className="font-heading text-base font-bold text-card-foreground">
+        <h3 className="font-heading text-base font-semibold text-card-foreground">
           {program.name}
         </h3>
         <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-muted">
@@ -93,7 +93,7 @@ export default function ProgramsPage() {
     <>
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">
+          <h1 className="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
             港区の子育て支援制度
           </h1>
           <p className="mt-4 text-base leading-relaxed text-muted">
@@ -121,7 +121,7 @@ export default function ProgramsPage() {
               <div key={category} className="mb-12 last:mb-0">
                 <div className="flex items-center gap-3">
                   <IconComponent className={`h-6 w-6 ${headerColor}`} />
-                  <h2 className="font-heading text-xl font-bold text-foreground">
+                  <h2 className="font-heading text-xl font-semibold text-foreground">
                     {label}
                   </h2>
                   <span className="rounded-full bg-ivory-200 px-2 py-0.5 text-xs font-medium text-muted">

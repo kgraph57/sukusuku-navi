@@ -20,7 +20,7 @@ export default function ArticlesPage() {
           <BookOpen className="h-5 w-5 text-sage-600" />
         </div>
         <div>
-          <h1 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h1 className="font-heading text-2xl font-semibold text-foreground sm:text-3xl">
             記事一覧
           </h1>
           <p className="mt-1 text-sm text-muted">

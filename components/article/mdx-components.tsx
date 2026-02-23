@@ -39,19 +39,19 @@ export function createMdxComponents(): MDXComponents {
   return {
     h1: (props) => (
       <h1
-        className="mb-6 mt-12 font-heading text-2xl font-bold text-foreground sm:text-3xl"
+        className="mb-6 mt-12 font-heading text-2xl font-semibold text-foreground sm:text-3xl"
         {...props}
       />
     ),
     h2: (props) => (
       <h2
-        className="mb-5 mt-12 font-heading text-xl font-bold text-foreground sm:text-2xl"
+        className="mb-5 mt-12 font-heading text-xl font-semibold text-foreground sm:text-2xl"
         {...props}
       />
     ),
     h3: (props) => (
       <h3
-        className="mb-4 mt-8 font-heading text-lg font-bold text-foreground"
+        className="mb-4 mt-8 font-heading text-lg font-semibold text-foreground"
         {...props}
       />
     ),

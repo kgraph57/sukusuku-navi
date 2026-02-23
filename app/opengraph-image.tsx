@@ -16,7 +16,7 @@ export default function OGImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #0d9488 0%, #0f766e 100%)",
+          background: "linear-gradient(135deg, #5B7553 0%, #4A6343 100%)",
           fontFamily: "sans-serif",
         }}
       >
@@ -26,7 +26,7 @@ export default function OGImage() {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            background: "white",
+            background: "#FAF7F2",
             borderRadius: 32,
             padding: "60px 80px",
             maxWidth: 1000,
@@ -36,9 +36,10 @@ export default function OGImage() {
           <div
             style={{
               fontSize: 72,
-              fontWeight: 700,
-              color: "#0d9488",
+              fontWeight: 600,
+              color: "#4A6343",
               marginBottom: 16,
+              letterSpacing: "0.04em",
             }}
           >
             すくすくナビ
@@ -46,7 +47,7 @@ export default function OGImage() {
           <div
             style={{
               fontSize: 28,
-              color: "#374151",
+              color: "#2C2926",
               marginBottom: 32,
               textAlign: "center",
             }}
@@ -70,12 +71,12 @@ export default function OGImage() {
               <div
                 key={label}
                 style={{
-                  background: "#f0fdfa",
-                  border: "2px solid #99f6e4",
+                  background: "#F4F7F2",
+                  border: "1px solid #CDD8C6",
                   borderRadius: 12,
                   padding: "8px 20px",
                   fontSize: 20,
-                  color: "#0f766e",
+                  color: "#4A6343",
                   fontWeight: 600,
                 }}
               >
@@ -87,7 +88,7 @@ export default function OGImage() {
             style={{
               marginTop: 32,
               fontSize: 18,
-              color: "#9ca3af",
+              color: "#8A8378",
             }}
           >
             愛育病院 小児科医おかもんが届ける子育て情報

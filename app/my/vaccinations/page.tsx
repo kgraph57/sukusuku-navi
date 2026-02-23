@@ -241,7 +241,7 @@ function VaccineCard({
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
-            <h3 className="font-heading text-sm font-bold text-card-foreground">
+            <h3 className="font-heading text-sm font-semibold text-card-foreground">
               {vaccine.nameShort}
             </h3>
             <span
@@ -407,7 +407,7 @@ export default function VaccinationsPage() {
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
               <Baby className="h-7 w-7 text-sage-600" />
             </div>
-            <h1 className="mt-4 font-heading text-lg font-bold text-foreground">
+            <h1 className="mt-4 font-heading text-lg font-semibold text-foreground">
               お子さんを登録してください
             </h1>
             <p className="mt-2 text-sm text-muted">
@@ -442,7 +442,7 @@ export default function VaccinationsPage() {
             <ArrowLeft className="h-3.5 w-3.5" />
             マイページ
           </Link>
-          <h1 className="mt-4 font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground sm:text-3xl">
             <Syringe className="mr-2 inline-block h-7 w-7 text-purple-600" />
             予防接種記録
           </h1>
@@ -470,7 +470,7 @@ export default function VaccinationsPage() {
                 <Baby className="h-5 w-5 text-purple-600" />
               </div>
               <div>
-                <p className="font-heading text-base font-bold text-card-foreground">
+                <p className="font-heading text-base font-semibold text-card-foreground">
                   {selectedChild.nickname}
                 </p>
                 <p className="text-xs text-muted">
@@ -484,7 +484,7 @@ export default function VaccinationsPage() {
 
           {/* Routine vaccines */}
           <div>
-            <h2 className="flex items-center gap-1.5 font-heading text-base font-bold text-sage-700">
+            <h2 className="flex items-center gap-1.5 font-heading text-base font-semibold text-sage-700">
               <Shield className="h-4 w-4" />
               {VACCINE_TYPE_LABELS.routine}（公費・無料）
             </h2>
@@ -503,7 +503,7 @@ export default function VaccinationsPage() {
 
           {/* Optional vaccines */}
           <div>
-            <h2 className="flex items-center gap-1.5 font-heading text-base font-bold text-blush-600">
+            <h2 className="flex items-center gap-1.5 font-heading text-base font-semibold text-blush-600">
               <Star className="h-4 w-4" />
               {VACCINE_TYPE_LABELS.optional}（一部助成あり）
             </h2>

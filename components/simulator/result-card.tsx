@@ -80,7 +80,7 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
               </span>
             </div>
 
-            <h3 className="mt-1.5 font-heading text-lg font-bold text-card-foreground">
+            <h3 className="mt-1.5 font-heading text-lg font-semibold text-card-foreground">
               {program.name}
             </h3>
 
@@ -91,7 +91,7 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
             {estimatedAmount > 0 && (
               <div className="mt-3 inline-flex items-baseline gap-1 rounded-lg bg-sage-50 px-3 py-1.5">
                 <span className="text-sm text-sage-700">年間推定</span>
-                <span className="font-heading text-xl font-bold text-sage-700">
+                <span className="font-heading text-xl font-semibold text-sage-700">
                   {formatAmount(estimatedAmount)}
                 </span>
               </div>

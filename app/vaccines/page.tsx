@@ -70,7 +70,7 @@ function VaccineCard({ vaccine }: { readonly vaccine: Vaccine }) {
 
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
-          <h3 className="font-heading text-base font-bold text-card-foreground">
+          <h3 className="font-heading text-base font-semibold text-card-foreground">
             {vaccine.name}
           </h3>
           <span
@@ -123,7 +123,7 @@ export default function VaccinesPage() {
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-sage-100">
             <Syringe className="h-7 w-7 text-sage-600" />
           </div>
-          <h1 className="mt-5 font-heading text-3xl font-bold text-foreground sm:text-4xl">
+          <h1 className="mt-5 font-heading text-3xl font-semibold text-foreground sm:text-4xl">
             予防接種ガイド
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted">
@@ -231,7 +231,7 @@ export default function VaccinesPage() {
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sage-100">
                 <Syringe className="h-3.5 w-3.5 text-sage-700" />
               </span>
-              <h3 className="font-heading text-xl font-bold text-foreground">
+              <h3 className="font-heading text-xl font-semibold text-foreground">
                 定期接種
                 <span className="ml-2 text-sm font-normal text-muted">
                   （公費・無料）
@@ -253,7 +253,7 @@ export default function VaccinesPage() {
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-orange-100">
                 <Syringe className="h-3.5 w-3.5 text-orange-700" />
               </span>
-              <h3 className="font-heading text-xl font-bold text-foreground">
+              <h3 className="font-heading text-xl font-semibold text-foreground">
                 任意接種
                 <span className="ml-2 text-sm font-normal text-muted">
                   （原則自費・一部港区助成あり）
@@ -379,7 +379,7 @@ export default function VaccinesPage() {
                 <ShieldCheck className="h-5 w-5 text-sage-600" />
               </div>
               <div className="min-w-0 flex-1">
-                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-sage-700">
+                <h3 className="font-heading text-sm font-semibold text-card-foreground group-hover:text-sage-700">
                   Know VPD!
                 </h3>
                 <p className="mt-0.5 text-xs text-muted">
@@ -401,7 +401,7 @@ export default function VaccinesPage() {
                 <ShieldCheck className="h-5 w-5 text-blue-600" />
               </div>
               <div className="min-w-0 flex-1">
-                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-sage-700">
+                <h3 className="font-heading text-sm font-semibold text-card-foreground group-hover:text-sage-700">
                   厚生労働省 予防接種情報
                 </h3>
                 <p className="mt-0.5 text-xs text-muted">
@@ -423,7 +423,7 @@ export default function VaccinesPage() {
                 <BookOpen className="h-5 w-5 text-purple-600" />
               </div>
               <div className="min-w-0 flex-1">
-                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-sage-700">
+                <h3 className="font-heading text-sm font-semibold text-card-foreground group-hover:text-sage-700">
                   国立感染症研究所（JIHS）
                 </h3>
                 <p className="mt-0.5 text-xs text-muted">
@@ -445,7 +445,7 @@ export default function VaccinesPage() {
                 <Stethoscope className="h-5 w-5 text-blush-600" />
               </div>
               <div className="min-w-0 flex-1">
-                <h3 className="font-heading text-sm font-bold text-card-foreground group-hover:text-sage-700">
+                <h3 className="font-heading text-sm font-semibold text-card-foreground group-hover:text-sage-700">
                   日本小児科学会
                 </h3>
                 <p className="mt-0.5 text-xs text-muted">
@@ -473,7 +473,7 @@ export default function VaccinesPage() {
                 <MapPin className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-heading text-sm font-bold text-card-foreground">
+                <h3 className="font-heading text-sm font-semibold text-card-foreground">
                   予防接種できる医療機関を探す
                 </h3>
                 <p className="mt-0.5 text-xs text-muted">港区の小児科マップ</p>
@@ -487,7 +487,7 @@ export default function VaccinesPage() {
                 <Heart className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-heading text-sm font-bold text-card-foreground">
+                <h3 className="font-heading text-sm font-semibold text-card-foreground">
                   ワクチン助成金を確認する
                 </h3>
                 <p className="mt-0.5 text-xs text-muted">

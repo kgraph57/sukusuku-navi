@@ -134,7 +134,7 @@ function TypeSummaryCard({
   return (
     <div className="rounded-lg border border-border bg-card p-4">
       <div className="flex items-center justify-between">
-        <h3 className="font-heading text-sm font-bold text-card-foreground">
+        <h3 className="font-heading text-sm font-semibold text-card-foreground">
           {NURSERY_TYPE_LABELS[type]}
         </h3>
         <span className="rounded-full bg-sage-100 px-2 py-0.5 text-xs font-medium text-sage-700">
@@ -159,7 +159,7 @@ export default function NurseriesPage() {
       {/* Hero */}
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">
+          <h1 className="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
             <Building2 className="mr-2 inline-block h-8 w-8 text-sage-600" />
             港区の保育園を探す
           </h1>
@@ -174,7 +174,7 @@ export default function NurseriesPage() {
       {/* Type Summary */}
       <section className="border-b border-border px-4 py-8">
         <div className="mx-auto max-w-4xl">
-          <h2 className="font-heading text-lg font-bold text-foreground">
+          <h2 className="font-heading text-lg font-semibold text-foreground">
             保育施設の種類
           </h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -199,7 +199,7 @@ export default function NurseriesPage() {
       {/* Nursery List with Filters */}
       <section className="px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl">
-          <h2 className="font-heading text-xl font-bold text-foreground">
+          <h2 className="font-heading text-xl font-semibold text-foreground">
             保育施設一覧
           </h2>
           <div className="mt-4">
@@ -211,7 +211,7 @@ export default function NurseriesPage() {
       {/* 保活ガイド */}
       <section className="border-t border-border bg-sage-50/50 px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl">
-          <h2 className="flex items-center gap-2 font-heading text-xl font-bold text-foreground">
+          <h2 className="flex items-center gap-2 font-heading text-xl font-semibold text-foreground">
             <Calendar className="h-6 w-6 text-sage-600" />
             保活ガイド：4月入園までのスケジュール
           </h2>
@@ -233,7 +233,7 @@ export default function NurseriesPage() {
                     <span className="rounded-full bg-sage-100 px-2.5 py-0.5 text-xs font-medium text-sage-700">
                       {step.month}
                     </span>
-                    <h3 className="font-heading text-base font-bold text-card-foreground">
+                    <h3 className="font-heading text-base font-semibold text-card-foreground">
                       {step.title}
                     </h3>
                   </div>
@@ -250,7 +250,7 @@ export default function NurseriesPage() {
       {/* 必要書類 */}
       <section className="border-t border-border px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl">
-          <h2 className="flex items-center gap-2 font-heading text-xl font-bold text-foreground">
+          <h2 className="flex items-center gap-2 font-heading text-xl font-semibold text-foreground">
             <FileText className="h-6 w-6 text-sage-600" />
             申込に必要な書類
           </h2>
@@ -279,7 +279,7 @@ export default function NurseriesPage() {
       {/* 利用調整指数 */}
       <section className="border-t border-border bg-ivory-100/50 px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl">
-          <h2 className="flex items-center gap-2 font-heading text-xl font-bold text-foreground">
+          <h2 className="flex items-center gap-2 font-heading text-xl font-semibold text-foreground">
             <HelpCircle className="h-6 w-6 text-sage-600" />
             利用調整指数（選考のしくみ）
           </h2>

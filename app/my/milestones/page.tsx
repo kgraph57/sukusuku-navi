@@ -233,7 +233,7 @@ function CategorySection({
         >
           <IconComponent className="h-4 w-4" />
         </div>
-        <span className="flex-1 text-left font-heading text-sm font-bold text-card-foreground">
+        <span className="flex-1 text-left font-heading text-sm font-semibold text-card-foreground">
           {MILESTONE_CATEGORY_LABELS[category]}
         </span>
         <span className="text-xs text-muted">
@@ -378,7 +378,7 @@ export default function MilestonesPage() {
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
               <Baby className="h-7 w-7 text-sage-600" />
             </div>
-            <h1 className="mt-4 font-heading text-lg font-bold text-foreground">
+            <h1 className="mt-4 font-heading text-lg font-semibold text-foreground">
               お子さんを登録してください
             </h1>
             <p className="mt-2 text-sm text-muted">
@@ -408,7 +408,7 @@ export default function MilestonesPage() {
             <ArrowLeft className="h-3.5 w-3.5" />
             マイページ
           </Link>
-          <h1 className="mt-4 font-heading text-2xl font-bold text-foreground sm:text-3xl">
+          <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground sm:text-3xl">
             <Sparkles className="mr-2 inline-block h-7 w-7 text-rose-500" />
             成長マイルストーン
           </h1>
@@ -434,7 +434,7 @@ export default function MilestonesPage() {
                 <Baby className="h-5 w-5 text-rose-500" />
               </div>
               <div>
-                <p className="font-heading text-base font-bold text-card-foreground">
+                <p className="font-heading text-base font-semibold text-card-foreground">
                   {selectedChild.nickname}
                 </p>
                 <p className="text-xs text-muted">

@@ -183,7 +183,7 @@ export function LifePlanTimeline({
     <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
       <div className="mb-4 flex items-center gap-2">
         <Calendar className="h-5 w-5 text-sage-600" />
-        <h3 className="font-heading text-base font-bold text-card-foreground">
+        <h3 className="font-heading text-base font-semibold text-card-foreground">
           0歳〜18歳の制度タイムライン
         </h3>
       </div>

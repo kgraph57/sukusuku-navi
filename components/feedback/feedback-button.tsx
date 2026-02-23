@@ -38,7 +38,7 @@ export function FeedbackButton() {
   return (
     <div className="fixed bottom-20 right-4 z-50 w-80 rounded-2xl border border-border bg-card p-5 shadow-xl sm:bottom-6">
       <div className="flex items-center justify-between">
-        <h3 className="font-heading text-sm font-bold text-card-foreground">
+        <h3 className="font-heading text-sm font-semibold text-card-foreground">
           ご感想を聞かせてください
         </h3>
         <button

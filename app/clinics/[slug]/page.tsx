@@ -113,7 +113,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
                   </span>
                 )}
               </div>
-              <h1 className="mt-2 font-heading text-2xl font-bold text-foreground sm:text-3xl">
+              <h1 className="mt-2 font-heading text-2xl font-semibold text-foreground sm:text-3xl">
                 {clinic.name}
               </h1>
             </div>
@@ -131,7 +131,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
         <div className="mx-auto max-w-3xl space-y-6">
           {clinic.emergencyAvailable && (
             <div className="rounded-xl border border-red-200 bg-red-50 p-6">
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-red-700">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-red-700">
                 <AlertTriangle className="h-5 w-5" />
                 救急対応あり
               </h2>
@@ -142,7 +142,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
           )}
 
           <div className="rounded-xl border border-border bg-card p-6">
-            <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+            <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
               <MapPin className="h-5 w-5 text-sage-600" />
               基本情報
             </h2>
@@ -189,7 +189,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
           </div>
 
           <div className="rounded-xl border border-border bg-card p-6">
-            <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-card-foreground">
+            <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
               <Clock className="h-5 w-5 text-sage-600" />
               診療時間
             </h2>
@@ -202,7 +202,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
           </div>
 
           <div className="rounded-xl border border-border bg-card p-6">
-            <h2 className="font-heading text-lg font-bold text-card-foreground">
+            <h2 className="font-heading text-lg font-semibold text-card-foreground">
               対応科目・特徴
             </h2>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -255,7 +255,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
 
           {clinic.nightHours !== null && (
             <div className="rounded-xl border border-indigo-200 bg-indigo-50 p-6">
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-indigo-700">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-indigo-700">
                 <Moon className="h-5 w-5" />
                 夜間診療
               </h2>
@@ -267,7 +267,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
 
           {clinic.requiredItems.length > 0 && (
             <div className="rounded-xl border border-amber-200 bg-amber-50 p-6">
-              <h2 className="flex items-center gap-2 font-heading text-lg font-bold text-amber-700">
+              <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-amber-700">
                 <Briefcase className="h-5 w-5" />
                 受診に必要な持ち物
               </h2>
@@ -310,7 +310,7 @@ export default async function ClinicDetailPage({ params }: PageProps) {
 
           {relatedClinics.length > 0 && (
             <div>
-              <h2 className="font-heading text-lg font-bold text-foreground">
+              <h2 className="font-heading text-lg font-semibold text-foreground">
                 同じタイプの医療機関
               </h2>
               <div className="mt-3 space-y-2">

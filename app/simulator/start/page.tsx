@@ -188,7 +188,7 @@ export default function SimulatorStartPage() {
             <div>
               <div className="flex items-center gap-3 text-sage-700">
                 <Baby className="h-6 w-6" />
-                <h2 className="font-heading text-xl font-bold">
+                <h2 className="font-heading text-xl font-semibold">
                   お子さんの情報
                 </h2>
               </div>
@@ -203,7 +203,7 @@ export default function SimulatorStartPage() {
                     className="rounded-xl border border-border bg-ivory-50 p-4"
                   >
                     <div className="flex items-center justify-between">
-                      <h3 className="font-heading text-sm font-bold text-card-foreground">
+                      <h3 className="font-heading text-sm font-semibold text-card-foreground">
                         {index + 1}人目のお子さん
                       </h3>
                       {form.children.length > 1 && (
@@ -280,7 +280,7 @@ export default function SimulatorStartPage() {
             <div>
               <div className="flex items-center gap-3 text-sage-700">
                 <Home className="h-6 w-6" />
-                <h2 className="font-heading text-xl font-bold">世帯情報</h2>
+                <h2 className="font-heading text-xl font-semibold">世帯情報</h2>
               </div>
               <p className="mt-2 text-sm text-muted">
                 世帯の収入帯と家族構成を教えてください。
@@ -396,7 +396,7 @@ export default function SimulatorStartPage() {
             <div>
               <div className="flex items-center gap-3 text-sage-700">
                 <MapPin className="h-6 w-6" />
-                <h2 className="font-heading text-xl font-bold">
+                <h2 className="font-heading text-xl font-semibold">
                   お住まいの地区
                 </h2>
               </div>
@@ -433,7 +433,7 @@ export default function SimulatorStartPage() {
             <div>
               <div className="flex items-center gap-3 text-sage-700">
                 <ClipboardCheck className="h-6 w-6" />
-                <h2 className="font-heading text-xl font-bold">
+                <h2 className="font-heading text-xl font-semibold">
                   入力内容の確認
                 </h2>
               </div>
