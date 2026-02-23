@@ -27,7 +27,7 @@ export default function OGImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "#FAFAFA",
+          background: "#FAFAF8",
           borderRadius: 32,
           padding: "60px 80px",
           maxWidth: 1000,
@@ -38,7 +38,7 @@ export default function OGImage() {
           style={{
             fontSize: 72,
             fontWeight: 600,
-            color: "#2F3847",
+            color: "#3D5539",
             marginBottom: 16,
             letterSpacing: "0.04em",
           }}
@@ -48,7 +48,7 @@ export default function OGImage() {
         <div
           style={{
             fontSize: 28,
-            color: "#1A202C",
+            color: "#2C332A",
             marginBottom: 32,
             textAlign: "center",
           }}
@@ -72,12 +72,12 @@ export default function OGImage() {
             <div
               key={label}
               style={{
-                background: "#F4F5F7",
-                border: "1px solid #C5CAD4",
+                background: "#F2F6F1",
+                border: "1px solid #C5DBC0",
                 borderRadius: 12,
                 padding: "8px 20px",
                 fontSize: 20,
-                color: "#2F3847",
+                color: "#3D5539",
                 fontWeight: 600,
               }}
             >
@@ -89,7 +89,7 @@ export default function OGImage() {
           style={{
             marginTop: 32,
             fontSize: 18,
-            color: "#5A6575",
+            color: "#5A6B56",
           }}
         >
           愛育病院 小児科医おかもんが届ける子育て情報
