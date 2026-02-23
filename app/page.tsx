@@ -329,25 +329,25 @@ export default function HomePage() {
       </section>
 
       {/* ─── CTA Section ─── */}
-      <section className="px-4 py-16 sm:py-24">
+      <section className="border-t border-border bg-warm-100/50 px-4 py-16 sm:py-24">
         <div className="mx-auto max-w-3xl">
-          <div className="rounded-2xl bg-gradient-to-br from-teal-600 to-teal-700 px-6 py-12 text-center shadow-xl sm:px-12">
-            <h2 className="font-heading text-2xl font-bold text-white sm:text-3xl">
+          <div className="rounded-2xl border border-teal-100 bg-white px-6 py-12 text-center shadow-sm sm:px-12">
+            <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
               メルマガに登録しませんか？
             </h2>
-            <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-teal-100">
+            <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-muted">
               おかもん先生が月2回、最新の小児医療トピックをわかりやすく解説します。登録は無料、いつでも解除できます。
             </p>
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium text-teal-700 shadow-lg transition-all hover:bg-teal-50 hover:shadow-xl"
+                className="inline-flex items-center gap-2 rounded-full bg-teal-600 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-teal-600/25 transition-all hover:bg-teal-700 hover:shadow-xl"
               >
                 <WatercolorIcon name="mail" size={20} />
                 メルマガ登録はこちら
               </Link>
             </div>
-            <p className="mt-4 text-xs text-teal-200">
+            <p className="mt-4 text-xs text-muted">
               現在 {allArticles.length} 号まで配信中
             </p>
           </div>
