@@ -73,10 +73,7 @@ export function trackTriageQuestionAnswered(
   });
 }
 
-export function trackTriageResultViewed(
-  symptom: string,
-  severity: string,
-) {
+export function trackTriageResultViewed(symptom: string, severity: string) {
   capture("triage_result_viewed", { symptom, severity });
 }
 
@@ -88,11 +85,44 @@ export function trackTimelineViewed(childAgeMonths: number) {
   capture("timeline_viewed", { child_age_months: childAgeMonths });
 }
 
-export function trackTimelineItemCompleted(
-  itemId: string,
-  category: string,
-) {
+export function trackTimelineItemCompleted(itemId: string, category: string) {
   capture("timeline_item_completed", { item_id: itemId, category });
+}
+
+// ---------------------------------------------------------------------------
+// Vaccine Schedule
+// ---------------------------------------------------------------------------
+
+export function trackVaccineScheduleViewed(
+  childAgeMonths: number,
+  completedDoses: number,
+  totalDoses: number,
+) {
+  capture("vaccine_schedule_viewed", {
+    child_age_months: childAgeMonths,
+    completed_doses: completedDoses,
+    total_doses: totalDoses,
+  });
+}
+
+export function trackVaccineDoseToggled(
+  vaccineSlug: string,
+  doseNumber: number,
+  completed: boolean,
+) {
+  capture("vaccine_dose_toggled", {
+    vaccine_slug: vaccineSlug,
+    dose_number: doseNumber,
+    completed,
+  });
+}
+
+// ---------------------------------------------------------------------------
+// CTA Clicks
+// ---------------------------------------------------------------------------
+
+export function trackCTAClick(ctaName: string, location: string) {
+  capture("cta_click", { cta_name: ctaName, location });
 }
 
 // ---------------------------------------------------------------------------
@@ -123,9 +153,6 @@ export function trackArticleBookmarked(slug: string, bookmarked: boolean) {
 // Feedback
 // ---------------------------------------------------------------------------
 
-export function trackFeedbackSubmitted(
-  rating: number,
-  comment?: string,
-) {
+export function trackFeedbackSubmitted(rating: number, comment?: string) {
   capture("feedback_submitted", { rating, comment });
 }

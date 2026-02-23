@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
 import { FamilyProfileSetup } from "@/components/family/family-profile-setup";
@@ -10,6 +10,8 @@ import { useAuth } from "@/lib/auth/auth-provider";
 import type { FamilyProfile, ChildProfile } from "@/lib/store";
 import { getChildAge } from "@/lib/utils/age";
 import { getAllChecklists } from "@/lib/checklists";
+import { generateTimeline } from "@/lib/timeline-engine";
+import type { TimelineItem } from "@/lib/timeline-engine";
 
 interface MyPageClientProps {
   readonly articleTitles: Record<string, string>;
@@ -218,6 +220,146 @@ function SavedArticlesSection({
 }
 
 // ---------------------------------------------------------------------------
+// Summary dashboard
+// ---------------------------------------------------------------------------
+
+function SummaryDashboard({ child }: { readonly child: ChildProfile }) {
+  const timeline = useMemo(
+    () => generateTimeline(child.birthDate, child.completedItems),
+    [child.birthDate, child.completedItems],
+  );
+
+  const pendingItems = timeline.filter(
+    (item) => !item.completed && !item.isExpired,
+  );
+
+  const nextVaccination = pendingItems.find(
+    (item) => item.category === "vaccination",
+  );
+
+  const thisMonthAdmin = pendingItems.filter(
+    (item) =>
+      item.category === "admin" &&
+      (item.urgency === "overdue" ||
+        item.urgency === "urgent" ||
+        item.urgency === "soon"),
+  );
+
+  const thisMonthMedical = pendingItems.find(
+    (item) =>
+      item.category === "medical" &&
+      (item.urgency === "overdue" ||
+        item.urgency === "urgent" ||
+        item.urgency === "soon"),
+  );
+
+  const incompleteCount = pendingItems.filter(
+    (item) =>
+      item.urgency === "overdue" ||
+      item.urgency === "urgent" ||
+      item.urgency === "soon",
+  ).length;
+
+  return (
+    <div className="grid gap-3 sm:grid-cols-2">
+      <Link
+        href="/my/timeline"
+        className="rounded-xl border border-purple-200 bg-gradient-to-br from-purple-50 to-white p-4 transition-all hover:shadow-md"
+      >
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-purple-100">
+            <WatercolorIcon
+              name="syringe"
+              size={16}
+              className="text-purple-600"
+            />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs text-muted">次の予防接種</p>
+            <p className="mt-0.5 truncate text-sm font-semibold text-card-foreground">
+              {nextVaccination ? nextVaccination.title : "予定なし"}
+            </p>
+          </div>
+        </div>
+      </Link>
+
+      <Link
+        href="/my/timeline"
+        className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-white p-4 transition-all hover:shadow-md"
+      >
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-100">
+            <WatercolorIcon
+              name="building"
+              size={16}
+              className="text-blue-600"
+            />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs text-muted">今月の手続き</p>
+            <p className="mt-0.5 text-sm font-semibold text-card-foreground">
+              {thisMonthAdmin.length > 0
+                ? `${thisMonthAdmin.length}件`
+                : "なし"}
+            </p>
+          </div>
+        </div>
+      </Link>
+
+      <Link
+        href="/my/timeline"
+        className="rounded-xl border border-sage-200 bg-gradient-to-br from-sage-50 to-white p-4 transition-all hover:shadow-md"
+      >
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sage-100">
+            <WatercolorIcon
+              name="stethoscope"
+              size={16}
+              className="text-sage-600"
+            />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs text-muted">今月の健診</p>
+            <p className="mt-0.5 text-sm font-semibold text-card-foreground">
+              {thisMonthMedical ? thisMonthMedical.title : "なし"}
+            </p>
+          </div>
+        </div>
+      </Link>
+
+      <Link
+        href="/my/timeline"
+        className={`rounded-xl border p-4 transition-all hover:shadow-md ${
+          incompleteCount > 0
+            ? "border-orange-200 bg-gradient-to-br from-orange-50 to-white"
+            : "border-border bg-gradient-to-br from-ivory-50 to-white"
+        }`}
+      >
+        <div className="flex items-center gap-3">
+          <div
+            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
+              incompleteCount > 0 ? "bg-orange-100" : "bg-ivory-100"
+            }`}
+          >
+            <WatercolorIcon
+              name="alert"
+              size={16}
+              className={incompleteCount > 0 ? "text-orange-600" : "text-muted"}
+            />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs text-muted">未完了アクション</p>
+            <p className="mt-0.5 text-sm font-semibold text-card-foreground">
+              {incompleteCount > 0 ? `${incompleteCount}件` : "なし"}
+            </p>
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Quick actions
 // ---------------------------------------------------------------------------
 
@@ -401,52 +543,67 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
           {(!profile || profile.children.length === 0) && (
             <div className="rounded-2xl border border-sage-200 bg-gradient-to-br from-sage-50 to-white p-6 sm:p-8">
               <div className="flex flex-col items-center text-center">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-sage-100">
                   <WatercolorIcon
                     name="calendar"
-                    size={28}
+                    size={32}
                     className="text-sage-600"
                   />
                 </div>
                 <h2 className="mt-4 font-heading text-lg font-bold text-foreground sm:text-xl">
-                  赤ちゃんの生年月日を登録すると...
+                  お子さんの生年月日を登録してください
                 </h2>
                 <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted">
-                  今週・今月やるべき手続き・健診・予防接種が自動で表示されます。
-                  期限が近いものは優先度付きでお知らせ。もう見逃しません。
+                  登録すると、今週やること・今月やることが自動で表示されます。
+                  予防接種・健診・届出の期限が近づくとお知らせします。
                 </p>
                 <div className="mt-5 grid w-full max-w-sm gap-2 text-left sm:grid-cols-3">
-                  <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-xs text-card-foreground shadow-sm">
-                    <WatercolorIcon
-                      name="building"
-                      size={14}
-                      className="shrink-0 text-blue-600"
-                    />
-                    <span>届出・申請</span>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-xs text-card-foreground shadow-sm">
-                    <WatercolorIcon
-                      name="stethoscope"
-                      size={14}
-                      className="shrink-0 text-sage-600"
-                    />
-                    <span>健診</span>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-xs text-card-foreground shadow-sm">
+                  <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2.5 text-xs text-card-foreground shadow-sm">
                     <WatercolorIcon
                       name="syringe"
-                      size={14}
+                      size={16}
                       className="shrink-0 text-purple-600"
                     />
                     <span>予防接種</span>
                   </div>
+                  <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2.5 text-xs text-card-foreground shadow-sm">
+                    <WatercolorIcon
+                      name="stethoscope"
+                      size={16}
+                      className="shrink-0 text-sage-600"
+                    />
+                    <span>健診</span>
+                  </div>
+                  <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2.5 text-xs text-card-foreground shadow-sm">
+                    <WatercolorIcon
+                      name="building"
+                      size={16}
+                      className="shrink-0 text-blue-600"
+                    />
+                    <span>届出・申請</span>
+                  </div>
                 </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById(
+                      "family-profile-section",
+                    );
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-sage-600 px-8 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-sage-700 hover:shadow-lg"
+                >
+                  <WatercolorIcon name="baby" size={18} />
+                  登録する
+                </button>
               </div>
             </div>
           )}
 
           {/* Family profile */}
-          <div>
+          <div id="family-profile-section">
             <h2 className="font-heading text-lg font-semibold text-foreground">
               お子さんの登録
             </h2>
@@ -482,6 +639,27 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
                 className="shrink-0 text-sage-400"
               />
             </Link>
+          )}
+
+          {/* Summary dashboard */}
+          {profile && profile.children.length > 0 && (
+            <div>
+              <h2 className="font-heading text-lg font-semibold text-foreground">
+                サマリー
+              </h2>
+              <div className="mt-4 space-y-4">
+                {profile.children.map((child) => (
+                  <div key={child.id}>
+                    {profile.children.length > 1 && (
+                      <p className="mb-2 text-sm font-medium text-muted">
+                        {child.nickname}
+                      </p>
+                    )}
+                    <SummaryDashboard child={child} />
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
 
           {/* Checklist progress */}

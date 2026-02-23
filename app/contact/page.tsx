@@ -1,12 +1,35 @@
-import type { Metadata } from "next"
+import type { Metadata } from "next";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
-import { SectionHeading } from "@/components/shared/section-heading"
+import { SectionHeading } from "@/components/shared/section-heading";
 
 export const metadata: Metadata = {
   title: "お問い合わせ",
   description:
     "すくすくナビに関するお問い合わせはこちらから。メールでご連絡ください。",
-}
+};
+
+const INQUIRY_TYPES = [
+  {
+    iconName: "users" as const,
+    label: "保護者の方からの質問・フィードバック",
+    description:
+      "記事の内容に関するご質問、テーマのリクエスト、誤りのご指摘など。",
+    subject: "【すくすくナビ】質問・フィードバック",
+  },
+  {
+    iconName: "building" as const,
+    label: "医療機関・自治体との連携について",
+    description:
+      "退院時資料への掲載、保健センターでの配布、データ連携などのご相談。",
+    subject: "【すくすくナビ】連携のご相談",
+  },
+  {
+    iconName: "message" as const,
+    label: "メディア・取材について",
+    description: "すくすくナビに関する取材・掲載のお問い合わせ。",
+    subject: "【すくすくナビ】取材・メディア掲載",
+  },
+] as const;
 
 const GUIDELINES = [
   {
@@ -27,7 +50,7 @@ const GUIDELINES = [
     description:
       "お問い合わせへの回答は通常3～5営業日以内にメールで行います。内容によっては回答にお時間をいただく場合があります。",
   },
-]
+];
 
 export default function ContactPage() {
   return (
@@ -47,26 +70,39 @@ export default function ContactPage() {
           </p>
         </div>
 
-        {/* Email Contact */}
-        <div className="mt-10 rounded-xl border border-border bg-card p-8 text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-sage-50">
-            <WatercolorIcon name="mail" size={32} className="text-sage-600" />
-          </div>
-          <h2 className="mt-5 font-heading text-xl font-semibold text-foreground">
-            メールでのお問い合わせ
+        {/* Inquiry Type Cards */}
+        <div className="mt-10">
+          <h2 className="font-heading text-lg font-semibold text-foreground">
+            お問い合わせの種別
           </h2>
           <p className="mt-2 text-sm text-muted">
-            以下のメールアドレスまでお気軽にご連絡ください。
+            ご用件に合ったカテゴリをお選びください。件名が自動で入力されます。
           </p>
-          <a
-            href="mailto:contact@sukusuku-navi.jp"
-            className="mt-5 inline-flex items-center gap-2 rounded-full bg-sage-600 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-sage-600/25 transition-all hover:bg-sage-700 hover:shadow-xl"
-          >
-            <WatercolorIcon name="mail" size={16} />
-            contact@sukusuku-navi.jp
-          </a>
-          <p className="mt-4 text-xs text-muted">
-            件名に「すくすくナビ」と記載いただけると助かります。
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            {INQUIRY_TYPES.map((type) => (
+              <a
+                key={type.label}
+                href={`mailto:contact@sukusuku-navi.jp?subject=${encodeURIComponent(type.subject)}`}
+                className="group flex flex-col rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50">
+                  <WatercolorIcon name={type.iconName} size={28} />
+                </div>
+                <h3 className="mt-3 font-heading text-sm font-semibold text-foreground group-hover:text-teal-700">
+                  {type.label}
+                </h3>
+                <p className="mt-1 text-xs leading-relaxed text-muted">
+                  {type.description}
+                </p>
+                <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
+                  メールを送る
+                  <WatercolorIcon name="arrow_right" size={12} />
+                </span>
+              </a>
+            ))}
+          </div>
+          <p className="mt-4 text-center text-xs text-muted">
+            送信先: contact@sukusuku-navi.jp
           </p>
         </div>
 
@@ -103,7 +139,8 @@ export default function ContactPage() {
                 Q. メルマガの配信停止はどうすればよいですか？
               </p>
               <p className="mt-1 text-sm text-muted">
-                A. メルマガ下部の「配信停止」リンクから、いつでも解除できます。解除後24時間以内に配信が停止されます。
+                A.
+                メルマガ下部の「配信停止」リンクから、いつでも解除できます。解除後24時間以内に配信が停止されます。
               </p>
             </div>
             <div>
@@ -111,7 +148,8 @@ export default function ContactPage() {
                 Q. 記事の内容について質問したいのですが。
               </p>
               <p className="mt-1 text-sm text-muted">
-                A. 記事の医学的内容に関するご質問はメールでお送りください。今後の記事の参考にさせていただきます。ただし、個別の医療相談にはお答えできません。
+                A.
+                記事の医学的内容に関するご質問はメールでお送りください。今後の記事の参考にさせていただきます。ただし、個別の医療相談にはお答えできません。
               </p>
             </div>
             <div>
@@ -119,12 +157,13 @@ export default function ContactPage() {
                 Q. 取り上げてほしいテーマのリクエストはできますか？
               </p>
               <p className="mt-1 text-sm text-muted">
-                A. はい、ぜひリクエストをお送りください。読者の皆さまの声を参考に、今後のテーマを検討しています。
+                A.
+                はい、ぜひリクエストをお送りください。読者の皆さまの声を参考に、今後のテーマを検討しています。
               </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

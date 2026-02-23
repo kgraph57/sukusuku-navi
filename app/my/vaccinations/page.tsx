@@ -17,6 +17,10 @@ import {
 import { getChildAge, formatAge } from "@/lib/utils/age";
 import { getUpcomingVaccinations } from "@/lib/vaccination-schedule";
 import type { Vaccine, VaccineDose } from "@/lib/types";
+import {
+  trackVaccineScheduleViewed,
+  trackVaccineDoseToggled,
+} from "@/lib/analytics/events";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -438,6 +442,19 @@ export default function VaccinationsPage() {
     };
   }, [selectedChildId, store]);
 
+  // Track vaccine schedule page view
+  useEffect(() => {
+    if (!isLoaded || !profile || !selectedChildId) return;
+    const child = profile.children.find((c) => c.id === selectedChildId);
+    if (!child) return;
+    const { years, months } = getChildAge(child.birthDate);
+    const totalDoses = vaccines.reduce((sum, v) => sum + v.doses.length, 0);
+    const completedDoses = records.filter(
+      (r) => r.status === "completed",
+    ).length;
+    trackVaccineScheduleViewed(years * 12 + months, completedDoses, totalDoses);
+  }, [isLoaded, profile, selectedChildId, vaccines, records]);
+
   const handleToggleDose = useCallback(
     async (
       vaccineSlug: string,
@@ -448,6 +465,12 @@ export default function VaccinationsPage() {
 
       const isCurrentlyCompleted = currentRecord?.status === "completed";
       const today = new Date().toISOString().split("T")[0];
+
+      trackVaccineDoseToggled(
+        vaccineSlug,
+        dose.doseNumber,
+        !isCurrentlyCompleted,
+      );
 
       await store.upsertVaccinationRecord({
         childId: selectedChildId,

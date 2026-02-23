@@ -5,6 +5,7 @@ import { getAllArticles } from "@/lib/content";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Card, CardTitle, CardDescription } from "@/components/shared/card";
 import { Badge } from "@/components/shared/badge";
+import { TrackedCTALink } from "@/components/shared/tracked-cta-link";
 import type { ArticleCategory } from "@/lib/types";
 import { CATEGORY_LABELS } from "@/lib/types";
 import { withBasePath } from "@/lib/image-path";
@@ -129,19 +130,23 @@ export default function HomePage() {
                 必要なアクションを最適なタイミングでお届けします。
               </p>
               <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-                <Link
+                <TrackedCTALink
                   href="/my"
+                  ctaName="hero_register_birthdate"
+                  location="hero"
                   className="inline-flex items-center gap-2 rounded-full bg-teal-600 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-teal-600/25 transition-all hover:bg-teal-700 hover:shadow-xl hover:shadow-teal-600/30"
                 >
                   生年月日を登録して始める
                   <WatercolorIcon name="arrow_right" size={18} />
-                </Link>
-                <Link
+                </TrackedCTALink>
+                <TrackedCTALink
                   href="/articles"
+                  ctaName="hero_read_articles"
+                  location="hero"
                   className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-white px-7 py-3.5 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
                 >
                   記事を読む
-                </Link>
+                </TrackedCTALink>
               </div>
               {/* 信頼バッジ */}
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
@@ -195,19 +200,23 @@ export default function HomePage() {
               届出の期限や見逃しがちな助成金も、もう忘れません。
             </p>
             <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Link
+              <TrackedCTALink
                 href="/my"
+                ctaName="timeline_register"
+                location="timeline_cta"
                 className="inline-flex items-center gap-2 rounded-full bg-teal-600 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-teal-600/25 transition-all hover:bg-teal-700 hover:shadow-xl hover:shadow-teal-600/30"
               >
                 <WatercolorIcon name="baby" size={18} />
                 登録してタイムラインを見る
-              </Link>
-              <Link
+              </TrackedCTALink>
+              <TrackedCTALink
                 href="/my/timeline"
+                ctaName="timeline_try"
+                location="timeline_cta"
                 className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-white px-7 py-3.5 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
               >
                 タイムラインを試す
-              </Link>
+              </TrackedCTALink>
             </div>
           </div>
         </div>
@@ -402,13 +411,15 @@ export default function HomePage() {
               おかもん先生が月2回、最新の小児医療トピックをわかりやすく解説します。登録は無料、いつでも解除できます。
             </p>
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Link
+              <TrackedCTALink
                 href="/contact"
+                ctaName="newsletter_signup"
+                location="footer_cta"
                 className="inline-flex items-center gap-2 rounded-full bg-teal-600 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-teal-600/25 transition-all hover:bg-teal-700 hover:shadow-xl"
               >
                 <WatercolorIcon name="mail" size={20} />
                 メルマガ登録はこちら
-              </Link>
+              </TrackedCTALink>
             </div>
             <p className="mt-4 text-xs text-muted">
               現在 {allArticles.length} 号まで配信中

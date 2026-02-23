@@ -97,15 +97,14 @@ export default function AboutPage() {
               なぜ、すくすくナビを作ったのか
             </h2>
             <p className="mt-4 text-base leading-relaxed text-foreground">
-              愛育病院の外来で毎日たくさんのご家族と接するなかで、ひとつの構造的な矛盾に気づきました。
-              産後、親がもっとも疲弊している時期に、もっとも複雑な届出・手続き・予防接種スケジュールが集中するということです。
+              外来で毎日のように、産後2〜3ヶ月の保護者から同じ声を聞きます。「予防接種は何から打てばいいですか？」「児童手当の申請、もう期限が過ぎてしまいました」──
+              情報はあるのに、疲れている親が必要なタイミングで必要な情報にたどり着けていない。この現実を変えたいと思いました。
             </p>
             <p className="mt-3 text-base leading-relaxed text-muted">
-              限られた診察時間では伝えきれない情報がある。ネットで検索しても、根拠のない情報や不安を煽る記事ばかりが目に入る。「正しい情報に、正しいタイミングで、手間なくアクセスできる仕組み」が必要だと感じました。
+              産後、親がもっとも疲弊している時期に、もっとも複雑な届出・手続き・予防接種スケジュールが集中する。限られた診察時間では伝えきれない情報がある。ネットで検索しても、根拠のない情報や不安を煽る記事ばかりが目に入る。「正しい情報に、正しいタイミングで、手間なくアクセスできる仕組み」が必要だと確信しました。
             </p>
             <p className="mt-3 text-base leading-relaxed text-muted">
-              まずメルマガ「おかもんの小児科通信」として60号を超える連載を重ね、その知見を基盤に、医療情報と行政サービスを統合した子育て支援プラットフォーム「すくすくナビ」を開発しました。
-              臨床医としての知見とテクノロジーを掛け合わせ、医療情報の非対称性を解消する取り組みを続けています。
+              まずメルマガ「おかもんの小児科通信」として60号を超える連載を重ね、その知見を基盤に、医療情報と行政サービスを統合した子育て支援プラットフォーム「すくすくナビ」を開発しました。臨床医としての知見とテクノロジーを掛け合わせ、医療情報の非対称性を解消する取り組みを続けています。
             </p>
           </div>
         </div>
@@ -189,6 +188,86 @@ export default function AboutPage() {
         <p className="mt-2 text-sm leading-relaxed text-muted">
           本サイトの情報は一般的な医学知識の提供を目的としており、個別の診断・治療を行うものではありません。お子さんの具体的な症状や治療については、必ずかかりつけ医にご相談ください。緊急時は迷わず119番に電話してください。
         </p>
+      </section>
+
+      {/* ─── Roadmap ─── */}
+      <section className="mx-auto mt-16 max-w-3xl sm:mt-24">
+        <SectionHeading subtitle="すくすくナビの展開計画">
+          ロードマップ
+        </SectionHeading>
+        <div className="mt-10 space-y-0">
+          {[
+            {
+              phase: "Phase 1",
+              period: "現在",
+              title: "港区の子育て家庭への無料提供",
+              description:
+                "エビデンスに基づく記事、給付金シミュレーター、受診判断ガイド、パーソナライズドタイムラインを無料で公開。",
+              active: true,
+            },
+            {
+              phase: "Phase 2",
+              period: "2026年",
+              title: "愛育病院・港区保健センターとの正式連携",
+              description:
+                "退院時資料への掲載、妊娠届出時の保健センターでの案内を通じて、すべての子育て家庭にリーチ。",
+              active: false,
+            },
+            {
+              phase: "Phase 3",
+              period: "2027年",
+              title: "他自治体へのホワイトラベル展開",
+              description:
+                "港区での実績をもとに、他の自治体向けにカスタマイズ可能な子育て支援プラットフォームとして展開。",
+              active: false,
+            },
+            {
+              phase: "Phase 4",
+              period: "将来",
+              title: "全国版展開",
+              description:
+                "全国の自治体に対応し、どの地域でも医療信頼性と行政アクションを統合した子育て支援を届ける。",
+              active: false,
+            },
+          ].map((item, index) => (
+            <div key={item.phase} className="relative flex gap-4">
+              {/* Timeline line */}
+              <div className="flex flex-col items-center">
+                <div
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+                    item.active
+                      ? "bg-teal-600 text-white shadow-lg shadow-teal-600/25"
+                      : "border-2 border-teal-200 bg-white text-teal-600"
+                  }`}
+                >
+                  {index + 1}
+                </div>
+                {index < 3 && <div className="h-full w-0.5 bg-teal-100" />}
+              </div>
+              {/* Content */}
+              <div className="pb-8">
+                <div className="flex items-center gap-2">
+                  <span
+                    className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                      item.active
+                        ? "bg-teal-100 text-teal-700"
+                        : "bg-gray-100 text-gray-600"
+                    }`}
+                  >
+                    {item.phase}
+                  </span>
+                  <span className="text-xs text-muted">{item.period}</span>
+                </div>
+                <h3 className="mt-2 font-heading text-base font-bold text-foreground">
+                  {item.title}
+                </h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted">
+                  {item.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* ─── CTA ─── */}

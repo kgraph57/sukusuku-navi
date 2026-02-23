@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
 import { useStore } from "@/lib/store";
@@ -495,6 +495,45 @@ function LoadingSkeleton() {
 // ---------------------------------------------------------------------------
 
 type ViewMode = "list" | "calendar";
+type TimeFilter = "week" | "month" | "all";
+
+function filterItemsByTime(
+  items: readonly TimelineItem[],
+  filter: TimeFilter,
+): readonly TimelineItem[] {
+  if (filter === "all") return items;
+
+  return items.filter((item) => {
+    if (item.completed) return true;
+
+    if (filter === "week") {
+      return item.urgency === "overdue" || item.urgency === "urgent";
+    }
+    // month
+    return (
+      item.urgency === "overdue" ||
+      item.urgency === "urgent" ||
+      item.urgency === "soon"
+    );
+  });
+}
+
+function TimeFilterEmptyState({ filter }: { readonly filter: TimeFilter }) {
+  const label = filter === "week" ? "今週" : "今月";
+  return (
+    <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-sage-200 bg-sage-50/30 px-6 py-12 text-center">
+      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
+        <WatercolorIcon name="check" size={28} className="text-sage-500" />
+      </div>
+      <h3 className="mt-4 font-heading text-base font-semibold text-foreground">
+        {label}やることはありません
+      </h3>
+      <p className="mt-2 text-sm text-muted">
+        期限が迫っている手続き・健診・予防接種はありません。
+      </p>
+    </div>
+  );
+}
 
 export default function TimelinePage() {
   const store = useStore();
@@ -502,6 +541,7 @@ export default function TimelinePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedChildId, setSelectedChildId] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>("list");
+  const [timeFilter, setTimeFilter] = useState<TimeFilter>("all");
 
   useEffect(() => {
     let cancelled = false;
@@ -531,8 +571,20 @@ export default function TimelinePage() {
       ? generateTimeline(selectedChild.birthDate, selectedChild.completedItems)
       : null;
 
+  const filteredItems = useMemo(
+    () =>
+      timelineItems != null
+        ? filterItemsByTime(timelineItems, timeFilter)
+        : null,
+    [timelineItems, timeFilter],
+  );
+
   const groupedSections: GroupedSections | null =
-    timelineItems != null ? buildGroupedSections(timelineItems) : null;
+    filteredItems != null ? buildGroupedSections(filteredItems) : null;
+
+  const hasFilteredPendingItems =
+    filteredItems != null &&
+    filteredItems.some((item) => !item.completed && !item.isExpired);
 
   const handleToggleComplete = useCallback(
     async (itemId: string) => {
@@ -618,6 +670,31 @@ export default function TimelinePage() {
                 </div>
               )}
 
+              {viewMode === "list" && selectedChild != null && (
+                <div className="flex gap-1 rounded-lg border border-border bg-ivory-50 p-1">
+                  {(
+                    [
+                      { key: "week", label: "今週" },
+                      { key: "month", label: "今月" },
+                      { key: "all", label: "すべて" },
+                    ] as const
+                  ).map(({ key, label }) => (
+                    <button
+                      key={key}
+                      type="button"
+                      onClick={() => setTimeFilter(key)}
+                      className={`flex flex-1 items-center justify-center rounded-md py-1.5 text-sm font-medium transition-colors ${
+                        timeFilter === key
+                          ? "bg-white text-sage-700 shadow-sm"
+                          : "text-muted hover:text-foreground"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              )}
+
               {viewMode === "calendar" &&
                 timelineItems != null &&
                 selectedChild != null && (
@@ -629,16 +706,21 @@ export default function TimelinePage() {
                 )}
 
               {viewMode === "list" && groupedSections != null && (
-                <div className="space-y-6">
-                  {SECTIONS.map((sectionConfig) => (
-                    <TimelineSection
-                      key={sectionConfig.key}
-                      config={sectionConfig}
-                      items={groupedSections[sectionConfig.key]}
-                      onToggleComplete={handleToggleComplete}
-                    />
-                  ))}
-                </div>
+                <>
+                  {!hasFilteredPendingItems && timeFilter !== "all" && (
+                    <TimeFilterEmptyState filter={timeFilter} />
+                  )}
+                  <div className="space-y-6">
+                    {SECTIONS.map((sectionConfig) => (
+                      <TimelineSection
+                        key={sectionConfig.key}
+                        config={sectionConfig}
+                        items={groupedSections[sectionConfig.key]}
+                        onToggleComplete={handleToggleComplete}
+                      />
+                    ))}
+                  </div>
+                </>
               )}
             </>
           )}
