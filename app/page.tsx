@@ -328,7 +328,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* About Section — 経歴は /about の詳しいプロフィールで */}
       <section className="border-t border-border bg-sage-50/30 px-4 py-20 sm:py-32">
         <div className="mx-auto max-w-4xl">
           <SectionHeading>運営者について</SectionHeading>
@@ -347,23 +347,12 @@ export default function HomePage() {
                 className="mt-3 h-px w-12 bg-gradient-to-r from-gold-500 to-transparent"
                 aria-hidden="true"
               />
-              <p className="mt-4 text-base leading-relaxed text-muted">
-                順天堂大学医学部卒業。順天堂大学附属練馬病院にて初期研修修了後、国立成育医療研究センターにて研鑽を積み、現在は愛育病院小児科に勤務。臨床医としての知見とテクノロジーを掛け合わせ、医療情報の非対称性を解消する社会実装に取り組んでいる。
+              <p className="mt-4 text-sm leading-relaxed text-muted">
+                診察室の外でも、お子さんと家族の役に立てたらと思い、すくすくナビを開発・運営しています。
               </p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                <span className="rounded-full bg-sage-100 px-3 py-1 text-xs font-medium text-sage-700">
-                  小児科専門医
-                </span>
-                <span className="rounded-full bg-sage-100 px-3 py-1 text-xs font-medium text-sage-700">
-                  順天堂大学医学部卒
-                </span>
-                <span className="rounded-full bg-sage-100 px-3 py-1 text-xs font-medium text-sage-700">
-                  国立成育医療研究センター出身
-                </span>
-              </div>
               <Link
                 href="/about"
-                className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-sage-600 transition-colors hover:text-sage-700"
+                className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-sage-600 transition-colors hover:text-sage-700"
               >
                 詳しいプロフィールを見る
                 <ArrowRight className="h-3.5 w-3.5" />

@@ -1,48 +1,48 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ── Sage (primary — 港区の緑・公園・並木のソフトグリーン) ── */
-  --color-sage-50:  #F2F6F1;
-  --color-sage-100: #E3EDE0;
-  --color-sage-200: #C5DBC0;
-  --color-sage-300: #9FC197;
-  --color-sage-400: #7A9B76;
-  --color-sage-500: #5E8A5A;
-  --color-sage-600: #5A7A56;
-  --color-sage-700: #4A6647;
-  --color-sage-800: #3D5539;
-  --color-sage-900: #2F4230;
+  /* ── Sage (primary — コーラル・キッズデザインでテンション上がる) ── */
+  --color-sage-50:  #FDF6F5;
+  --color-sage-100: #FAE9E6;
+  --color-sage-200: #F5D1CA;
+  --color-sage-300: #ECB0A5;
+  --color-sage-400: #E08B7C;
+  --color-sage-500: #D46D5B;
+  --color-sage-600: #C45A4A;
+  --color-sage-700: #A84C3F;
+  --color-sage-800: #8A3E34;
+  --color-sage-900: #6B3129;
 
-  /* ── Blush (accent — 控えめなダスティローズ) ── */
-  --color-blush-50:  #FAF5F4;
-  --color-blush-100: #F5EBE9;
-  --color-blush-200: #E8D6D2;
-  --color-blush-300: #D4B8B2;
-  --color-blush-400: #C4A098;
-  --color-blush-500: #B0887E;
-  --color-blush-600: #9D7A72;
+  /* ── Blush (accent — ソフトブルーで清潔感) ── */
+  --color-blush-50:  #F4F8FC;
+  --color-blush-100: #E8F0F9;
+  --color-blush-200: #D0E1F3;
+  --color-blush-300: #A8C9E9;
+  --color-blush-400: #7AB0DD;
+  --color-blush-500: #5A9BD4;
+  --color-blush-600: #4A8AC4;
 
-  /* ── Ivory (background — ほんのり温かみ白) ── */
-  --color-ivory-50:  #FAFAF8;
-  --color-ivory-100: #F5F3F0;
-  --color-ivory-200: #EBE8E3;
+  /* ── Ivory (background — ピュアホワイト) ── */
+  --color-ivory-50:  #FFFFFF;
+  --color-ivory-100: #FAFAFA;
+  --color-ivory-200: #F5F5F5;
 
-  /* ── Gold (装飾 — ソフトゴールド) ── */
-  --color-gold-400: #C9B896;
-  --color-gold-500: #B8A078;
-  --color-gold-600: #9A8458;
+  /* ── Gold (装飾 — ニュートラルグレー) ── */
+  --color-gold-400: #B0B0B0;
+  --color-gold-500: #909090;
+  --color-gold-600: #707070;
 
   /* ── Semantic Colors ── */
   --color-background: var(--color-ivory-50);
-  --color-foreground: #2C332A;
-  --color-muted: #5A6B56;
-  --color-border: #E3EDE0;
+  --color-foreground: #1A1A1A;
+  --color-muted: #6B6B6B;
+  --color-border: #EEEEEE;
   --color-primary: var(--color-sage-600);
   --color-primary-foreground: #ffffff;
   --color-accent: var(--color-blush-400);
   --color-accent-foreground: #ffffff;
   --color-card: #ffffff;
-  --color-card-foreground: #2C332A;
+  --color-card-foreground: #1A1A1A;
 
   /* ── Emergency Colors (安全上変更しない) ── */
   --color-emergency: #dc2626;
