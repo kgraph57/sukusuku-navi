@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { getAllArticles } from "@/lib/content";
+import { withBasePath } from "@/lib/image-path";
 
 export const metadata: Metadata = {
   title: "すくすくナビとは",
@@ -103,8 +105,15 @@ export default function AboutPage() {
       <section className="mx-auto mt-16 max-w-4xl sm:mt-24">
         <SectionHeading>運営者について</SectionHeading>
         <div className="mt-10 flex flex-col items-center gap-8 sm:flex-row sm:items-start">
-          <div className="flex h-32 w-32 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-400 to-teal-600 shadow-lg">
-            <WatercolorIcon name="stethoscope" size={56} className="text-white" />
+          <div className="h-32 w-32 shrink-0">
+            <Image
+              src={withBasePath("/characters/poses/konkon_wave.png")}
+              alt="おかもん先生（コンコン先生）"
+              width={128}
+              height={128}
+              className="h-full w-full object-contain drop-shadow-lg"
+              unoptimized
+            />
           </div>
           <div>
             <h3 className="font-heading text-xl font-semibold text-foreground">
