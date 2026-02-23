@@ -5,7 +5,7 @@
   "start_url": ".",
   "display": "standalone",
   "background_color": "#FFFFFF",
-  "theme_color": "#C45A4A",
+  "theme_color": "#2563EB",
   "orientation": "portrait-primary",
   "categories": ["health", "lifestyle"],
   "lang": "ja",

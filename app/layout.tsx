@@ -70,7 +70,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
-        <meta name="theme-color" content="#C45A4A" />
+        <meta name="theme-color" content="#2563EB" />
         <link rel="apple-touch-icon" href="/icon.svg" />
       </head>
       <body

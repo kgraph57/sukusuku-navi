@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ── Sage (primary — コーラル・キッズデザインでテンション上がる) ── */
-  --color-sage-50:  #FDF6F5;
-  --color-sage-100: #FAE9E6;
-  --color-sage-200: #F5D1CA;
-  --color-sage-300: #ECB0A5;
-  --color-sage-400: #E08B7C;
-  --color-sage-500: #D46D5B;
-  --color-sage-600: #C45A4A;
-  --color-sage-700: #A84C3F;
-  --color-sage-800: #8A3E34;
-  --color-sage-900: #6B3129;
+  /* ── Sage (primary — ソフトブルー・清潔・信頼) ── */
+  --color-sage-50:  #EFF6FF;
+  --color-sage-100: #DBEAFE;
+  --color-sage-200: #BFDBFE;
+  --color-sage-300: #93C5FD;
+  --color-sage-400: #60A5FA;
+  --color-sage-500: #3B82F6;
+  --color-sage-600: #2563EB;
+  --color-sage-700: #1D4ED8;
+  --color-sage-800: #1E40AF;
+  --color-sage-900: #1E3A8A;
 
   /* ── Blush (accent — ソフトブルーで清潔感) ── */
   --color-blush-50:  #F4F8FC;

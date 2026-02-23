@@ -78,7 +78,7 @@ export function ClinicLeafletMap({ clinics }: ClinicLeafletMapProps) {
         <span className="flex items-center gap-1">
           <span
             className="inline-block h-3 w-3 rounded-full"
-            style={{ backgroundColor: "#C45A4A" }}
+            style={{ backgroundColor: "#2563EB" }}
           />
           クリニック
         </span>
