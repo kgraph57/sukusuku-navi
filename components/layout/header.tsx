@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
@@ -37,6 +37,12 @@ const NAV_GROUPS: readonly NavGroup[] = [
         label: "健診ガイド",
         icon: "stethoscope",
         description: "乳幼児健診の時期と内容",
+      },
+      {
+        href: "/infection-alerts",
+        label: "感染症アラート",
+        icon: "alert" as const,
+        description: "今流行している感染症と予防情報",
       },
     ],
   },
@@ -151,7 +157,11 @@ function DropdownMenu({
               className="flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-sage-50"
               onClick={onClose}
             >
-              <WatercolorIcon name={item.icon} size={16} className="mt-0.5 shrink-0 text-sage-600" />
+              <WatercolorIcon
+                name={item.icon}
+                size={16}
+                className="mt-0.5 shrink-0 text-sage-600"
+              />
               <div>
                 <p className="text-sm font-medium text-foreground">
                   {item.label}
@@ -327,7 +337,9 @@ export function Header() {
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2.5">
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-teal-600">
-            <span className="font-heading text-sm font-bold leading-none text-white">す</span>
+            <span className="font-heading text-sm font-bold leading-none text-white">
+              す
+            </span>
           </div>
           <span className="font-heading text-lg tracking-wide text-foreground">
             すくすくナビ
@@ -414,7 +426,11 @@ export function Header() {
                       className="flex items-center gap-3 rounded-lg px-1 py-3 font-heading text-lg tracking-wide text-foreground transition-colors hover:text-sage-700"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      <WatercolorIcon name={item.icon} size={16} className="text-sage-600" />
+                      <WatercolorIcon
+                        name={item.icon}
+                        size={16}
+                        className="text-sage-600"
+                      />
                       {item.label}
                     </Link>
                   ))}
