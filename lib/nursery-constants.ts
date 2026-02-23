@@ -3,7 +3,7 @@ import type { NurseryType } from "./types";
 
 /** Hex colors for map marker SVGs */
 export const NURSERY_TYPE_HEX_MAP: Record<NurseryType, string> = {
-  licensed: "#5B7553",
+  licensed: "#3D4859",
   certified: "#2563eb",
   "small-scale": "#9333ea",
   kodomoen: "#ea580c",

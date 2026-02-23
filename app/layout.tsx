@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Shippori_Mincho, Noto_Sans_JP } from "next/font/google";
+import { Zen_Maru_Gothic, Noto_Sans_JP } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Providers } from "./providers";
 import "./globals.css";
 
-const shipporiMincho = Shippori_Mincho({
-  weight: ["400", "600"],
+const zenMaruGothic = Zen_Maru_Gothic({
+  weight: ["400", "500", "700"],
   subsets: ["latin"],
   variable: "--font-heading",
   display: "swap",
@@ -70,11 +70,11 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
-        <meta name="theme-color" content="#5B7553" />
+        <meta name="theme-color" content="#3D4859" />
         <link rel="apple-touch-icon" href="/icon.svg" />
       </head>
       <body
-        className={`${shipporiMincho.variable} ${notoSansJP.variable} antialiased`}
+        className={`${zenMaruGothic.variable} ${notoSansJP.variable} antialiased`}
       >
         <Providers>
           <Header />

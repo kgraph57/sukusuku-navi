@@ -1,48 +1,48 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ── Sage (primary — 自然の落ち着き) ── */
-  --color-sage-50:  #F4F7F2;
-  --color-sage-100: #E8EDE4;
-  --color-sage-200: #CDD8C6;
-  --color-sage-300: #A8B99E;
-  --color-sage-400: #8CA47F;
-  --color-sage-500: #6E8F5E;
-  --color-sage-600: #5B7553;
-  --color-sage-700: #4A6343;
-  --color-sage-800: #3A5134;
-  --color-sage-900: #2B3F26;
+  /* ── Sage → Navy (primary — 都会的で洗練された深紺) ── */
+  --color-sage-50:  #F4F5F7;
+  --color-sage-100: #E8EAEE;
+  --color-sage-200: #C5CAD4;
+  --color-sage-300: #9CA3B5;
+  --color-sage-400: #6B7590;
+  --color-sage-500: #4D5A6F;
+  --color-sage-600: #3D4859;
+  --color-sage-700: #2F3847;
+  --color-sage-800: #252D3A;
+  --color-sage-900: #1A202C;
 
-  /* ── Blush (accent — 母性の温かみ) ── */
-  --color-blush-50:  #FDF6F4;
-  --color-blush-100: #F8E8E3;
-  --color-blush-200: #E8CFC8;
-  --color-blush-300: #D9B5AC;
-  --color-blush-400: #C9A4A0;
-  --color-blush-500: #B8928C;
-  --color-blush-600: #A07A74;
+  /* ── Blush (accent — 洗練されたダスティモーヴ) ── */
+  --color-blush-50:  #FAF8F9;
+  --color-blush-100: #F3EEF0;
+  --color-blush-200: #E5DCE1;
+  --color-blush-300: #D2C2CA;
+  --color-blush-400: #B8A3AF;
+  --color-blush-500: #9D8594;
+  --color-blush-600: #826B79;
 
-  /* ── Ivory (background — 温かみのある白) ── */
-  --color-ivory-50:  #FAF7F2;
-  --color-ivory-100: #F5F0E8;
-  --color-ivory-200: #EDE6DA;
+  /* ── Ivory (background — 都会的なクリーンな白) ── */
+  --color-ivory-50:  #FAFAFA;
+  --color-ivory-100: #F5F5F5;
+  --color-ivory-200: #EEEEEE;
 
-  /* ── Gold (luxury accent) ── */
-  --color-gold-400: #C4A76C;
-  --color-gold-500: #B8A080;
-  --color-gold-600: #A08A60;
+  /* ── Gold → Champagne (ラグジュアリーな装飾) ── */
+  --color-gold-400: #D4C4A8;
+  --color-gold-500: #C4B896;
+  --color-gold-600: #A89878;
 
   /* ── Semantic Colors ── */
   --color-background: var(--color-ivory-50);
-  --color-foreground: #2C2926;
-  --color-muted: #8A8378;
-  --color-border: #DDD6CB;
+  --color-foreground: #1A202C;
+  --color-muted: #5A6575;
+  --color-border: #E2E4E8;
   --color-primary: var(--color-sage-600);
   --color-primary-foreground: #ffffff;
   --color-accent: var(--color-blush-400);
   --color-accent-foreground: #ffffff;
   --color-card: #ffffff;
-  --color-card-foreground: #2C2926;
+  --color-card-foreground: #1A202C;
 
   /* ── Emergency Colors (安全上変更しない) ── */
   --color-emergency: #dc2626;
@@ -50,7 +50,7 @@
   --color-safe: #22c55e;
 
   /* ── Fonts ── */
-  --font-heading: "Shippori Mincho", serif;
+  --font-heading: "Zen Maru Gothic", sans-serif;
   --font-body: "Noto Sans JP", sans-serif;
 
   /* ── Spacing & Radius ── */
