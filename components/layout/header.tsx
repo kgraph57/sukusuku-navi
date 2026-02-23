@@ -326,8 +326,8 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-white/95 backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-sage-700">
-            <WatercolorIcon name="baby" size={16} className="text-white" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-teal-600">
+            <span className="font-heading text-sm font-bold leading-none text-white">す</span>
           </div>
           <span className="font-heading text-lg tracking-wide text-foreground">
             すくすくナビ
