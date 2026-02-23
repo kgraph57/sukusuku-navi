@@ -1,16 +1,5 @@
 import Link from "next/link";
-import {
-  BookOpen,
-  Calculator,
-  Stethoscope,
-  MapPin,
-  ClipboardCheck,
-  ArrowRight,
-  Mail,
-  Calendar,
-  Heart,
-  GraduationCap,
-} from "lucide-react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import { getAllArticles } from "@/lib/content";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Card, CardTitle, CardDescription } from "@/components/shared/card";
@@ -21,69 +10,65 @@ import { CATEGORY_LABELS } from "@/lib/types";
 const FEATURES = [
   {
     href: "/articles",
-    icon: BookOpen,
+    iconName: "book" as const,
     title: "記事を読む",
     description:
       "小児科医が書いた50本以上のQ&A記事。感染症、アレルギー、予防接種など。",
-    color: "bg-teal-50 text-teal-600",
+    color: "bg-teal-50",
   },
   {
     href: "/simulator",
-    icon: Calculator,
+    iconName: "calculator" as const,
     title: "給付金シミュレーター",
     description:
       "お子さんの年齢と世帯情報から、受けられる行政サービス・助成金を一括検索。",
-    color: "bg-coral-50 text-coral-500",
+    color: "bg-coral-50",
   },
   {
     href: "/triage",
-    icon: Stethoscope,
+    iconName: "stethoscope" as const,
     title: "受診判断ガイド",
     description: "お子さんの症状から、いま病院に行くべきか判断をサポート。",
-    color: "bg-red-50 text-red-500",
+    color: "bg-red-50",
   },
   {
     href: "/clinics",
-    icon: MapPin,
+    iconName: "mappin" as const,
     title: "小児科マップ",
     description: "港区の小児科を地図で探せます。夜間・休日対応の医療機関も。",
-    color: "bg-blue-50 text-blue-500",
+    color: "bg-blue-50",
   },
   {
     href: "/checklists",
-    icon: ClipboardCheck,
+    iconName: "clipboard" as const,
     title: "手続きガイド",
     description: "出産前から入園まで、必要な手続きをチェックリストで管理。",
-    color: "bg-purple-50 text-purple-500",
+    color: "bg-purple-50",
   },
-] as const;
+];
 
-const RECOMMENDED_CATEGORIES: readonly {
-  readonly category: ArticleCategory;
-  readonly icon: typeof Heart;
-  readonly description: string;
-}[] = [
+const RECOMMENDED_CATEGORIES = [
   {
-    category: "infectious-disease",
-    icon: Stethoscope,
+    category: "infectious-disease" as ArticleCategory,
+    iconName: "stethoscope" as const,
     description: "RSウイルス、インフルエンザ、手足口病など季節の感染症対策",
   },
   {
-    category: "allergy",
-    icon: Heart,
+    category: "allergy" as ArticleCategory,
+    iconName: "heart" as const,
     description: "食物アレルギー、アトピー、花粉症の最新エビデンス",
   },
   {
-    category: "vaccination",
-    icon: ClipboardCheck,
+    category: "vaccination" as ArticleCategory,
+    iconName: "syringe" as const,
     description: "定期接種・任意接種のスケジュールと副反応の正しい知識",
   },
   {
-    category: "development",
-    icon: GraduationCap,
+    category: "development" as ArticleCategory,
+    iconName: "lightbulb" as const,
     description: "ことば・運動・社会性の発達マイルストーン",
   },
-] as const;
+];
 
 function HeroBackground() {
   return (
@@ -208,7 +193,7 @@ export default function HomePage() {
         <HeroBackground />
         <div className="relative mx-auto max-w-3xl text-center">
           <p className="inline-flex items-center gap-1.5 rounded-full bg-teal-100/70 px-4 py-1.5 text-sm font-medium text-teal-700">
-            <Stethoscope className="h-3.5 w-3.5" />
+            <WatercolorIcon name="stethoscope" size={18} />
             愛育病院 小児科おかもん
           </p>
           <h1 className="mt-5 font-heading text-3xl font-bold leading-tight text-foreground sm:text-5xl">
@@ -228,7 +213,7 @@ export default function HomePage() {
               className="inline-flex items-center gap-2 rounded-full bg-teal-600 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-teal-600/25 transition-all hover:bg-teal-700 hover:shadow-xl hover:shadow-teal-600/30"
             >
               記事を読む
-              <ArrowRight className="h-4 w-4" />
+              <WatercolorIcon name="arrow_right" size={18} />
             </Link>
             <Link
               href="/simulator"
@@ -257,9 +242,9 @@ export default function HomePage() {
                 className="group rounded-xl border border-border bg-card p-6 transition-all hover:border-teal-200 hover:shadow-md"
               >
                 <div
-                  className={`inline-flex h-10 w-10 items-center justify-center rounded-lg ${feature.color}`}
+                  className={`inline-flex h-14 w-14 items-center justify-center rounded-xl ${feature.color}`}
                 >
-                  <feature.icon className="h-5 w-5" />
+                  <WatercolorIcon name={feature.iconName} size={40} />
                 </div>
                 <h3 className="mt-4 font-heading text-lg font-bold text-card-foreground">
                   {feature.title}
@@ -269,7 +254,7 @@ export default function HomePage() {
                 </p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-600 opacity-0 transition-opacity group-hover:opacity-100">
                   詳しく見る
-                  <ArrowRight className="h-3.5 w-3.5" />
+                  <WatercolorIcon name="arrow_right" size={16} />
                 </span>
               </Link>
             ))}
@@ -305,7 +290,7 @@ export default function HomePage() {
                   </CardDescription>
                   <div className="mt-4 flex items-center gap-3 text-xs text-muted">
                     <span className="flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
+                      <WatercolorIcon name="calendar" size={14} />
                       {formatDate(article.frontmatter.publishedAt)}
                     </span>
                     <span>Q&amp;A {article.frontmatter.qaCount}問</span>
@@ -318,8 +303,8 @@ export default function HomePage() {
                 href="/articles"
                 className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-white px-6 py-3 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
               >
-                すべての記事を見る
-                <ArrowRight className="h-4 w-4" />
+                  すべての記事を見る
+                <WatercolorIcon name="arrow_right" size={18} />
               </Link>
             </div>
           </div>
@@ -339,8 +324,8 @@ export default function HomePage() {
                 className="rounded-xl border border-border bg-card p-6"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-50 text-teal-600">
-                    <rec.icon className="h-5 w-5" />
+                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-teal-50">
+                    <WatercolorIcon name={rec.iconName} size={40} />
                   </div>
                   <div>
                     <h3 className="font-heading text-base font-bold text-card-foreground">
@@ -363,7 +348,7 @@ export default function HomePage() {
                           <span className="line-clamp-1 group-hover:underline">
                             {article.frontmatter.title}
                           </span>
-                          <ArrowRight className="ml-auto h-3.5 w-3.5 shrink-0 text-muted opacity-0 transition-opacity group-hover:opacity-100" />
+                          <WatercolorIcon name="arrow_right" size={16} className="ml-auto shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
                         </Link>
                       </li>
                     ))}
@@ -382,8 +367,8 @@ export default function HomePage() {
         <div className="mx-auto max-w-4xl">
           <SectionHeading>運営者について</SectionHeading>
           <div className="mt-10 flex flex-col items-center gap-8 sm:flex-row sm:items-start">
-            <div className="flex h-28 w-28 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-400 to-teal-600 shadow-lg">
-              <Stethoscope className="h-12 w-12 text-white" />
+            <div className="flex h-28 w-28 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-50 to-teal-100 shadow-lg">
+              <WatercolorIcon name="stethoscope" size={72} />
             </div>
             <div>
               <h3 className="font-heading text-xl font-semibold tracking-wide text-foreground">
@@ -400,7 +385,7 @@ export default function HomePage() {
                 className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-600 transition-colors hover:text-teal-700"
               >
                 詳しいプロフィールを見る
-                <ArrowRight className="h-3.5 w-3.5" />
+                <WatercolorIcon name="arrow_right" size={16} />
               </Link>
             </div>
           </div>
@@ -411,8 +396,8 @@ export default function HomePage() {
       <section className="px-4 py-16 sm:py-24">
         <div className="mx-auto max-w-3xl">
           <div className="rounded-2xl bg-gradient-to-br from-teal-600 to-teal-700 px-6 py-12 text-center shadow-xl sm:px-12">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-white/20">
-              <Mail className="h-7 w-7 text-white" />
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/20">
+              <WatercolorIcon name="mail" size={52} />
             </div>
             <h2 className="mt-5 font-heading text-2xl font-bold text-white sm:text-3xl">
               メルマガに登録しませんか？
@@ -425,7 +410,7 @@ export default function HomePage() {
                 href="/contact"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium text-teal-700 shadow-lg transition-all hover:bg-teal-50 hover:shadow-xl"
               >
-                <Mail className="h-4 w-4" />
+                <WatercolorIcon name="mail" size={20} />
                 メルマガ登録はこちら
               </Link>
             </div>
