@@ -121,24 +121,9 @@ export default function HomePage() {
         </div>
 
         <div className="relative mx-auto max-w-5xl">
-          <div className="flex flex-col items-center lg:flex-row lg:items-end lg:gap-8">
-
-            {/* 左キャラ：うさぎーさん（スライドイン左） */}
-            <div className="order-3 hidden lg:order-1 lg:block lg:w-48 lg:shrink-0">
-              <ScrollReveal direction="left" delay={200}>
-                <Image
-                  src={withBasePath("/characters/poses/usagi_happy.png")}
-                  alt="うさぎーさん"
-                  width={180}
-                  height={220}
-                  className="drop-shadow-lg"
-                  unoptimized
-                />
-              </ScrollReveal>
-            </div>
-
+            <div className="flex flex-col items-center gap-8">
             {/* 中央テキスト */}
-            <div className="order-1 flex-1 pb-12 text-center lg:order-2 lg:pb-16">
+            <div className="flex-1 pb-4 text-center">
               <ScrollReveal direction="up" delay={0}>
                 <p className="inline-flex items-center gap-1.5 rounded-full bg-teal-100/70 px-4 py-1.5 text-sm font-medium text-teal-700">
                   <WatercolorIcon name="stethoscope" size={18} />
@@ -180,43 +165,17 @@ export default function HomePage() {
                   {allArticles.length}本以上の記事を無料で公開中
                 </p>
               </ScrollReveal>
-            </div>
-
-            {/* 右キャラ：コンコン先生（スライドイン右） */}
-            <div className="order-2 hidden lg:order-3 lg:block lg:w-48 lg:shrink-0">
-              <ScrollReveal direction="right" delay={200}>
-                <Image
-                  src={withBasePath("/characters/poses/konkon_wave.png")}
-                  alt="コンコン先生"
-                  width={180}
-                  height={220}
-                  className="drop-shadow-lg"
-                  unoptimized
-                />
-              </ScrollReveal>
-            </div>
-          </div>
-
-          {/* モバイル用：小さなキャラクター2体 */}
-          <div className="flex justify-center gap-8 lg:hidden">
-            <ScrollReveal direction="left" delay={300}>
+             </div>
+            {/* 集合イラスト */}
+            <ScrollReveal direction="up" delay={400}>
               <Image
-                src={withBasePath("/characters/poses/usagi_happy.png")}
-                alt="うさぎーさん"
-                width={100}
-                height={120}
-                className="drop-shadow-md"
+                src={withBasePath("/characters/illustrations/hero_all_characters.png")}
+                alt="すくすくナビのキャラクターたち"
+                width={900}
+                height={501}
+                className="mx-auto w-full max-w-3xl"
                 unoptimized
-              />
-            </ScrollReveal>
-            <ScrollReveal direction="right" delay={300}>
-              <Image
-                src={withBasePath("/characters/poses/konkon_wave.png")}
-                alt="コンコン先生"
-                width={100}
-                height={120}
-                className="drop-shadow-md"
-                unoptimized
+                priority
               />
             </ScrollReveal>
           </div>
