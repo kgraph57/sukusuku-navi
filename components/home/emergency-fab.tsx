@@ -1,6 +1,4 @@
-"use client"
-
-;
+"use client";
 
 import { useState } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
@@ -35,7 +33,7 @@ export function EmergencyFab() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
+    <div className="fixed bottom-20 right-6 z-40 flex flex-col items-end gap-3 md:bottom-6">
       {isOpen && (
         <div className="mb-2 w-72 rounded-2xl border border-red-100 bg-white p-4 shadow-xl">
           <div className="flex items-center justify-between">

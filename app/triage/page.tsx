@@ -95,12 +95,28 @@ export default function TriagePage() {
             </div>
             <div className="text-center">
               <h1 className="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
-                <WatercolorIcon name="stethoscope" size={32} className="mr-2 inline-block   text-sage-600" />
+                <WatercolorIcon
+                  name="stethoscope"
+                  size={32}
+                  className="mr-2 inline-block   text-sage-600"
+                />
                 症状チェック
               </h1>
               <p className="mt-4 text-base leading-relaxed text-muted">
                 質問に答えていくだけで、受診の緊急度を判断します。
               </p>
+              <div className="mt-3 flex justify-center">
+                <div className="inline-flex items-center gap-2 rounded-full border border-sage-200 bg-white/80 px-4 py-1.5">
+                  <WatercolorIcon
+                    name="stethoscope"
+                    size={14}
+                    className="text-sage-600"
+                  />
+                  <span className="text-xs font-medium text-sage-700">
+                    小児科医が監修しています
+                  </span>
+                </div>
+              </div>
             </div>
             <div className="hidden sm:block">
               <Image
@@ -118,7 +134,11 @@ export default function TriagePage() {
       <section className="border-b border-border bg-yellow-50 px-4 py-4">
         <div className="mx-auto max-w-3xl">
           <div className="flex gap-3">
-            <WatercolorIcon name="alert" size={20} className="shrink-0 text-yellow-600" />
+            <WatercolorIcon
+              name="alert"
+              size={20}
+              className="shrink-0 text-yellow-600"
+            />
             <div className="text-sm leading-relaxed text-yellow-800">
               <p className="font-medium">
                 このチェックは医師の診断に代わるものではありません。

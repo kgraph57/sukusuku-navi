@@ -1,6 +1,4 @@
-"use client"
-
-;
+"use client";
 
 import { useState } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
@@ -98,6 +96,39 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
                 </span>
               </div>
             )}
+
+            {(program.deadline || program.applicationMethods) && (
+              <div className="mt-3 space-y-1.5">
+                {program.deadline && (
+                  <div className="flex items-center gap-1.5 text-sm">
+                    <WatercolorIcon
+                      name="clock"
+                      size={14}
+                      className="shrink-0 text-blush-500"
+                    />
+                    <span className="font-medium text-blush-600">
+                      期限: {program.deadline}
+                    </span>
+                  </div>
+                )}
+                {program.applicationMethods &&
+                  program.applicationMethods.length > 0 && (
+                    <div className="flex items-center gap-1.5 text-sm">
+                      <WatercolorIcon
+                        name="mappin"
+                        size={14}
+                        className="shrink-0 text-muted"
+                      />
+                      <span className="text-muted">
+                        {program.applicationMethods[0].label}
+                        {program.applicationMethods[0].address
+                          ? ` (${program.applicationMethods[0].address})`
+                          : ""}
+                      </span>
+                    </div>
+                  )}
+              </div>
+            )}
           </div>
         </div>
 
@@ -121,7 +152,11 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
                 key={item}
                 className="flex items-start gap-2 rounded-lg bg-ivory-50 px-3 py-2"
               >
-                <WatercolorIcon name="check" size={16} className="mt-0.5   shrink-0 text-sage-500" />
+                <WatercolorIcon
+                  name="check"
+                  size={16}
+                  className="mt-0.5   shrink-0 text-sage-500"
+                />
                 <span className="text-sm text-card-foreground">{item}</span>
               </div>
             ))}

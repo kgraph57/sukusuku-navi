@@ -99,7 +99,10 @@ export default function HomePage() {
       {/* ─── Hero Section ─── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-teal-50 via-warm-50 to-coral-50/30 px-4 pb-0 pt-12 sm:pt-20">
         {/* 背景装飾の丸 */}
-        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div
+          className="pointer-events-none absolute inset-0"
+          aria-hidden="true"
+        >
           <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-teal-100/40 blur-3xl" />
           <div className="absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-coral-100/40 blur-3xl" />
         </div>
@@ -110,41 +113,60 @@ export default function HomePage() {
             <div className="flex-1 pb-4 text-center">
               <p className="inline-flex items-center gap-1.5 rounded-full bg-teal-100/70 px-4 py-1.5 text-sm font-medium text-teal-700">
                 <WatercolorIcon name="stethoscope" size={18} />
-                愛育病院 小児科おかもん
+                愛育病院小児科医・おかもんが作りました
               </p>
               <h1 className="mt-5 font-heading text-3xl font-bold leading-tight text-foreground sm:text-5xl">
-                診察室の外でも、
+                生年月日を登録するだけで、
                 <br />
                 <span className="bg-gradient-to-r from-teal-700 to-teal-500 bg-clip-text text-transparent">
-                  お子さんのそばに。
+                  今週やることがわかる。
                 </span>
               </h1>
               <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-                小児科医がエビデンスに基づいて書いた記事、給付金シミュレーター、受診判断ガイド。
-                子育てに必要な情報を、ひとつの場所に。
+                産後の情報過負荷から親を解放する、医師設計の伴走ツール。
+                <br className="hidden sm:inline" />
+                予防接種、届出、健診 ──
+                必要なアクションを最適なタイミングでお届けします。
               </p>
               <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <Link
-                  href="/articles"
+                  href="/my"
                   className="inline-flex items-center gap-2 rounded-full bg-teal-600 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-teal-600/25 transition-all hover:bg-teal-700 hover:shadow-xl hover:shadow-teal-600/30"
                 >
-                  記事を読む
+                  生年月日を登録して始める
                   <WatercolorIcon name="arrow_right" size={18} />
                 </Link>
                 <Link
-                  href="/simulator"
+                  href="/articles"
                   className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-white px-7 py-3.5 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
                 >
-                  給付金を調べる
+                  記事を読む
                 </Link>
               </div>
-              <p className="mt-6 text-xs text-muted">
+              {/* 信頼バッジ */}
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1 text-xs font-medium text-teal-700 shadow-sm">
+                  <WatercolorIcon name="stethoscope" size={14} />
+                  現役小児科医監修
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1 text-xs font-medium text-teal-700 shadow-sm">
+                  <WatercolorIcon name="heart" size={14} />
+                  愛育病院
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1 text-xs font-medium text-teal-700 shadow-sm">
+                  <WatercolorIcon name="mappin" size={14} />
+                  港区特化
+                </span>
+              </div>
+              <p className="mt-4 text-xs text-muted">
                 {allArticles.length}本以上の記事を無料で公開中
               </p>
             </div>
             {/* 集合イラスト */}
             <Image
-              src={withBasePath("/characters/illustrations/hero_all_characters.png")}
+              src={withBasePath(
+                "/characters/illustrations/hero_all_characters.png",
+              )}
               alt="すくすくナビのキャラクターたち"
               width={900}
               height={501}
@@ -152,6 +174,41 @@ export default function HomePage() {
               unoptimized
               priority
             />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Timeline CTA Section ─── */}
+      <section className="border-t border-teal-100 bg-gradient-to-r from-teal-50/80 via-white to-coral-50/40 px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl">
+          <div className="rounded-2xl border border-teal-200/60 bg-white px-6 py-10 text-center shadow-sm sm:px-10">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-teal-100">
+              <WatercolorIcon name="calendar" size={28} />
+            </div>
+            <h2 className="mt-4 font-heading text-xl font-bold text-foreground sm:text-2xl">
+              生年月日を登録して、
+              <br className="sm:hidden" />
+              今週やることを見る
+            </h2>
+            <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-muted">
+              お子さんの生年月日を登録するだけで、今やるべき手続き・健診・予防接種が自動で表示されます。
+              届出の期限や見逃しがちな助成金も、もう忘れません。
+            </p>
+            <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <Link
+                href="/my"
+                className="inline-flex items-center gap-2 rounded-full bg-teal-600 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-teal-600/25 transition-all hover:bg-teal-700 hover:shadow-xl hover:shadow-teal-600/30"
+              >
+                <WatercolorIcon name="baby" size={18} />
+                登録してタイムラインを見る
+              </Link>
+              <Link
+                href="/my/timeline"
+                className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-white px-7 py-3.5 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
+              >
+                タイムラインを試す
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -276,7 +333,11 @@ export default function HomePage() {
                           <span className="line-clamp-1 group-hover:underline">
                             {article.frontmatter.title}
                           </span>
-                          <WatercolorIcon name="arrow_right" size={16} className="ml-auto shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
+                          <WatercolorIcon
+                            name="arrow_right"
+                            size={16}
+                            className="ml-auto shrink-0 opacity-0 transition-opacity group-hover:opacity-100"
+                          />
                         </Link>
                       </li>
                     ))}
@@ -298,7 +359,9 @@ export default function HomePage() {
             {/* コンコン先生イラスト */}
             <div className="shrink-0">
               <Image
-                src={withBasePath("/characters/illustrations/about_konkon_doctor.png")}
+                src={withBasePath(
+                  "/characters/illustrations/about_konkon_doctor.png",
+                )}
                 alt="コンコン先生"
                 width={160}
                 height={180}

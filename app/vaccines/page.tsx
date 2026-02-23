@@ -123,7 +123,11 @@ export default function VaccinesPage() {
             {/* テキスト中央 */}
             <div className="text-center">
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-sage-100">
-                <WatercolorIcon name="syringe" size={28} className="text-sage-600" />
+                <WatercolorIcon
+                  name="syringe"
+                  size={28}
+                  className="text-sage-600"
+                />
               </div>
               <h1 className="mt-5 font-heading text-3xl font-semibold text-foreground sm:text-4xl">
                 予防接種ガイド
@@ -161,8 +165,35 @@ export default function VaccinesPage() {
         </div>
       </section>
 
+      {/* Medical Supervision Notice */}
+      <section className="px-4 pt-10 pb-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="rounded-lg border border-blue-200 bg-blue-50/50 px-4 py-3">
+            <p className="flex items-start gap-2 text-xs leading-relaxed text-blue-800">
+              <WatercolorIcon
+                name="shield"
+                size={14}
+                className="mt-0.5 shrink-0"
+              />
+              <span>
+                このスケジュールは
+                <a
+                  href="https://www.jpeds.or.jp/modules/activity/index.php?content_id=138"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium underline hover:text-blue-900"
+                >
+                  日本小児科学会の推奨スケジュール（2024年版）
+                </a>
+                と港区の公費助成情報に基づいています。監修：小児科専門医おかもん先生
+              </span>
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Doctor's Message */}
-      <section className="px-4 py-10">
+      <section className="px-4 py-6">
         <div className="mx-auto max-w-4xl">
           <div className="flex gap-4 rounded-xl border border-sage-200 bg-sage-50/50 p-5 sm:p-6">
             <div className="shrink-0">
@@ -223,22 +254,38 @@ export default function VaccinesPage() {
 
           <div className="rounded-xl border border-sage-200 bg-sage-50 p-5">
             <div className="flex items-start gap-3">
-              <WatercolorIcon name="star" size={20} className="mt-0.5   shrink-0 text-sage-600" />
+              <WatercolorIcon
+                name="star"
+                size={20}
+                className="mt-0.5   shrink-0 text-sage-600"
+              />
               <div className="space-y-1.5">
                 <p className="text-sm font-bold text-sage-800">
                   予防接種の基本ルール
                 </p>
                 <ul className="space-y-1 text-sm text-sage-700">
                   <li className="flex items-start gap-1.5">
-                    <WatercolorIcon name="check" size={12} className="mt-0.5 .5 .5 shrink-0 text-sage-500" />
+                    <WatercolorIcon
+                      name="check"
+                      size={12}
+                      className="mt-0.5 .5 .5 shrink-0 text-sage-500"
+                    />
                     生後2ヶ月から開始。五種混合・肺炎球菌・B型肝炎・ロタを同時接種するのが標準的なスタートです
                   </li>
                   <li className="flex items-start gap-1.5">
-                    <WatercolorIcon name="check" size={12} className="mt-0.5 .5 .5 shrink-0 text-sage-500" />
+                    <WatercolorIcon
+                      name="check"
+                      size={12}
+                      className="mt-0.5 .5 .5 shrink-0 text-sage-500"
+                    />
                     同時接種は安全です。複数のワクチンを1回の来院でまとめて受けることで、早く免疫をつけられます
                   </li>
                   <li className="flex items-start gap-1.5">
-                    <WatercolorIcon name="check" size={12} className="mt-0.5 .5 .5 shrink-0 text-sage-500" />
+                    <WatercolorIcon
+                      name="check"
+                      size={12}
+                      className="mt-0.5 .5 .5 shrink-0 text-sage-500"
+                    />
                     定期接種は公費（無料）で受けられます。対象年齢・期間内に接種しましょう
                   </li>
                 </ul>
@@ -249,7 +296,11 @@ export default function VaccinesPage() {
           <div>
             <div className="flex items-center gap-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-sage-100">
-                <WatercolorIcon name="syringe" size={12} className=".5 .5 text-sage-700" />
+                <WatercolorIcon
+                  name="syringe"
+                  size={12}
+                  className=".5 .5 text-sage-700"
+                />
               </span>
               <h3 className="font-heading text-xl font-semibold text-foreground">
                 定期接種
@@ -271,7 +322,11 @@ export default function VaccinesPage() {
           <div>
             <div className="flex items-center gap-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-orange-100">
-                <WatercolorIcon name="syringe" size={12} className=".5 .5 text-orange-700" />
+                <WatercolorIcon
+                  name="syringe"
+                  size={12}
+                  className=".5 .5 text-orange-700"
+                />
               </span>
               <h3 className="font-heading text-xl font-semibold text-foreground">
                 任意接種
@@ -371,7 +426,11 @@ export default function VaccinesPage() {
                       {article.frontmatter.title}
                     </h3>
                   </div>
-                  <WatercolorIcon name="arrow_right" size={16} className="shrink-0 text-muted opacity-0 transition-opacity group-hover:opacity-100" />
+                  <WatercolorIcon
+                    name="arrow_right"
+                    size={16}
+                    className="shrink-0 text-muted opacity-0 transition-opacity group-hover:opacity-100"
+                  />
                 </Link>
               ))}
             </div>
@@ -396,7 +455,11 @@ export default function VaccinesPage() {
               className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-sage-200 bg-sage-50">
-                <WatercolorIcon name="shield" size={20} className="text-sage-600" />
+                <WatercolorIcon
+                  name="shield"
+                  size={20}
+                  className="text-sage-600"
+                />
               </div>
               <div className="min-w-0 flex-1">
                 <h3 className="font-heading text-sm font-semibold text-card-foreground group-hover:text-sage-700">
@@ -418,7 +481,11 @@ export default function VaccinesPage() {
               className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blue-200 bg-blue-50">
-                <WatercolorIcon name="shield" size={20} className="text-blue-600" />
+                <WatercolorIcon
+                  name="shield"
+                  size={20}
+                  className="text-blue-600"
+                />
               </div>
               <div className="min-w-0 flex-1">
                 <h3 className="font-heading text-sm font-semibold text-card-foreground group-hover:text-sage-700">
@@ -440,7 +507,11 @@ export default function VaccinesPage() {
               className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-purple-200 bg-purple-50">
-                <WatercolorIcon name="book" size={20} className="text-purple-600" />
+                <WatercolorIcon
+                  name="book"
+                  size={20}
+                  className="text-purple-600"
+                />
               </div>
               <div className="min-w-0 flex-1">
                 <h3 className="font-heading text-sm font-semibold text-card-foreground group-hover:text-sage-700">
@@ -462,7 +533,11 @@ export default function VaccinesPage() {
               className="group flex gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blush-200 bg-blush-50">
-                <WatercolorIcon name="stethoscope" size={20} className="text-blush-600" />
+                <WatercolorIcon
+                  name="stethoscope"
+                  size={20}
+                  className="text-blush-600"
+                />
               </div>
               <div className="min-w-0 flex-1">
                 <h3 className="font-heading text-sm font-semibold text-card-foreground group-hover:text-sage-700">

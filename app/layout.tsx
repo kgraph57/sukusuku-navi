@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Zen_Maru_Gothic, Noto_Sans_JP } from "next/font/google";
 import { Header } from "@/components/layout/header";
+import { TrustBar } from "@/components/shared/trust-bar";
 import { Footer } from "@/components/layout/footer";
+import { BottomNav } from "@/components/layout/bottom-nav";
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -78,8 +80,10 @@ export default function RootLayout({
       >
         <Providers>
           <Header />
-          <main className="min-h-screen">{children}</main>
+          <TrustBar />
+          <main className="min-h-screen pb-16 md:pb-0">{children}</main>
           <Footer />
+          <BottomNav />
         </Providers>
       </body>
     </html>

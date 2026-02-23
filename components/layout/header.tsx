@@ -187,7 +187,7 @@ function MobileAuthLinks({ onClose }: { readonly onClose: () => void }) {
     return (
       <Link
         href="/my"
-        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-sage-50 hover:text-sage-700"
+        className="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-3 text-base font-medium text-foreground transition-colors hover:bg-sage-50 hover:text-sage-700 active:bg-sage-100"
         onClick={onClose}
       >
         <WatercolorIcon name="user" size={16} className="text-sage-600" />
@@ -197,14 +197,14 @@ function MobileAuthLinks({ onClose }: { readonly onClose: () => void }) {
   }
 
   if (loading) {
-    return <div className="h-10 animate-pulse rounded-lg bg-ivory-50" />;
+    return <div className="h-11 animate-pulse rounded-lg bg-ivory-50" />;
   }
 
   if (!user) {
     return (
       <Link
         href="/auth/login"
-        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-sage-600 transition-colors hover:bg-sage-50"
+        className="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-3 text-base font-medium text-sage-600 transition-colors hover:bg-sage-50 active:bg-sage-100"
         onClick={onClose}
       >
         <WatercolorIcon name="user" size={16} />
@@ -217,7 +217,7 @@ function MobileAuthLinks({ onClose }: { readonly onClose: () => void }) {
     <>
       <Link
         href="/my"
-        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-sage-50 hover:text-sage-700"
+        className="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-3 text-base font-medium text-foreground transition-colors hover:bg-sage-50 hover:text-sage-700 active:bg-sage-100"
         onClick={onClose}
       >
         <WatercolorIcon name="user" size={16} className="text-sage-600" />
@@ -229,7 +229,7 @@ function MobileAuthLinks({ onClose }: { readonly onClose: () => void }) {
           await signOut();
           onClose();
         }}
-        className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-muted transition-colors hover:bg-ivory-50 hover:text-foreground"
+        className="flex min-h-[44px] w-full items-center gap-3 rounded-lg px-3 py-3 text-base font-medium text-muted transition-colors hover:bg-ivory-50 hover:text-foreground active:bg-ivory-100"
       >
         <WatercolorIcon name="logout" size={16} />
         ログアウト
@@ -423,7 +423,7 @@ export function Header() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="flex items-center gap-3 rounded-lg px-1 py-3 font-heading text-lg tracking-wide text-foreground transition-colors hover:text-sage-700"
+                      className="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-3 font-heading text-lg tracking-wide text-foreground transition-colors hover:text-sage-700 active:bg-sage-50"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <WatercolorIcon
@@ -439,7 +439,7 @@ export function Header() {
               <div className="border-t border-border pt-4">
                 <Link
                   href={STANDALONE_NAV.href}
-                  className="flex items-center gap-3 rounded-lg px-1 py-3 font-heading text-lg tracking-wide text-red-600 transition-colors hover:text-red-700"
+                  className="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-3 font-heading text-lg tracking-wide text-red-600 transition-colors hover:text-red-700 active:bg-red-50"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <WatercolorIcon name={STANDALONE_NAV.icon} size={16} />

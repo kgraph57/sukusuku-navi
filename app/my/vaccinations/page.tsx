@@ -1,6 +1,4 @@
-"use client"
-
-;
+"use client";
 
 import { useState, useEffect, useCallback } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
@@ -11,8 +9,13 @@ import type {
   ChildProfile,
   VaccinationRecord,
 } from "@/lib/store";
-import { getAllVaccines, VACCINE_TYPE_LABELS } from "@/lib/vaccines";
+import {
+  getAllVaccines,
+  VACCINE_TYPE_LABELS,
+  formatAgeMonths,
+} from "@/lib/vaccines";
 import { getChildAge, formatAge } from "@/lib/utils/age";
+import { getUpcomingVaccinations } from "@/lib/vaccination-schedule";
 import type { Vaccine, VaccineDose } from "@/lib/types";
 
 // ---------------------------------------------------------------------------
@@ -100,6 +103,95 @@ function ProgressSummary({
 }
 
 // ---------------------------------------------------------------------------
+// Upcoming vaccinations summary
+// ---------------------------------------------------------------------------
+
+function UpcomingVaccinationsSummary({
+  birthDate,
+  records,
+}: {
+  readonly birthDate: string;
+  readonly records: readonly VaccinationRecord[];
+}) {
+  const upcoming = getUpcomingVaccinations(birthDate, records);
+  const nextItems = upcoming.slice(0, 3);
+
+  if (nextItems.length === 0) {
+    return (
+      <div className="rounded-xl border border-sage-200 bg-sage-50/50 p-5 text-center">
+        <WatercolorIcon
+          name="check"
+          size={24}
+          className="mx-auto text-sage-500"
+        />
+        <p className="mt-2 text-sm font-medium text-sage-700">
+          直近で予定されている予防接種はありません
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-xl border border-purple-200 bg-purple-50/50 p-5">
+      <h3 className="flex items-center gap-2 text-sm font-semibold text-purple-800">
+        <WatercolorIcon name="clock" size={16} />
+        次の予防接種
+      </h3>
+      <div className="mt-3 space-y-2">
+        {nextItems.map((item) => (
+          <div
+            key={`${item.vaccine.slug}-${item.dose.doseNumber}`}
+            className={`flex items-center gap-3 rounded-lg border p-3 ${
+              item.isOverdue
+                ? "border-red-200 bg-red-50"
+                : "border-border bg-white"
+            }`}
+          >
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-purple-100">
+              <WatercolorIcon
+                name="syringe"
+                size={14}
+                className="text-purple-600"
+              />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-medium text-card-foreground">
+                {item.vaccine.nameShort} {item.dose.label}
+              </p>
+              <p className="text-xs text-muted">
+                標準時期: {formatAgeMonths(item.dose.ageMonthsStandard)}
+              </p>
+            </div>
+            <div className="shrink-0 text-right">
+              {item.isOverdue ? (
+                <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">
+                  期限超過
+                </span>
+              ) : item.daysUntilStandard <= 0 ? (
+                <span className="rounded-full bg-orange-100 px-2 py-0.5 text-xs font-medium text-orange-700">
+                  今が接種時期
+                </span>
+              ) : (
+                <span className="rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-700">
+                  あと約{item.daysUntilStandard}日
+                </span>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+      <Link
+        href="/vaccines"
+        className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-purple-600 hover:text-purple-700"
+      >
+        全スケジュールを見る
+        <WatercolorIcon name="arrow_right" size={12} className="rotate-180" />
+      </Link>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Dose row with toggle
 // ---------------------------------------------------------------------------
 
@@ -146,15 +238,14 @@ function DoseRow({
       <div className="min-w-0 flex-1">
         <p
           className={`text-sm font-medium ${
-            isCompleted
-              ? "text-sage-700 line-through"
-              : "text-card-foreground"
+            isCompleted ? "text-sage-700 line-through" : "text-card-foreground"
           }`}
         >
           {dose.label}
         </p>
         <p className="text-xs text-muted">
-          標準: {dose.ageMonthsStandard < 12
+          標準:{" "}
+          {dose.ageMonthsStandard < 12
             ? `${dose.ageMonthsStandard}ヶ月`
             : `${Math.floor(dose.ageMonthsStandard / 12)}歳${dose.ageMonthsStandard % 12 > 0 ? `${dose.ageMonthsStandard % 12}ヶ月` : ""}`}
         </p>
@@ -230,7 +321,7 @@ function VaccineCard({
           <WatercolorIcon name="syringe" size={20} />
         </div>
         <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <h3 className="font-heading text-sm font-semibold text-card-foreground">
               {vaccine.nameShort}
             </h3>
@@ -243,6 +334,11 @@ function VaccineCard({
             >
               {VACCINE_TYPE_LABELS[vaccine.type]}
             </span>
+            {vaccine.relatedProgramSlug && (
+              <span className="rounded-full border border-blush-200 bg-blush-50 px-2 py-0.5 text-[10px] font-medium text-blush-600">
+                港区助成
+              </span>
+            )}
           </div>
           <div className="mt-1 flex items-center gap-2">
             <div className="h-1.5 w-20 overflow-hidden rounded-full bg-ivory-100">
@@ -259,9 +355,17 @@ function VaccineCard({
           </div>
         </div>
         {isExpanded ? (
-          <WatercolorIcon name="star" size={16} className="shrink-0 text-muted" />
+          <WatercolorIcon
+            name="star"
+            size={16}
+            className="shrink-0 text-muted"
+          />
         ) : (
-          <WatercolorIcon name="arrow_right" size={16} className="shrink-0 text-muted" />
+          <WatercolorIcon
+            name="arrow_right"
+            size={16}
+            className="shrink-0 text-muted"
+          />
         )}
       </button>
 
@@ -433,7 +537,11 @@ export default function VaccinationsPage() {
             マイページ
           </Link>
           <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground sm:text-3xl">
-            <WatercolorIcon name="syringe" size={28} className="mr-2 inline-block   text-purple-600" />
+            <WatercolorIcon
+              name="syringe"
+              size={28}
+              className="mr-2 inline-block   text-purple-600"
+            />
             予防接種記録
           </h1>
           <p className="mt-2 text-sm text-muted">
@@ -457,7 +565,11 @@ export default function VaccinationsPage() {
           {selectedChild && (
             <div className="flex items-center gap-3 rounded-xl border border-border bg-card p-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-100">
-                <WatercolorIcon name="baby" size={20} className="text-purple-600" />
+                <WatercolorIcon
+                  name="baby"
+                  size={20}
+                  className="text-purple-600"
+                />
               </div>
               <div>
                 <p className="font-heading text-base font-semibold text-card-foreground">
@@ -471,6 +583,28 @@ export default function VaccinationsPage() {
           )}
 
           <ProgressSummary vaccines={vaccines} records={records} />
+
+          {/* Next upcoming vaccinations */}
+          {selectedChild && (
+            <UpcomingVaccinationsSummary
+              birthDate={selectedChild.birthDate}
+              records={records}
+            />
+          )}
+
+          {/* Medical supervision notice */}
+          <div className="rounded-lg border border-blue-200 bg-blue-50/50 px-4 py-3">
+            <p className="flex items-start gap-2 text-xs leading-relaxed text-blue-800">
+              <WatercolorIcon
+                name="shield"
+                size={14}
+                className="mt-0.5 shrink-0"
+              />
+              <span>
+                このスケジュールは日本小児科学会の推奨スケジュール（2024年版）と港区の公費助成情報に基づいています。
+              </span>
+            </p>
+          </div>
 
           {/* Routine vaccines */}
           <div>
@@ -520,7 +654,11 @@ export default function VaccinationsPage() {
               className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-sage-600 hover:text-sage-700"
             >
               予防接種一覧を見る
-              <WatercolorIcon name="arrow_right" size={12} className=".5 .5 rotate-180" />
+              <WatercolorIcon
+                name="arrow_right"
+                size={12}
+                className=".5 .5 rotate-180"
+              />
             </Link>
           </div>
         </div>

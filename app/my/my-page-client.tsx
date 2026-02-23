@@ -1,6 +1,4 @@
-"use client"
-
-;
+"use client";
 
 import { useState, useEffect, useCallback } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
@@ -129,9 +127,17 @@ function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
               className="flex items-center gap-3 rounded-lg border border-border p-3 transition-colors hover:border-sage-200 hover:bg-sage-50/50"
             >
               {isComplete ? (
-                <WatercolorIcon name="check" size={20} className="shrink-0 text-sage-500" />
+                <WatercolorIcon
+                  name="check"
+                  size={20}
+                  className="shrink-0 text-sage-500"
+                />
               ) : (
-                <WatercolorIcon name="check" size={20} className="shrink-0 text-gray-300" />
+                <WatercolorIcon
+                  name="check"
+                  size={20}
+                  className="shrink-0 text-gray-300"
+                />
               )}
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-medium text-card-foreground">
@@ -149,7 +155,11 @@ function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
                   </span>
                 </div>
               </div>
-              <WatercolorIcon name="arrow_right" size={16} className="shrink-0 text-muted" />
+              <WatercolorIcon
+                name="arrow_right"
+                size={16}
+                className="shrink-0 text-muted"
+              />
             </Link>
           );
         })}
@@ -195,7 +205,11 @@ function SavedArticlesSection({
             <p className="min-w-0 flex-1 truncate text-sm font-medium text-card-foreground">
               {articleTitles[slug] ?? slug}
             </p>
-            <WatercolorIcon name="arrow_right" size={16} className="shrink-0 text-muted" />
+            <WatercolorIcon
+              name="arrow_right"
+              size={16}
+              className="shrink-0 text-muted"
+            />
           </Link>
         ))}
       </div>
@@ -215,7 +229,11 @@ function QuickActions() {
         className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-sage-200 bg-sage-50">
-          <WatercolorIcon name="calculator" size={20} className="text-sage-600" />
+          <WatercolorIcon
+            name="calculator"
+            size={20}
+            className="text-sage-600"
+          />
         </div>
         <div>
           <h3 className="font-heading text-sm font-semibold text-card-foreground">
@@ -243,7 +261,11 @@ function QuickActions() {
         className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-purple-200 bg-purple-50">
-          <WatercolorIcon name="syringe" size={20} className="text-purple-600" />
+          <WatercolorIcon
+            name="syringe"
+            size={20}
+            className="text-purple-600"
+          />
         </div>
         <div>
           <h3 className="font-heading text-sm font-semibold text-card-foreground">
@@ -357,7 +379,11 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <h1 className="font-heading text-2xl font-semibold text-foreground sm:text-3xl">
-            <WatercolorIcon name="user" size={28} className="mr-2 inline-block   text-sage-600" />
+            <WatercolorIcon
+              name="user"
+              size={28}
+              className="mr-2 inline-block   text-sage-600"
+            />
             マイページ
           </h1>
           <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -371,6 +397,54 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
           {/* Account status */}
           <AccountBanner />
 
+          {/* Timeline teaser for unregistered users */}
+          {(!profile || profile.children.length === 0) && (
+            <div className="rounded-2xl border border-sage-200 bg-gradient-to-br from-sage-50 to-white p-6 sm:p-8">
+              <div className="flex flex-col items-center text-center">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
+                  <WatercolorIcon
+                    name="calendar"
+                    size={28}
+                    className="text-sage-600"
+                  />
+                </div>
+                <h2 className="mt-4 font-heading text-lg font-bold text-foreground sm:text-xl">
+                  赤ちゃんの生年月日を登録すると...
+                </h2>
+                <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted">
+                  今週・今月やるべき手続き・健診・予防接種が自動で表示されます。
+                  期限が近いものは優先度付きでお知らせ。もう見逃しません。
+                </p>
+                <div className="mt-5 grid w-full max-w-sm gap-2 text-left sm:grid-cols-3">
+                  <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-xs text-card-foreground shadow-sm">
+                    <WatercolorIcon
+                      name="building"
+                      size={14}
+                      className="shrink-0 text-blue-600"
+                    />
+                    <span>届出・申請</span>
+                  </div>
+                  <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-xs text-card-foreground shadow-sm">
+                    <WatercolorIcon
+                      name="stethoscope"
+                      size={14}
+                      className="shrink-0 text-sage-600"
+                    />
+                    <span>健診</span>
+                  </div>
+                  <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-xs text-card-foreground shadow-sm">
+                    <WatercolorIcon
+                      name="syringe"
+                      size={14}
+                      className="shrink-0 text-purple-600"
+                    />
+                    <span>予防接種</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Family profile */}
           <div>
             <h2 className="font-heading text-lg font-semibold text-foreground">
@@ -380,6 +454,35 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
               <FamilyProfileSetup />
             </div>
           </div>
+
+          {/* Timeline shortcut for registered users */}
+          {profile && profile.children.length > 0 && (
+            <Link
+              href="/my/timeline"
+              className="flex items-center gap-4 rounded-xl border border-sage-200 bg-gradient-to-r from-sage-50 to-white p-5 transition-all hover:border-sage-300 hover:shadow-md"
+            >
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sage-100">
+                <WatercolorIcon
+                  name="calendar"
+                  size={24}
+                  className="text-sage-600"
+                />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-heading text-base font-semibold text-card-foreground">
+                  今週やることを確認する
+                </h3>
+                <p className="mt-0.5 text-xs text-muted">
+                  手続き・健診・予防接種のタイムラインを見る
+                </p>
+              </div>
+              <WatercolorIcon
+                name="arrow_right"
+                size={20}
+                className="shrink-0 text-sage-400"
+              />
+            </Link>
+          )}
 
           {/* Checklist progress */}
           {profile && profile.children.length > 0 && (

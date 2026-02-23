@@ -1,19 +1,19 @@
-import type { Metadata } from "next"
+import type { Metadata } from "next";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
-import Image from "next/image"
-import { withBasePath } from "@/lib/image-path"
-import Link from "next/link"
+import Image from "next/image";
+import { withBasePath } from "@/lib/image-path";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "給付金シミュレーター",
   description:
     "お子さんの年齢と世帯情報を入力するだけで、港区で受けられる給付金・助成制度を一括検索。約2分で結果がわかります。",
-}
+};
 
 const FEATURES = [
   {
     iconName: "clock" as const,
-    title: "約25分で完了",
+    title: "約2分で完了",
     description: "4ステップの簡単な質問に答えるだけ。",
     character: "/characters/poses/haruto_running.png",
     charAlt: "ハルト",
@@ -32,7 +32,7 @@ const FEATURES = [
     character: "/characters/poses/risu_acorn.png",
     charAlt: "りすちゃん",
   },
-]
+];
 
 export default function SimulatorPage() {
   return (
@@ -60,7 +60,19 @@ export default function SimulatorPage() {
                 給付金シミュレーター
               </h1>
 
-              <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+              <div className="mx-auto mt-4 max-w-xl rounded-xl bg-blush-50 border border-blush-200 px-4 py-3">
+                <p className="text-center text-base font-semibold leading-relaxed text-blush-700 sm:text-lg">
+                  港区の新生児家庭が受け取れる給付金・助成の合計は
+                  <span className="font-heading text-xl sm:text-2xl">
+                    最大約84万円/年
+                  </span>
+                  。
+                  <br className="hidden sm:block" />
+                  申請漏れを防ぎましょう。
+                </p>
+              </div>
+
+              <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
                 お子さんの年齢と世帯の情報から、港区で受けられる
                 <strong className="text-foreground">
                   給付金・助成・子育て支援制度
@@ -134,5 +146,5 @@ export default function SimulatorPage() {
         </div>
       </section>
     </>
-  )
+  );
 }

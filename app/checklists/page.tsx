@@ -1,21 +1,24 @@
-import type { Metadata } from "next"
-import { WatercolorIcon } from "@/components/icons/watercolor-icon";
-import Link from "next/link"
-import { getAllChecklists } from "@/lib/checklists"
+import type { Metadata } from "next";
+import {
+  WatercolorIcon,
+  type WatercolorIconName,
+} from "@/components/icons/watercolor-icon";
+import Link from "next/link";
+import { getAllChecklists } from "@/lib/checklists";
 
 export const metadata: Metadata = {
   title: "手続きチェックリスト",
   description:
     "出産前から小学校入学まで、港区で必要な手続きをステップごとにガイド。妊娠届、出生届、児童手当、保育園申込など。",
-}
+};
 
-const ICON_MAP: Record<string, string> = {
+const ICON_MAP: Record<string, WatercolorIconName> = {
   baby: "baby",
   "file-text": "clipboard",
   heart: "heart",
   school: "building",
   "graduation-cap": "lightbulb",
-}
+};
 
 const ORDER_COLORS: readonly string[] = [
   "bg-pink-500",
@@ -23,17 +26,21 @@ const ORDER_COLORS: readonly string[] = [
   "bg-blue-500",
   "bg-purple-500",
   "bg-orange-500",
-]
+];
 
 export default function ChecklistsPage() {
-  const checklists = getAllChecklists()
+  const checklists = getAllChecklists();
 
   return (
     <>
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
-            <WatercolorIcon name="clipboard" size={32} className="mr-2 inline-block   text-sage-600" />
+            <WatercolorIcon
+              name="clipboard"
+              size={32}
+              className="mr-2 inline-block   text-sage-600"
+            />
             手続きチェックリスト
           </h1>
           <p className="mt-4 text-base leading-relaxed text-muted">
@@ -49,8 +56,8 @@ export default function ChecklistsPage() {
 
             <div className="space-y-6">
               {checklists.map((checklist, index) => {
-                const iconName = ICON_MAP[checklist.icon] ?? "clipboard"
-                const color = ORDER_COLORS[index % ORDER_COLORS.length]
+                const iconName = ICON_MAP[checklist.icon] ?? "clipboard";
+                const color = ORDER_COLORS[index % ORDER_COLORS.length];
 
                 return (
                   <Link
@@ -83,12 +90,12 @@ export default function ChecklistsPage() {
                       </span>
                     </div>
                   </Link>
-                )
+                );
               })}
             </div>
           </div>
         </div>
       </section>
     </>
-  )
+  );
 }

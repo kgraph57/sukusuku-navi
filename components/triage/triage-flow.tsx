@@ -1,6 +1,4 @@
-"use client"
-
-;
+"use client";
 
 import { useState } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
@@ -16,6 +14,57 @@ interface TriageFlowProps {
   readonly symptom: TriageSymptom;
 }
 
+function MinatoEmergencyInfo({
+  severity,
+}: {
+  readonly severity: SeverityResult["severity"];
+}) {
+  if (severity !== "emergency" && severity !== "call-8000") return null;
+
+  return (
+    <div className="mt-4 rounded-lg border border-red-200 bg-white p-4">
+      <h3 className="flex items-center gap-2 text-sm font-bold text-red-700">
+        <WatercolorIcon name="alert" size={14} />
+        港区の夜間・休日救急
+      </h3>
+      <div className="mt-2 space-y-2 text-sm">
+        <div className="flex justify-between">
+          <span className="text-foreground">港区夜間小児初期救急</span>
+          <a
+            href="tel:03-3436-5765"
+            className="font-bold text-red-600 underline"
+          >
+            03-3436-5765
+          </a>
+        </div>
+        <p className="text-xs text-muted">
+          みなと保健所（三田1-4-10）平日19:30-22:30
+        </p>
+        <div className="flex justify-between">
+          <span className="text-foreground">東京都こども医療ガイド</span>
+          <a
+            href="https://www.guide.metro.tokyo.lg.jp/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-medium text-red-600 underline"
+          >
+            Web検索
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SupervisionBadge() {
+  return (
+    <div className="flex items-center gap-2 rounded-full border border-sage-200 bg-sage-50 px-3 py-1">
+      <WatercolorIcon name="stethoscope" size={14} className="text-sage-600" />
+      <span className="text-xs font-medium text-sage-700">小児科医監修</span>
+    </div>
+  );
+}
+
 function SeverityCard({ result }: { readonly result: SeverityResult }) {
   const config = SEVERITY_CONFIG[result.severity];
 
@@ -23,7 +72,7 @@ function SeverityCard({ result }: { readonly result: SeverityResult }) {
     <div
       className={`rounded-xl border-2 ${config.borderColor} ${config.bgColor} p-6`}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         <span
           className={`inline-flex rounded-full border px-3 py-1 text-sm font-bold ${config.color} ${config.bgColor} ${config.borderColor}`}
         >
@@ -34,18 +83,23 @@ function SeverityCard({ result }: { readonly result: SeverityResult }) {
             href={`tel:${config.phone}`}
             className={`inline-flex items-center gap-1 rounded-full border bg-white px-3 py-1 text-sm font-bold ${config.color} ${config.borderColor}`}
           >
-            <WatercolorIcon name="phone" size={12} className=".5 .5" />
+            <WatercolorIcon name="phone" size={12} />
             {config.phone}
           </a>
         )}
+        <SupervisionBadge />
       </div>
 
       <h2 className={`mt-4 font-heading text-xl font-semibold ${config.color}`}>
         {result.title}
       </h2>
-      <p className="mt-2 text-sm leading-relaxed text-foreground">
-        {result.description}
-      </p>
+
+      <div className="mt-3 rounded-lg border border-border bg-white/60 p-3">
+        <h3 className="text-xs font-bold text-muted">判断の根拠</h3>
+        <p className="mt-1 text-sm leading-relaxed text-foreground">
+          {result.description}
+        </p>
+      </div>
 
       <div className="mt-4">
         <h3 className="text-sm font-bold text-foreground">対応方法</h3>
@@ -60,6 +114,8 @@ function SeverityCard({ result }: { readonly result: SeverityResult }) {
           ))}
         </ul>
       </div>
+
+      <MinatoEmergencyInfo severity={result.severity} />
     </div>
   );
 }
@@ -123,7 +179,11 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
           </p>
 
           <div className="mt-4 flex gap-2 rounded-lg border border-yellow-200 bg-yellow-50 p-3">
-            <WatercolorIcon name="alert" size={16} className="shrink-0 text-yellow-600" />
+            <WatercolorIcon
+              name="alert"
+              size={16}
+              className="shrink-0 text-yellow-600"
+            />
             <p className="text-sm text-yellow-800">{symptom.ageNote}</p>
           </div>
         </div>
@@ -153,7 +213,11 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
               <SeverityCard result={result} />
 
               <div className="flex gap-2 rounded-lg border border-border bg-ivory-50 p-4">
-                <WatercolorIcon name="alert" size={16} className="shrink-0 text-muted" />
+                <WatercolorIcon
+                  name="alert"
+                  size={16}
+                  className="shrink-0 text-muted"
+                />
                 <p className="text-xs leading-relaxed text-muted">
                   この判定は医師の診断に代わるものではありません。あくまで受診の目安としてご利用ください。心配な場合はいつでも医療機関にご相談ください。
                 </p>

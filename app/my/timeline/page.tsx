@@ -1,6 +1,4 @@
-"use client"
-
-;
+"use client";
 
 import { useState, useEffect, useCallback } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
@@ -75,13 +73,25 @@ function CategoryIcon({
 }) {
   switch (category) {
     case "admin":
-      return <WatercolorIcon name="building" size={20} className="text-blue-600" />;
+      return (
+        <WatercolorIcon name="building" size={20} className="text-blue-600" />
+      );
     case "medical":
-      return <WatercolorIcon name="stethoscope" size={20} className="text-sage-600" />;
+      return (
+        <WatercolorIcon
+          name="stethoscope"
+          size={20}
+          className="text-sage-600"
+        />
+      );
     case "vaccination":
-      return <WatercolorIcon name="syringe" size={20} className="text-purple-600" />;
+      return (
+        <WatercolorIcon name="syringe" size={20} className="text-purple-600" />
+      );
     case "support":
-      return <WatercolorIcon name="heart" size={20} className="text-rose-500" />;
+      return (
+        <WatercolorIcon name="heart" size={20} className="text-rose-500" />
+      );
   }
 }
 
@@ -123,9 +133,17 @@ function TimelineItemCard({
             aria-label={item.completed ? "未完了に戻す" : "完了にする"}
           >
             {item.completed ? (
-              <WatercolorIcon name="check" size={24} className="text-sage-500" />
+              <WatercolorIcon
+                name="check"
+                size={24}
+                className="text-sage-500"
+              />
             ) : (
-              <WatercolorIcon name="check" size={24} className="text-gray-300 hover:text-sage-400" />
+              <WatercolorIcon
+                name="check"
+                size={24}
+                className="text-gray-300 hover:text-sage-400"
+              />
             )}
           </button>
 
@@ -160,7 +178,11 @@ function TimelineItemCard({
 
             {!item.completed && item.tip != null && (
               <p className="mt-2 flex items-start gap-1 text-xs italic text-sage-600">
-                <WatercolorIcon name="lightbulb" size={12} className="mt-0.5 .5 .5 shrink-0" />
+                <WatercolorIcon
+                  name="lightbulb"
+                  size={12}
+                  className="mt-0.5 .5 .5 shrink-0"
+                />
                 <span>{item.tip}</span>
               </p>
             )}
@@ -197,7 +219,12 @@ function TimelineItemCard({
 // Section header types
 // ---------------------------------------------------------------------------
 
-type SectionKey = "overdueUrgent" | "soon" | "upcoming" | "future";
+type SectionKey =
+  | "overdueUrgent"
+  | "soon"
+  | "upcoming"
+  | "future"
+  | "completed";
 
 interface SectionConfig {
   readonly key: SectionKey;
@@ -241,6 +268,14 @@ const SECTIONS: readonly SectionConfig[] = [
     headerBg: "bg-gray-50",
     collapsible: true,
   },
+  {
+    key: "completed",
+    label: "完了済み",
+    icon: <WatercolorIcon name="check" size={20} />,
+    headerTextColor: "text-sage-600",
+    headerBg: "bg-sage-50",
+    collapsible: true,
+  },
 ] as const;
 
 // ---------------------------------------------------------------------------
@@ -252,15 +287,23 @@ interface GroupedSections {
   readonly soon: readonly TimelineItem[];
   readonly upcoming: readonly TimelineItem[];
   readonly future: readonly TimelineItem[];
+  readonly completed: readonly TimelineItem[];
 }
 
 function buildGroupedSections(items: readonly TimelineItem[]): GroupedSections {
   const grouped = groupTimelineByUrgency(items);
+  const completedItems = items.filter((item) => item.completed);
+  const pending = (list: readonly TimelineItem[]) =>
+    list.filter((item) => !item.completed);
   return {
-    overdueUrgent: [...(grouped.overdue ?? []), ...(grouped.urgent ?? [])],
-    soon: grouped.soon ?? [],
-    upcoming: grouped.upcoming ?? [],
-    future: grouped.future ?? [],
+    overdueUrgent: pending([
+      ...(grouped.overdue ?? []),
+      ...(grouped.urgent ?? []),
+    ]),
+    soon: pending(grouped.soon ?? []),
+    upcoming: pending(grouped.upcoming ?? []),
+    future: pending(grouped.future ?? []),
+    completed: completedItems,
   };
 }
 
@@ -514,7 +557,11 @@ export default function TimelinePage() {
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <h1 className="font-heading text-2xl font-semibold text-foreground sm:text-3xl">
-            <WatercolorIcon name="calendar" size={24} className="mr-2 inline-block   text-sage-600" />
+            <WatercolorIcon
+              name="calendar"
+              size={24}
+              className="mr-2 inline-block   text-sage-600"
+            />
             タイムライン
           </h1>
           <p className="mt-2 text-sm leading-relaxed text-muted">
