@@ -1,7 +1,6 @@
 "use client"
 
-import { Check } from "lucide-react"
-
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 interface WizardStepProps {
   readonly currentStep: number
   readonly totalSteps: number
@@ -35,7 +34,7 @@ export function WizardStep({
                   }`}
                 >
                   {isCompleted ? (
-                    <Check className="h-4 w-4" />
+                    <WatercolorIcon name="check" size={16} />
                   ) : (
                     stepNumber
                   )}

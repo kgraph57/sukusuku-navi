@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, Tag } from "lucide-react"
 import type { ArticleCategory } from "@/lib/types"
 import { CATEGORY_LABELS } from "@/lib/types"
 import { getArticlesByCategory } from "@/lib/content"
@@ -49,7 +49,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           href="/articles"
           className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-sage-600"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <WatercolorIcon name="arrow_right" size={16} />
           記事一覧に戻る
         </Link>
       </nav>
@@ -57,7 +57,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       {/* Header */}
       <div className="flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sage-50">
-          <Tag className="h-5 w-5 text-sage-600" />
+          <WatercolorIcon name="tag" size={20} className="text-sage-600" />
         </div>
         <div>
           <h1 className="font-heading text-2xl font-semibold text-foreground sm:text-3xl">

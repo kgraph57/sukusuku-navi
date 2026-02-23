@@ -1,22 +1,11 @@
-"use client";
+"use client"
+
+;
 
 import { useState, useMemo, useCallback } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import {
-  MapPin,
-  Clock,
-  Users,
-  ArrowRight,
-  Train,
-  Trees,
-  Filter,
-  List,
-  Map as MapIcon,
-  GitCompareArrows,
-  Check,
-  X,
-} from "lucide-react";
 
 const NurseryMap = dynamic(
   () => import("./nursery-map").then((mod) => ({ default: mod.NurseryMap })),
@@ -59,7 +48,7 @@ function NurseryCard({
   const colorClass =
     NURSERY_TYPE_COLOR_MAP[nursery.type] ??
     "bg-gray-50 text-gray-600 border-gray-200";
-  const IconComponent = NURSERY_TYPE_ICON_MAP[nursery.type];
+  const iconName = NURSERY_TYPE_ICON_MAP[nursery.type] ?? "building";
 
   return (
     <div
@@ -73,7 +62,7 @@ function NurseryCard({
         <div
           className={`flex h-10 w-10 items-center justify-center rounded-lg border ${colorClass}`}
         >
-          <IconComponent className="h-5 w-5" />
+          <WatercolorIcon name={iconName} size={20} />
         </div>
         <button
           type="button"
@@ -96,9 +85,9 @@ function NurseryCard({
           }
         >
           {isSelected ? (
-            <Check className="h-3.5 w-3.5" />
+            <WatercolorIcon name="check" size={12} className=".5 .5" />
           ) : (
-            <GitCompareArrows className="h-3.5 w-3.5" />
+            <WatercolorIcon name="star" size={12} className=".5 .5" />
           )}
         </button>
       </div>
@@ -115,7 +104,7 @@ function NurseryCard({
           </span>
           {nursery.hasGarden && (
             <span className="inline-flex items-center gap-0.5 rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-600">
-              <Trees className="h-3 w-3" />
+              <WatercolorIcon name="star" size={12} />
               園庭
             </span>
           )}
@@ -123,15 +112,15 @@ function NurseryCard({
 
         <div className="mt-2 space-y-1">
           <p className="flex items-center gap-1.5 text-sm text-muted">
-            <MapPin className="h-3.5 w-3.5 shrink-0" />
+            <WatercolorIcon name="mappin" size={12} className=".5 .5 shrink-0" />
             {nursery.address}
           </p>
           <p className="flex items-center gap-1.5 text-sm text-muted">
-            <Train className="h-3.5 w-3.5 shrink-0" />
+            <WatercolorIcon name="star" size={12} className=".5 .5 shrink-0" />
             {nursery.nearestStation}
           </p>
           <p className="flex items-center gap-1.5 text-sm text-muted">
-            <Clock className="h-3.5 w-3.5 shrink-0" />
+            <WatercolorIcon name="clock" size={12} className=".5 .5 shrink-0" />
             {nursery.hours.standard}
             {nursery.hours.extended != null && (
               <span className="text-xs text-sage-600">
@@ -140,7 +129,7 @@ function NurseryCard({
             )}
           </p>
           <p className="flex items-center gap-1.5 text-sm text-muted">
-            <Users className="h-3.5 w-3.5 shrink-0" />
+            <WatercolorIcon name="user" size={12} className=".5 .5 shrink-0" />
             定員{nursery.capacity}名 ・ {nursery.ageMin}歳〜{nursery.ageMax}歳
           </p>
         </div>
@@ -158,7 +147,7 @@ function NurseryCard({
 
         <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
           詳細を見る
-          <ArrowRight className="h-3 w-3" />
+          <WatercolorIcon name="arrow_right" size={12} />
         </span>
       </Link>
     </div>
@@ -246,7 +235,7 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
     <div>
       <div className="rounded-xl border border-border bg-card p-4">
         <div className="flex items-center gap-2 text-sm font-medium text-card-foreground">
-          <Filter className="h-4 w-4 text-sage-600" />
+          <WatercolorIcon name="star" size={16} className="text-sage-600" />
           絞り込み
           {activeFilterCount > 0 && (
             <span className="rounded-full bg-sage-100 px-2 py-0.5 text-xs font-medium text-sage-700">
@@ -358,7 +347,7 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
                     : "bg-ivory-100 text-muted hover:bg-ivory-200"
                 }`}
               >
-                <Trees className="h-3 w-3" />
+                <WatercolorIcon name="star" size={12} />
                 園庭あり
               </button>
             </div>
@@ -390,7 +379,7 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
                 : "text-muted hover:bg-ivory-100"
             }`}
           >
-            <List className="h-3.5 w-3.5" />
+            <WatercolorIcon name="star" size={12} className=".5 .5" />
             リスト
           </button>
           <button
@@ -402,7 +391,7 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
                 : "text-muted hover:bg-ivory-100"
             }`}
           >
-            <MapIcon className="h-3.5 w-3.5" />
+            <WatercolorIcon name="map" size={14} />
             マップ
           </button>
         </div>
@@ -459,7 +448,7 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
         <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-card/95 px-4 py-3 shadow-lg backdrop-blur-sm">
           <div className="mx-auto flex max-w-4xl items-center justify-between">
             <div className="flex items-center gap-3">
-              <GitCompareArrows className="h-5 w-5 text-blue-600" />
+              <WatercolorIcon name="star" size={20} className="text-blue-600" />
               <div>
                 <p className="text-sm font-medium text-foreground">
                   {compareSlugs.length}園を選択中
@@ -475,7 +464,7 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
                 onClick={() => setCompareSlugs([])}
                 className="flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted transition-colors hover:bg-ivory-100"
               >
-                <X className="h-3 w-3" />
+                <WatercolorIcon name="check" size={12} />
                 クリア
               </button>
               <button
@@ -484,7 +473,7 @@ export function NurseryFilter({ nurseries }: NurseryFilterProps) {
                 disabled={compareSlugs.length < 2}
                 className="flex items-center gap-1.5 rounded-full bg-blue-600 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50"
               >
-                <GitCompareArrows className="h-3.5 w-3.5" />
+                <WatercolorIcon name="star" size={12} className=".5 .5" />
                 比較する
               </button>
             </div>

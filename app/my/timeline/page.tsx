@@ -1,23 +1,10 @@
-"use client";
+"use client"
+
+;
 
 import { useState, useEffect, useCallback } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import {
-  AlertTriangle,
-  Clock,
-  Calendar,
-  ChevronDown,
-  ChevronUp,
-  Building2,
-  Stethoscope,
-  Syringe,
-  Heart,
-  Lightbulb,
-  Baby,
-  List,
-  CheckCircle2,
-  Circle,
-} from "lucide-react";
 import { useStore } from "@/lib/store";
 import type { FamilyProfile, ChildProfile } from "@/lib/store";
 import { getChildAge } from "@/lib/utils/age";
@@ -88,13 +75,13 @@ function CategoryIcon({
 }) {
   switch (category) {
     case "admin":
-      return <Building2 className="h-5 w-5 text-blue-600" />;
+      return <WatercolorIcon name="building" size={20} className="text-blue-600" />;
     case "medical":
-      return <Stethoscope className="h-5 w-5 text-sage-600" />;
+      return <WatercolorIcon name="stethoscope" size={20} className="text-sage-600" />;
     case "vaccination":
-      return <Syringe className="h-5 w-5 text-purple-600" />;
+      return <WatercolorIcon name="syringe" size={20} className="text-purple-600" />;
     case "support":
-      return <Heart className="h-5 w-5 text-rose-500" />;
+      return <WatercolorIcon name="heart" size={20} className="text-rose-500" />;
   }
 }
 
@@ -136,9 +123,9 @@ function TimelineItemCard({
             aria-label={item.completed ? "未完了に戻す" : "完了にする"}
           >
             {item.completed ? (
-              <CheckCircle2 className="h-6 w-6 text-sage-500" />
+              <WatercolorIcon name="check" size={24} className="text-sage-500" />
             ) : (
-              <Circle className="h-6 w-6 text-gray-300 hover:text-sage-400" />
+              <WatercolorIcon name="check" size={24} className="text-gray-300 hover:text-sage-400" />
             )}
           </button>
 
@@ -173,7 +160,7 @@ function TimelineItemCard({
 
             {!item.completed && item.tip != null && (
               <p className="mt-2 flex items-start gap-1 text-xs italic text-sage-600">
-                <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                <WatercolorIcon name="lightbulb" size={12} className="mt-0.5 .5 .5 shrink-0" />
                 <span>{item.tip}</span>
               </p>
             )}
@@ -225,7 +212,7 @@ const SECTIONS: readonly SectionConfig[] = [
   {
     key: "overdueUrgent",
     label: "今すぐやること",
-    icon: <AlertTriangle className="h-5 w-5" />,
+    icon: <WatercolorIcon name="alert" size={20} />,
     headerTextColor: "text-red-700",
     headerBg: "bg-red-50",
     collapsible: false,
@@ -233,7 +220,7 @@ const SECTIONS: readonly SectionConfig[] = [
   {
     key: "soon",
     label: "今月中に",
-    icon: <Clock className="h-5 w-5" />,
+    icon: <WatercolorIcon name="clock" size={20} />,
     headerTextColor: "text-amber-700",
     headerBg: "bg-amber-50",
     collapsible: false,
@@ -241,7 +228,7 @@ const SECTIONS: readonly SectionConfig[] = [
   {
     key: "upcoming",
     label: "この3ヶ月で",
-    icon: <Calendar className="h-5 w-5" />,
+    icon: <WatercolorIcon name="calendar" size={20} />,
     headerTextColor: "text-sage-700",
     headerBg: "bg-sage-50",
     collapsible: false,
@@ -249,7 +236,7 @@ const SECTIONS: readonly SectionConfig[] = [
   {
     key: "future",
     label: "今後の予定",
-    icon: <ChevronDown className="h-5 w-5" />,
+    icon: <WatercolorIcon name="arrow_right" size={20} />,
     headerTextColor: "text-gray-600",
     headerBg: "bg-gray-50",
     collapsible: true,
@@ -316,9 +303,9 @@ function TimelineSection({
               {pendingCount}/{items.length}件
             </span>
             {isExpanded ? (
-              <ChevronUp className="h-4 w-4" />
+              <WatercolorIcon name="star" size={16} />
             ) : (
-              <ChevronDown className="h-4 w-4" />
+              <WatercolorIcon name="arrow_right" size={16} />
             )}
           </button>
         ) : (
@@ -381,7 +368,7 @@ function ChildTabs({
                 : "bg-ivory-100 text-muted hover:bg-sage-50 hover:text-sage-700"
             }`}
           >
-            <Baby className="h-3.5 w-3.5" />
+            <WatercolorIcon name="baby" size={12} className=".5 .5" />
             {child.nickname}
           </button>
         );
@@ -402,7 +389,7 @@ function ChildAgeBadge({ child }: { readonly child: ChildProfile }) {
   return (
     <div className="flex items-center gap-3">
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-100">
-        <Baby className="h-5 w-5 text-sage-600" />
+        <WatercolorIcon name="baby" size={20} className="text-sage-600" />
       </div>
       <div>
         <h2 className="font-heading text-lg font-semibold text-foreground">
@@ -424,7 +411,7 @@ function NoProfileCTA() {
   return (
     <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-sage-200 bg-sage-50/50 px-6 py-14 text-center">
       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-sage-100">
-        <Baby className="h-8 w-8 text-sage-600" />
+        <WatercolorIcon name="baby" size={32} className="text-sage-600" />
       </div>
       <h2 className="mt-4 font-heading text-lg font-semibold text-foreground">
         お子さんの情報を登録しましょう
@@ -527,7 +514,7 @@ export default function TimelinePage() {
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <h1 className="font-heading text-2xl font-semibold text-foreground sm:text-3xl">
-            <Calendar className="mr-2 inline-block h-6 w-6 text-sage-600" />
+            <WatercolorIcon name="calendar" size={24} className="mr-2 inline-block   text-sage-600" />
             タイムライン
           </h1>
           <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -566,7 +553,7 @@ export default function TimelinePage() {
                         : "text-muted hover:text-foreground"
                     }`}
                   >
-                    <List className="h-4 w-4" />
+                    <WatercolorIcon name="star" size={16} />
                     リスト
                   </button>
                   <button
@@ -578,7 +565,7 @@ export default function TimelinePage() {
                         : "text-muted hover:text-foreground"
                     }`}
                   >
-                    <Calendar className="h-4 w-4" />
+                    <WatercolorIcon name="calendar" size={16} />
                     カレンダー
                   </button>
                 </div>

@@ -1,33 +1,35 @@
-"use client";
+"use client"
+
+;
 
 import { useState } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import { Phone, X, Stethoscope, AlertTriangle, PhoneCall } from "lucide-react";
 
 const EMERGENCY_OPTIONS = [
   {
     href: "/triage",
-    icon: Stethoscope,
+    iconName: "stethoscope" as const,
     label: "受診判断ガイド",
     description: "症状から判断",
-    color: "bg-orange-50 text-orange-600",
+    color: "bg-orange-50",
   },
   {
     href: "tel:03-5285-8898",
-    icon: PhoneCall,
+    iconName: "phone" as const,
     label: "#8000（小児救急相談）",
     description: "夜間・休日の相談",
-    color: "bg-red-50 text-red-600",
+    color: "bg-red-50",
     external: true,
   },
   {
     href: "/clinics",
-    icon: AlertTriangle,
+    iconName: "alert" as const,
     label: "夜間・休日対応の病院",
     description: "近くの医療機関を探す",
-    color: "bg-blue-50 text-blue-600",
+    color: "bg-blue-50",
   },
-] as const;
+];
 
 export function EmergencyFab() {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +48,7 @@ export function EmergencyFab() {
               className="rounded-full p-1 text-muted hover:bg-ivory-100"
               aria-label="閉じる"
             >
-              <X className="h-4 w-4" />
+              <WatercolorIcon name="check" size={16} />
             </button>
           </div>
           <div className="mt-3 space-y-2">
@@ -56,7 +58,7 @@ export function EmergencyFab() {
                   <div
                     className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${option.color}`}
                   >
-                    <option.icon className="h-5 w-5" />
+                    <WatercolorIcon name={option.iconName} size={24} />
                   </div>
                   <div className="min-w-0">
                     <p className="text-sm font-medium text-foreground">
@@ -109,9 +111,9 @@ export function EmergencyFab() {
         aria-expanded={isOpen}
       >
         {isOpen ? (
-          <X className="h-6 w-6 text-white" />
+          <WatercolorIcon name="check" size={24} className="text-white" />
         ) : (
-          <Phone className="h-6 w-6 text-white" />
+          <WatercolorIcon name="phone" size={24} className="text-white" />
         )}
       </button>
     </div>

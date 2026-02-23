@@ -1,7 +1,9 @@
-"use client";
+"use client"
 
-import { Syringe, Shield, Star } from "lucide-react";
+;
+
 import Link from "next/link";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import type { Vaccine } from "@/lib/types";
 import { VACCINE_TYPE_LABELS } from "@/lib/vaccines";
 
@@ -100,7 +102,7 @@ function DesktopTable({
               className="bg-sage-50 px-4 py-2 text-sm font-bold text-sage-700"
             >
               <span className="flex items-center gap-1.5">
-                <Shield className="h-4 w-4" />
+                <WatercolorIcon name="shield" size={16} />
                 {VACCINE_TYPE_LABELS.routine}（公費・無料）
               </span>
             </td>
@@ -114,7 +116,7 @@ function DesktopTable({
               className="bg-blush-50 px-4 py-2 text-sm font-bold text-blush-600"
             >
               <span className="flex items-center gap-1.5">
-                <Star className="h-4 w-4" />
+                <WatercolorIcon name="star" size={16} />
                 {VACCINE_TYPE_LABELS.optional}（一部助成あり）
               </span>
             </td>
@@ -183,7 +185,7 @@ function MobileCards({
     <div className="space-y-6">
       <div>
         <div className="mb-3 flex items-center gap-1.5 text-sm font-bold text-sage-700">
-          <Shield className="h-4 w-4" />
+          <WatercolorIcon name="shield" size={16} />
           {VACCINE_TYPE_LABELS.routine}（公費・無料）
         </div>
         <div className="space-y-3">
@@ -194,7 +196,7 @@ function MobileCards({
       </div>
       <div>
         <div className="mb-3 flex items-center gap-1.5 text-sm font-bold text-blush-600">
-          <Star className="h-4 w-4" />
+          <WatercolorIcon name="star" size={16} />
           {VACCINE_TYPE_LABELS.optional}（一部助成あり）
         </div>
         <div className="space-y-3">
@@ -220,7 +222,7 @@ function MobileVaccineCard({ vaccine }: { readonly vaccine: Vaccine }) {
           </h4>
           <p className="mt-0.5 text-xs text-muted">{vaccine.disease}</p>
         </div>
-        <Syringe className="h-4 w-4 shrink-0 text-muted" />
+        <WatercolorIcon name="syringe" size={16} className="shrink-0 text-muted" />
       </div>
       <div className="mt-3 flex flex-wrap gap-2">
         {vaccine.doses.map((dose) => (

@@ -1,7 +1,9 @@
-"use client";
+"use client"
+
+;
 
 import { useState, useMemo } from "react";
-import { ChevronLeft, ChevronRight, CheckCircle2, Circle } from "lucide-react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import type { TimelineItem, TimelineUrgency } from "@/lib/timeline-engine";
 
 // ---------------------------------------------------------------------------
@@ -127,7 +129,7 @@ export function CalendarView({
           className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-ivory-100"
           aria-label="前の月"
         >
-          <ChevronLeft className="h-4 w-4 text-muted" />
+          <WatercolorIcon name="arrow_right" size={16} className="text-muted" />
         </button>
         <span className="font-heading text-sm font-semibold text-foreground">
           {viewYear}年{viewMonth + 1}月
@@ -138,7 +140,7 @@ export function CalendarView({
           className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-ivory-100"
           aria-label="次の月"
         >
-          <ChevronRight className="h-4 w-4 text-muted" />
+          <WatercolorIcon name="arrow_right" size={16} className="text-muted" />
         </button>
       </div>
 
@@ -217,7 +219,7 @@ export function CalendarView({
                 </span>
                 {hasItems &&
                   (allCompleted ? (
-                    <CheckCircle2 className="h-3 w-3 text-sage-400" />
+                    <WatercolorIcon name="check" size={12} className="text-sage-400" />
                   ) : (
                     <div className="flex flex-wrap justify-center gap-0.5 px-0.5">
                       {topUrgencies.map((urgency, i) => (
@@ -277,9 +279,9 @@ export function CalendarView({
                         }
                       >
                         {item.completed ? (
-                          <CheckCircle2 className="h-4 w-4 text-sage-500" />
+                          <WatercolorIcon name="check" size={16} className="text-sage-500" />
                         ) : (
-                          <Circle className="h-4 w-4 text-gray-300 hover:text-sage-400" />
+                          <WatercolorIcon name="check" size={16} className="text-gray-300 hover:text-sage-400" />
                         )}
                       </button>
                     ) : (

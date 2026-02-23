@@ -1,7 +1,9 @@
-"use client";
+"use client"
+
+;
 
 import { useState } from "react";
-import { MessageCircle, X, Send } from "lucide-react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import { trackFeedbackSubmitted } from "@/lib/analytics/events";
 
 export function FeedbackButton() {
@@ -30,7 +32,7 @@ export function FeedbackButton() {
         className="fixed bottom-20 right-4 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-sage-600 text-white shadow-lg transition-transform hover:scale-105 hover:bg-sage-700 sm:bottom-6"
         aria-label="フィードバックを送る"
       >
-        <MessageCircle className="h-5 w-5" />
+        <WatercolorIcon name="message" size={20} />
       </button>
     );
   }
@@ -47,7 +49,7 @@ export function FeedbackButton() {
           className="rounded-lg p-1 text-muted hover:bg-ivory-100"
           aria-label="閉じる"
         >
-          <X className="h-4 w-4" />
+          <WatercolorIcon name="check" size={16} />
         </button>
       </div>
 
@@ -98,7 +100,7 @@ export function FeedbackButton() {
             disabled={rating == null}
             className="mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-sage-600 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700 disabled:bg-ivory-200 disabled:text-muted"
           >
-            <Send className="h-4 w-4" />
+            <WatercolorIcon name="send" size={16} />
             送信する
           </button>
         </>

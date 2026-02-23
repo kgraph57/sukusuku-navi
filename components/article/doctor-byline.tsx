@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Stethoscope } from "lucide-react"
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 
 interface DoctorBylineProps {
   readonly qaCount: number
@@ -13,7 +13,7 @@ export function DoctorByline({ qaCount, referenceCount }: DoctorBylineProps) {
       className="group mb-8 flex items-center gap-4 rounded-xl border border-sage-100 bg-sage-50/50 p-4 transition-colors hover:border-sage-200 hover:bg-sage-50"
     >
       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sage-600 shadow-sm">
-        <Stethoscope className="h-6 w-6 text-white" />
+        <WatercolorIcon name="stethoscope" size={24} className="text-white" />
       </div>
 
       <div className="flex-1 min-w-0">

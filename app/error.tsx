@@ -1,7 +1,9 @@
-"use client";
+"use client"
 
-import { Baby, RefreshCw, Home } from "lucide-react";
+;
+
 import Link from "next/link";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 
 export default function ErrorPage({
   error,
@@ -13,7 +15,7 @@ export default function ErrorPage({
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center px-4 py-12">
       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blush-50">
-        <Baby className="h-8 w-8 text-blush-500" />
+        <WatercolorIcon name="baby" size={32} className="text-blush-500" />
       </div>
       <h1 className="mt-6 font-heading text-xl font-semibold text-foreground">
         エラーが発生しました
@@ -32,14 +34,14 @@ export default function ErrorPage({
           onClick={reset}
           className="inline-flex items-center gap-2 rounded-lg bg-sage-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700"
         >
-          <RefreshCw className="h-4 w-4" />
+          <WatercolorIcon name="plus" size={16} />
           再読み込み
         </button>
         <Link
           href="/"
           className="inline-flex items-center gap-2 rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-ivory-50"
         >
-          <Home className="h-4 w-4" />
+          <WatercolorIcon name="home" size={16} />
           トップへ
         </Link>
       </div>

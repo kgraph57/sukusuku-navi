@@ -1,20 +1,10 @@
-"use client";
+"use client"
+
+;
 
 import { useState, useMemo } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import {
-  Search,
-  ArrowRight,
-  Calendar,
-  Stethoscope,
-  MessageCircle,
-  Heart,
-  Syringe,
-  MapPin,
-  Building2,
-  Banknote,
-  AlertTriangle,
-} from "lucide-react";
 import { Badge } from "@/components/shared/badge";
 import { SectionHeading } from "@/components/shared/section-heading";
 import type { ArticleCategory } from "@/lib/types";
@@ -121,7 +111,7 @@ function ArticleResult({
       {matchingQa && (
         <div className="mt-3 rounded-lg border border-sage-100 bg-sage-50/60 p-3">
           <div className="flex items-start gap-2">
-            <MessageCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-blush-400" />
+            <WatercolorIcon name="message" size={12} className="mt-0.5 .5 .5 shrink-0 text-blush-400" />
             <p className="text-xs font-medium text-blush-600 line-clamp-1">
               Q: {matchingQa.question}
             </p>
@@ -139,16 +129,16 @@ function ArticleResult({
 
       <div className="mt-3 flex items-center gap-4 text-xs text-muted">
         <span className="flex items-center gap-1">
-          <Calendar className="h-3 w-3" />
+          <WatercolorIcon name="calendar" size={12} />
           {formatDate(item.publishedAt)}
         </span>
         <span className="flex items-center gap-1">
-          <MessageCircle className="h-3 w-3" />
+          <WatercolorIcon name="message" size={12} />
           Q&amp;A {item.qaCount}問
         </span>
         <span className="ml-auto flex items-center gap-1 text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
           読む
-          <ArrowRight className="h-3 w-3" />
+          <WatercolorIcon name="arrow_right" size={12} />
         </span>
       </div>
     </Link>
@@ -166,7 +156,7 @@ function ProgramResult({
       className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-sage-200 hover:shadow-md"
     >
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-sage-200 bg-sage-50">
-        <Banknote className="h-5 w-5 text-sage-600" />
+        <WatercolorIcon name="star" size={20} className="text-sage-600" />
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
@@ -201,7 +191,7 @@ function VaccineResult({
       className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-sage-200 hover:shadow-md"
     >
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-purple-200 bg-purple-50">
-        <Syringe className="h-5 w-5 text-purple-600" />
+        <WatercolorIcon name="syringe" size={20} className="text-purple-600" />
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
@@ -232,7 +222,7 @@ function ClinicResult({
       className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-sage-200 hover:shadow-md"
     >
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blue-200 bg-blue-50">
-        <MapPin className="h-5 w-5 text-blue-600" />
+        <WatercolorIcon name="mappin" size={20} className="text-blue-600" />
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
@@ -241,7 +231,7 @@ function ClinicResult({
           </span>
           {item.emergencyAvailable && (
             <span className="flex items-center gap-0.5 rounded-full bg-red-50 px-2 py-0.5 text-[10px] font-medium text-red-700">
-              <AlertTriangle className="h-2.5 w-2.5" />
+              <WatercolorIcon name="alert" size={8} className=".5 .5" />
               救急対応
             </span>
           )}
@@ -269,7 +259,7 @@ function NurseryResult({
       className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-sage-200 hover:shadow-md"
     >
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-green-200 bg-green-50">
-        <Building2 className="h-5 w-5 text-green-600" />
+        <WatercolorIcon name="building" size={20} className="text-green-600" />
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
@@ -362,7 +352,7 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
 
         <div className="mt-6 flex items-center gap-2 rounded-lg border border-sage-100 bg-sage-50/50 px-4 py-2.5">
           <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sage-600">
-            <Stethoscope className="h-3.5 w-3.5 text-white" />
+            <WatercolorIcon name="stethoscope" size={12} className=".5 .5 text-white" />
           </div>
           <p className="text-xs text-muted">
             <span className="font-medium text-foreground">
@@ -389,7 +379,7 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
         </div>
 
         <div className="relative mt-4">
-          <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted" />
+          <WatercolorIcon name="search" size={20} className="absolute left-4 top-1/2   -translate-y-1/2 text-muted" />
           <input
             type="search"
             placeholder="例: 児童手当、MRワクチン、麻布、アレルギー..."
@@ -451,7 +441,7 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
         {hasQuery && totalCount === 0 && (
           <div className="mt-12 text-center">
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-ivory-100">
-              <Search className="h-7 w-7 text-muted" />
+              <WatercolorIcon name="search" size={28} className="text-muted" />
             </div>
             <p className="mt-4 text-base text-muted">
               別のキーワードで検索してみてください

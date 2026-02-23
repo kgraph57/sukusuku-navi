@@ -1,29 +1,23 @@
-"use client";
+"use client"
+
+;
 
 import { useState, useEffect } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import {
-  AlertTriangle,
-  Calendar,
-  ArrowRight,
-  Baby,
-  Building2,
-  Stethoscope,
-  Syringe,
-  Heart,
-  Sparkles,
-} from "lucide-react";
 import { useStore } from "@/lib/store";
 import type { ChildProfile } from "@/lib/store";
 import { getChildAge } from "@/lib/utils/age";
 import { generateTimeline } from "@/lib/timeline-engine";
 import type { TimelineItem, TimelineCategory } from "@/lib/timeline-engine";
 
-const CATEGORY_ICON: Record<TimelineCategory, typeof Building2> = {
-  admin: Building2,
-  medical: Stethoscope,
-  vaccination: Syringe,
-  support: Heart,
+import type { WatercolorIconName } from "@/components/icons/watercolor-icon";
+
+const CATEGORY_ICON: Record<TimelineCategory, WatercolorIconName> = {
+  admin: "clipboard",
+  medical: "stethoscope",
+  vaccination: "syringe",
+  support: "heart",
 };
 
 const CATEGORY_COLOR: Record<TimelineCategory, string> = {
@@ -41,7 +35,7 @@ const URGENCY_BORDER: Record<string, string> = {
 };
 
 function DigestItem({ item }: { readonly item: TimelineItem }) {
-  const IconComponent = CATEGORY_ICON[item.category];
+  const iconName = CATEGORY_ICON[item.category];
   const colorClass = CATEGORY_COLOR[item.category];
   const borderClass = URGENCY_BORDER[item.urgency] ?? "border-l-gray-300";
 
@@ -52,7 +46,7 @@ function DigestItem({ item }: { readonly item: TimelineItem }) {
       <div
         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${colorClass}`}
       >
-        <IconComponent className="h-4 w-4" />
+        <WatercolorIcon name={iconName} size={16} />
       </div>
       <div className="min-w-0 flex-1">
         <p className="text-sm font-medium text-foreground">{item.title}</p>
@@ -124,7 +118,7 @@ export function WeeklyDigest() {
         <div className="mx-auto max-w-3xl">
           <div className="flex flex-col items-center rounded-2xl border-2 border-dashed border-sage-200 bg-white/60 px-6 py-10 text-center">
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
-              <Sparkles className="h-7 w-7 text-sage-600" />
+              <WatercolorIcon name="star" size={28} className="text-sage-600" />
             </div>
             <h2 className="mt-4 font-heading text-lg font-semibold text-foreground">
               お子さんに合わせた「今週やること」を表示
@@ -136,7 +130,7 @@ export function WeeklyDigest() {
               href="/my"
               className="mt-6 inline-flex items-center gap-2 rounded-full bg-sage-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700"
             >
-              <Baby className="h-4 w-4" />
+              <WatercolorIcon name="baby" size={16} />
               お子さんを登録する
             </Link>
           </div>
@@ -164,7 +158,7 @@ export function WeeklyDigest() {
               className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-sage-600 hover:text-sage-700"
             >
               タイムラインで今後の予定を確認
-              <ArrowRight className="h-3.5 w-3.5" />
+              <WatercolorIcon name="arrow_right" size={12} className=".5 .5" />
             </Link>
           </div>
         </div>
@@ -182,7 +176,7 @@ export function WeeklyDigest() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-100">
-              <Calendar className="h-5 w-5 text-sage-600" />
+              <WatercolorIcon name="calendar" size={20} className="text-sage-600" />
             </div>
             <div>
               <h2 className="font-heading text-lg font-semibold text-foreground">
@@ -193,7 +187,7 @@ export function WeeklyDigest() {
           </div>
           {overdueCount > 0 && (
             <span className="flex items-center gap-1 rounded-full bg-red-100 px-3 py-1 text-xs font-medium text-red-700">
-              <AlertTriangle className="h-3 w-3" />
+              <WatercolorIcon name="alert" size={12} />
               {overdueCount}件期限超過
             </span>
           )}
@@ -211,7 +205,7 @@ export function WeeklyDigest() {
             className="inline-flex items-center gap-2 rounded-full border border-sage-200 bg-white px-5 py-2 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
           >
             すべてのタスクを見る
-            <ArrowRight className="h-3.5 w-3.5" />
+            <WatercolorIcon name="arrow_right" size={12} className=".5 .5" />
           </Link>
         </div>
       </div>

@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import {
-  Building2,
-  ArrowRight,
-  Calendar,
-  FileText,
-  HelpCircle,
-  ChevronRight,
-} from "lucide-react";
 import { getAllNurseries, NURSERY_TYPE_LABELS } from "@/lib/nurseries";
 import type { NurseryType } from "@/lib/types";
 import { NurseryFilter } from "@/components/nursery/nursery-filter";
@@ -160,7 +153,7 @@ export default function NurseriesPage() {
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
-            <Building2 className="mr-2 inline-block h-8 w-8 text-sage-600" />
+            <WatercolorIcon name="building" size={32} className="mr-2 inline-block   text-sage-600" />
             港区の保育園を探す
           </h1>
           <p className="mt-4 text-base leading-relaxed text-muted">
@@ -212,7 +205,7 @@ export default function NurseriesPage() {
       <section className="border-t border-border bg-sage-50/50 px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl">
           <h2 className="flex items-center gap-2 font-heading text-xl font-semibold text-foreground">
-            <Calendar className="h-6 w-6 text-sage-600" />
+            <WatercolorIcon name="calendar" size={24} className="text-sage-600" />
             保活ガイド：4月入園までのスケジュール
           </h2>
           <p className="mt-2 text-sm text-muted">
@@ -251,7 +244,7 @@ export default function NurseriesPage() {
       <section className="border-t border-border px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl">
           <h2 className="flex items-center gap-2 font-heading text-xl font-semibold text-foreground">
-            <FileText className="h-6 w-6 text-sage-600" />
+            <WatercolorIcon name="star" size={24} className="text-sage-600" />
             申込に必要な書類
           </h2>
           <div className="mt-6 space-y-2">
@@ -260,7 +253,7 @@ export default function NurseriesPage() {
                 key={doc.name}
                 className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
               >
-                <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-sage-600" />
+                <WatercolorIcon name="arrow_right" size={16} className="mt-0.5   shrink-0 text-sage-600" />
                 <div>
                   <p className="text-sm font-medium text-card-foreground">
                     {doc.name}
@@ -280,7 +273,7 @@ export default function NurseriesPage() {
       <section className="border-t border-border bg-ivory-100/50 px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl">
           <h2 className="flex items-center gap-2 font-heading text-xl font-semibold text-foreground">
-            <HelpCircle className="h-6 w-6 text-sage-600" />
+            <WatercolorIcon name="help" size={24} className="text-sage-600" />
             利用調整指数（選考のしくみ）
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -328,7 +321,7 @@ export default function NurseriesPage() {
               className="inline-flex items-center gap-2 rounded-full bg-sage-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-sage-700"
             >
               港区 子ども家庭支援部のページ
-              <ArrowRight className="h-4 w-4" />
+              <WatercolorIcon name="arrow_right" size={16} />
             </a>
           </div>
         </div>

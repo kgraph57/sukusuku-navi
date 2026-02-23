@@ -1,14 +1,6 @@
 import type { Metadata } from "next";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import {
-  MapPin,
-  Clock,
-  AlertTriangle,
-  ArrowRight,
-  Building2,
-  Stethoscope,
-  Train,
-} from "lucide-react";
 import {
   getAllClinics,
   getEmergencyClinics,
@@ -27,7 +19,7 @@ export const metadata: Metadata = {
 function ClinicCard({ clinic }: { readonly clinic: Clinic }) {
   const colorClass =
     TYPE_COLOR_MAP[clinic.type] ?? "bg-gray-50 text-gray-600 border-gray-200";
-  const IconComponent = TYPE_ICON_MAP[clinic.type] ?? Stethoscope;
+  const iconName = TYPE_ICON_MAP[clinic.type] ?? "stethoscope";
 
   return (
     <Link
@@ -37,7 +29,7 @@ function ClinicCard({ clinic }: { readonly clinic: Clinic }) {
       <div
         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${colorClass}`}
       >
-        <IconComponent className="h-5 w-5" />
+        <WatercolorIcon name={iconName} size={20} />
       </div>
 
       <div className="min-w-0 flex-1">
@@ -64,15 +56,15 @@ function ClinicCard({ clinic }: { readonly clinic: Clinic }) {
 
         <div className="mt-2 space-y-1">
           <p className="flex items-center gap-1.5 text-sm text-muted">
-            <MapPin className="h-3.5 w-3.5 shrink-0" />
+            <WatercolorIcon name="mappin" size={12} className=".5 .5 shrink-0" />
             {clinic.address}
           </p>
           <p className="flex items-center gap-1.5 text-sm text-muted">
-            <Train className="h-3.5 w-3.5 shrink-0" />
+            <WatercolorIcon name="star" size={12} className=".5 .5 shrink-0" />
             {clinic.nearestStation}
           </p>
           <p className="flex items-center gap-1.5 text-sm text-muted">
-            <Clock className="h-3.5 w-3.5 shrink-0" />
+            <WatercolorIcon name="clock" size={12} className=".5 .5 shrink-0" />
             平日 {clinic.hours.weekday}
           </p>
         </div>
@@ -90,7 +82,7 @@ function ClinicCard({ clinic }: { readonly clinic: Clinic }) {
 
         <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
           詳細を見る
-          <ArrowRight className="h-3 w-3" />
+          <WatercolorIcon name="arrow_right" size={12} />
         </span>
       </div>
     </Link>
@@ -107,7 +99,7 @@ export default function ClinicsPage() {
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
-            <MapPin className="mr-2 inline-block h-8 w-8 text-sage-600" />
+            <WatercolorIcon name="mappin" size={32} className="mr-2 inline-block   text-sage-600" />
             港区の小児科マップ
           </h1>
           <p className="mt-4 text-base leading-relaxed text-muted">
@@ -127,7 +119,7 @@ export default function ClinicsPage() {
       <section className="border-b border-border bg-red-50 px-4 py-6">
         <div className="mx-auto max-w-4xl">
           <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-red-700">
-            <AlertTriangle className="h-5 w-5" />
+            <WatercolorIcon name="alert" size={20} />
             緊急連絡先
           </h2>
           <div className="mt-3 grid gap-3 sm:grid-cols-3">
@@ -162,7 +154,7 @@ export default function ClinicsPage() {
         <div className="mx-auto max-w-4xl">
           <div className="mb-12">
             <div className="flex items-center gap-3">
-              <Building2 className="h-6 w-6 text-red-600" />
+              <WatercolorIcon name="building" size={24} className="text-red-600" />
               <h2 className="font-heading text-xl font-semibold text-foreground">
                 救急対応のある病院
               </h2>
@@ -179,7 +171,7 @@ export default function ClinicsPage() {
 
           <div>
             <div className="flex items-center gap-3">
-              <Stethoscope className="h-6 w-6 text-sage-600" />
+              <WatercolorIcon name="stethoscope" size={24} className="text-sage-600" />
               <h2 className="font-heading text-xl font-semibold text-foreground">
                 クリニック
               </h2>

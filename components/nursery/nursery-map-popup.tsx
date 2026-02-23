@@ -1,7 +1,9 @@
-"use client";
+"use client"
+
+;
 
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import { NURSERY_TYPE_LABELS } from "@/lib/nurseries";
 import { NURSERY_TYPE_COLOR_MAP } from "@/lib/nursery-constants";
 import type { Nursery } from "@/lib/types";
@@ -45,7 +47,7 @@ export function NurseryMapPopup({ nursery }: NurseryMapPopupProps) {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-0.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted hover:bg-ivory-100"
         >
-          <ExternalLink className="h-3 w-3" />
+          <WatercolorIcon name="external" size={12} />
           Maps
         </a>
       </div>

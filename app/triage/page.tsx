@@ -1,24 +1,7 @@
 import type { Metadata } from "next";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Stethoscope,
-  Thermometer,
-  Droplets,
-  Wind,
-  CircleDot,
-  Frown,
-  AlertTriangle,
-  AlertOctagon,
-  ArrowRight,
-  BrainCircuit,
-  Ear,
-  Megaphone,
-  Brain,
-  Eye,
-  Flame,
-  Zap,
-} from "lucide-react";
 import { getAllSymptoms } from "@/lib/triage/engine";
 import type { TriageSymptom } from "@/lib/triage/engine";
 import { GuidedTriageFlow } from "@/components/triage/guided-triage-flow";
@@ -29,21 +12,23 @@ export const metadata: Metadata = {
     "お子さんの症状から受診の緊急度を判断します。質問に答えていくだけで、受診の目安がわかります。発熱・嘔吐・咳・発疹・腹痛・頭部外傷・呼吸困難・けいれん・誤飲・鼻血など17症状に対応。",
 };
 
-const ICON_MAP: Record<string, typeof Thermometer> = {
-  Thermometer,
-  Droplets,
-  Wind,
-  CircleDot,
-  Frown,
-  BrainCircuit,
-  Ear,
-  Megaphone,
-  Brain,
-  Eye,
-  Flame,
-  Zap,
-  AlertTriangle,
-  AlertOctagon,
+import type { WatercolorIconName } from "@/components/icons/watercolor-icon";
+
+const ICON_MAP: Record<string, WatercolorIconName> = {
+  Thermometer: "activity",
+  Droplets: "heart",
+  Wind: "activity",
+  CircleDot: "alert",
+  Frown: "help",
+  BrainCircuit: "lightbulb",
+  Ear: "stethoscope",
+  Megaphone: "alert",
+  Brain: "lightbulb",
+  Eye: "stethoscope",
+  Flame: "alert",
+  Zap: "sparkles",
+  AlertTriangle: "alert",
+  AlertOctagon: "alert",
 };
 
 const SYMPTOM_COLORS: readonly string[] = [
@@ -61,7 +46,7 @@ function SymptomCard({
   readonly symptom: TriageSymptom;
   readonly index: number;
 }) {
-  const IconComponent = ICON_MAP[symptom.icon] ?? Stethoscope;
+  const iconName = ICON_MAP[symptom.icon] ?? "stethoscope";
   const colorClass = SYMPTOM_COLORS[index % SYMPTOM_COLORS.length];
 
   return (
@@ -72,7 +57,7 @@ function SymptomCard({
       <div
         className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border ${colorClass}`}
       >
-        <IconComponent className="h-6 w-6" />
+        <WatercolorIcon name={iconName} size={24} />
       </div>
       <div className="min-w-0 flex-1">
         <h3 className="font-heading text-lg font-semibold text-card-foreground">
@@ -83,7 +68,7 @@ function SymptomCard({
         </p>
         <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
           チェックを始める
-          <ArrowRight className="h-3 w-3" />
+          <WatercolorIcon name="arrow_right" size={12} />
         </span>
       </div>
     </Link>
@@ -109,7 +94,7 @@ export default function TriagePage() {
             </div>
             <div className="text-center">
               <h1 className="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
-                <Stethoscope className="mr-2 inline-block h-8 w-8 text-sage-600" />
+                <WatercolorIcon name="stethoscope" size={32} className="mr-2 inline-block   text-sage-600" />
                 症状チェック
               </h1>
               <p className="mt-4 text-base leading-relaxed text-muted">
@@ -132,7 +117,7 @@ export default function TriagePage() {
       <section className="border-b border-border bg-yellow-50 px-4 py-4">
         <div className="mx-auto max-w-3xl">
           <div className="flex gap-3">
-            <AlertTriangle className="h-5 w-5 shrink-0 text-yellow-600" />
+            <WatercolorIcon name="alert" size={20} className="shrink-0 text-yellow-600" />
             <div className="text-sm leading-relaxed text-yellow-800">
               <p className="font-medium">
                 このチェックは医師の診断に代わるものではありません。
@@ -180,7 +165,7 @@ export default function TriagePage() {
       <section className="border-t border-border bg-red-50 px-4 py-6">
         <div className="mx-auto max-w-3xl">
           <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-red-700">
-            <AlertTriangle className="h-5 w-5" />
+            <WatercolorIcon name="alert" size={20} />
             緊急連絡先
           </h2>
           <div className="mt-3 grid gap-3 sm:grid-cols-3">

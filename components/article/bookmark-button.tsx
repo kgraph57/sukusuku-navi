@@ -1,7 +1,9 @@
-"use client";
+"use client"
+
+;
 
 import { useState, useEffect, useCallback } from "react";
-import { Bookmark } from "lucide-react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import { useStore } from "@/lib/store";
 
 interface BookmarkButtonProps {
@@ -44,9 +46,7 @@ export function BookmarkButton({ articleSlug }: BookmarkButtonProps) {
       }`}
       aria-label={isSaved ? "ブックマークを解除" : "ブックマークに追加"}
     >
-      <Bookmark
-        className={`h-3.5 w-3.5 ${isSaved ? "fill-sage-600" : ""}`}
-      />
+      <WatercolorIcon name="bookmark" size={12} />
       {isSaved ? "保存済み" : "保存する"}
     </button>
   );

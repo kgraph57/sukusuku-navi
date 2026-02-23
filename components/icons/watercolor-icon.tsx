@@ -27,7 +27,12 @@ export type WatercolorIconName =
   | "baby"
   | "tag"
   | "arrow_right"
+  | "arrow_left"
+  | "chevron_down"
+  | "chevron_right"
+  | "chevron_left"
   | "user"
+  | "users"
   | "bookmark"
   | "lightbulb"
   | "message"
@@ -35,7 +40,22 @@ export type WatercolorIconName =
   | "download"
   | "help"
   | "plus"
-  | "send";
+  | "send"
+  | "x"
+  | "menu"
+  | "refresh"
+  | "trash"
+  | "logout"
+  | "graduation"
+  | "sparkles"
+  | "map"
+  | "locate"
+  | "activity"
+  | "loader"
+  | "district"
+  | "household"
+  | "income"
+  | "work";
 
 const ICON_MAP: Record<WatercolorIconName, string> = {
   syringe: "/icons/icon_syringe.png",
@@ -59,7 +79,12 @@ const ICON_MAP: Record<WatercolorIconName, string> = {
   baby: "/icons/icon_baby.png",
   tag: "/icons/icon_tag.png",
   arrow_right: "/icons/icon_arrow_right.png",
+  arrow_left: "/icons/icon_arrow_left.png",
+  chevron_down: "/icons/icon_chevron_down.png",
+  chevron_right: "/icons/icon_chevron_right.png",
+  chevron_left: "/icons/icon_chevron_left.png",
   user: "/icons/icon_user.png",
+  users: "/icons/icon_users.png",
   bookmark: "/icons/icon_bookmark.png",
   lightbulb: "/icons/icon_lightbulb.png",
   message: "/icons/icon_message.png",
@@ -68,6 +93,21 @@ const ICON_MAP: Record<WatercolorIconName, string> = {
   help: "/icons/icon_help.png",
   plus: "/icons/icon_plus.png",
   send: "/icons/icon_send.png",
+  x: "/icons/icon_x.png",
+  menu: "/icons/icon_menu.png",
+  refresh: "/icons/icon_refresh.png",
+  trash: "/icons/icon_trash.png",
+  logout: "/icons/icon_logout.png",
+  graduation: "/icons/icon_graduation.png",
+  sparkles: "/icons/icon_sparkles.png",
+  map: "/icons/icon_map.png",
+  locate: "/icons/icon_locate.png",
+  activity: "/icons/icon_activity.png",
+  loader: "/icons/icon_loader.png",
+  district: "/icons/icon_district.png",
+  household: "/icons/icon_household.png",
+  income: "/icons/icon_income.png",
+  work: "/icons/icon_work.png",
 };
 
 interface WatercolorIconProps {

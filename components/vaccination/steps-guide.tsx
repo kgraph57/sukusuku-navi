@@ -1,10 +1,5 @@
 import Link from "next/link";
-import {
-  CheckCircle2,
-  ExternalLink,
-  MapPin,
-  Lightbulb,
-} from "lucide-react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import type { VaccinationStep } from "@/lib/types";
 
 interface StepsGuideProps {
@@ -36,14 +31,14 @@ export function StepsGuide({ steps }: StepsGuideProps) {
               </p>
               {step.where && (
                 <p className="mt-2 flex items-center gap-1 text-xs text-muted">
-                  <MapPin className="h-3 w-3" />
+                  <WatercolorIcon name="mappin" size={12} />
                   {step.where}
                 </p>
               )}
               {step.tip && (
                 <div className="mt-3 rounded-lg border border-sage-200 bg-sage-50 p-3">
                   <p className="flex items-start gap-1.5 text-xs leading-relaxed text-sage-800">
-                    <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                    <WatercolorIcon name="lightbulb" size={12} className="mt-0.5 .5 .5 shrink-0" />
                     {step.tip}
                   </p>
                 </div>
@@ -54,7 +49,7 @@ export function StepsGuide({ steps }: StepsGuideProps) {
                   className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-sage-600 hover:text-sage-700"
                 >
                   詳しく見る
-                  <ExternalLink className="h-3 w-3" />
+                  <WatercolorIcon name="external" size={12} />
                 </Link>
               )}
             </div>
@@ -62,7 +57,7 @@ export function StepsGuide({ steps }: StepsGuideProps) {
         );
       })}
       <div className="flex items-center gap-3 rounded-lg border border-sage-200 bg-sage-50 p-4">
-        <CheckCircle2 className="h-5 w-5 shrink-0 text-sage-600" />
+        <WatercolorIcon name="check" size={20} className="shrink-0 text-sage-600" />
         <p className="text-sm font-medium text-sage-800">
           すべての定期接種を完了すると、お子さんは主要な感染症から守られます。
         </p>

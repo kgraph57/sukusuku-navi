@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Calendar, ChevronRight, Baby } from "lucide-react"
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 
 interface LifePlanTimelineProps {
   readonly children: readonly { readonly birthDate: string }[]
@@ -120,7 +120,7 @@ function ProgramBar({
         className={`mt-0.5 inline-flex items-center gap-0.5 text-xs ${colors.text} opacity-70 transition-opacity hover:opacity-100`}
       >
         <span>詳しく見る</span>
-        <ChevronRight className="h-3 w-3" />
+        <WatercolorIcon name="arrow_right" size={12} />
       </Link>
     </div>
   )
@@ -148,7 +148,7 @@ function ChildAgeMarker({
         </span>
         <div className="mt-0.5 h-3 w-0.5 bg-blush-400" />
         <div className="flex h-4 w-4 items-center justify-center rounded-full bg-blush-500 shadow-sm">
-          <Baby className="h-2.5 w-2.5 text-white" />
+          <WatercolorIcon name="baby" size={8} className=".5 .5 text-white" />
         </div>
         {index > 0 && (
           <span className="mt-0.5 text-xs text-muted">
@@ -182,7 +182,7 @@ export function LifePlanTimeline({
   return (
     <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
       <div className="mb-4 flex items-center gap-2">
-        <Calendar className="h-5 w-5 text-sage-600" />
+        <WatercolorIcon name="calendar" size={20} className="text-sage-600" />
         <h3 className="font-heading text-base font-semibold text-card-foreground">
           0歳〜18歳の制度タイムライン
         </h3>

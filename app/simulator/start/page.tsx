@@ -1,17 +1,10 @@
-"use client";
+"use client"
+
+;
 
 import { useState, useCallback } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import { useRouter } from "next/navigation";
-import {
-  Baby,
-  Home,
-  MapPin,
-  ClipboardCheck,
-  ArrowRight,
-  ArrowLeft,
-  Plus,
-  Trash2,
-} from "lucide-react";
 import { WizardStep } from "@/components/simulator/wizard-step";
 import type { ChildInfo, IncomeRange } from "@/lib/types";
 import {
@@ -187,7 +180,7 @@ export default function SimulatorStartPage() {
           {step === 1 && (
             <div>
               <div className="flex items-center gap-3 text-sage-700">
-                <Baby className="h-6 w-6" />
+                <WatercolorIcon name="baby" size={24} />
                 <h2 className="font-heading text-xl font-semibold">
                   お子さんの情報
                 </h2>
@@ -212,7 +205,7 @@ export default function SimulatorStartPage() {
                           onClick={() => removeChild(index)}
                           className="flex items-center gap-1 rounded-lg px-2 py-1 text-xs text-red-500 transition-colors hover:bg-red-50"
                         >
-                          <Trash2 className="h-3.5 w-3.5" />
+                          <WatercolorIcon name="plus" size={12} className=".5 .5" />
                           削除
                         </button>
                       )}
@@ -269,7 +262,7 @@ export default function SimulatorStartPage() {
                   onClick={addChild}
                   className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-border py-3 text-sm font-medium text-muted transition-colors hover:border-sage-300 hover:text-sage-600"
                 >
-                  <Plus className="h-4 w-4" />
+                  <WatercolorIcon name="plus" size={16} />
                   お子さんを追加
                 </button>
               </div>
@@ -279,7 +272,7 @@ export default function SimulatorStartPage() {
           {step === 2 && (
             <div>
               <div className="flex items-center gap-3 text-sage-700">
-                <Home className="h-6 w-6" />
+                <WatercolorIcon name="home" size={24} />
                 <h2 className="font-heading text-xl font-semibold">世帯情報</h2>
               </div>
               <p className="mt-2 text-sm text-muted">
@@ -395,7 +388,7 @@ export default function SimulatorStartPage() {
           {step === 3 && (
             <div>
               <div className="flex items-center gap-3 text-sage-700">
-                <MapPin className="h-6 w-6" />
+                <WatercolorIcon name="mappin" size={24} />
                 <h2 className="font-heading text-xl font-semibold">
                   お住まいの地区
                 </h2>
@@ -432,7 +425,7 @@ export default function SimulatorStartPage() {
           {step === 4 && (
             <div>
               <div className="flex items-center gap-3 text-sage-700">
-                <ClipboardCheck className="h-6 w-6" />
+                <WatercolorIcon name="clipboard" size={24} />
                 <h2 className="font-heading text-xl font-semibold">
                   入力内容の確認
                 </h2>
@@ -489,7 +482,7 @@ export default function SimulatorStartPage() {
                 onClick={goBack}
                 className="flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium text-muted transition-colors hover:bg-ivory-100 hover:text-foreground"
               >
-                <ArrowLeft className="h-4 w-4" />
+                <WatercolorIcon name="arrow_right" size={16} />
                 戻る
               </button>
             ) : (
@@ -504,7 +497,7 @@ export default function SimulatorStartPage() {
                 className="flex items-center gap-2 rounded-full bg-sage-600 px-6 py-2.5 text-sm font-bold text-white transition-colors hover:bg-sage-700 disabled:bg-ivory-200 disabled:text-muted"
               >
                 次へ
-                <ArrowRight className="h-4 w-4" />
+                <WatercolorIcon name="arrow_right" size={16} />
               </button>
             ) : (
               <button
@@ -513,7 +506,7 @@ export default function SimulatorStartPage() {
                 className="flex items-center gap-2 rounded-full bg-blush-500 px-6 py-2.5 text-sm font-bold text-white transition-colors hover:bg-blush-600"
               >
                 結果を見る
-                <ArrowRight className="h-4 w-4" />
+                <WatercolorIcon name="arrow_right" size={16} />
               </button>
             )}
           </div>

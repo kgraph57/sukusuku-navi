@@ -1,7 +1,9 @@
-"use client";
+"use client"
+
+;
 
 import { useState } from "react";
-import { ChevronDown, BookOpen } from "lucide-react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 
 interface CitationListProps {
   readonly citations: readonly string[];
@@ -21,16 +23,12 @@ export function CitationList({ citations }: CitationListProps) {
         aria-expanded={isOpen}
       >
         <div className="flex items-center gap-2">
-          <BookOpen className="h-4.5 w-4.5 text-sage-600" />
+          <WatercolorIcon name="book" size={16} className=".5 .5 text-sage-600" />
           <span className="font-heading text-sm font-semibold text-foreground">
             参考文献（{citations.length}件）
           </span>
         </div>
-        <ChevronDown
-          className={`h-5 w-5 text-muted transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        />
+        <WatercolorIcon name="arrow_right" size={20} />
       </button>
 
       {isOpen && (

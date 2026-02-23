@@ -1,4 +1,4 @@
-import { Lightbulb } from "lucide-react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 
 interface KeyPointsBoxProps {
   readonly points: readonly string[];
@@ -14,7 +14,7 @@ export function KeyPointsBox({
   return (
     <div className="my-8 overflow-hidden rounded-xl border-2 border-sage-200 bg-gradient-to-br from-sage-50 to-sage-50/20 shadow-sm">
       <div className="flex items-center gap-2.5 border-b border-sage-200 bg-sage-600 px-6 py-4">
-        <Lightbulb className="h-5 w-5 text-white" />
+        <WatercolorIcon name="lightbulb" size={20} className="text-white" />
         <h3 className="font-heading text-base font-semibold text-white">
           {title}
         </h3>

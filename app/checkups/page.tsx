@@ -1,21 +1,7 @@
 import type { Metadata } from "next";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ClipboardCheck,
-  ArrowRight,
-  CheckCircle2,
-  Info,
-  Calendar,
-  MapPin,
-  HelpCircle,
-  Stethoscope,
-  Heart,
-  Eye,
-  ListChecks,
-  Package,
-  MessageCircleQuestion,
-} from "lucide-react";
 import {
   getAllCheckups,
   CHECKUP_VENUE_LABELS,
@@ -31,11 +17,11 @@ export const metadata: Metadata = {
 };
 
 const JUMP_LINKS = [
-  { href: "#schedule", icon: Calendar, label: "スケジュール" },
-  { href: "#checkups", icon: ClipboardCheck, label: "健診一覧" },
-  { href: "#preparation", icon: Package, label: "準備するもの" },
-  { href: "#faq", icon: HelpCircle, label: "よくある質問" },
-  { href: "#doctor-perspective", icon: Eye, label: "医師の視点" },
+  { href: "#schedule", iconName: "calendar" as const, label: "スケジュール" },
+  { href: "#checkups", iconName: "clipboard" as const, label: "健診一覧" },
+  { href: "#preparation", iconName: "clipboard" as const, label: "準備するもの" },
+  { href: "#faq", iconName: "help" as const, label: "よくある質問" },
+  { href: "#doctor-perspective", iconName: "stethoscope" as const, label: "医師の視点" },
 ] as const;
 
 const TIMELINE_ITEMS = [
@@ -122,7 +108,7 @@ function CheckupCard({ checkup }: { readonly checkup: Checkup }) {
       <div
         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${venueColorClass}`}
       >
-        <ClipboardCheck className="h-5 w-5" />
+        <WatercolorIcon name="clipboard" size={20} />
       </div>
 
       <div className="min-w-0 flex-1">
@@ -149,7 +135,7 @@ function CheckupCard({ checkup }: { readonly checkup: Checkup }) {
         </p>
         <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
           詳しく見る
-          <ArrowRight className="h-3 w-3" />
+          <WatercolorIcon name="arrow_right" size={12} />
         </span>
       </div>
     </Link>
@@ -227,7 +213,7 @@ function ScheduleTimeline({
                     {checkup.venueLabel}
                   </p>
                 </div>
-                <ArrowRight className="h-4 w-4 shrink-0 text-muted opacity-0 transition-opacity group-hover:opacity-100" />
+                <WatercolorIcon name="arrow_right" size={16} className="shrink-0 text-muted opacity-0 transition-opacity group-hover:opacity-100" />
               </Link>
             </div>
           );
@@ -257,7 +243,7 @@ export default function CheckupsPage() {
             </div>
             <div className="text-center">
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-sage-100">
-                <ClipboardCheck className="h-7 w-7 text-sage-600" />
+                <WatercolorIcon name="clipboard" size={28} className="text-sage-600" />
               </div>
               <h1 className="mt-5 font-heading text-3xl font-semibold text-foreground sm:text-4xl">
                 乳幼児健診ガイド
@@ -286,7 +272,7 @@ export default function CheckupsPage() {
                 href={link.href}
                 className="inline-flex items-center gap-1.5 rounded-full border border-sage-200 bg-white px-4 py-2 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
               >
-                <link.icon className="h-3.5 w-3.5" />
+                <WatercolorIcon name={link.iconName} size={16} />
                 {link.label}
               </a>
             ))}
@@ -374,22 +360,22 @@ export default function CheckupsPage() {
 
           <div className="rounded-xl border border-sage-200 bg-sage-50 p-5">
             <div className="flex items-start gap-3">
-              <Info className="mt-0.5 h-5 w-5 shrink-0 text-sage-600" />
+              <WatercolorIcon name="star" size={20} className="mt-0.5   shrink-0 text-sage-600" />
               <div className="space-y-1.5">
                 <p className="text-sm font-bold text-sage-800">
                   乳幼児健診の基本
                 </p>
                 <ul className="space-y-1 text-sm text-sage-700">
                   <li className="flex items-start gap-1.5">
-                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sage-500" />
+                    <WatercolorIcon name="check" size={12} className="mt-0.5 .5 .5 shrink-0 text-sage-500" />
                     1歳半健診と3歳児健診は法律で義務づけられた健診です。必ず受診してください
                   </li>
                   <li className="flex items-start gap-1.5">
-                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sage-500" />
+                    <WatercolorIcon name="check" size={12} className="mt-0.5 .5 .5 shrink-0 text-sage-500" />
                     港区では3〜4ヶ月・6〜7ヶ月・9〜10ヶ月の健診も公費（無料）で受けられます
                   </li>
                   <li className="flex items-start gap-1.5">
-                    <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sage-500" />
+                    <WatercolorIcon name="check" size={12} className="mt-0.5 .5 .5 shrink-0 text-sage-500" />
                     健診で「要経過観察」と言われても慌てないでください。早めのフォローがお子さんの発達をサポートします
                   </li>
                 </ul>
@@ -421,7 +407,7 @@ export default function CheckupsPage() {
                 className="flex gap-4 rounded-xl border border-border bg-card p-5"
               >
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sage-50">
-                  <ListChecks className="h-5 w-5 text-sage-600" />
+                  <WatercolorIcon name="star" size={20} className="text-sage-600" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <h3 className="font-heading text-sm font-semibold text-card-foreground">
@@ -461,7 +447,7 @@ export default function CheckupsPage() {
               >
                 <summary className="flex cursor-pointer items-center gap-3 p-5 [&::-webkit-details-marker]:hidden">
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sage-50">
-                    <MessageCircleQuestion className="h-4 w-4 text-sage-600" />
+                    <WatercolorIcon name="star" size={16} className="text-sage-600" />
                   </div>
                   <span className="flex-1 text-sm font-bold text-card-foreground">
                     {faq.question}
@@ -505,7 +491,7 @@ export default function CheckupsPage() {
           <div className="mt-8">
             <div className="flex gap-4 rounded-xl border border-sage-200 bg-sage-50/50 p-5 sm:p-6">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sage-600">
-                <Eye className="h-6 w-6 text-white" />
+                <WatercolorIcon name="star" size={24} className="text-white" />
               </div>
               <div>
                 <p className="text-sm font-bold text-sage-800">
@@ -528,7 +514,7 @@ export default function CheckupsPage() {
                   className="group flex items-center gap-3 rounded-xl border border-border bg-card p-4 transition-all hover:border-sage-200 hover:shadow-md"
                 >
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sage-50">
-                    <Eye className="h-4 w-4 text-sage-600" />
+                    <WatercolorIcon name="star" size={16} className="text-sage-600" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <h3 className="text-sm font-bold text-card-foreground group-hover:text-sage-700">
@@ -538,7 +524,7 @@ export default function CheckupsPage() {
                       チェックポイント: {checkup.whatDoctorChecks.length}項目
                     </p>
                   </div>
-                  <ArrowRight className="h-4 w-4 shrink-0 text-muted opacity-0 transition-opacity group-hover:opacity-100" />
+                  <WatercolorIcon name="arrow_right" size={16} className="shrink-0 text-muted opacity-0 transition-opacity group-hover:opacity-100" />
                 </Link>
               ))}
             </div>
@@ -555,7 +541,7 @@ export default function CheckupsPage() {
               className="flex flex-1 items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                <MapPin className="h-5 w-5" />
+                <WatercolorIcon name="mappin" size={20} />
               </div>
               <div>
                 <h3 className="font-heading text-sm font-semibold text-card-foreground">
@@ -569,7 +555,7 @@ export default function CheckupsPage() {
               className="flex flex-1 items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blush-50 text-blush-500">
-                <Heart className="h-5 w-5" />
+                <WatercolorIcon name="heart" size={20} />
               </div>
               <div>
                 <h3 className="font-heading text-sm font-semibold text-card-foreground">

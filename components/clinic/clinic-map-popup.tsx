@@ -1,7 +1,9 @@
-"use client";
+"use client"
+
+;
 
 import Link from "next/link";
-import { ExternalLink, Phone } from "lucide-react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import type { Clinic } from "@/lib/clinics";
 
 interface ClinicMapPopupProps {
@@ -57,7 +59,7 @@ export function ClinicMapPopup({ clinic }: ClinicMapPopupProps) {
           href={`tel:${clinic.phone}`}
           className="inline-flex items-center gap-0.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted hover:bg-ivory-100"
         >
-          <Phone className="h-3 w-3" />
+          <WatercolorIcon name="phone" size={12} />
           電話
         </a>
         <a
@@ -66,7 +68,7 @@ export function ClinicMapPopup({ clinic }: ClinicMapPopupProps) {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-0.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted hover:bg-ivory-100"
         >
-          <ExternalLink className="h-3 w-3" />
+          <WatercolorIcon name="external" size={12} />
           Maps
         </a>
       </div>

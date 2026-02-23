@@ -1,22 +1,10 @@
-"use client";
+"use client"
+
+;
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import {
-  Baby,
-  ArrowLeft,
-  Star,
-  Activity,
-  MessageCircle,
-  Heart,
-  Sparkles,
-  Check,
-  Circle,
-  Users,
-  ChevronDown,
-  ChevronUp,
-  Calendar,
-} from "lucide-react";
 import { useStore } from "@/lib/store";
 import type { FamilyProfile, ChildProfile, MilestoneRecord } from "@/lib/store";
 import { getChildAge, formatAge } from "@/lib/utils/age";
@@ -31,11 +19,13 @@ import type { MilestoneDefinition, MilestoneCategory } from "@/lib/milestones";
 // Category icon
 // ---------------------------------------------------------------------------
 
-const CATEGORY_ICONS: Record<MilestoneCategory, typeof Activity> = {
-  motor: Activity,
-  language: MessageCircle,
-  social: Heart,
-  daily: Star,
+import type { WatercolorIconName } from "@/components/icons/watercolor-icon";
+
+const CATEGORY_ICONS: Record<MilestoneCategory, WatercolorIconName> = {
+  motor: "activity",
+  language: "message",
+  social: "heart",
+  daily: "star",
 };
 
 // ---------------------------------------------------------------------------
@@ -66,7 +56,7 @@ function ChildSelector({
                 : "bg-ivory-100 text-muted hover:bg-ivory-200"
             }`}
           >
-            <Users className="h-3.5 w-3.5" />
+            <WatercolorIcon name="user" size={12} className=".5 .5" />
             <span>{child.nickname}</span>
             <span className="text-xs opacity-80">
               ({formatAge(child.birthDate)})
@@ -151,11 +141,11 @@ function MilestoneRow({
       >
         {isAchieved ? (
           <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-sage-500 bg-sage-500 text-white">
-            <Check className="h-3.5 w-3.5" />
+            <WatercolorIcon name="check" size={12} className=".5 .5" />
           </div>
         ) : (
           <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-gray-300 bg-white">
-            <Circle className="h-3.5 w-3.5 text-gray-300" />
+            <WatercolorIcon name="check" size={12} className=".5 .5 text-gray-300" />
           </div>
         )}
       </button>
@@ -189,7 +179,7 @@ function MilestoneRow({
 
       {isAchieved && record?.achievedDate && (
         <div className="flex shrink-0 items-center gap-1 text-xs text-sage-600">
-          <Calendar className="h-3 w-3" />
+          <WatercolorIcon name="calendar" size={12} />
           <span>{record.achievedDate}</span>
         </div>
       )}
@@ -215,7 +205,7 @@ function CategorySection({
   readonly onToggle: (milestoneId: string) => void;
 }) {
   const [isExpanded, setIsExpanded] = useState(true);
-  const IconComponent = CATEGORY_ICONS[category];
+  const iconName = CATEGORY_ICONS[category];
   const colorClass = MILESTONE_CATEGORY_COLORS[category];
   const achievedCount = milestones.filter((m) =>
     records.some((r) => r.milestoneId === m.id && r.achievedDate != null),
@@ -231,7 +221,7 @@ function CategorySection({
         <div
           className={`flex h-8 w-8 items-center justify-center rounded-lg ${colorClass}`}
         >
-          <IconComponent className="h-4 w-4" />
+          <WatercolorIcon name={iconName} size={16} />
         </div>
         <span className="flex-1 text-left font-heading text-sm font-semibold text-card-foreground">
           {MILESTONE_CATEGORY_LABELS[category]}
@@ -240,9 +230,9 @@ function CategorySection({
           {achievedCount}/{milestones.length}
         </span>
         {isExpanded ? (
-          <ChevronUp className="h-4 w-4 text-muted" />
+          <WatercolorIcon name="star" size={16} className="text-muted" />
         ) : (
-          <ChevronDown className="h-4 w-4 text-muted" />
+          <WatercolorIcon name="arrow_right" size={16} className="text-muted" />
         )}
       </button>
 
@@ -371,12 +361,12 @@ export default function MilestonesPage() {
             href="/my"
             className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground"
           >
-            <ArrowLeft className="h-3.5 w-3.5" />
+            <WatercolorIcon name="arrow_right" size={12} className=".5 .5" />
             マイページに戻る
           </Link>
           <div className="mt-8 rounded-2xl border-2 border-dashed border-sage-200 bg-white/60 p-10 text-center">
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
-              <Baby className="h-7 w-7 text-sage-600" />
+              <WatercolorIcon name="baby" size={28} className="text-sage-600" />
             </div>
             <h1 className="mt-4 font-heading text-lg font-semibold text-foreground">
               お子さんを登録してください
@@ -388,7 +378,7 @@ export default function MilestonesPage() {
               href="/my"
               className="mt-6 inline-flex items-center gap-2 rounded-full bg-sage-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700"
             >
-              <Baby className="h-4 w-4" />
+              <WatercolorIcon name="baby" size={16} />
               お子さんを登録する
             </Link>
           </div>
@@ -405,11 +395,11 @@ export default function MilestonesPage() {
             href="/my"
             className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground"
           >
-            <ArrowLeft className="h-3.5 w-3.5" />
+            <WatercolorIcon name="arrow_right" size={12} className=".5 .5" />
             マイページ
           </Link>
           <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground sm:text-3xl">
-            <Sparkles className="mr-2 inline-block h-7 w-7 text-rose-500" />
+            <WatercolorIcon name="star" size={28} className="mr-2 inline-block   text-rose-500" />
             成長マイルストーン
           </h1>
           <p className="mt-2 text-sm text-muted">
@@ -431,7 +421,7 @@ export default function MilestonesPage() {
           {selectedChild && (
             <div className="flex items-center gap-3 rounded-xl border border-border bg-card p-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-100">
-                <Baby className="h-5 w-5 text-rose-500" />
+                <WatercolorIcon name="baby" size={20} className="text-rose-500" />
               </div>
               <div>
                 <p className="font-heading text-base font-semibold text-card-foreground">

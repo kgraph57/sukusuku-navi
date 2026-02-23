@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IconBaby } from "@/components/icons/custom-icons";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 
 const FOOTER_LINKS = {
   コンテンツ: [
@@ -28,7 +28,7 @@ export function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-2.5">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-sage-700">
-                <IconBaby className="h-4 w-4 text-white" />
+                <WatercolorIcon name="baby" size={16} className="text-white" />
               </div>
               <span className="font-heading text-lg tracking-wide text-foreground">
                 すくすくナビ

@@ -1,13 +1,7 @@
 import type { Metadata } from "next"
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
+import type { WatercolorIconName } from "@/components/icons/watercolor-icon";
 import Link from "next/link"
-import {
-  Heart,
-  Banknote,
-  Baby,
-  HandHeart,
-  ArrowRight,
-  Calculator,
-} from "lucide-react"
 import {
   getAllPrograms,
   PROGRAM_CATEGORY_LABELS,
@@ -21,11 +15,11 @@ export const metadata: Metadata = {
     "港区の子育て支援制度・給付金・助成金の一覧。医療費助成、児童手当、産後ケア、一時保育など17の制度をまとめて確認できます。",
 }
 
-const CATEGORY_ICON_MAP: Record<string, typeof Heart> = {
-  medical: Heart,
-  financial: Banknote,
-  childcare: Baby,
-  support: HandHeart,
+const CATEGORY_ICON_MAP: Record<string, WatercolorIconName> = {
+  medical: "heart",
+  financial: "calculator",
+  childcare: "baby",
+  support: "users",
 }
 
 const CATEGORY_COLOR_MAP: Record<string, string> = {
@@ -46,7 +40,7 @@ function ProgramCard({ program }: { readonly program: Program }) {
   const colorClass =
     CATEGORY_COLOR_MAP[program.category] ??
     "bg-gray-50 text-gray-600 border-gray-200"
-  const IconComponent = CATEGORY_ICON_MAP[program.category] ?? Heart
+  const iconName = CATEGORY_ICON_MAP[program.category] ?? "heart"
 
   return (
     <Link
@@ -56,7 +50,7 @@ function ProgramCard({ program }: { readonly program: Program }) {
       <div
         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${colorClass}`}
       >
-        <IconComponent className="h-5 w-5" />
+        <WatercolorIcon name={iconName} size={20} />
       </div>
 
       <div className="min-w-0 flex-1">
@@ -73,7 +67,7 @@ function ProgramCard({ program }: { readonly program: Program }) {
         )}
         <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
           詳細を見る
-          <ArrowRight className="h-3 w-3" />
+          <WatercolorIcon name="arrow_right" size={12} />
         </span>
       </div>
     </Link>
@@ -103,7 +97,7 @@ export default function ProgramsPage() {
             href="/simulator/start"
             className="mt-6 inline-flex items-center gap-2 rounded-full bg-blush-500 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-blush-600"
           >
-            <Calculator className="h-4 w-4" />
+            <WatercolorIcon name="calculator" size={16} />
             あなたの対象制度を調べる
           </Link>
         </div>
@@ -113,14 +107,14 @@ export default function ProgramsPage() {
         <div className="mx-auto max-w-4xl">
           {programsByCategory.map(({ category, label, programs }) => {
             if (programs.length === 0) return null
-            const IconComponent = CATEGORY_ICON_MAP[category] ?? Heart
+            const iconName = CATEGORY_ICON_MAP[category] ?? "heart"
             const headerColor =
               CATEGORY_HEADER_COLOR_MAP[category] ?? "text-gray-600"
 
             return (
               <div key={category} className="mb-12 last:mb-0">
                 <div className="flex items-center gap-3">
-                  <IconComponent className={`h-6 w-6 ${headerColor}`} />
+                  <WatercolorIcon name={iconName} size={24} className={headerColor} />
                   <h2 className="font-heading text-xl font-semibold text-foreground">
                     {label}
                   </h2>

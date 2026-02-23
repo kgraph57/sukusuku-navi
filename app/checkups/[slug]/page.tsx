@@ -1,19 +1,7 @@
 import type { Metadata } from "next";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Stethoscope,
-  CheckCircle2,
-  HelpCircle,
-  Lightbulb,
-  ClipboardList,
-  ShieldCheck,
-  Activity,
-  ExternalLink,
-  Phone,
-} from "lucide-react";
 import {
   getAllCheckups,
   getCheckupBySlug,
@@ -68,7 +56,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
             href="/checkups"
             className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <WatercolorIcon name="arrow_right" size={16} />
             健診一覧に戻る
           </Link>
 
@@ -76,7 +64,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
             <div
               className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border ${venueColorClass}`}
             >
-              <Activity className="h-6 w-6" />
+              <WatercolorIcon name="stethoscope" size={24} />
             </div>
             <div>
               <div className="flex flex-wrap gap-2">
@@ -121,7 +109,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
               className="scroll-mt-20 rounded-xl border border-border bg-card p-6"
             >
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                <Stethoscope className="h-5 w-5 text-sage-600" />
+                <WatercolorIcon name="stethoscope" size={20} className="text-sage-600" />
                 医師のチェックポイント
               </h2>
               <div className="mt-4 space-y-0 divide-y divide-border">
@@ -140,7 +128,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
                     </p>
                     <div className="mt-3 rounded-lg border border-sage-200 bg-sage-50 p-4">
                       <div className="flex items-start gap-2">
-                        <Stethoscope className="mt-0.5 h-4 w-4 shrink-0 text-sage-600" />
+                        <WatercolorIcon name="stethoscope" size={16} className="mt-0.5   shrink-0 text-sage-600" />
                         <div>
                           <p className="text-xs font-bold text-sage-700">
                             おかもん先生のひとこと
@@ -164,13 +152,13 @@ export default async function CheckupDetailPage({ params }: PageProps) {
               className="scroll-mt-20 rounded-xl border border-border bg-card p-6"
             >
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                <ClipboardList className="h-5 w-5 text-sage-600" />
+                <WatercolorIcon name="star" size={20} className="text-sage-600" />
                 持ち物・準備リスト
               </h2>
               <ul className="mt-4 space-y-4">
                 {checkup.preparation.map((prep, i) => (
                   <li key={i} className="flex gap-3">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-sage-500" />
+                    <WatercolorIcon name="check" size={20} className="mt-0.5   shrink-0 text-sage-500" />
                     <div>
                       <p className="text-sm font-bold text-card-foreground">
                         {prep.item}
@@ -192,7 +180,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
               className="scroll-mt-20 rounded-xl border border-border bg-card p-6"
             >
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                <HelpCircle className="h-5 w-5 text-sage-600" />
+                <WatercolorIcon name="help" size={20} className="text-sage-600" />
                 よくある質問
               </h2>
               <div className="mt-4 space-y-5">
@@ -210,7 +198,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
                         className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-sage-50 px-4 py-1.5 text-xs font-medium text-sage-700 transition-colors hover:bg-sage-100"
                       >
                         {item.actionLabel ?? "詳細を見る"}
-                        <ArrowRight className="h-3 w-3" />
+                        <WatercolorIcon name="arrow_right" size={12} />
                       </Link>
                     )}
                   </div>
@@ -226,13 +214,13 @@ export default async function CheckupDetailPage({ params }: PageProps) {
               className="scroll-mt-20 rounded-xl border border-border bg-card p-6"
             >
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                <Lightbulb className="h-5 w-5 text-sage-600" />
+                <WatercolorIcon name="lightbulb" size={20} className="text-sage-600" />
                 ワンポイントアドバイス
               </h2>
               <ul className="mt-4 space-y-3">
                 {checkup.tips.map((tip, i) => (
                   <li key={i} className="flex gap-3">
-                    <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-sage-500" />
+                    <WatercolorIcon name="shield" size={16} className="mt-0.5   shrink-0 text-sage-500" />
                     <p className="text-sm leading-relaxed text-card-foreground">
                       {tip}
                     </p>
@@ -250,7 +238,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
               rel="noopener noreferrer"
               className="flex w-full items-center justify-center gap-2 rounded-xl border border-sage-200 bg-white px-6 py-3.5 text-base font-bold text-sage-600 shadow-sm transition-colors hover:bg-sage-50"
             >
-              <ExternalLink className="h-5 w-5" />
+              <WatercolorIcon name="external" size={20} />
               港区公式ページで詳細を見る
             </a>
           )}
@@ -259,7 +247,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
           {checkup.slug === "5year" && (
             <div className="rounded-xl border-2 border-amber-200 bg-amber-50 p-6">
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-amber-900">
-                <HelpCircle className="h-5 w-5 text-amber-600" />
+                <WatercolorIcon name="help" size={20} className="text-amber-600" />
                 発達が気になったら
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-amber-800">
@@ -270,7 +258,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
                   href="tel:03-6277-3903"
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-amber-700"
                 >
-                  <Phone className="h-4 w-4" />
+                  <WatercolorIcon name="phone" size={16} />
                   ぱおに電話する（03-6277-3903）
                 </a>
                 <Link
@@ -278,7 +266,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-amber-300 bg-white px-5 py-2.5 text-sm font-medium text-amber-700 transition-colors hover:bg-amber-50"
                 >
                   詳細を見る
-                  <ArrowRight className="h-4 w-4" />
+                  <WatercolorIcon name="arrow_right" size={16} />
                 </Link>
               </div>
             </div>
@@ -299,7 +287,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
                   {nextCheckupData.ageLabel}
                 </p>
               </div>
-              <ArrowRight className="h-5 w-5 shrink-0 text-sage-600" />
+              <WatercolorIcon name="arrow_right" size={20} className="shrink-0 text-sage-600" />
             </Link>
           )}
 
@@ -309,7 +297,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
               href="/checkups"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-sage-200 bg-white px-6 py-3 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
             >
-              <ArrowLeft className="h-4 w-4" />
+              <WatercolorIcon name="arrow_right" size={16} />
               健診一覧に戻る
             </Link>
             <Link
@@ -317,7 +305,7 @@ export default async function CheckupDetailPage({ params }: PageProps) {
               className="inline-flex items-center justify-center gap-2 rounded-full bg-sage-600 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-sage-700"
             >
               医療機関を探す
-              <ArrowRight className="h-4 w-4" />
+              <WatercolorIcon name="arrow_right" size={16} />
             </Link>
           </div>
 

@@ -1,9 +1,9 @@
-import { Building2, Stethoscope } from "lucide-react";
 import type { Clinic } from "./clinics";
+import type { WatercolorIconName } from "@/components/icons/watercolor-icon";
 
-export const TYPE_ICON_MAP: Record<Clinic["type"], typeof Building2> = {
-  hospital: Building2,
-  clinic: Stethoscope,
+export const TYPE_ICON_MAP: Record<Clinic["type"], WatercolorIconName> = {
+  hospital: "building",
+  clinic: "stethoscope",
 };
 
 export const TYPE_COLOR_MAP: Record<Clinic["type"], string> = {

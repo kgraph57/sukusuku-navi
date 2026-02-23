@@ -1,13 +1,7 @@
 import type { Metadata } from "next"
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Image from "next/image"
 import Link from "next/link"
-import {
-  Calculator,
-  ArrowRight,
-  Clock,
-  Shield,
-  CheckCircle2,
-} from "lucide-react"
 
 export const metadata: Metadata = {
   title: "給付金シミュレーター",
@@ -17,27 +11,27 @@ export const metadata: Metadata = {
 
 const FEATURES = [
   {
-    icon: Clock,
-    title: "約2分で完了",
+    iconName: "clock" as const,
+    title: "約25分で完了",
     description: "4ステップの簡単な質問に答えるだけ。",
     character: "/characters/poses/haruto_running.png",
     charAlt: "ハルト",
   },
   {
-    icon: Shield,
+    iconName: "shield" as const,
     title: "個人情報不要",
     description: "入力内容はサーバーに保存されません。",
     character: "/characters/poses/pochi_sitting.png",
     charAlt: "ぽち",
   },
   {
-    icon: CheckCircle2,
+    iconName: "check" as const,
     title: "17制度を一括チェック",
     description: "港区の子育て支援制度をまとめて確認。",
     character: "/characters/poses/risu_acorn.png",
     charAlt: "りすちゃん",
   },
-] as const
+]
 
 export default function SimulatorPage() {
   return (
@@ -58,7 +52,7 @@ export default function SimulatorPage() {
             {/* テキスト中央 */}
             <div className="text-center">
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-blush-500 text-white">
-                <Calculator className="h-8 w-8" />
+                <WatercolorIcon name="calculator" size={32} />
               </div>
 
               <h1 className="mt-6 font-heading text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
@@ -78,7 +72,7 @@ export default function SimulatorPage() {
                 className="mt-8 inline-flex items-center gap-2 rounded-full bg-blush-500 px-8 py-4 text-base font-bold text-white transition-colors hover:bg-blush-600"
               >
                 シミュレーションを始める
-                <ArrowRight className="h-5 w-5" />
+                <WatercolorIcon name="arrow_right" size={20} />
               </Link>
             </div>
             {/* キャラクター右 */}
@@ -117,7 +111,7 @@ export default function SimulatorPage() {
                   />
                 </div>
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-sage-50 text-sage-600">
-                  <feature.icon className="h-6 w-6" />
+                  <WatercolorIcon name={feature.iconName} size={28} />
                 </div>
                 <h3 className="mt-4 font-heading text-lg font-semibold text-card-foreground">
                   {feature.title}

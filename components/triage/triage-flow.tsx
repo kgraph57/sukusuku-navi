@@ -1,16 +1,10 @@
-"use client";
+"use client"
+
+;
 
 import { useState } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  AlertTriangle,
-  Phone,
-  RotateCcw,
-  HelpCircle,
-  CheckCircle2,
-  XCircle,
-} from "lucide-react";
 import type { TriageSymptom, SeverityResult } from "@/lib/triage/engine";
 import { SEVERITY_CONFIG } from "@/lib/triage/engine";
 import {
@@ -40,7 +34,7 @@ function SeverityCard({ result }: { readonly result: SeverityResult }) {
             href={`tel:${config.phone}`}
             className={`inline-flex items-center gap-1 rounded-full border bg-white px-3 py-1 text-sm font-bold ${config.color} ${config.borderColor}`}
           >
-            <Phone className="h-3.5 w-3.5" />
+            <WatercolorIcon name="phone" size={12} className=".5 .5" />
             {config.phone}
           </a>
         )}
@@ -117,7 +111,7 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
             href="/triage"
             className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <WatercolorIcon name="arrow_right" size={16} />
             症状一覧に戻る
           </Link>
 
@@ -129,7 +123,7 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
           </p>
 
           <div className="mt-4 flex gap-2 rounded-lg border border-yellow-200 bg-yellow-50 p-3">
-            <AlertTriangle className="h-4 w-4 shrink-0 text-yellow-600" />
+            <WatercolorIcon name="alert" size={16} className="shrink-0 text-yellow-600" />
             <p className="text-sm text-yellow-800">{symptom.ageNote}</p>
           </div>
         </div>
@@ -159,7 +153,7 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
               <SeverityCard result={result} />
 
               <div className="flex gap-2 rounded-lg border border-border bg-ivory-50 p-4">
-                <AlertTriangle className="h-4 w-4 shrink-0 text-muted" />
+                <WatercolorIcon name="alert" size={16} className="shrink-0 text-muted" />
                 <p className="text-xs leading-relaxed text-muted">
                   この判定は医師の診断に代わるものではありません。あくまで受診の目安としてご利用ください。心配な場合はいつでも医療機関にご相談ください。
                 </p>
@@ -171,7 +165,7 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
                   onClick={handleReset}
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-sage-200 bg-white px-6 py-3 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
                 >
-                  <RotateCcw className="h-4 w-4" />
+                  <WatercolorIcon name="star" size={16} />
                   もう一度チェックする
                 </button>
                 <Link
@@ -202,7 +196,7 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
                   onClick={() => setShowHelp((prev) => !prev)}
                   className="mt-3 inline-flex items-center gap-1 text-xs text-muted hover:text-sage-600"
                 >
-                  <HelpCircle className="h-3.5 w-3.5" />
+                  <WatercolorIcon name="help" size={12} className=".5 .5" />
                   {showHelp ? "ヒントを閉じる" : "判断のヒント"}
                 </button>
               </div>
@@ -213,7 +207,7 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
                   onClick={() => handleAnswer("yes")}
                   className="flex items-center justify-center gap-2 rounded-xl border-2 border-blush-200 bg-blush-50 px-6 py-4 text-base font-bold text-blush-600 transition-all hover:border-blush-300 hover:bg-blush-100"
                 >
-                  <CheckCircle2 className="h-5 w-5" />
+                  <WatercolorIcon name="check" size={20} />
                   はい
                 </button>
                 <button
@@ -221,7 +215,7 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
                   onClick={() => handleAnswer("no")}
                   className="flex items-center justify-center gap-2 rounded-xl border-2 border-sage-200 bg-sage-50 px-6 py-4 text-base font-bold text-sage-700 transition-all hover:border-sage-300 hover:bg-sage-100"
                 >
-                  <XCircle className="h-5 w-5" />
+                  <WatercolorIcon name="star" size={20} />
                   いいえ
                 </button>
               </div>
@@ -233,7 +227,7 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
               href="/triage"
               className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
             >
-              <ArrowLeft className="h-4 w-4" />
+              <WatercolorIcon name="arrow_right" size={16} />
               症状一覧に戻る
             </Link>
           </div>

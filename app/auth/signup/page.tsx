@@ -1,8 +1,10 @@
-"use client";
+"use client"
+
+;
 
 import { useState } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import { Baby, Mail, ArrowLeft, CheckCircle } from "lucide-react";
 import { useAuth } from "@/lib/auth/auth-provider";
 
 export default function SignupPage() {
@@ -19,7 +21,7 @@ export default function SignupPage() {
     return (
       <div className="mx-auto max-w-md px-4 py-12 text-center">
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
-          <Baby className="h-7 w-7 text-sage-600" />
+          <WatercolorIcon name="baby" size={28} className="text-sage-600" />
         </div>
         <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground">
           アカウント登録は準備中です
@@ -31,7 +33,7 @@ export default function SignupPage() {
           href="/my"
           className="mt-6 inline-flex items-center gap-1.5 rounded-full bg-sage-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <WatercolorIcon name="arrow_right" size={12} className=".5 .5" />
           マイページへ
         </Link>
       </div>
@@ -74,7 +76,7 @@ export default function SignupPage() {
     return (
       <div className="mx-auto max-w-md px-4 py-12 text-center">
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
-          <CheckCircle className="h-7 w-7 text-sage-600" />
+          <WatercolorIcon name="check" size={28} className="text-sage-600" />
         </div>
         <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground">
           メールを確認してください
@@ -87,7 +89,7 @@ export default function SignupPage() {
           href="/auth/login"
           className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-sage-600 hover:text-sage-700"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <WatercolorIcon name="arrow_right" size={12} className=".5 .5" />
           ログインページへ
         </Link>
       </div>
@@ -98,7 +100,7 @@ export default function SignupPage() {
     <div className="mx-auto max-w-md px-4 py-12">
       <div className="text-center">
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
-          <Baby className="h-7 w-7 text-sage-600" />
+          <WatercolorIcon name="baby" size={28} className="text-sage-600" />
         </div>
         <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground">
           新規登録
@@ -168,7 +170,7 @@ export default function SignupPage() {
             メールアドレス
           </label>
           <div className="relative mt-1">
-            <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
+            <WatercolorIcon name="mail" size={16} className="absolute left-3 top-1/2   -translate-y-1/2 text-muted" />
             <input
               id="email"
               type="email"
@@ -243,7 +245,7 @@ export default function SignupPage() {
           href="/"
           className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <WatercolorIcon name="arrow_right" size={12} className=".5 .5" />
           トップに戻る
         </Link>
       </div>

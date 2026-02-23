@@ -1,7 +1,9 @@
-"use client";
+"use client"
+
+;
 
 import { useState, useMemo } from "react";
-import { Search, X } from "lucide-react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import type {
   ArticleFrontmatter,
   ArticleCategory,
@@ -71,7 +73,7 @@ export function ArticleFilter({ articles }: ArticleFilterProps) {
     <div>
       {/* Search bar */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted" />
+        <WatercolorIcon name="search" size={16} className="absolute left-3 top-1/2 .5 .5 -translate-y-1/2 text-muted" />
         <input
           type="text"
           placeholder="記事を検索..."
@@ -86,7 +88,7 @@ export function ArticleFilter({ articles }: ArticleFilterProps) {
             className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-foreground"
             aria-label="検索をクリア"
           >
-            <X className="h-4 w-4" />
+            <WatercolorIcon name="check" size={16} />
           </button>
         )}
       </div>

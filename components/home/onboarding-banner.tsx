@@ -1,42 +1,37 @@
-"use client";
+"use client"
+
+;
 
 import { useState, useEffect } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import {
-  Sparkles,
-  ArrowRight,
-  Calendar,
-  Syringe,
-  Calculator,
-  X,
-} from "lucide-react";
 import { useStore } from "@/lib/store";
 
 const ONBOARDING_STEPS = [
   {
     href: "/my",
-    icon: Sparkles,
+    icon: "sparkles",
     title: "お子さんを登録",
     description: "生年月日を登録するとパーソナライズされた情報が届きます",
     color: "bg-sage-50 text-sage-600",
   },
   {
     href: "/my/timeline",
-    icon: Calendar,
+    icon: "calendar",
     title: "タイムラインを確認",
     description: "今やるべき手続き・健診・予防接種を時系列で表示",
     color: "bg-blue-50 text-blue-600",
   },
   {
     href: "/vaccines",
-    icon: Syringe,
+    icon: "syringe",
     title: "予防接種スケジュール",
     description: "お子さんの月齢に合わせた接種スケジュールを確認",
     color: "bg-purple-50 text-purple-600",
   },
   {
     href: "/simulator/start",
-    icon: Calculator,
+    icon: "calculator",
     title: "給付金を調べる",
     description: "受けられる行政サービス・助成金を一括検索",
     color: "bg-blush-50 text-blush-500",
@@ -83,12 +78,12 @@ export function OnboardingBanner() {
             className="absolute right-3 top-3 rounded-full p-1.5 text-muted transition-colors hover:bg-ivory-100 hover:text-foreground"
             aria-label="閉じる"
           >
-            <X className="h-4 w-4" />
+            <WatercolorIcon name="check" size={16} />
           </button>
 
           <div className="text-center">
             <p className="inline-flex items-center gap-1.5 rounded-full bg-sage-100/70 px-3 py-1 text-xs font-medium text-sage-700">
-              <Sparkles className="h-3 w-3" />
+              <WatercolorIcon name="star" size={12} />
               はじめての方へ
             </p>
             <h2 className="mt-3 font-heading text-lg font-semibold text-foreground sm:text-xl">
@@ -110,7 +105,7 @@ export function OnboardingBanner() {
                   <div
                     className={`flex h-10 w-10 items-center justify-center rounded-lg ${step.color}`}
                   >
-                    <step.icon className="h-5 w-5" />
+                    <WatercolorIcon name={step.icon as import("@/components/icons/watercolor-icon").WatercolorIconName} size={20} />
                   </div>
                   <span className="absolute -left-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-sage-600 text-[10px] font-bold text-white">
                     {index + 1}
@@ -124,7 +119,7 @@ export function OnboardingBanner() {
                     {step.description}
                   </p>
                 </div>
-                <ArrowRight className="h-4 w-4 shrink-0 text-muted opacity-0 transition-opacity group-hover:opacity-100" />
+                <WatercolorIcon name="arrow_right" size={16} className="shrink-0 text-muted opacity-0 transition-opacity group-hover:opacity-100" />
               </Link>
             ))}
           </div>
@@ -135,7 +130,7 @@ export function OnboardingBanner() {
               className="inline-flex items-center gap-2 rounded-full bg-sage-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700"
             >
               まずはお子さんを登録する
-              <ArrowRight className="h-4 w-4" />
+              <WatercolorIcon name="arrow_right" size={16} />
             </Link>
           </div>
         </div>

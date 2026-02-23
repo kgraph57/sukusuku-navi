@@ -1,29 +1,23 @@
-"use client";
+"use client"
+
+;
 
 import { useState } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import {
-  ChevronDown,
-  ChevronUp,
-  ExternalLink,
-  ArrowRight,
-  CheckCircle2,
-  Heart,
-  Banknote,
-  Baby,
-  HandHeart,
-} from "lucide-react";
 import type { EligibleProgram } from "@/lib/types";
 
 interface ResultCardProps {
   readonly eligibleProgram: EligibleProgram;
 }
 
-const CATEGORY_ICON_MAP: Record<string, typeof Heart> = {
-  medical: Heart,
-  financial: Banknote,
-  childcare: Baby,
-  support: HandHeart,
+import type { WatercolorIconName } from "@/components/icons/watercolor-icon";
+
+const CATEGORY_ICON_MAP: Record<string, WatercolorIconName> = {
+  medical: "heart",
+  financial: "calculator",
+  childcare: "baby",
+  support: "users",
 };
 
 const CATEGORY_COLOR_MAP: Record<string, string> = {
@@ -55,7 +49,7 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const { program, estimatedAmount, actionItems } = eligibleProgram;
 
-  const IconComponent = CATEGORY_ICON_MAP[program.category] ?? Heart;
+  const iconName = CATEGORY_ICON_MAP[program.category] ?? "calculator";
   const colorClass =
     CATEGORY_COLOR_MAP[program.category] ??
     "bg-gray-50 text-gray-600 border-gray-200";
@@ -68,7 +62,7 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
           <div
             className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${colorClass}`}
           >
-            <IconComponent className="h-5 w-5" />
+            <WatercolorIcon name={iconName} size={20} />
           </div>
 
           <div className="min-w-0 flex-1">
@@ -114,9 +108,9 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
         >
           <span>やることリスト ({actionItems.length}件)</span>
           {isExpanded ? (
-            <ChevronUp className="h-4 w-4" />
+            <WatercolorIcon name="star" size={16} />
           ) : (
-            <ChevronDown className="h-4 w-4" />
+            <WatercolorIcon name="arrow_right" size={16} />
           )}
         </button>
 
@@ -127,7 +121,7 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
                 key={item}
                 className="flex items-start gap-2 rounded-lg bg-ivory-50 px-3 py-2"
               >
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-sage-500" />
+                <WatercolorIcon name="check" size={16} className="mt-0.5   shrink-0 text-sage-500" />
                 <span className="text-sm text-card-foreground">{item}</span>
               </div>
             ))}
@@ -140,7 +134,7 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
             className="inline-flex items-center gap-1.5 rounded-lg bg-sage-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-sage-700"
           >
             手続き方法を見る
-            <ArrowRight className="h-4 w-4" />
+            <WatercolorIcon name="arrow_right" size={16} />
           </Link>
           <a
             href={program.applicationUrl}
@@ -149,7 +143,7 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
             className="inline-flex items-center gap-1.5 rounded-lg border border-sage-200 bg-white px-4 py-2 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
           >
             公式サイトで申請
-            <ExternalLink className="h-4 w-4" />
+            <WatercolorIcon name="external" size={16} />
           </a>
         </div>
       </div>

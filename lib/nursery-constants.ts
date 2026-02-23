@@ -1,5 +1,5 @@
-import { Building2, Home, GraduationCap, Baby, Building } from "lucide-react";
 import type { NurseryType } from "./types";
+import type { WatercolorIconName } from "@/components/icons/watercolor-icon";
 
 /** Hex colors for map marker SVGs */
 export const NURSERY_TYPE_HEX_MAP: Record<NurseryType, string> = {
@@ -10,12 +10,12 @@ export const NURSERY_TYPE_HEX_MAP: Record<NurseryType, string> = {
   "minato-room": "#db2777",
 } as const;
 
-export const NURSERY_TYPE_ICON_MAP: Record<NurseryType, typeof Building2> = {
-  licensed: Building2,
-  certified: Building,
-  "small-scale": Home,
-  kodomoen: GraduationCap,
-  "minato-room": Baby,
+export const NURSERY_TYPE_ICON_MAP: Record<NurseryType, WatercolorIconName> = {
+  licensed: "building",
+  certified: "building",
+  "small-scale": "home",
+  kodomoen: "graduation",
+  "minato-room": "baby",
 };
 
 export const NURSERY_TYPE_COLOR_MAP: Record<NurseryType, string> = {

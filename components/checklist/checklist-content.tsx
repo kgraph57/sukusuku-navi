@@ -1,17 +1,10 @@
-"use client";
+"use client"
+
+;
 
 import { useState, useEffect, useCallback } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import {
-  Check,
-  Circle,
-  FileText,
-  MapPin,
-  Calendar,
-  Lightbulb,
-  ArrowRight,
-  Users,
-} from "lucide-react";
 import type { ChecklistItem } from "@/lib/checklists";
 import { useStore } from "@/lib/store";
 import type { FamilyProfile, ChildProfile } from "@/lib/store";
@@ -138,11 +131,11 @@ function StampCircle({
               : undefined
           }
         >
-          <Check className="h-5 w-5" />
+          <WatercolorIcon name="check" size={20} />
         </div>
       ) : (
         <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300 bg-white">
-          <Circle className="h-5 w-5 text-gray-300" />
+          <WatercolorIcon name="check" size={20} className="text-gray-300" />
         </div>
       )}
     </button>
@@ -194,7 +187,7 @@ function StampItemCard({
           <div className="mt-3 space-y-2">
             {item.deadline && (
               <div className="flex items-center gap-2 text-sm">
-                <Calendar className="h-3.5 w-3.5 shrink-0 text-blush-500" />
+                <WatercolorIcon name="calendar" size={12} className=".5 .5 shrink-0 text-blush-500" />
                 <span className="font-medium text-blush-600">
                   {item.deadline}
                 </span>
@@ -202,13 +195,13 @@ function StampItemCard({
             )}
 
             <div className="flex items-center gap-2 text-sm">
-              <MapPin className="h-3.5 w-3.5 shrink-0 text-muted" />
+              <WatercolorIcon name="mappin" size={12} className=".5 .5 shrink-0 text-muted" />
               <span className="text-muted">{item.where}</span>
             </div>
 
             {item.documents.length > 0 && (
               <div className="flex items-start gap-2 text-sm">
-                <FileText className="mt-0.5 h-3.5 w-3.5 shrink-0 text-muted" />
+                <WatercolorIcon name="star" size={12} className="mt-0.5 .5 .5 shrink-0 text-muted" />
                 <div className="flex flex-wrap gap-1">
                   {item.documents.map((doc) => (
                     <span
@@ -224,7 +217,7 @@ function StampItemCard({
 
             {item.relatedProgram && (
               <div className="flex items-center gap-2 text-sm">
-                <ArrowRight className="h-3.5 w-3.5 shrink-0 text-sage-600" />
+                <WatercolorIcon name="arrow_right" size={12} className=".5 .5 shrink-0 text-sage-600" />
                 <Link
                   href={`/programs/${item.relatedProgram}`}
                   className="font-medium text-sage-600 hover:text-sage-700 hover:underline"
@@ -237,7 +230,7 @@ function StampItemCard({
 
           {item.tips && (
             <div className="mt-3 flex gap-2 rounded-lg bg-yellow-50 p-3">
-              <Lightbulb className="h-4 w-4 shrink-0 text-yellow-600" />
+              <WatercolorIcon name="lightbulb" size={16} className="shrink-0 text-yellow-600" />
               <p className="text-sm leading-relaxed text-yellow-800">
                 {item.tips}
               </p>
@@ -315,7 +308,7 @@ function ChildSelector({
                 : "bg-ivory-100 text-muted hover:bg-ivory-200"
             }`}
           >
-            <Users className="h-3.5 w-3.5" />
+            <WatercolorIcon name="user" size={12} className=".5 .5" />
             <span>{child.nickname}</span>
             <span className="text-xs opacity-80">
               ({formatAge(child.birthDate)})
@@ -488,7 +481,7 @@ export function ChecklistContent({ slug, items }: ChecklistContentProps) {
       {!familyProfile && (
         <div className="mb-4 rounded-xl border border-sage-200 bg-sage-50/60 p-4">
           <div className="flex items-center gap-2">
-            <Users className="h-5 w-5 text-sage-600" />
+            <WatercolorIcon name="user" size={20} className="text-sage-600" />
             <p className="text-sm text-sage-800">
               お子さんを登録すると、進捗を保存できます
             </p>
@@ -498,7 +491,7 @@ export function ChecklistContent({ slug, items }: ChecklistContentProps) {
             className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-sage-600 hover:text-sage-700 hover:underline"
           >
             登録はこちら
-            <ArrowRight className="h-3.5 w-3.5" />
+            <WatercolorIcon name="arrow_right" size={12} className=".5 .5" />
           </Link>
         </div>
       )}

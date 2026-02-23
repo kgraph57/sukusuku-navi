@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import {
-  Stethoscope,
-  BookOpen,
-  ShieldCheck,
-  Heart,
-  ArrowRight,
-  CheckCircle2,
-} from "lucide-react";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { getAllArticles } from "@/lib/content";
 
@@ -19,24 +12,24 @@ export const metadata: Metadata = {
 
 const VALUES = [
   {
-    icon: ShieldCheck,
+    iconName: "shield" as const,
     title: "エビデンスに基づく情報",
     description:
       "すべての記事は医学論文やガイドラインに基づいて執筆。参考文献を明記し、根拠のある安心を届けます。",
   },
   {
-    icon: Heart,
+    iconName: "heart" as const,
     title: "保護者に寄り添う解説",
     description:
       "専門用語をかみ砕き、Q&A形式で疑問に答えます。「うちの子は大丈夫？」という不安に応えるサイトです。",
   },
   {
-    icon: BookOpen,
+    iconName: "book" as const,
     title: "無料で、誰でもアクセス可能",
     description:
       "会員登録なしですべての記事を閲覧できます。子育てに必要な情報は、すべての家庭に届くべきだと考えています。",
   },
-] as const;
+];
 
 const FEATURES_DETAIL = [
   "小児科医が執筆した50本以上のQ&A記事",
@@ -55,7 +48,7 @@ export default function AboutPage() {
       {/* Introduction */}
       <section className="mx-auto max-w-3xl text-center">
         <p className="inline-flex items-center gap-1.5 rounded-full bg-teal-100/70 px-4 py-1.5 text-sm font-medium text-teal-700">
-          <Stethoscope className="h-3.5 w-3.5" />
+          <WatercolorIcon name="stethoscope" size={12} className=".5 .5" />
           About
         </p>
         <h1 className="mt-4 font-heading text-3xl font-bold text-foreground sm:text-4xl">
@@ -73,8 +66,8 @@ export default function AboutPage() {
         <div className="mt-10 grid gap-8 sm:grid-cols-3">
           {VALUES.map((value) => (
             <div key={value.title} className="text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
-                <value.icon className="h-7 w-7" />
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-teal-50">
+                <WatercolorIcon name={value.iconName} size={40} />
               </div>
               <h3 className="mt-4 font-heading text-base font-bold text-foreground">
                 {value.title}
@@ -96,7 +89,7 @@ export default function AboutPage() {
               key={feature}
               className="flex items-start gap-3 text-sm text-foreground"
             >
-              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-500" />
+              <WatercolorIcon name="check" size={16} className="mt-0.5   shrink-0 text-teal-500" />
               <span>{feature}</span>
             </li>
           ))}
@@ -111,7 +104,7 @@ export default function AboutPage() {
         <SectionHeading>運営者について</SectionHeading>
         <div className="mt-10 flex flex-col items-center gap-8 sm:flex-row sm:items-start">
           <div className="flex h-32 w-32 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-400 to-teal-600 shadow-lg">
-            <Stethoscope className="h-14 w-14 text-white" />
+            <WatercolorIcon name="stethoscope" size={56} className="text-white" />
           </div>
           <div>
             <h3 className="font-heading text-xl font-semibold text-foreground">
@@ -165,7 +158,7 @@ export default function AboutPage() {
           className="inline-flex items-center gap-2 rounded-full bg-teal-600 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-teal-600/25 transition-all hover:bg-teal-700 hover:shadow-xl"
         >
           記事を読んでみる
-          <ArrowRight className="h-4 w-4" />
+          <WatercolorIcon name="arrow_right" size={16} />
         </Link>
       </section>
     </div>

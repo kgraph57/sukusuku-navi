@@ -1,26 +1,10 @@
-"use client";
+"use client"
+
+;
 
 import { useState } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import { useRouter } from "next/navigation";
-import {
-  AlertTriangle,
-  Phone,
-  ChevronRight,
-  RotateCcw,
-  HelpCircle,
-  CheckCircle2,
-  XCircle,
-  Baby,
-  Thermometer,
-  Droplets,
-  Wind,
-  CircleDot,
-  AlertOctagon,
-  Stethoscope,
-  Frown,
-  Eye,
-  Zap,
-} from "lucide-react";
 import { SEVERITY_CONFIG } from "@/lib/triage/engine";
 import type { SeverityResult } from "@/lib/triage/engine";
 import guidedData from "@/data/guided-triage.json";
@@ -60,19 +44,21 @@ interface SymptomGroup {
   readonly symptomSlugs: readonly string[];
 }
 
-const ICON_MAP: Record<string, typeof Thermometer> = {
-  Thermometer,
-  Droplets,
-  Wind,
-  CircleDot,
-  AlertTriangle: AlertOctagon,
-  Stethoscope,
-  Frown,
-  Eye,
-  Zap,
+import type { WatercolorIconName } from "@/components/icons/watercolor-icon";
+
+const ICON_MAP: Record<string, WatercolorIconName> = {
+  Thermometer: "activity",
+  Droplets: "heart",
+  Wind: "activity",
+  CircleDot: "alert",
+  AlertTriangle: "alert",
+  Stethoscope: "stethoscope",
+  Frown: "help",
+  Eye: "stethoscope",
+  Zap: "sparkles",
 };
 
-const AGE_ICONS = [Baby, Baby, Baby, Baby];
+const AGE_ICONS: WatercolorIconName[] = ["baby", "baby", "baby", "baby"];
 
 const emergencyQuestions =
   guidedData.emergencyScreening as readonly EmergencyQuestion[];
@@ -132,7 +118,7 @@ function InlineResult({
               href={`tel:${config.phone}`}
               className={`inline-flex items-center gap-1 rounded-full border bg-white px-3 py-1 text-sm font-bold ${config.color} ${config.borderColor}`}
             >
-              <Phone className="h-3.5 w-3.5" />
+              <WatercolorIcon name="phone" size={12} className=".5 .5" />
               {config.phone}
             </a>
           )}
@@ -161,7 +147,7 @@ function InlineResult({
       </div>
 
       <div className="flex gap-2 rounded-lg border border-border bg-ivory-50 p-4">
-        <AlertTriangle className="h-4 w-4 shrink-0 text-muted" />
+        <WatercolorIcon name="alert" size={16} className="shrink-0 text-muted" />
         <p className="text-xs leading-relaxed text-muted">
           この判定は医師の診断に代わるものではありません。あくまで受診の目安としてご利用ください。心配な場合はいつでも医療機関にご相談ください。
         </p>
@@ -172,7 +158,7 @@ function InlineResult({
         onClick={onReset}
         className="inline-flex items-center justify-center gap-2 rounded-full border border-sage-200 bg-white px-6 py-3 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
       >
-        <RotateCcw className="h-4 w-4" />
+        <WatercolorIcon name="star" size={16} />
         最初からやり直す
       </button>
     </div>
@@ -278,7 +264,7 @@ export function GuidedTriageFlow() {
             const isCurrent = step === s;
             return (
               <span key={s} className="flex items-center gap-1">
-                {i > 0 && <ChevronRight className="h-3 w-3" />}
+                {i > 0 && <WatercolorIcon name="arrow_right" size={12} />}
                 <span
                   className={
                     isCurrent
@@ -301,7 +287,7 @@ export function GuidedTriageFlow() {
         {step === "emergency-screening" && currentScreening && (
           <div className="space-y-5">
             <div className="flex gap-3 rounded-lg border border-red-200 bg-red-50 p-4">
-              <AlertTriangle className="h-5 w-5 shrink-0 text-red-600" />
+              <WatercolorIcon name="alert" size={20} className="shrink-0 text-red-600" />
               <div>
                 <p className="text-sm font-medium text-red-800">
                   まず緊急性の確認をします
@@ -330,7 +316,7 @@ export function GuidedTriageFlow() {
                 onClick={() => setShowHelp((prev) => !prev)}
                 className="mt-3 inline-flex items-center gap-1 text-xs text-muted hover:text-sage-600"
               >
-                <HelpCircle className="h-3.5 w-3.5" />
+                <WatercolorIcon name="help" size={12} className=".5 .5" />
                 {showHelp ? "ヒントを閉じる" : "判断のヒント"}
               </button>
             </div>
@@ -341,7 +327,7 @@ export function GuidedTriageFlow() {
                 onClick={() => handleEmergencyAnswer("yes")}
                 className="flex items-center justify-center gap-2 rounded-xl border-2 border-red-200 bg-red-50 px-6 py-4 text-base font-bold text-red-700 transition-all hover:border-red-300 hover:bg-red-100"
               >
-                <CheckCircle2 className="h-5 w-5" />
+                <WatercolorIcon name="check" size={20} />
                 はい
               </button>
               <button
@@ -349,7 +335,7 @@ export function GuidedTriageFlow() {
                 onClick={() => handleEmergencyAnswer("no")}
                 className="flex items-center justify-center gap-2 rounded-xl border-2 border-sage-200 bg-sage-50 px-6 py-4 text-base font-bold text-sage-700 transition-all hover:border-sage-300 hover:bg-sage-100"
               >
-                <XCircle className="h-5 w-5" />
+                <WatercolorIcon name="star" size={20} />
                 いいえ
               </button>
             </div>
@@ -377,7 +363,7 @@ export function GuidedTriageFlow() {
                   className="flex flex-col items-center gap-2 rounded-xl border-2 border-border bg-white p-4 transition-all hover:border-sage-300 hover:bg-sage-50 hover:shadow-sm"
                 >
                   {AGE_ICONS[index] && (
-                    <Baby className="h-6 w-6 text-sage-600" />
+                    <WatercolorIcon name="baby" size={24} className="text-sage-600" />
                   )}
                   <span className="text-base font-bold text-foreground">
                     {ag.label}
@@ -403,7 +389,7 @@ export function GuidedTriageFlow() {
 
             <div className="grid gap-3 sm:grid-cols-2">
               {symptomGroups.map((group) => {
-                const IconComponent = ICON_MAP[group.icon] ?? Stethoscope;
+                const iconName = ICON_MAP[group.icon] ?? "stethoscope";
                 return (
                   <button
                     key={group.id}
@@ -412,7 +398,7 @@ export function GuidedTriageFlow() {
                     className="flex items-start gap-3 rounded-xl border-2 border-border bg-white p-4 text-left transition-all hover:border-sage-300 hover:bg-sage-50 hover:shadow-sm"
                   >
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sage-50">
-                      <IconComponent className="h-5 w-5 text-sage-600" />
+                      <WatercolorIcon name={iconName} size={20} />
                     </div>
                     <div>
                       <span className="text-base font-bold text-foreground">
@@ -450,7 +436,7 @@ export function GuidedTriageFlow() {
                   onClick={() => handleSubSymptomSelect(slug)}
                   className="flex items-center gap-3 rounded-xl border-2 border-border bg-white p-4 text-left transition-all hover:border-sage-300 hover:bg-sage-50 hover:shadow-sm"
                 >
-                  <ChevronRight className="h-5 w-5 shrink-0 text-sage-600" />
+                  <WatercolorIcon name="arrow_right" size={20} className="shrink-0 text-sage-600" />
                   <span className="text-base font-medium text-foreground">
                     {formatSlugLabel(slug)}
                   </span>
@@ -473,7 +459,7 @@ export function GuidedTriageFlow() {
               onClick={handleReset}
               className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
             >
-              <RotateCcw className="h-3.5 w-3.5" />
+              <WatercolorIcon name="star" size={12} className=".5 .5" />
               最初からやり直す
             </button>
           </div>

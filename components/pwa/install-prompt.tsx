@@ -1,7 +1,9 @@
-"use client";
+"use client"
+
+;
 
 import { useState, useEffect, useCallback } from "react";
-import { Download, X } from "lucide-react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 
 interface BeforeInstallPromptEvent extends Event {
   readonly prompt: () => Promise<void>;
@@ -49,7 +51,7 @@ export function InstallPrompt() {
     <div className="fixed bottom-4 left-4 right-4 z-40 mx-auto max-w-lg animate-slide-up">
       <div className="flex items-center gap-3 rounded-2xl border border-sage-200 bg-white p-4 shadow-lg">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-100">
-          <Download className="h-5 w-5 text-sage-600" />
+          <WatercolorIcon name="download" size={20} className="text-sage-600" />
         </div>
         <div className="min-w-0 flex-1">
           <p className="text-sm font-medium text-foreground">
@@ -72,7 +74,7 @@ export function InstallPrompt() {
           className="shrink-0 rounded-lg p-1.5 text-muted transition-colors hover:bg-ivory-100"
           aria-label="閉じる"
         >
-          <X className="h-4 w-4" />
+          <WatercolorIcon name="check" size={16} />
         </button>
       </div>
     </div>

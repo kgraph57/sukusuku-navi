@@ -1,15 +1,11 @@
-"use client";
+"use client"
+
+;
 
 import { useSearchParams } from "next/navigation";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import { useMemo, useEffect, Suspense } from "react";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  Calculator,
-  RefreshCw,
-  TrendingUp,
-  AlertTriangle,
-} from "lucide-react";
 import { runSimulation } from "@/lib/simulator/engine";
 import { ResultCard } from "@/components/simulator/result-card";
 import { LifePlanTimeline } from "@/components/simulator/life-plan-timeline";
@@ -63,7 +59,7 @@ function ResultsContent() {
     return (
       <div className="min-h-screen bg-ivory-50 px-4 pb-16 pt-12">
         <div className="mx-auto max-w-2xl text-center">
-          <AlertTriangle className="mx-auto h-12 w-12 text-blush-500" />
+          <WatercolorIcon name="alert" size={48} className="mx-auto   text-blush-500" />
           <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground">
             データが見つかりません
           </h1>
@@ -93,7 +89,7 @@ function ResultsContent() {
       <div className="mx-auto max-w-3xl">
         <div className="rounded-2xl bg-gradient-to-br from-sage-600 to-sage-700 p-6 text-white shadow-lg sm:p-8">
           <div className="flex items-center gap-3">
-            <Calculator className="h-6 w-6 text-sage-200" />
+            <WatercolorIcon name="calculator" size={24} className="text-sage-200" />
             <h1 className="font-heading text-lg font-semibold">
               シミュレーション結果
             </h1>
@@ -102,7 +98,7 @@ function ResultsContent() {
           <div className="mt-6 text-center">
             <p className="text-sm text-sage-200">年間推定受給額</p>
             <div className="mt-2 flex items-baseline justify-center gap-1">
-              <TrendingUp className="h-8 w-8 text-sage-200" />
+              <WatercolorIcon name="star" size={32} className="text-sage-200" />
               <span className="font-heading text-5xl font-semibold tracking-tight sm:text-6xl">
                 {formatTotalAmount(result.totalAnnualEstimate)}
               </span>
@@ -174,7 +170,7 @@ function ResultsContent() {
             href="/simulator/start"
             className="inline-flex items-center gap-2 rounded-full border border-sage-200 bg-white px-6 py-3 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
           >
-            <RefreshCw className="h-4 w-4" />
+            <WatercolorIcon name="plus" size={16} />
             もう一度シミュレーション
           </Link>
           <Link
@@ -196,7 +192,7 @@ function ResultsContent() {
             href="/simulator"
             className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <WatercolorIcon name="arrow_right" size={16} />
             シミュレーターのトップに戻る
           </Link>
         </div>
@@ -211,7 +207,7 @@ export default function SimulatorResultsPage() {
       fallback={
         <div className="flex min-h-screen items-center justify-center bg-ivory-50">
           <div className="text-center">
-            <Calculator className="mx-auto h-8 w-8 animate-pulse text-sage-600" />
+            <WatercolorIcon name="calculator" size={32} className="mx-auto   animate-pulse text-sage-600" />
             <p className="mt-4 text-sm text-muted">計算中...</p>
           </div>
         </div>

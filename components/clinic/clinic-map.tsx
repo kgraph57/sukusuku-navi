@@ -1,8 +1,10 @@
-"use client";
+"use client"
+
+;
 
 import { useState } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import { MapPin, Clock, Phone, ExternalLink } from "lucide-react";
 import type { Clinic } from "@/lib/clinics";
 
 // Minato-ku bounding box (approximate)
@@ -63,17 +65,7 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
               style={{ left: `${left}%`, top: `${top}%` }}
               aria-label={clinic.name}
             >
-              <MapPin
-                className={`h-6 w-6 drop-shadow-md ${
-                  clinic.emergencyAvailable
-                    ? isSelected
-                      ? "fill-red-600 text-red-600"
-                      : "fill-red-500 text-red-500"
-                    : isSelected
-                      ? "fill-sage-700 text-sage-700"
-                      : "fill-sage-600 text-sage-600"
-                }`}
-              />
+              <WatercolorIcon name="mappin" size={24} />
               {isSelected && (
                 <span className="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-white ring-2 ring-sage-600" />
               )}
@@ -85,11 +77,11 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
       {/* Legend */}
       <div className="flex gap-4 px-1 text-xs text-muted">
         <span className="flex items-center gap-1">
-          <MapPin className="h-3.5 w-3.5 fill-sage-600 text-sage-600" />
+          <WatercolorIcon name="mappin" size={12} className=".5 .5 fill-sage-600 text-sage-600" />
           クリニック
         </span>
         <span className="flex items-center gap-1">
-          <MapPin className="h-3.5 w-3.5 fill-red-500 text-red-500" />
+          <WatercolorIcon name="mappin" size={12} className=".5 .5 fill-red-500 text-red-500" />
           救急対応
         </span>
       </div>
@@ -117,17 +109,17 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
               rel="noopener noreferrer"
               className="inline-flex shrink-0 items-center gap-1 rounded-full bg-sage-600 px-3 py-1 text-xs font-medium text-white hover:bg-sage-700"
             >
-              <ExternalLink className="h-3 w-3" />
+              <WatercolorIcon name="external" size={12} />
               地図で開く
             </a>
           </div>
           <div className="mt-2 space-y-1 text-xs text-muted">
             <p className="flex items-center gap-1.5">
-              <MapPin className="h-3 w-3 shrink-0" />
+              <WatercolorIcon name="mappin" size={12} className="shrink-0" />
               {selectedClinic.address}
             </p>
             <p className="flex items-center gap-1.5">
-              <Phone className="h-3 w-3 shrink-0" />
+              <WatercolorIcon name="phone" size={12} className="shrink-0" />
               <a
                 href={`tel:${selectedClinic.phone}`}
                 className="hover:text-sage-600"
@@ -136,7 +128,7 @@ export function ClinicMap({ clinics }: ClinicMapProps) {
               </a>
             </p>
             <p className="flex items-center gap-1.5">
-              <Clock className="h-3 w-3 shrink-0" />
+              <WatercolorIcon name="clock" size={12} className="shrink-0" />
               平日 {selectedClinic.hours.weekday}
             </p>
           </div>

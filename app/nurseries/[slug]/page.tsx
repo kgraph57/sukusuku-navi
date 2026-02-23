@@ -1,20 +1,7 @@
 import type { Metadata } from "next";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  ArrowLeft,
-  ExternalLink,
-  MapPin,
-  Phone,
-  Clock,
-  Users,
-  Building2,
-  Navigation2,
-  Train,
-  Trees,
-  Briefcase,
-  Moon,
-} from "lucide-react";
 import {
   getAllNurseries,
   getNurseryBySlug,
@@ -76,7 +63,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
   const colorClass =
     NURSERY_TYPE_COLOR_MAP[nursery.type] ??
     "bg-gray-50 text-gray-600 border-gray-200";
-  const IconComponent = NURSERY_TYPE_ICON_MAP[nursery.type] ?? Building2;
+  const iconName = NURSERY_TYPE_ICON_MAP[nursery.type] ?? "building";
 
   const allNurseries = getAllNurseries();
   const relatedNurseries = allNurseries
@@ -97,7 +84,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
             href="/nurseries"
             className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <WatercolorIcon name="arrow_right" size={16} />
             保育園一覧に戻る
           </Link>
 
@@ -105,7 +92,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
             <div
               className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border ${colorClass}`}
             >
-              <IconComponent className="h-6 w-6" />
+              <WatercolorIcon name={iconName} size={24} />
             </div>
             <div>
               <div className="flex flex-wrap items-center gap-2">
@@ -119,7 +106,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                 </span>
                 {nursery.hasGarden && (
                   <span className="inline-flex items-center gap-0.5 rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-600">
-                    <Trees className="h-3 w-3" />
+                    <WatercolorIcon name="star" size={12} />
                     園庭あり
                   </span>
                 )}
@@ -144,7 +131,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
           {/* 基本情報 */}
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-              <MapPin className="h-5 w-5 text-sage-600" />
+              <WatercolorIcon name="mappin" size={20} className="text-sage-600" />
               基本情報
             </h2>
             <div className="mt-4 space-y-3">
@@ -156,7 +143,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                     href={`tel:${nursery.phone}`}
                     className="flex items-center gap-1 font-medium text-sage-600 hover:text-sage-700"
                   >
-                    <Phone className="h-3.5 w-3.5" />
+                    <WatercolorIcon name="phone" size={12} className=".5 .5" />
                     {nursery.phone}
                   </a>
                 }
@@ -165,7 +152,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                 label="最寄駅"
                 value={
                   <span className="flex items-center gap-1">
-                    <Train className="h-3.5 w-3.5 shrink-0 text-sage-600" />
+                    <WatercolorIcon name="star" size={12} className=".5 .5 shrink-0 text-sage-600" />
                     {nursery.nearestStation}
                   </span>
                 }
@@ -175,7 +162,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                 label="対象年齢"
                 value={
                   <span className="flex items-center gap-1">
-                    <Users className="h-3.5 w-3.5 shrink-0 text-sage-600" />
+                    <WatercolorIcon name="user" size={12} className=".5 .5 shrink-0 text-sage-600" />
                     {ageLabel}
                   </span>
                 }
@@ -190,7 +177,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
           {/* 保育時間 */}
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-              <Clock className="h-5 w-5 text-sage-600" />
+              <WatercolorIcon name="clock" size={20} className="text-sage-600" />
               保育時間
             </h2>
             <div className="mt-4 space-y-2">
@@ -205,7 +192,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
               {nursery.hours.extended != null && (
                 <div className="flex items-center justify-between border-b border-border py-2">
                   <span className="flex items-center gap-1 text-sm font-medium text-muted">
-                    <Moon className="h-3.5 w-3.5 text-indigo-500" />
+                    <WatercolorIcon name="star" size={12} className=".5 .5 text-indigo-500" />
                     延長保育
                   </span>
                   <span className="text-sm text-card-foreground">
@@ -229,7 +216,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
           {/* 特徴 */}
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-              <Briefcase className="h-5 w-5 text-sage-600" />
+              <WatercolorIcon name="star" size={20} className="text-sage-600" />
               特徴・対応
             </h2>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -256,7 +243,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
             />
             <div className="flex items-center justify-between border-t border-border bg-card px-4 py-3">
               <p className="text-sm text-muted">
-                <MapPin className="mr-1 inline-block h-3.5 w-3.5" />
+                <WatercolorIcon name="mappin" size={12} className="mr-1 inline-block .5 .5" />
                 {nursery.address}
               </p>
               <a
@@ -266,7 +253,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                 className="inline-flex items-center gap-1 text-sm font-medium text-sage-600 hover:text-sage-700"
               >
                 Googleマップで開く
-                <ExternalLink className="h-3.5 w-3.5" />
+                <WatercolorIcon name="external" size={12} className=".5 .5" />
               </a>
             </div>
           </div>
@@ -278,7 +265,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
             rel="noopener noreferrer"
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-sage-600 px-6 py-3.5 text-base font-bold text-white shadow-sm transition-colors hover:bg-sage-700"
           >
-            <Navigation2 className="h-5 w-5" />
+            <WatercolorIcon name="star" size={20} />
             現在地からルート案内
           </a>
 
@@ -291,7 +278,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                 rel="noopener noreferrer"
                 className="flex w-full items-center justify-center gap-2 rounded-xl border border-sage-200 bg-white px-6 py-3.5 text-base font-bold text-sage-600 shadow-sm transition-colors hover:bg-sage-50"
               >
-                <ExternalLink className="h-5 w-5" />
+                <WatercolorIcon name="external" size={20} />
                 施設のウェブサイトを開く
               </a>
             )}
@@ -310,7 +297,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                     href={`/nurseries/${related.slug}`}
                     className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-sage-200"
                   >
-                    <Building2 className="h-4 w-4 shrink-0 text-sage-600" />
+                    <WatercolorIcon name="building" size={16} className="shrink-0 text-sage-600" />
                     <div className="min-w-0">
                       <p className="text-sm font-medium text-card-foreground">
                         {related.name}
@@ -331,7 +318,7 @@ export default async function NurseryDetailPage({ params }: PageProps) {
               href="/nurseries"
               className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
             >
-              <ArrowLeft className="h-4 w-4" />
+              <WatercolorIcon name="arrow_right" size={16} />
               保育園一覧に戻る
             </Link>
           </div>

@@ -1,8 +1,10 @@
-"use client";
+"use client"
+
+;
 
 import { useCallback, useState } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import { LocateFixed } from "lucide-react";
 import "leaflet/dist/leaflet.css";
 
 import type { Clinic } from "@/lib/clinics";
@@ -32,9 +34,7 @@ function LocateButton() {
       aria-label="現在地を表示"
       title="現在地を表示"
     >
-      <LocateFixed
-        className={`h-4 w-4 text-sage-600 ${locating ? "animate-pulse" : ""}`}
-      />
+      <WatercolorIcon name="mappin" size={16} />
     </button>
   );
 }

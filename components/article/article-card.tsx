@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Users } from "lucide-react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import type {
   ArticleFrontmatter,
   ArticleCategory,
@@ -101,11 +101,11 @@ export function ArticleCard({ frontmatter }: ArticleCardProps) {
       {/* Footer */}
       <div className="mt-auto flex items-center justify-between pt-4">
         <div className="flex items-center gap-1 text-xs text-muted">
-          <Users className="h-3.5 w-3.5" />
+          <WatercolorIcon name="user" size={12} className=".5 .5" />
           <span>{ageGroups.map((ag) => AGE_GROUP_LABELS[ag]).join("・")}</span>
         </div>
         <span className="flex items-center gap-0.5 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
-          読む <ArrowRight className="h-3 w-3" />
+          読む <WatercolorIcon name="arrow_right" size={12} />
         </span>
       </div>
     </Link>

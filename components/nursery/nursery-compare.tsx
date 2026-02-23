@@ -1,17 +1,9 @@
-"use client";
+"use client"
+
+;
 
 import Link from "next/link";
-import {
-  X,
-  MapPin,
-  Clock,
-  Users,
-  Train,
-  Trees,
-  ExternalLink,
-  CheckCircle2,
-  MinusCircle,
-} from "lucide-react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import type { Nursery } from "@/lib/types";
 import { NURSERY_TYPE_LABELS, NURSERY_AREA_LABELS } from "@/lib/nurseries";
 
@@ -39,7 +31,7 @@ const COMPARE_ROWS: readonly CompareRow[] = [
     label: "住所",
     render: (n) => (
       <span className="flex items-start gap-1">
-        <MapPin className="mt-0.5 h-3 w-3 shrink-0 text-muted" />
+        <WatercolorIcon name="mappin" size={12} className="mt-0.5   shrink-0 text-muted" />
         <span>{n.address}</span>
       </span>
     ),
@@ -48,7 +40,7 @@ const COMPARE_ROWS: readonly CompareRow[] = [
     label: "最寄駅",
     render: (n) => (
       <span className="flex items-start gap-1">
-        <Train className="mt-0.5 h-3 w-3 shrink-0 text-muted" />
+        <WatercolorIcon name="star" size={12} className="mt-0.5   shrink-0 text-muted" />
         <span>{n.nearestStation}</span>
       </span>
     ),
@@ -65,7 +57,7 @@ const COMPARE_ROWS: readonly CompareRow[] = [
     label: "開園時間",
     render: (n) => (
       <span className="flex items-start gap-1">
-        <Clock className="mt-0.5 h-3 w-3 shrink-0 text-muted" />
+        <WatercolorIcon name="clock" size={12} className="mt-0.5   shrink-0 text-muted" />
         <span>{n.hours.standard}</span>
       </span>
     ),
@@ -93,12 +85,12 @@ const COMPARE_ROWS: readonly CompareRow[] = [
     render: (n) =>
       n.hasGarden ? (
         <span className="flex items-center gap-1 text-green-600">
-          <CheckCircle2 className="h-4 w-4" />
+          <WatercolorIcon name="check" size={16} />
           あり
         </span>
       ) : (
         <span className="flex items-center gap-1 text-muted">
-          <MinusCircle className="h-4 w-4" />
+          <WatercolorIcon name="star" size={16} />
           なし
         </span>
       ),
@@ -148,7 +140,7 @@ export function NurseryCompare({
             className="rounded-full p-1.5 text-muted transition-colors hover:bg-ivory-100 hover:text-foreground"
             aria-label="閉じる"
           >
-            <X className="h-5 w-5" />
+            <WatercolorIcon name="check" size={20} />
           </button>
         </div>
 
@@ -179,7 +171,7 @@ export function NurseryCompare({
                         className="shrink-0 rounded-full p-0.5 text-muted hover:bg-ivory-200 hover:text-foreground"
                         aria-label={`${n.name}を比較から外す`}
                       >
-                        <X className="h-3.5 w-3.5" />
+                        <WatercolorIcon name="check" size={12} className=".5 .5" />
                       </button>
                     </div>
                   </th>
@@ -224,7 +216,7 @@ export function NurseryCompare({
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-0.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted hover:bg-ivory-100"
                         >
-                          <ExternalLink className="h-3 w-3" />
+                          <WatercolorIcon name="external" size={12} />
                           HP
                         </a>
                       )}
@@ -234,7 +226,7 @@ export function NurseryCompare({
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-0.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted hover:bg-ivory-100"
                       >
-                        <MapPin className="h-3 w-3" />
+                        <WatercolorIcon name="mappin" size={12} />
                         Maps
                       </a>
                     </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Mail, Clock, MessageCircle, ShieldCheck } from "lucide-react"
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import { SectionHeading } from "@/components/shared/section-heading"
 
 export const metadata: Metadata = {
@@ -10,24 +10,24 @@ export const metadata: Metadata = {
 
 const GUIDELINES = [
   {
-    icon: ShieldCheck,
+    iconName: "shield" as const,
     title: "個人情報の保護",
     description:
       "お問い合わせの際は、お子さまの氏名や具体的な症状など、個人を特定できる情報の記載はお控えください。",
   },
   {
-    icon: MessageCircle,
+    iconName: "message" as const,
     title: "お問い合わせの範囲",
     description:
       "サイトの内容に関するご質問、記事のリクエスト、誤りのご指摘、メルマガに関するお問い合わせ等を受け付けています。",
   },
   {
-    icon: Clock,
+    iconName: "clock" as const,
     title: "回答について",
     description:
-      "お問い合わせへの回答は通常3〜5営業日以内にメールで行います。内容によっては回答にお時間をいただく場合があります。",
+      "お問い合わせへの回答は通常3～5営業日以内にメールで行います。内容によっては回答にお時間をいただく場合があります。",
   },
-] as const
+]
 
 export default function ContactPage() {
   return (
@@ -50,7 +50,7 @@ export default function ContactPage() {
         {/* Email Contact */}
         <div className="mt-10 rounded-xl border border-border bg-card p-8 text-center">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-sage-50">
-            <Mail className="h-8 w-8 text-sage-600" />
+            <WatercolorIcon name="mail" size={32} className="text-sage-600" />
           </div>
           <h2 className="mt-5 font-heading text-xl font-semibold text-foreground">
             メールでのお問い合わせ
@@ -62,7 +62,7 @@ export default function ContactPage() {
             href="mailto:contact@sukusuku-navi.jp"
             className="mt-5 inline-flex items-center gap-2 rounded-full bg-sage-600 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-sage-600/25 transition-all hover:bg-sage-700 hover:shadow-xl"
           >
-            <Mail className="h-4 w-4" />
+            <WatercolorIcon name="mail" size={16} />
             contact@sukusuku-navi.jp
           </a>
           <p className="mt-4 text-xs text-muted">
@@ -78,8 +78,8 @@ export default function ContactPage() {
           <div className="mt-6 grid gap-6 sm:grid-cols-3">
             {GUIDELINES.map((guideline) => (
               <div key={guideline.title}>
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sage-50 text-sage-600">
-                  <guideline.icon className="h-5 w-5" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-sage-50">
+                  <WatercolorIcon name={guideline.iconName} size={32} />
                 </div>
                 <h3 className="mt-3 font-heading text-sm font-semibold text-foreground">
                   {guideline.title}

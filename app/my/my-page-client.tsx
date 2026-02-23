@@ -1,24 +1,10 @@
-"use client";
+"use client"
+
+;
 
 import { useState, useEffect, useCallback } from "react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import {
-  Baby,
-  CheckCircle2,
-  Circle,
-  ArrowRight,
-  Calculator,
-  ClipboardList,
-  User,
-  Syringe,
-  Calendar,
-  Bookmark,
-  FileText,
-  LogOut,
-  Cloud,
-  Shield,
-  Sparkles,
-} from "lucide-react";
 import { FamilyProfileSetup } from "@/components/family/family-profile-setup";
 import { MigrationDialog } from "@/components/auth/migration-dialog";
 import { useStore } from "@/lib/store";
@@ -48,7 +34,7 @@ function AccountBanner() {
       <div className="rounded-xl border border-sage-200 bg-gradient-to-r from-sage-50 to-white p-5">
         <div className="flex items-start gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-100">
-            <Cloud className="h-5 w-5 text-sage-600" />
+            <WatercolorIcon name="star" size={20} className="text-sage-600" />
           </div>
           <div className="flex-1">
             <h3 className="font-heading text-sm font-semibold text-card-foreground">
@@ -61,7 +47,7 @@ function AccountBanner() {
               href="/auth/login"
               className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-sage-600 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-sage-700"
             >
-              <Shield className="h-3.5 w-3.5" />
+              <WatercolorIcon name="shield" size={12} className=".5 .5" />
               ログイン / 新規登録
             </Link>
           </div>
@@ -82,7 +68,7 @@ function AccountBanner() {
               {user.email}
             </p>
             <p className="flex items-center gap-1 text-xs text-sage-600">
-              <Cloud className="h-3 w-3" />
+              <WatercolorIcon name="star" size={12} />
               クラウド同期オン
             </p>
           </div>
@@ -93,7 +79,7 @@ function AccountBanner() {
           className="rounded-lg p-2 text-muted transition-colors hover:bg-ivory-50 hover:text-foreground"
           aria-label="ログアウト"
         >
-          <LogOut className="h-4 w-4" />
+          <WatercolorIcon name="arrow_right" size={16} />
         </button>
       </div>
     </div>
@@ -112,7 +98,7 @@ function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
     <div className="rounded-xl border border-border bg-card p-5">
       <div className="flex items-center gap-3">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-100">
-          <Baby className="h-5 w-5 text-sage-600" />
+          <WatercolorIcon name="baby" size={20} className="text-sage-600" />
         </div>
         <div>
           <h3 className="font-heading text-base font-semibold text-card-foreground">
@@ -143,9 +129,9 @@ function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
               className="flex items-center gap-3 rounded-lg border border-border p-3 transition-colors hover:border-sage-200 hover:bg-sage-50/50"
             >
               {isComplete ? (
-                <CheckCircle2 className="h-5 w-5 shrink-0 text-sage-500" />
+                <WatercolorIcon name="check" size={20} className="shrink-0 text-sage-500" />
               ) : (
-                <Circle className="h-5 w-5 shrink-0 text-gray-300" />
+                <WatercolorIcon name="check" size={20} className="shrink-0 text-gray-300" />
               )}
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-medium text-card-foreground">
@@ -163,7 +149,7 @@ function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
                   </span>
                 </div>
               </div>
-              <ArrowRight className="h-4 w-4 shrink-0 text-muted" />
+              <WatercolorIcon name="arrow_right" size={16} className="shrink-0 text-muted" />
             </Link>
           );
         })}
@@ -190,7 +176,7 @@ function SavedArticlesSection({
   return (
     <div>
       <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-foreground">
-        <Bookmark className="h-5 w-5 text-sage-600" />
+        <WatercolorIcon name="bookmark" size={20} className="text-sage-600" />
         保存した記事
         <span className="rounded-full bg-sage-100 px-2 py-0.5 text-xs font-medium text-sage-700">
           {savedSlugs.length}件
@@ -204,12 +190,12 @@ function SavedArticlesSection({
             className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-sage-200 hover:bg-sage-50/50"
           >
             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sage-50">
-              <FileText className="h-4 w-4 text-sage-600" />
+              <WatercolorIcon name="star" size={16} className="text-sage-600" />
             </div>
             <p className="min-w-0 flex-1 truncate text-sm font-medium text-card-foreground">
               {articleTitles[slug] ?? slug}
             </p>
-            <ArrowRight className="h-4 w-4 shrink-0 text-muted" />
+            <WatercolorIcon name="arrow_right" size={16} className="shrink-0 text-muted" />
           </Link>
         ))}
       </div>
@@ -229,7 +215,7 @@ function QuickActions() {
         className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-sage-200 bg-sage-50">
-          <Calculator className="h-5 w-5 text-sage-600" />
+          <WatercolorIcon name="calculator" size={20} className="text-sage-600" />
         </div>
         <div>
           <h3 className="font-heading text-sm font-semibold text-card-foreground">
@@ -243,7 +229,7 @@ function QuickActions() {
         className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blush-200 bg-blush-50">
-          <ClipboardList className="h-5 w-5 text-blush-600" />
+          <WatercolorIcon name="star" size={20} className="text-blush-600" />
         </div>
         <div>
           <h3 className="font-heading text-sm font-semibold text-card-foreground">
@@ -257,7 +243,7 @@ function QuickActions() {
         className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-purple-200 bg-purple-50">
-          <Syringe className="h-5 w-5 text-purple-600" />
+          <WatercolorIcon name="syringe" size={20} className="text-purple-600" />
         </div>
         <div>
           <h3 className="font-heading text-sm font-semibold text-card-foreground">
@@ -271,7 +257,7 @@ function QuickActions() {
         className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-sage-200 bg-sage-50">
-          <Calendar className="h-5 w-5 text-sage-600" />
+          <WatercolorIcon name="calendar" size={20} className="text-sage-600" />
         </div>
         <div>
           <h3 className="font-heading text-sm font-semibold text-card-foreground">
@@ -287,7 +273,7 @@ function QuickActions() {
         className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-rose-200 bg-rose-50">
-          <Sparkles className="h-5 w-5 text-rose-500" />
+          <WatercolorIcon name="star" size={20} className="text-rose-500" />
         </div>
         <div>
           <h3 className="font-heading text-sm font-semibold text-card-foreground">
@@ -371,7 +357,7 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <h1 className="font-heading text-2xl font-semibold text-foreground sm:text-3xl">
-            <User className="mr-2 inline-block h-7 w-7 text-sage-600" />
+            <WatercolorIcon name="user" size={28} className="mr-2 inline-block   text-sage-600" />
             マイページ
           </h1>
           <p className="mt-2 text-sm leading-relaxed text-muted">

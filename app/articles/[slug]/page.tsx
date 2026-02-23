@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Calendar, Tag, Users } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
@@ -77,7 +77,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           href="/articles"
           className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-sage-600"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <WatercolorIcon name="arrow_right" size={16} />
           記事一覧に戻る
         </Link>
       </nav>
@@ -101,7 +101,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
         <div className="mt-5 flex flex-wrap items-center gap-4 text-xs text-muted">
           <div className="flex items-center gap-1">
-            <Calendar className="h-3.5 w-3.5" />
+            <WatercolorIcon name="calendar" size={12} className=".5 .5" />
             <time dateTime={publishedAt}>
               {new Date(publishedAt).toLocaleDateString("ja-JP", {
                 year: "numeric",
@@ -111,7 +111,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </time>
           </div>
           <div className="flex items-center gap-1">
-            <Tag className="h-3.5 w-3.5" />
+            <WatercolorIcon name="tag" size={12} className=".5 .5" />
             <Link
               href={`/articles/category/${category}`}
               className="hover:text-sage-600 hover:underline"
@@ -120,7 +120,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </Link>
           </div>
           <div className="flex items-center gap-1">
-            <Users className="h-3.5 w-3.5" />
+            <WatercolorIcon name="user" size={12} className=".5 .5" />
             <span>
               {ageGroups.map((ag) => AGE_GROUP_LABELS[ag]).join("・")}
             </span>
@@ -184,7 +184,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           href="/articles"
           className="inline-flex items-center gap-2 rounded-full border border-sage-200 bg-white px-6 py-3 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <WatercolorIcon name="arrow_right" size={16} />
           記事一覧に戻る
         </Link>
       </div>

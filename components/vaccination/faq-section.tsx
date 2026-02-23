@@ -1,7 +1,9 @@
-"use client";
+"use client"
+
+;
 
 import { useState } from "react";
-import { ChevronDown, HelpCircle } from "lucide-react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import type { VaccinationFaq, VaccinationFaqCategory } from "@/lib/types";
 import { FAQ_CATEGORY_LABELS } from "@/lib/vaccinations";
 
@@ -34,15 +36,11 @@ function FaqItem({ faq }: { readonly faq: VaccinationFaq }) {
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
       >
-        <HelpCircle className="mt-0.5 h-4 w-4 shrink-0 text-sage-500" />
+        <WatercolorIcon name="help" size={16} className="mt-0.5   shrink-0 text-sage-500" />
         <span className="flex-1 text-sm font-medium text-foreground">
           {faq.question}
         </span>
-        <ChevronDown
-          className={`h-4 w-4 shrink-0 text-muted transition-transform ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        />
+        <WatercolorIcon name="arrow_right" size={16} />
       </button>
       {isOpen && (
         <div className="px-4 pb-4 pl-11">

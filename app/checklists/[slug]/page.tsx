@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
 import { getAllChecklists, getChecklistBySlug } from "@/lib/checklists";
 import { ChecklistContent } from "@/components/checklist/checklist-content";
 
@@ -54,7 +54,7 @@ export default async function ChecklistDetailPage({ params }: PageProps) {
             href="/checklists"
             className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <WatercolorIcon name="arrow_right" size={16} />
             チェックリスト一覧に戻る
           </Link>
 
@@ -77,7 +77,7 @@ export default async function ChecklistDetailPage({ params }: PageProps) {
                 href={`/checklists/${prevChecklist.slug}`}
                 className="flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
               >
-                <ArrowLeft className="h-4 w-4" />
+                <WatercolorIcon name="arrow_right" size={16} />
                 {prevChecklist.name}
               </Link>
             ) : (
@@ -89,7 +89,7 @@ export default async function ChecklistDetailPage({ params }: PageProps) {
                 className="flex items-center gap-1 text-sm text-sage-600 transition-colors hover:text-sage-700"
               >
                 {nextChecklist.name}
-                <ArrowLeft className="h-4 w-4 rotate-180" />
+                <WatercolorIcon name="arrow_right" size={16} className="rotate-180" />
               </Link>
             ) : (
               <div />
@@ -101,7 +101,7 @@ export default async function ChecklistDetailPage({ params }: PageProps) {
               href="/checklists"
               className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
             >
-              <ArrowLeft className="h-4 w-4" />
+              <WatercolorIcon name="arrow_right" size={16} />
               チェックリスト一覧に戻る
             </Link>
           </div>

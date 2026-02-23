@@ -1,14 +1,6 @@
 import type { Metadata } from "next"
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link"
-import {
-  ClipboardCheck,
-  Baby,
-  FileText,
-  Heart,
-  School,
-  GraduationCap,
-  ArrowRight,
-} from "lucide-react"
 import { getAllChecklists } from "@/lib/checklists"
 
 export const metadata: Metadata = {
@@ -17,12 +9,12 @@ export const metadata: Metadata = {
     "出産前から小学校入学まで、港区で必要な手続きをステップごとにガイド。妊娠届、出生届、児童手当、保育園申込など。",
 }
 
-const ICON_MAP: Record<string, typeof Baby> = {
-  baby: Baby,
-  "file-text": FileText,
-  heart: Heart,
-  school: School,
-  "graduation-cap": GraduationCap,
+const ICON_MAP: Record<string, string> = {
+  baby: "baby",
+  "file-text": "clipboard",
+  heart: "heart",
+  school: "building",
+  "graduation-cap": "lightbulb",
 }
 
 const ORDER_COLORS: readonly string[] = [
@@ -41,7 +33,7 @@ export default function ChecklistsPage() {
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
-            <ClipboardCheck className="mr-2 inline-block h-8 w-8 text-sage-600" />
+            <WatercolorIcon name="clipboard" size={32} className="mr-2 inline-block   text-sage-600" />
             手続きチェックリスト
           </h1>
           <p className="mt-4 text-base leading-relaxed text-muted">
@@ -57,8 +49,7 @@ export default function ChecklistsPage() {
 
             <div className="space-y-6">
               {checklists.map((checklist, index) => {
-                const IconComponent =
-                  ICON_MAP[checklist.icon] ?? ClipboardCheck
+                const iconName = ICON_MAP[checklist.icon] ?? "clipboard"
                 const color = ORDER_COLORS[index % ORDER_COLORS.length]
 
                 return (
@@ -75,7 +66,7 @@ export default function ChecklistsPage() {
 
                     <div className="flex-1 rounded-xl border border-border bg-card p-5 transition-all group-hover:border-sage-200 group-hover:shadow-md">
                       <div className="flex items-center gap-3">
-                        <IconComponent className="h-5 w-5 text-sage-600" />
+                        <WatercolorIcon name={iconName} size={28} />
                         <h2 className="font-heading text-lg font-semibold text-card-foreground">
                           {checklist.name}
                         </h2>
@@ -88,7 +79,7 @@ export default function ChecklistsPage() {
                       </p>
                       <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
                         チェックリストを開く
-                        <ArrowRight className="h-3 w-3" />
+                        <WatercolorIcon name="arrow_right" size={12} />
                       </span>
                     </div>
                   </Link>

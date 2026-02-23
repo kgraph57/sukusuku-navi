@@ -1,7 +1,9 @@
-"use client";
+"use client"
+
+;
 
 import { useState, useEffect, useCallback } from "react";
-import { Baby, Plus, Trash2, Calendar } from "lucide-react";
+import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import { useStore } from "@/lib/store";
 import type { FamilyProfile } from "@/lib/store";
 import { formatAge } from "@/lib/utils/age";
@@ -18,7 +20,7 @@ function EmptyState({ onAdd }: { readonly onAdd: () => void }) {
   return (
     <div className="rounded-xl border border-border bg-card p-8 text-center">
       <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-sage-50">
-        <Baby className="h-8 w-8 text-sage-600" />
+        <WatercolorIcon name="baby" size={32} className="text-sage-600" />
       </div>
       <h3 className="font-heading text-lg font-semibold text-card-foreground">
         お子さんの情報を登録しましょう
@@ -31,7 +33,7 @@ function EmptyState({ onAdd }: { readonly onAdd: () => void }) {
         onClick={onAdd}
         className="mt-6 inline-flex items-center gap-2 rounded-lg bg-sage-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700"
       >
-        <Plus className="h-4 w-4" />
+        <WatercolorIcon name="plus" size={16} />
         お子さんを追加
       </button>
     </div>
@@ -112,7 +114,7 @@ function AddChildForm({
           disabled={!isValid}
           className="inline-flex items-center gap-2 rounded-lg bg-sage-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-sage-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          <Plus className="h-4 w-4" />
+          <WatercolorIcon name="plus" size={16} />
           追加
         </button>
         <button
@@ -148,14 +150,14 @@ function ChildCard({
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-start gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-50">
-            <Baby className="h-5 w-5 text-sage-600" />
+            <WatercolorIcon name="baby" size={20} className="text-sage-600" />
           </div>
           <div>
             <h4 className="font-heading text-base font-semibold text-card-foreground">
               {nickname}
             </h4>
             <div className="mt-1 flex items-center gap-1.5 text-sm text-muted">
-              <Calendar className="h-3.5 w-3.5 shrink-0" />
+              <WatercolorIcon name="calendar" size={12} className=".5 .5 shrink-0" />
               <span>{formatDate(birthDate)}</span>
             </div>
             <p className="mt-1 text-sm font-medium text-sage-600">
@@ -171,7 +173,7 @@ function ChildCard({
             className="shrink-0 rounded-lg p-1.5 text-ivory-200 transition-colors hover:bg-ivory-50 hover:text-blush-500"
             aria-label={`${nickname}を削除`}
           >
-            <Trash2 className="h-4 w-4" />
+            <WatercolorIcon name="plus" size={16} />
           </button>
         )}
       </div>
@@ -287,7 +289,7 @@ export function FamilyProfileSetup() {
             onClick={() => setShowForm(true)}
             className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-sage-300 bg-sage-50/30 px-4 py-3 text-sm font-medium text-sage-600 transition-colors hover:border-sage-400 hover:bg-sage-50"
           >
-            <Plus className="h-4 w-4" />
+            <WatercolorIcon name="plus" size={16} />
             お子さんを追加
           </button>
         )}
