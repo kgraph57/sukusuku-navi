@@ -1,7 +1,6 @@
 import QRCode from "qrcode";
 import { PrintButton } from "@/components/print/print-button";
-
-const SITE_URL = "https://kgraph57.github.io/sukusuku-navi/";
+import { SITE_URL } from "@/lib/constants";
 
 async function generateQRDataURL(): Promise<string> {
   return QRCode.toDataURL(SITE_URL, {

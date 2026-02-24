@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
+import { trackErrorOccurred } from "@/lib/analytics/events";
 
 export default function ErrorPage({
   error,
@@ -10,6 +12,9 @@ export default function ErrorPage({
   readonly error: Error & { digest?: string };
   readonly reset: () => void;
 }) {
+  useEffect(() => {
+    trackErrorOccurred(error.digest, error.message);
+  }, [error]);
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 py-16">
       <div className="flex h-20 w-20 items-center justify-center rounded-full bg-blush-50">

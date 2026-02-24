@@ -550,6 +550,8 @@ export default function VaccinationsPage() {
 
   return (
     <>
+      <title>予防接種記録 | すくすくナビ</title>
+      <meta name="description" content="お子さんの予防接種の接種状況を記録・管理できます。定期接種・任意接種のスケジュールと港区の助成情報。" />
       <section className="bg-gradient-to-b from-purple-50 to-ivory-50 px-4 pb-6 pt-8 sm:pb-8 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <Link

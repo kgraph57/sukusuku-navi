@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { getAllArticles } from "@/lib/content";
 import { MyPageClient } from "./my-page-client";
+
+export const metadata: Metadata = {
+  title: "マイページ",
+  description:
+    "お子さんの情報管理、タイムライン、予防接種記録、成長マイルストーンをまとめて確認できます。",
+};
 
 export default function MyPage() {
   const allArticles = getAllArticles();

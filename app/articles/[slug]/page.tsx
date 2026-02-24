@@ -24,6 +24,7 @@ import { TableOfContents } from "@/components/article/table-of-contents";
 import { ArticleFeedback } from "@/components/article/article-feedback";
 import { NewsletterForm } from "@/components/newsletter/newsletter-form";
 import { estimateReadingTime } from "@/lib/reading-time";
+import { SITE_URL, TWITTER_HANDLE } from "@/lib/constants";
 
 interface ArticlePageProps {
   readonly params: Promise<{ slug: string }>;
@@ -33,8 +34,6 @@ export async function generateStaticParams() {
   const slugs = getArticleSlugs();
   return slugs.map((slug) => ({ slug }));
 }
-
-const SITE_URL = "https://kgraph57.github.io/sukusuku-navi";
 
 export async function generateMetadata({
   params,
@@ -69,7 +68,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      creator: "@kgraph_",
+      creator: TWITTER_HANDLE,
     },
   };
 }

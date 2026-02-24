@@ -184,3 +184,11 @@ export function trackNewsletterSignupClicked(location: string) {
 export function trackFeedbackSubmitted(rating: number, comment?: string) {
   capture("feedback_submitted", { rating, comment });
 }
+
+// ---------------------------------------------------------------------------
+// Errors
+// ---------------------------------------------------------------------------
+
+export function trackErrorOccurred(digest?: string, message?: string) {
+  capture("error_occurred", { digest, message });
+}

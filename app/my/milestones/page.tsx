@@ -437,6 +437,11 @@ export default function MilestonesPage() {
 
   return (
     <>
+      <title>成長マイルストーン | すくすくナビ</title>
+      <meta
+        name="description"
+        content="お子さんの「はじめて」を記録。運動・言語・社会性・生活習慣の発達の目安を月齢別に確認できます。"
+      />
       <section className="bg-gradient-to-b from-rose-50 to-ivory-50 px-4 pb-6 pt-8 sm:pb-8 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <Link

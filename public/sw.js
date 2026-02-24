@@ -1,7 +1,7 @@
 // sukusuku-navi Service Worker
 // Aggressive caching to reduce GitHub Pages requests and prevent rate limiting
 
-const CACHE_VERSION = "sukusuku-v3";
+const CACHE_VERSION = "sukusuku-v4";
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PAGE_CACHE = `${CACHE_VERSION}-pages`;
 
@@ -12,7 +12,11 @@ const PAGE_CACHE = `${CACHE_VERSION}-pages`;
 self.addEventListener("install", (event) => {
   // Use the SW scope as the root URL (handles basePath for GitHub Pages)
   const root = self.registration.scope;
-  event.waitUntil(caches.open(STATIC_CACHE).then((cache) => cache.add(root)));
+  event.waitUntil(
+    caches
+      .open(STATIC_CACHE)
+      .then((cache) => cache.addAll([root, `${root}offline`])),
+  );
   self.skipWaiting();
 });
 
@@ -102,14 +106,23 @@ self.addEventListener("fetch", (event) => {
             cache.match(event.request).then(
               (cached) =>
                 cached ||
-                cache.match(self.registration.scope) ||
-                new Response(
-                  "オフラインです。ネットワーク接続を確認してください。",
-                  {
-                    status: 503,
-                    headers: { "Content-Type": "text/plain; charset=utf-8" },
-                  },
-                ),
+                caches
+                  .open(STATIC_CACHE)
+                  .then((sc) => sc.match(`${self.registration.scope}offline`))
+                  .then(
+                    (offlinePage) =>
+                      offlinePage ||
+                      cache.match(self.registration.scope) ||
+                      new Response(
+                        "オフラインです。ネットワーク接続を確認してください。",
+                        {
+                          status: 503,
+                          headers: {
+                            "Content-Type": "text/plain; charset=utf-8",
+                          },
+                        },
+                      ),
+                  ),
             ),
           ),
       ),

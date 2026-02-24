@@ -10,6 +10,7 @@ import {
   formatAgeMonths,
 } from "@/lib/vaccines";
 import { getProgramBySlug } from "@/lib/programs";
+import { SITE_URL } from "@/lib/constants";
 
 interface PageProps {
   readonly params: Promise<{ slug: string }>;
@@ -47,8 +48,27 @@ export default async function VaccineDetailPage({ params }: PageProps) {
     ? getProgramBySlug(vaccine.relatedProgramSlug)
     : null;
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "予防接種一覧",
+        item: `${SITE_URL}/vaccines`,
+      },
+      { "@type": "ListItem", position: 3, name: vaccine.name },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <Link
@@ -95,7 +115,11 @@ export default async function VaccineDetailPage({ params }: PageProps) {
         <div className="mx-auto max-w-3xl space-y-6">
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-              <WatercolorIcon name="clock" size={20} className="text-sage-600" />
+              <WatercolorIcon
+                name="clock"
+                size={20}
+                className="text-sage-600"
+              />
               接種スケジュール
             </h2>
             <ol className="mt-4 space-y-4">
@@ -173,7 +197,11 @@ export default async function VaccineDetailPage({ params }: PageProps) {
           {vaccine.faq && vaccine.faq.length > 0 && (
             <div className="rounded-xl border border-border bg-card p-6">
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                <WatercolorIcon name="help" size={20} className="text-sage-600" />
+                <WatercolorIcon
+                  name="help"
+                  size={20}
+                  className="text-sage-600"
+                />
                 よくある質問
               </h2>
               <div className="mt-4 space-y-5">
@@ -194,7 +222,11 @@ export default async function VaccineDetailPage({ params }: PageProps) {
           {vaccine.relatedArticleSlug && (
             <div className="rounded-xl border border-border bg-card p-6">
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                <WatercolorIcon name="check" size={20} className="text-sage-600" />
+                <WatercolorIcon
+                  name="check"
+                  size={20}
+                  className="text-sage-600"
+                />
                 関連記事
               </h2>
               <Link
@@ -202,7 +234,11 @@ export default async function VaccineDetailPage({ params }: PageProps) {
                 className="mt-3 inline-flex items-center gap-2 rounded-lg border border-sage-200 bg-sage-50 px-4 py-3 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-100"
               >
                 おかもん先生の予防接種解説記事を読む
-                <WatercolorIcon name="arrow_right" size={16} className="rotate-180" />
+                <WatercolorIcon
+                  name="arrow_right"
+                  size={16}
+                  className="rotate-180"
+                />
               </Link>
             </div>
           )}
@@ -210,7 +246,11 @@ export default async function VaccineDetailPage({ params }: PageProps) {
           {vaccine.knowVpdUrl && (
             <div className="rounded-xl border border-border bg-card p-6">
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                <WatercolorIcon name="book" size={20} className="text-sage-600" />
+                <WatercolorIcon
+                  name="book"
+                  size={20}
+                  className="text-sage-600"
+                />
                 公式情報・参考サイト
               </h2>
               <p className="mt-2 text-sm text-muted">
@@ -223,9 +263,17 @@ export default async function VaccineDetailPage({ params }: PageProps) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-lg border border-sage-200 bg-sage-50 px-4 py-3 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-100"
                 >
-                  <WatercolorIcon name="shield" size={16} className="shrink-0" />
+                  <WatercolorIcon
+                    name="shield"
+                    size={16}
+                    className="shrink-0"
+                  />
                   Know VPD! で{vaccine.nameShort}の詳細を見る
-                  <WatercolorIcon name="external" size={12} className="ml-auto .5 .5 shrink-0" />
+                  <WatercolorIcon
+                    name="external"
+                    size={12}
+                    className="ml-auto .5 .5 shrink-0"
+                  />
                 </a>
                 <a
                   href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/yobou-sesshu/index.html"
@@ -235,7 +283,11 @@ export default async function VaccineDetailPage({ params }: PageProps) {
                 >
                   <WatercolorIcon name="star" size={16} className="shrink-0" />
                   厚生労働省 予防接種情報
-                  <WatercolorIcon name="external" size={12} className="ml-auto .5 .5 shrink-0" />
+                  <WatercolorIcon
+                    name="external"
+                    size={12}
+                    className="ml-auto .5 .5 shrink-0"
+                  />
                 </a>
               </div>
             </div>

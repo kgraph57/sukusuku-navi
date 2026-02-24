@@ -142,6 +142,7 @@ export function WatercolorIcon({
       width={size}
       height={size}
       unoptimized
+      aria-hidden={alt === "" ? "true" : undefined}
       className={`object-contain drop-shadow-sm ${className}`}
     />
   );
@@ -170,6 +171,7 @@ export function WatercolorIconInline({
       width={size}
       height={size}
       unoptimized
+      aria-hidden={alt === "" ? "true" : undefined}
       className={`inline-block object-contain drop-shadow-sm ${className}`}
     />
   );

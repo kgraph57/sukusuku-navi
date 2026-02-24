@@ -1,6 +1,5 @@
 import type { LineReplyFlexMessage, LineReplyTextMessage } from "./types";
-
-const SITE_URL = "https://kgraph57.github.io/sukusuku-navi";
+import { SITE_URL } from "@/lib/constants";
 
 // --- Welcome message (sent on follow) ---
 
