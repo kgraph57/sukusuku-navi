@@ -153,3 +153,20 @@ export function groupTimelineByUrgency(items: readonly TimelineItem[]): {
     expired: items.filter((item) => item.isExpired),
   };
 }
+
+const URGENCY_ORDER: Record<TimelineUrgency, number> = {
+  overdue: 0,
+  urgent: 1,
+  soon: 2,
+  upcoming: 3,
+  future: 4,
+};
+
+export function getTop3Items(
+  items: readonly TimelineItem[],
+): readonly TimelineItem[] {
+  return items
+    .filter((item) => !item.completed && !item.isExpired)
+    .sort((a, b) => URGENCY_ORDER[a.urgency] - URGENCY_ORDER[b.urgency])
+    .slice(0, 3);
+}

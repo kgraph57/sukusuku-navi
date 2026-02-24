@@ -1,6 +1,4 @@
-"use client"
-
-;
+"use client";
 
 import { useSearchParams } from "next/navigation";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
@@ -11,6 +9,7 @@ import { ResultCard } from "@/components/simulator/result-card";
 import { LifePlanTimeline } from "@/components/simulator/life-plan-timeline";
 import type { SimulatorInput, SimulatorResult } from "@/lib/types";
 import { trackSimulatorResultsViewed } from "@/lib/analytics/events";
+import { ShareButton } from "@/components/shared/share-button";
 
 function formatTotalAmount(amount: number): string {
   if (amount >= 10000) {
@@ -59,7 +58,11 @@ function ResultsContent() {
     return (
       <div className="min-h-screen bg-ivory-50 px-4 pb-16 pt-12">
         <div className="mx-auto max-w-2xl text-center">
-          <WatercolorIcon name="alert" size={48} className="mx-auto   text-blush-500" />
+          <WatercolorIcon
+            name="alert"
+            size={48}
+            className="mx-auto   text-blush-500"
+          />
           <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground">
             データが見つかりません
           </h1>
@@ -89,7 +92,11 @@ function ResultsContent() {
       <div className="mx-auto max-w-3xl">
         <div className="rounded-2xl bg-gradient-to-br from-sage-600 to-sage-700 p-6 text-white shadow-lg sm:p-8">
           <div className="flex items-center gap-3">
-            <WatercolorIcon name="calculator" size={24} className="text-sage-200" />
+            <WatercolorIcon
+              name="calculator"
+              size={24}
+              className="text-sage-200"
+            />
             <h1 className="font-heading text-lg font-semibold">
               シミュレーション結果
             </h1>
@@ -179,6 +186,13 @@ function ResultsContent() {
           >
             すべての制度を見る
           </Link>
+          <ShareButton
+            title="給付金シミュレーター結果 | すくすくナビ"
+            text={`港区の子育て給付金シミュレーション結果：年間推定 ${formatTotalAmount(result.totalAnnualEstimate)}（対象制度${result.eligiblePrograms.length}件）`}
+            url="https://kgraph57.github.io/sukusuku-navi/simulator"
+            contentType="simulator_result"
+            contentId="simulator"
+          />
         </div>
 
         <div className="mt-8 rounded-xl border border-border bg-ivory-100 p-4">
@@ -207,7 +221,11 @@ export default function SimulatorResultsPage() {
       fallback={
         <div className="flex min-h-screen items-center justify-center bg-ivory-50">
           <div className="text-center">
-            <WatercolorIcon name="calculator" size={32} className="mx-auto   animate-pulse text-sage-600" />
+            <WatercolorIcon
+              name="calculator"
+              size={32}
+              className="mx-auto   animate-pulse text-sage-600"
+            />
             <p className="mt-4 text-sm text-muted">計算中...</p>
           </div>
         </div>

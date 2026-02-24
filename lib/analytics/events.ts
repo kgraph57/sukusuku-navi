@@ -89,6 +89,10 @@ export function trackTimelineItemCompleted(itemId: string, category: string) {
   capture("timeline_item_completed", { item_id: itemId, category });
 }
 
+export function trackTop3Viewed(childAgeMonths: number) {
+  capture("top3_viewed", { child_age_months: childAgeMonths });
+}
+
 // ---------------------------------------------------------------------------
 // Vaccine Schedule
 // ---------------------------------------------------------------------------
@@ -114,6 +118,22 @@ export function trackVaccineDoseToggled(
     vaccine_slug: vaccineSlug,
     dose_number: doseNumber,
     completed,
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Share
+// ---------------------------------------------------------------------------
+
+export function trackShareClicked(
+  contentType: string,
+  contentId: string,
+  method: "native" | "clipboard",
+) {
+  capture("share_clicked", {
+    content_type: contentType,
+    content_id: contentId,
+    method,
   });
 }
 

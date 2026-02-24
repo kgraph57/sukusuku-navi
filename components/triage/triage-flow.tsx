@@ -9,6 +9,7 @@ import {
   trackTriageQuestionAnswered,
   trackTriageResultViewed,
 } from "@/lib/analytics/events";
+import { ShareButton } from "@/components/shared/share-button";
 
 interface TriageFlowProps {
   readonly symptom: TriageSymptom;
@@ -238,6 +239,13 @@ export function TriageFlow({ symptom }: TriageFlowProps) {
                 >
                   他の症状をチェックする
                 </Link>
+                <ShareButton
+                  title="受診判断ガイド | すくすくナビ"
+                  text="すくすくナビの受診判断ガイドで症状をチェックしました。小児科医おかもん先生が監修しています。"
+                  url="https://kgraph57.github.io/sukusuku-navi/triage"
+                  contentType="triage_result"
+                  contentId="triage"
+                />
               </div>
             </div>
           ) : currentQuestion ? (

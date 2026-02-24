@@ -19,6 +19,7 @@ import { ArticleCard } from "@/components/article/article-card";
 import { CategoryBadge } from "@/components/article/article-card";
 import { DoctorByline } from "@/components/article/doctor-byline";
 import { BookmarkButton } from "@/components/article/bookmark-button";
+import { ShareButton } from "@/components/shared/share-button";
 
 interface ArticlePageProps {
   readonly params: Promise<{ slug: string }>;
@@ -180,6 +181,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </span>
           </div>
           <BookmarkButton articleSlug={frontmatter.slug} />
+          <ShareButton
+            title={title}
+            text={`${title} | すくすくナビ`}
+            url={`https://kgraph57.github.io/sukusuku-navi/articles/${slug}`}
+            contentType="article"
+            contentId={slug}
+          />
         </div>
       </header>
 

@@ -183,6 +183,34 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── Triage Emergency CTA ─── */}
+      <section className="border-t border-red-100/60 bg-gradient-to-r from-red-50/60 via-white to-orange-50/40 px-4 py-8 sm:py-10">
+        <div className="mx-auto max-w-3xl">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="text-center sm:text-left">
+              <p className="text-xs font-medium uppercase tracking-wider text-red-500">
+                夜間・休日も安心
+              </p>
+              <h2 className="mt-1 font-heading text-lg font-bold text-foreground sm:text-xl">
+                子どもが発熱。今すぐ救急？明日でいい？
+              </h2>
+              <p className="mt-1 text-sm text-muted">
+                30秒の症状チェックで受診の目安がわかります。小児科医監修。
+              </p>
+            </div>
+            <TrackedCTALink
+              href="/triage"
+              ctaName="triage_hero_cta"
+              location="lp_triage_banner"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-red-500 px-6 py-3 text-sm font-bold text-white shadow-md transition-all hover:bg-red-600 hover:shadow-lg"
+            >
+              <WatercolorIcon name="stethoscope" size={18} />
+              症状チェックを始める
+            </TrackedCTALink>
+          </div>
+        </div>
+      </section>
+
       {/* ─── Timeline CTA Section ─── */}
       <section className="border-t border-teal-100 bg-gradient-to-r from-teal-50/80 via-white to-coral-50/40 px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-3xl">

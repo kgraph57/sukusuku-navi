@@ -9,12 +9,15 @@ import { getChildAge } from "@/lib/utils/age";
 import {
   generateTimeline,
   groupTimelineByUrgency,
+  getTop3Items,
 } from "@/lib/timeline-engine";
 import type { TimelineItem, TimelineUrgency } from "@/lib/timeline-engine";
 import { CalendarView } from "@/components/timeline/calendar-view";
+import { Top3View } from "@/components/timeline/top3-view";
 import {
   trackTimelineViewed,
   trackTimelineItemCompleted,
+  trackTop3Viewed,
 } from "@/lib/analytics/events";
 
 // ---------------------------------------------------------------------------
@@ -494,7 +497,7 @@ function LoadingSkeleton() {
 // Main page
 // ---------------------------------------------------------------------------
 
-type ViewMode = "list" | "calendar";
+type ViewMode = "top3" | "list" | "calendar";
 type TimeFilter = "week" | "month" | "all";
 
 function filterItemsByTime(
@@ -540,7 +543,7 @@ export default function TimelinePage() {
   const [profile, setProfile] = useState<FamilyProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedChildId, setSelectedChildId] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<ViewMode>("list");
+  const [viewMode, setViewMode] = useState<ViewMode>("top3");
   const [timeFilter, setTimeFilter] = useState<TimeFilter>("all");
 
   useEffect(() => {
@@ -577,6 +580,11 @@ export default function TimelinePage() {
         ? filterItemsByTime(timelineItems, timeFilter)
         : null,
     [timelineItems, timeFilter],
+  );
+
+  const top3Items = useMemo(
+    () => (timelineItems != null ? getTop3Items(timelineItems) : []),
+    [timelineItems],
   );
 
   const groupedSections: GroupedSections | null =
@@ -645,6 +653,18 @@ export default function TimelinePage() {
                 <div className="flex gap-1 rounded-lg border border-border bg-ivory-50 p-1">
                   <button
                     type="button"
+                    onClick={() => setViewMode("top3")}
+                    className={`flex flex-1 items-center justify-center gap-1.5 rounded-md py-1.5 text-sm font-medium transition-colors ${
+                      viewMode === "top3"
+                        ? "bg-white text-sage-700 shadow-sm"
+                        : "text-muted hover:text-foreground"
+                    }`}
+                  >
+                    <WatercolorIcon name="star" size={16} />
+                    今週の3つ
+                  </button>
+                  <button
+                    type="button"
                     onClick={() => setViewMode("list")}
                     className={`flex flex-1 items-center justify-center gap-1.5 rounded-md py-1.5 text-sm font-medium transition-colors ${
                       viewMode === "list"
@@ -694,6 +714,17 @@ export default function TimelinePage() {
                   ))}
                 </div>
               )}
+
+              {viewMode === "top3" &&
+                selectedChild != null &&
+                timelineItems != null && (
+                  <Top3View
+                    items={top3Items}
+                    childName={selectedChild.nickname}
+                    onToggleComplete={handleToggleComplete}
+                    onShowAll={() => setViewMode("list")}
+                  />
+                )}
 
               {viewMode === "calendar" &&
                 timelineItems != null &&
