@@ -1,6 +1,4 @@
-"use client"
-
-;
+"use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
@@ -145,7 +143,11 @@ function MilestoneRow({
           </div>
         ) : (
           <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-gray-300 bg-white">
-            <WatercolorIcon name="check" size={12} className=".5 .5 text-gray-300" />
+            <WatercolorIcon
+              name="check"
+              size={12}
+              className=".5 .5 text-gray-300"
+            />
           </div>
         )}
       </button>
@@ -261,12 +263,15 @@ function CategorySection({
 // Main page
 // ---------------------------------------------------------------------------
 
+type MilestoneFilter = "all" | "current" | "achieved" | "unachieved";
+
 export default function MilestonesPage() {
   const store = useStore();
   const [profile, setProfile] = useState<FamilyProfile | null>(null);
   const [selectedChildId, setSelectedChildId] = useState<string | null>(null);
   const [records, setRecords] = useState<readonly MilestoneRecord[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [filter, setFilter] = useState<MilestoneFilter>("all");
 
   const milestones = getAllMilestones();
 
@@ -399,7 +404,11 @@ export default function MilestonesPage() {
             マイページ
           </Link>
           <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground sm:text-3xl">
-            <WatercolorIcon name="star" size={28} className="mr-2 inline-block   text-rose-500" />
+            <WatercolorIcon
+              name="star"
+              size={28}
+              className="mr-2 inline-block   text-rose-500"
+            />
             成長マイルストーン
           </h1>
           <p className="mt-2 text-sm text-muted">
@@ -421,7 +430,11 @@ export default function MilestonesPage() {
           {selectedChild && (
             <div className="flex items-center gap-3 rounded-xl border border-border bg-card p-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-100">
-                <WatercolorIcon name="baby" size={20} className="text-rose-500" />
+                <WatercolorIcon
+                  name="baby"
+                  size={20}
+                  className="text-rose-500"
+                />
               </div>
               <div>
                 <p className="font-heading text-base font-semibold text-card-foreground">
@@ -437,12 +450,26 @@ export default function MilestonesPage() {
           <ProgressSummary milestones={milestones} records={records} />
 
           <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-xs leading-relaxed text-amber-800">
-            <p className="font-medium">
-              発達の目安について
-            </p>
+            <p className="font-medium">発達の目安について</p>
             <p className="mt-1">
               各マイルストーンの月齢はあくまで目安です。お子さんの発達ペースはそれぞれ異なり、範囲内であれば心配いりません。気になることがあれば、かかりつけの小児科医にご相談ください。
             </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Link
+                href="/triage"
+                className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-amber-700"
+              >
+                <WatercolorIcon name="stethoscope" size={12} />
+                受診判断ガイドを見る
+              </Link>
+              <Link
+                href="/clinics"
+                className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 bg-white px-4 py-1.5 text-xs font-medium text-amber-800 transition-colors hover:bg-amber-50"
+              >
+                <WatercolorIcon name="mappin" size={12} />
+                近くの小児科を探す
+              </Link>
+            </div>
           </div>
 
           <div className="space-y-6">

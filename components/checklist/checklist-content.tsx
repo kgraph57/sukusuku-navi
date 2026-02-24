@@ -1,6 +1,4 @@
-"use client"
-
-;
+"use client";
 
 import { useState, useEffect, useCallback } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
@@ -64,10 +62,7 @@ function useLocalCheckedItems(slug: string) {
           next.add(itemId);
         }
         try {
-          localStorage.setItem(
-            `checklist-${slug}`,
-            JSON.stringify([...next]),
-          );
+          localStorage.setItem(`checklist-${slug}`, JSON.stringify([...next]));
         } catch {
           // Ignore localStorage errors
         }
@@ -100,6 +95,81 @@ function useLocalCheckedItems(slug: string) {
   }, [slug]);
 
   return { checkedItems, isLoaded, toggle, setAll, clearAll };
+}
+
+// ---------------------------------------------------------------------------
+// Badge computation for checklist items
+// ---------------------------------------------------------------------------
+
+interface ItemBadge {
+  readonly label: string;
+  readonly className: string;
+}
+
+// High-value program slugs (programs with significant monetary amounts)
+const HIGH_VALUE_PROGRAM_SLUGS = new Set([
+  "child-allowance",
+  "childbirth-lump-sum",
+  "birth-childcare-grant",
+  "child-medical-subsidy",
+  "unlicensed-nursery-subsidy",
+  "multi-child-nursery-reduction",
+  "private-kindergarten-subsidy",
+]);
+
+// Minato-ku exclusive program slugs
+const MINATO_EXCLUSIVE_SLUGS = new Set([
+  "child-medical-subsidy",
+  "mumps-vaccine-subsidy",
+  "influenza-vaccine-subsidy",
+  "postnatal-care-stay",
+  "postnatal-care-day",
+  "postnatal-care-visit",
+  "unlicensed-nursery-subsidy",
+  "multi-child-nursery-reduction",
+  "komusubi-project",
+  "child-development-support",
+]);
+
+// Patterns that indicate strict time limits
+const STRICT_DEADLINE_PATTERNS = [/\d+日以内/, /\d+ヶ月以内/, /\d+週/, /すぐ/];
+
+function computeBadges(item: ChecklistItem): readonly ItemBadge[] {
+  const badges: ItemBadge[] = [];
+
+  // "期限あり" badge for items with strict deadlines
+  if (item.deadline) {
+    const isStrict = STRICT_DEADLINE_PATTERNS.some((p) =>
+      p.test(item.deadline ?? ""),
+    );
+    if (isStrict) {
+      badges.push({
+        label: "期限あり",
+        className: "bg-red-50 text-red-600 border border-red-200",
+      });
+    }
+  }
+
+  // "金額大" badge for high-value programs
+  if (
+    item.relatedProgram &&
+    HIGH_VALUE_PROGRAM_SLUGS.has(item.relatedProgram)
+  ) {
+    badges.push({
+      label: "金額大",
+      className: "bg-amber-50 text-amber-700 border border-amber-200",
+    });
+  }
+
+  // "港区限定" badge for Minato-ku exclusive programs
+  if (item.relatedProgram && MINATO_EXCLUSIVE_SLUGS.has(item.relatedProgram)) {
+    badges.push({
+      label: "港区限定",
+      className: "bg-blue-50 text-blue-600 border border-blue-200",
+    });
+  }
+
+  return badges;
 }
 
 // ---------------------------------------------------------------------------
@@ -157,6 +227,8 @@ function StampItemCard({
   readonly justStamped: boolean;
   readonly onToggle: () => void;
 }) {
+  const badges = computeBadges(item);
+
   return (
     <div
       className={`rounded-xl border bg-card p-4 transition-all ${
@@ -171,15 +243,25 @@ function StampItemCard({
         />
 
         <div className="min-w-0 flex-1">
-          <h3
-            className={`font-heading text-base font-semibold ${
-              isChecked
-                ? "text-sage-700 line-through"
-                : "text-card-foreground"
-            }`}
-          >
-            {item.title}
-          </h3>
+          <div className="flex flex-wrap items-center gap-2">
+            <h3
+              className={`font-heading text-base font-semibold ${
+                isChecked
+                  ? "text-sage-700 line-through"
+                  : "text-card-foreground"
+              }`}
+            >
+              {item.title}
+            </h3>
+            {badges.map((badge) => (
+              <span
+                key={badge.label}
+                className={`inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-xs font-medium ${badge.className}`}
+              >
+                {badge.label}
+              </span>
+            ))}
+          </div>
           <p className="mt-1 text-sm leading-relaxed text-muted">
             {item.description}
           </p>
@@ -187,7 +269,11 @@ function StampItemCard({
           <div className="mt-3 space-y-2">
             {item.deadline && (
               <div className="flex items-center gap-2 text-sm">
-                <WatercolorIcon name="calendar" size={12} className=".5 .5 shrink-0 text-blush-500" />
+                <WatercolorIcon
+                  name="calendar"
+                  size={12}
+                  className=".5 .5 shrink-0 text-blush-500"
+                />
                 <span className="font-medium text-blush-600">
                   {item.deadline}
                 </span>
@@ -195,13 +281,21 @@ function StampItemCard({
             )}
 
             <div className="flex items-center gap-2 text-sm">
-              <WatercolorIcon name="mappin" size={12} className=".5 .5 shrink-0 text-muted" />
+              <WatercolorIcon
+                name="mappin"
+                size={12}
+                className=".5 .5 shrink-0 text-muted"
+              />
               <span className="text-muted">{item.where}</span>
             </div>
 
             {item.documents.length > 0 && (
               <div className="flex items-start gap-2 text-sm">
-                <WatercolorIcon name="star" size={12} className="mt-0.5 .5 .5 shrink-0 text-muted" />
+                <WatercolorIcon
+                  name="star"
+                  size={12}
+                  className="mt-0.5 .5 .5 shrink-0 text-muted"
+                />
                 <div className="flex flex-wrap gap-1">
                   {item.documents.map((doc) => (
                     <span
@@ -217,7 +311,11 @@ function StampItemCard({
 
             {item.relatedProgram && (
               <div className="flex items-center gap-2 text-sm">
-                <WatercolorIcon name="arrow_right" size={12} className=".5 .5 shrink-0 text-sage-600" />
+                <WatercolorIcon
+                  name="arrow_right"
+                  size={12}
+                  className=".5 .5 shrink-0 text-sage-600"
+                />
                 <Link
                   href={`/programs/${item.relatedProgram}`}
                   className="font-medium text-sage-600 hover:text-sage-700 hover:underline"
@@ -230,7 +328,11 @@ function StampItemCard({
 
           {item.tips && (
             <div className="mt-3 flex gap-2 rounded-lg bg-yellow-50 p-3">
-              <WatercolorIcon name="lightbulb" size={16} className="shrink-0 text-yellow-600" />
+              <WatercolorIcon
+                name="lightbulb"
+                size={16}
+                className="shrink-0 text-yellow-600"
+              />
               <p className="text-sm leading-relaxed text-yellow-800">
                 {item.tips}
               </p>

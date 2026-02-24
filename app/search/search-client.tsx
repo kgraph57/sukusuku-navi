@@ -1,8 +1,6 @@
-"use client"
+"use client";
 
-;
-
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
 import { Badge } from "@/components/shared/badge";
@@ -12,7 +10,13 @@ import { CATEGORY_LABELS } from "@/lib/types";
 import { useDebounce } from "@/lib/hooks/use-debounce";
 import type { SearchItem } from "./page";
 
-type ContentType = "all" | "article" | "program" | "vaccine" | "clinic" | "nursery";
+type ContentType =
+  | "all"
+  | "article"
+  | "program"
+  | "vaccine"
+  | "clinic"
+  | "nursery";
 
 const CONTENT_TYPE_LABELS: Record<ContentType, string> = {
   all: "すべて",
@@ -111,7 +115,11 @@ function ArticleResult({
       {matchingQa && (
         <div className="mt-3 rounded-lg border border-sage-100 bg-sage-50/60 p-3">
           <div className="flex items-start gap-2">
-            <WatercolorIcon name="message" size={12} className="mt-0.5 .5 .5 shrink-0 text-blush-400" />
+            <WatercolorIcon
+              name="message"
+              size={12}
+              className="mt-0.5 .5 .5 shrink-0 text-blush-400"
+            />
             <p className="text-xs font-medium text-blush-600 line-clamp-1">
               Q: {matchingQa.question}
             </p>
@@ -240,9 +248,7 @@ function ClinicResult({
           {item.name}
         </h3>
         <p className="mt-1 text-xs text-muted">{item.address}</p>
-        <p className="mt-1 text-xs text-muted">
-          最寄駅: {item.nearestStation}
-        </p>
+        <p className="mt-1 text-xs text-muted">最寄駅: {item.nearestStation}</p>
       </div>
     </Link>
   );
@@ -313,6 +319,18 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
   const [query, setQuery] = useState("");
   const [activeType, setActiveType] = useState<ContentType>("all");
   const debouncedQuery = useDebounce(query, 300);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const results = useMemo(() => {
     if (debouncedQuery.length === 0) return [];
@@ -352,7 +370,11 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
 
         <div className="mt-6 flex items-center gap-2 rounded-lg border border-sage-100 bg-sage-50/50 px-4 py-2.5">
           <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sage-600">
-            <WatercolorIcon name="stethoscope" size={12} className=".5 .5 text-white" />
+            <WatercolorIcon
+              name="stethoscope"
+              size={12}
+              className=".5 .5 text-white"
+            />
           </div>
           <p className="text-xs text-muted">
             <span className="font-medium text-foreground">
@@ -379,15 +401,23 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
         </div>
 
         <div className="relative mt-4">
-          <WatercolorIcon name="search" size={20} className="absolute left-4 top-1/2   -translate-y-1/2 text-muted" />
+          <WatercolorIcon
+            name="search"
+            size={20}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-muted"
+          />
           <input
+            ref={inputRef}
             type="search"
             placeholder="例: 児童手当、MRワクチン、麻布、アレルギー..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full rounded-xl border border-border bg-white py-4 pl-12 pr-4 text-base text-foreground shadow-sm outline-none transition-all placeholder:text-muted/60 focus:border-sage-400 focus:ring-2 focus:ring-sage-400/20"
+            className="w-full rounded-xl border border-border bg-white py-4 pl-12 pr-20 text-base text-foreground shadow-sm outline-none transition-all placeholder:text-muted/60 focus:border-sage-400 focus:ring-2 focus:ring-sage-400/20"
             autoFocus
           />
+          <kbd className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 items-center gap-0.5 rounded-md border border-border bg-ivory-50 px-2 py-1 text-xs text-muted sm:flex">
+            <span className="text-[10px]">&#8984;</span>K
+          </kbd>
         </div>
 
         {hasQuery && totalCount > 0 && (

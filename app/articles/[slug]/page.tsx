@@ -29,6 +29,8 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));
 }
 
+const SITE_URL = "https://kgraph57.github.io/sukusuku-navi";
+
 export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata> {
@@ -36,15 +38,33 @@ export async function generateMetadata({
   const article = getArticleBySlug(slug);
   if (!article) return {};
 
-  const { title, description } = article.frontmatter;
+  const { title, description, publishedAt, category } = article.frontmatter;
 
   return {
     title,
     description,
+    authors: [{ name: "岡本賢（おかもん先生）" }],
+    alternates: {
+      canonical: `/articles/${slug}`,
+    },
     openGraph: {
       title,
       description,
       type: "article",
+      publishedTime: publishedAt,
+      authors: ["岡本賢（愛育病院 小児科医）"],
+      tags: [
+        CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS],
+        "小児科",
+        "子育て",
+        "港区",
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      creator: "@kgraph_",
     },
   };
 }
@@ -69,8 +89,42 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   const mdxComponents = createMdxComponents();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    name: frontmatter.title,
+    description: frontmatter.description,
+    url: `${SITE_URL}/articles/${frontmatter.slug}`,
+    datePublished: frontmatter.publishedAt,
+    author: {
+      "@type": "Person",
+      name: "岡本賢",
+      jobTitle: "小児科医",
+      worksFor: {
+        "@type": "Hospital",
+        name: "愛育病院",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "港区",
+          addressRegion: "東京都",
+        },
+      },
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "すくすくナビ",
+      url: SITE_URL,
+    },
+    medicalAudience: { "@type": "Patient" },
+    inLanguage: "ja",
+  };
+
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Breadcrumb */}
       <nav className="mb-10">
         <Link
