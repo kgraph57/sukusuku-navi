@@ -91,6 +91,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   const mdxComponents = createMdxComponents();
 
+  const categoryLabel = CATEGORY_LABELS[category];
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
@@ -121,21 +123,95 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     inLanguage: "ja",
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "ホーム",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "記事一覧",
+        item: `${SITE_URL}/articles`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: categoryLabel,
+        item: `${SITE_URL}/articles/category/${category}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: title,
+      },
+    ],
+  };
+
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:py-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       {/* Breadcrumb */}
-      <nav className="mb-10">
-        <Link
-          href="/articles"
-          className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-sage-600"
-        >
-          <WatercolorIcon name="arrow_right" size={16} />
-          記事一覧に戻る
-        </Link>
+      <nav aria-label="パンくずリスト" className="mb-10">
+        <ol className="flex flex-wrap items-center gap-1.5 text-sm text-muted">
+          <li>
+            <Link href="/" className="transition-colors hover:text-sage-600">
+              ホーム
+            </Link>
+          </li>
+          <li aria-hidden="true">
+            <WatercolorIcon
+              name="chevron_down"
+              size={12}
+              className="-rotate-90"
+            />
+          </li>
+          <li>
+            <Link
+              href="/articles"
+              className="transition-colors hover:text-sage-600"
+            >
+              記事一覧
+            </Link>
+          </li>
+          <li aria-hidden="true">
+            <WatercolorIcon
+              name="chevron_down"
+              size={12}
+              className="-rotate-90"
+            />
+          </li>
+          <li>
+            <Link
+              href={`/articles/category/${category}`}
+              className="transition-colors hover:text-sage-600"
+            >
+              {categoryLabel}
+            </Link>
+          </li>
+          <li aria-hidden="true">
+            <WatercolorIcon
+              name="chevron_down"
+              size={12}
+              className="-rotate-90"
+            />
+          </li>
+          <li aria-current="page" className="line-clamp-1 text-foreground">
+            {title}
+          </li>
+        </ol>
       </nav>
 
       {/* Article header */}

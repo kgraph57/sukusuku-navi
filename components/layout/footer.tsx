@@ -15,6 +15,7 @@ const FOOTER_LINKS = {
     { href: "/clinics", label: "小児科マップ" },
     { href: "/nurseries", label: "保育園探し" },
     { href: "/checklists", label: "手続きガイド" },
+    { href: "/glossary", label: "小児科用語集" },
   ],
   サイトについて: [
     { href: "/about", label: "すくすくナビとは" },
