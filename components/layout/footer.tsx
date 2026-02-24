@@ -18,6 +18,7 @@ const FOOTER_LINKS = {
   ],
   サイトについて: [
     { href: "/about", label: "すくすくナビとは" },
+    { href: "/faq", label: "よくある質問" },
     { href: "/contact", label: "お問い合わせ" },
     { href: "/privacy", label: "プライバシーポリシー" },
     { href: "/print/qr-card", label: "QRカード印刷" },

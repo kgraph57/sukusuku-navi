@@ -16,5 +16,25 @@
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "緊急連絡先",
+      "short_name": "緊急",
+      "url": "./emergency",
+      "description": "119・#7119・#8000 夜間休日診療"
+    },
+    {
+      "name": "受診判断ガイド",
+      "short_name": "受診判断",
+      "url": "./triage",
+      "description": "症状から受診の目安をチェック"
+    },
+    {
+      "name": "タイムライン",
+      "short_name": "やること",
+      "url": "./my/timeline",
+      "description": "今週やることを確認"
+    }
   ]
 }

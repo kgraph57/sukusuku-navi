@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/header";
 import { TrustBar } from "@/components/shared/trust-bar";
 import { Footer } from "@/components/layout/footer";
 import { BottomNav } from "@/components/layout/bottom-nav";
+import { BackToTop } from "@/components/shared/back-to-top";
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -79,10 +80,16 @@ export default function RootLayout({
         className={`${zenMaruGothic.variable} ${notoSansJP.variable} antialiased`}
       >
         <Providers>
+          <a href="#main-content" className="skip-to-content">
+            コンテンツへスキップ
+          </a>
           <Header />
           <TrustBar />
-          <main className="min-h-screen pb-16 md:pb-0">{children}</main>
+          <main id="main-content" className="min-h-screen pb-16 md:pb-0">
+            {children}
+          </main>
           <Footer />
+          <BackToTop />
           <BottomNav />
         </Providers>
       </body>

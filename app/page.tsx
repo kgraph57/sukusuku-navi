@@ -82,6 +82,50 @@ function formatDate(dateStr: string): string {
   return `${year}年${month}月${day}日`;
 }
 
+function OrganizationJsonLd() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MedicalOrganization",
+    name: "すくすくナビ",
+    url: "https://kgraph57.github.io/sukusuku-navi",
+    logo: "https://kgraph57.github.io/sukusuku-navi/icon.svg",
+    description:
+      "愛育病院の小児科医おかもんが、エビデンスに基づく子育て・医療情報をお届けします。",
+    founder: {
+      "@type": "Person",
+      name: "岡本 賢",
+      jobTitle: "小児科医",
+      affiliation: {
+        "@type": "Hospital",
+        name: "愛育病院",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "港区",
+          addressRegion: "東京都",
+          addressCountry: "JP",
+        },
+      },
+    },
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: "港区",
+      address: {
+        "@type": "PostalAddress",
+        addressRegion: "東京都",
+        addressCountry: "JP",
+      },
+    },
+    medicalSpecialty: "Pediatric",
+    sameAs: [],
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
 export default function HomePage() {
   const allArticles = getAllArticles();
   const latestArticles = allArticles.slice(-5).reverse();
@@ -98,6 +142,7 @@ export default function HomePage() {
 
   return (
     <>
+      <OrganizationJsonLd />
       {/* ─── Hero Section ─── */}
       <section className="relative overflow-hidden bg-gradient-to-br from-teal-50 via-warm-50 to-coral-50/30 px-4 pb-0 pt-12 sm:pt-20">
         {/* 背景装飾の丸 */}

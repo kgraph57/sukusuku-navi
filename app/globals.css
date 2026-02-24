@@ -96,6 +96,32 @@ body {
   text-size-adjust: 100%;
 }
 
+/* Skip-to-content link — visible only on keyboard focus */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-sage-700);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0 0 var(--radius-lg) 0;
+  text-decoration: none;
+}
+
+.skip-to-content:focus {
+  left: 0;
+  top: 0;
+}
+
+/* Visible focus ring for keyboard navigation (WCAG 2.1) */
+:focus-visible {
+  outline: 2px solid var(--color-sage-500);
+  outline-offset: 2px;
+}
+
 /* Ensure tap targets are at least 44px for postpartum one-hand operation */
 button,
 a,
@@ -167,16 +193,23 @@ h1, h2, h3, h4, h5, h6 {
   animation: slide-up 0.3s ease-out;
 }
 
-/* Character float animations */
+/* Character float animations — disabled for users who prefer reduced motion */
 @keyframes float-char {
   0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
   50% { transform: translateY(-10px) rotate(1.5deg); }
 }
 
-.animate-float-0 { animation: float-char 3.0s ease-in-out 0.0s infinite; }
-.animate-float-1 { animation: float-char 3.3s ease-in-out 0.2s infinite; }
-.animate-float-2 { animation: float-char 2.8s ease-in-out 0.4s infinite; }
-.animate-float-3 { animation: float-char 3.1s ease-in-out 0.6s infinite; }
-.animate-float-4 { animation: float-char 2.9s ease-in-out 0.8s infinite; }
-.animate-float-5 { animation: float-char 3.4s ease-in-out 1.0s infinite; }
-.animate-float-6 { animation: float-char 3.2s ease-in-out 1.2s infinite; }
+@media (prefers-reduced-motion: no-preference) {
+  .animate-float-0 { animation: float-char 3.0s ease-in-out 0.0s infinite; }
+  .animate-float-1 { animation: float-char 3.3s ease-in-out 0.2s infinite; }
+  .animate-float-2 { animation: float-char 2.8s ease-in-out 0.4s infinite; }
+  .animate-float-3 { animation: float-char 3.1s ease-in-out 0.6s infinite; }
+  .animate-float-4 { animation: float-char 2.9s ease-in-out 0.8s infinite; }
+  .animate-float-5 { animation: float-char 3.4s ease-in-out 1.0s infinite; }
+  .animate-float-6 { animation: float-char 3.2s ease-in-out 1.2s infinite; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up { animation: none; }
+  .animate-slide-up { animation: none; }
+}
