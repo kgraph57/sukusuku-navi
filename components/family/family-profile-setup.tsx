@@ -5,6 +5,7 @@ import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import { useStore } from "@/lib/store";
 import type { FamilyProfile } from "@/lib/store";
 import { formatAge } from "@/lib/utils/age";
+import { trackChildRegistered } from "@/lib/analytics/events";
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
@@ -216,6 +217,7 @@ export function FamilyProfileSetup({
   const [profile, setProfile] = useState<FamilyProfile | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -232,22 +234,33 @@ export function FamilyProfileSetup({
 
   const handleAddChild = useCallback(
     async (nickname: string, birthDate: string) => {
-      if (!profile) {
-        await store.createFamilyProfile();
+      try {
+        setError(null);
+        if (!profile) {
+          await store.createFamilyProfile();
+        }
+        const updated = await store.addChild(nickname, birthDate);
+        setProfile(updated);
+        setShowForm(false);
+        trackChildRegistered(updated.children.length);
+        onProfileChange?.();
+      } catch {
+        setError("登録に失敗しました。もう一度お試しください。");
       }
-      const updated = await store.addChild(nickname, birthDate);
-      setProfile(updated);
-      setShowForm(false);
-      onProfileChange?.();
     },
     [profile, store, onProfileChange],
   );
 
   const handleRemoveChild = useCallback(
     async (childId: string) => {
-      const updated = await store.removeChild(childId);
-      setProfile(updated);
-      onProfileChange?.();
+      try {
+        setError(null);
+        const updated = await store.removeChild(childId);
+        setProfile(updated);
+        onProfileChange?.();
+      } catch {
+        setError("削除に失敗しました。もう一度お試しください。");
+      }
     },
     [store, onProfileChange],
   );
@@ -271,6 +284,12 @@ export function FamilyProfileSetup({
       <p className="mt-1 text-sm text-muted">
         お子さんの年齢に合わせた情報をお届けします
       </p>
+
+      {error && (
+        <div className="mt-4 rounded-lg bg-blush-50 px-4 py-3 text-sm text-blush-600">
+          {error}
+        </div>
+      )}
 
       <div className="mt-6 space-y-4">
         {!hasChildren && !showForm && (

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 
+const SUBSTACK_URL = process.env.NEXT_PUBLIC_SUBSTACK_URL ?? "";
+
 const FOOTER_LINKS = {
   コンテンツ: [
     { href: "/articles", label: "記事一覧" },
@@ -17,6 +19,7 @@ const FOOTER_LINKS = {
     { href: "/about", label: "すくすくナビとは" },
     { href: "/contact", label: "お問い合わせ" },
     { href: "/privacy", label: "プライバシーポリシー" },
+    { href: "/print/qr-card", label: "QRカード印刷" },
   ],
 } as const;
 
@@ -37,6 +40,17 @@ export function Footer() {
             <p className="mt-3 text-sm leading-relaxed text-muted">
               愛育病院の小児科医おかもんが、エビデンスに基づく子育て・医療情報をお届けします。
             </p>
+            {SUBSTACK_URL && (
+              <a
+                href={SUBSTACK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-2 rounded-lg bg-teal-600 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-teal-700"
+              >
+                <WatercolorIcon name="mail" size={14} />
+                メルマガ登録（無料）
+              </a>
+            )}
           </div>
 
           {Object.entries(FOOTER_LINKS).map(([category, links]) => (

@@ -140,7 +140,7 @@ export default function ContactPage() {
               </p>
               <p className="mt-1 text-sm text-muted">
                 A.
-                メルマガ下部の「配信停止」リンクから、いつでも解除できます。解除後24時間以内に配信が停止されます。
+                Substackのメール下部にある「Unsubscribe」リンクから、いつでも解除できます。解除後すぐに配信が停止されます。
               </p>
             </div>
             <div>
