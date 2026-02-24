@@ -213,3 +213,25 @@ h1, h2, h3, h4, h5, h6 {
   .animate-fade-in-up { animation: none; }
   .animate-slide-up { animation: none; }
 }
+
+/* ── Print styles — clean article output ── */
+@media print {
+  header, footer, nav, .skip-to-content,
+  [aria-label="メインナビゲーション"],
+  [aria-label="パンくずリスト"],
+  button, .fixed { display: none !important; }
+
+  body { background: #fff; color: #000; font-size: 11pt; line-height: 1.6; }
+
+  main { padding: 0 !important; margin: 0 !important; min-height: auto !important; }
+
+  a { color: #000; text-decoration: underline; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #666; }
+
+  .article-content h2 { border-bottom: 1pt solid #ccc; page-break-after: avoid; }
+  .article-content h3 { page-break-after: avoid; }
+  .article-content img { max-width: 100%; page-break-inside: avoid; }
+
+  /* Show URL for the page */
+  @page { margin: 2cm; }
+}

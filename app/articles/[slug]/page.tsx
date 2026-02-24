@@ -20,7 +20,10 @@ import { CategoryBadge } from "@/components/article/article-card";
 import { DoctorByline } from "@/components/article/doctor-byline";
 import { BookmarkButton } from "@/components/article/bookmark-button";
 import { ShareButton } from "@/components/shared/share-button";
+import { TableOfContents } from "@/components/article/table-of-contents";
+import { ArticleFeedback } from "@/components/article/article-feedback";
 import { NewsletterForm } from "@/components/newsletter/newsletter-form";
+import { estimateReadingTime } from "@/lib/reading-time";
 
 interface ArticlePageProps {
   readonly params: Promise<{ slug: string }>;
@@ -86,6 +89,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   const citations = extractCitations(content);
   const relatedArticles = getRelatedArticles(slug, 3);
+  const readingTime = estimateReadingTime(content);
 
   const contentWithoutCitations = content.split(/##\s*参考文献/)[0] ?? content;
 
@@ -257,6 +261,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               {ageGroups.map((ag) => AGE_GROUP_LABELS[ag]).join("・")}
             </span>
           </div>
+          <div className="flex items-center gap-1">
+            <WatercolorIcon name="clock" size={12} />
+            <span>約{readingTime}分で読めます</span>
+          </div>
           <BookmarkButton articleSlug={frontmatter.slug} />
           <ShareButton
             title={title}
@@ -277,6 +285,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       {/* Key points */}
       <KeyPointsBox points={keyPoints} />
 
+      {/* Table of contents */}
+      <TableOfContents />
+
       {/* MDX content */}
       <div className="article-content">
         <MDXRemote
@@ -293,6 +304,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
       {/* Citations */}
       <CitationList citations={citations} />
+
+      {/* Feedback */}
+      <ArticleFeedback articleSlug={slug} />
 
       {/* Disclaimer */}
       <div className="mt-8 rounded-lg bg-ivory-100 p-4 text-xs leading-relaxed text-muted">

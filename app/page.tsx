@@ -82,6 +82,167 @@ function formatDate(dateStr: string): string {
   return `${year}年${month}月${day}日`;
 }
 
+interface SeasonalPick {
+  readonly month: number;
+  readonly label: string;
+  readonly links: readonly { readonly href: string; readonly title: string }[];
+}
+
+const SEASONAL_PICKS: readonly SeasonalPick[] = [
+  {
+    month: 1,
+    label: "冬の感染症シーズン",
+    links: [
+      { href: "/infection-alerts", title: "感染症アラート" },
+      { href: "/triage", title: "受診判断ガイド" },
+      { href: "/emergency", title: "夜間・休日の救急連絡先" },
+    ],
+  },
+  {
+    month: 2,
+    label: "冬の感染症・花粉症シーズン",
+    links: [
+      { href: "/infection-alerts", title: "感染症アラート" },
+      { href: "/articles/category/allergy", title: "アレルギーの記事" },
+      { href: "/emergency", title: "夜間・休日の救急連絡先" },
+    ],
+  },
+  {
+    month: 3,
+    label: "入園準備・春の感染症",
+    links: [
+      { href: "/checklists", title: "入園前の手続きチェック" },
+      { href: "/vaccines", title: "予防接種の確認" },
+      { href: "/nurseries", title: "保育園探し" },
+    ],
+  },
+  {
+    month: 4,
+    label: "新年度・入園の時期",
+    links: [
+      { href: "/programs", title: "支援制度を確認" },
+      { href: "/simulator", title: "給付金シミュレーター" },
+      { href: "/checkups", title: "健診スケジュール" },
+    ],
+  },
+  {
+    month: 5,
+    label: "健診・予防接種の確認",
+    links: [
+      { href: "/checkups", title: "乳幼児健診ガイド" },
+      { href: "/vaccines", title: "予防接種スケジュール" },
+      { href: "/articles/category/development", title: "発達の記事" },
+    ],
+  },
+  {
+    month: 6,
+    label: "夏の感染症に備えて",
+    links: [
+      { href: "/infection-alerts", title: "感染症アラート" },
+      { href: "/articles/category/skin", title: "皮膚トラブルの記事" },
+      { href: "/triage", title: "受診判断ガイド" },
+    ],
+  },
+  {
+    month: 7,
+    label: "夏の三大感染症",
+    links: [
+      { href: "/infection-alerts", title: "手足口病・ヘルパンギーナ情報" },
+      { href: "/exclusion-periods", title: "出席停止期間の確認" },
+      { href: "/emergency", title: "救急連絡先" },
+    ],
+  },
+  {
+    month: 8,
+    label: "夏の感染症・熱中症対策",
+    links: [
+      { href: "/infection-alerts", title: "感染症アラート" },
+      { href: "/triage", title: "受診判断ガイド" },
+      { href: "/clinics", title: "近くの小児科を探す" },
+    ],
+  },
+  {
+    month: 9,
+    label: "秋の感染症・インフルエンザ準備",
+    links: [
+      { href: "/vaccines", title: "インフルエンザワクチン情報" },
+      { href: "/infection-alerts", title: "RSウイルス流行情報" },
+      { href: "/checkups", title: "健診スケジュール" },
+    ],
+  },
+  {
+    month: 10,
+    label: "秋の予防接種シーズン",
+    links: [
+      { href: "/vaccines", title: "インフルエンザ予防接種" },
+      { href: "/infection-alerts", title: "感染症アラート" },
+      { href: "/programs", title: "助成制度の確認" },
+    ],
+  },
+  {
+    month: 11,
+    label: "冬の感染症対策・ノロウイルス",
+    links: [
+      { href: "/infection-alerts", title: "感染症アラート" },
+      { href: "/vaccines", title: "予防接種の確認" },
+      { href: "/emergency", title: "夜間・休日の救急連絡先" },
+    ],
+  },
+  {
+    month: 12,
+    label: "冬の感染症ピーク",
+    links: [
+      { href: "/infection-alerts", title: "インフルエンザ・ノロ流行情報" },
+      { href: "/triage", title: "受診判断ガイド" },
+      { href: "/emergency", title: "年末年始の救急連絡先" },
+    ],
+  },
+];
+
+function SeasonalPicksSection() {
+  const currentMonth = new Date().getMonth() + 1;
+  const pick =
+    SEASONAL_PICKS.find((p) => p.month === currentMonth) ?? SEASONAL_PICKS[0];
+
+  return (
+    <section className="border-t border-border bg-gradient-to-r from-blush-50/40 via-white to-teal-50/40 px-4 py-10">
+      <div className="mx-auto max-w-4xl">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blush-100">
+            <WatercolorIcon name="calendar" size={20} />
+          </div>
+          <div>
+            <p className="text-xs font-medium uppercase tracking-wider text-blush-500">
+              {currentMonth}月のおすすめ
+            </p>
+            <h2 className="font-heading text-base font-bold text-foreground">
+              {pick.label}
+            </h2>
+          </div>
+        </div>
+        <div className="mt-5 grid gap-3 sm:grid-cols-3">
+          {pick.links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="group flex items-center gap-3 rounded-xl border border-border bg-white p-4 transition-all hover:border-teal-200 hover:shadow-md"
+            >
+              <WatercolorIcon
+                name="arrow_right"
+                size={16}
+                className="shrink-0 text-teal-500 transition-transform group-hover:translate-x-0.5"
+              />
+              <span className="text-sm font-medium text-foreground group-hover:text-teal-700">
+                {link.title}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function OrganizationJsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
@@ -378,6 +539,9 @@ export default function HomePage() {
           </div>
         </section>
       )}
+
+      {/* ─── Seasonal Picks Section ─── */}
+      <SeasonalPicksSection />
 
       {/* ─── Recommended by Category Section ─── */}
       <section className="px-4 py-16 sm:py-24">
