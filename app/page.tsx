@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/shared/section-heading";
 import { Card, CardTitle, CardDescription } from "@/components/shared/card";
 import { Badge } from "@/components/shared/badge";
 import { TrackedCTALink } from "@/components/shared/tracked-cta-link";
+import { NewsletterForm } from "@/components/newsletter/newsletter-form";
 import type { ArticleCategory } from "@/lib/types";
 import { CATEGORY_LABELS } from "@/lib/types";
 import { withBasePath } from "@/lib/image-path";
@@ -431,28 +432,10 @@ export default function HomePage() {
       {/* ─── CTA Section ─── */}
       <section className="border-t border-border bg-warm-100/50 px-4 py-16 sm:py-24">
         <div className="mx-auto max-w-3xl">
-          <div className="rounded-2xl border border-teal-100 bg-white px-6 py-12 text-center shadow-sm sm:px-12">
-            <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
-              メルマガに登録しませんか？
-            </h2>
-            <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-muted">
-              おかもん先生が月2回、最新の小児医療トピックをわかりやすく解説します。登録は無料、いつでも解除できます。
-            </p>
-            <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <TrackedCTALink
-                href="/contact"
-                ctaName="newsletter_signup"
-                location="footer_cta"
-                className="inline-flex items-center gap-2 rounded-full bg-teal-600 px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-teal-600/25 transition-all hover:bg-teal-700 hover:shadow-xl"
-              >
-                <WatercolorIcon name="mail" size={20} />
-                メルマガ登録はこちら
-              </TrackedCTALink>
-            </div>
-            <p className="mt-4 text-xs text-muted">
-              現在 {allArticles.length} 号まで配信中
-            </p>
-          </div>
+          <NewsletterForm />
+          <p className="mt-4 text-center text-xs text-muted">
+            現在 {allArticles.length} 号まで配信中
+          </p>
         </div>
       </section>
     </>

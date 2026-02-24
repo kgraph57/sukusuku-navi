@@ -170,6 +170,14 @@ export function trackArticleBookmarked(slug: string, bookmarked: boolean) {
 }
 
 // ---------------------------------------------------------------------------
+// Newsletter
+// ---------------------------------------------------------------------------
+
+export function trackNewsletterSignupClicked(location: string) {
+  capture("newsletter_signup_clicked", { location });
+}
+
+// ---------------------------------------------------------------------------
 // Feedback
 // ---------------------------------------------------------------------------
 

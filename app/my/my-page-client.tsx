@@ -608,7 +608,7 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
               お子さんの登録
             </h2>
             <div className="mt-4">
-              <FamilyProfileSetup />
+              <FamilyProfileSetup onProfileChange={loadProfile} />
             </div>
           </div>
 

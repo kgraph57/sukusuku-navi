@@ -1,6 +1,4 @@
-"use client"
-
-;
+"use client";
 
 import { useState, useEffect, useCallback } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
@@ -157,7 +155,11 @@ function ChildCard({
               {nickname}
             </h4>
             <div className="mt-1 flex items-center gap-1.5 text-sm text-muted">
-              <WatercolorIcon name="calendar" size={12} className=".5 .5 shrink-0" />
+              <WatercolorIcon
+                name="calendar"
+                size={12}
+                className=".5 .5 shrink-0"
+              />
               <span>{formatDate(birthDate)}</span>
             </div>
             <p className="mt-1 text-sm font-medium text-sage-600">
@@ -203,7 +205,13 @@ function ChildCard({
   );
 }
 
-export function FamilyProfileSetup() {
+interface FamilyProfileSetupProps {
+  readonly onProfileChange?: () => void;
+}
+
+export function FamilyProfileSetup({
+  onProfileChange,
+}: FamilyProfileSetupProps) {
   const store = useStore();
   const [profile, setProfile] = useState<FamilyProfile | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -230,16 +238,18 @@ export function FamilyProfileSetup() {
       const updated = await store.addChild(nickname, birthDate);
       setProfile(updated);
       setShowForm(false);
+      onProfileChange?.();
     },
-    [profile, store],
+    [profile, store, onProfileChange],
   );
 
   const handleRemoveChild = useCallback(
     async (childId: string) => {
       const updated = await store.removeChild(childId);
       setProfile(updated);
+      onProfileChange?.();
     },
-    [store],
+    [store, onProfileChange],
   );
 
   if (!isLoaded) {
