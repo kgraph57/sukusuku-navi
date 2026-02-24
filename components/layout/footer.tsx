@@ -11,6 +11,7 @@ const FOOTER_LINKS = {
     { href: "/simulator", label: "給付金シミュレーター" },
     { href: "/checkups", label: "乳幼児健診ガイド" },
     { href: "/triage", label: "受診判断ガイド" },
+    { href: "/emergency", label: "緊急連絡先" },
     { href: "/clinics", label: "小児科マップ" },
     { href: "/nurseries", label: "保育園探し" },
     { href: "/checklists", label: "手続きガイド" },

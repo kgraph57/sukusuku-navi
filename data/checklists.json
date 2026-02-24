@@ -393,5 +393,74 @@
         "tips": "港区の「放課GO→」は全児童が利用できる放課後プログラムと、保護者が就労中の児童向けの学童保育が一体的に運営されています。"
       }
     ]
+  },
+  {
+    "slug": "disaster",
+    "name": "乳幼児家庭の防災準備",
+    "description": "地震・台風など災害時に子どもを守るための備え",
+    "icon": "shield",
+    "order": 6,
+    "items": [
+      {
+        "id": "disaster-1",
+        "title": "乳幼児用の非常持ち出し袋を準備する",
+        "description": "おむつ・粉ミルク・哺乳瓶・離乳食・着替え・おしりふき・母子健康手帳コピーなどを1つのバッグにまとめておきます。",
+        "deadline": null,
+        "where": "自宅",
+        "documents": [],
+        "relatedProgram": null,
+        "tips": "ミルクは液体ミルク（常温保存OK）が便利。3ヶ月ごとに中身を入れ替えましょう。"
+      },
+      {
+        "id": "disaster-2",
+        "title": "お薬手帳・保険証のコピーを入れる",
+        "description": "常用薬がある場合はお薬手帳のコピー、健康保険証・医療証のコピーも非常袋に入れておきます。",
+        "deadline": null,
+        "where": "自宅",
+        "documents": ["お薬手帳コピー", "健康保険証コピー", "子ども医療証コピー"],
+        "relatedProgram": null,
+        "tips": "スマホで撮影してクラウドに保存しておくと二重の備えになります。"
+      },
+      {
+        "id": "disaster-3",
+        "title": "最寄りの避難所を確認する",
+        "description": "港区の防災マップで、自宅・保育園・かかりつけ医それぞれの最寄り避難所を確認します。",
+        "deadline": null,
+        "where": "港区防災ポータル",
+        "documents": [],
+        "relatedProgram": null,
+        "tips": "港区防災アプリをインストールしておくと、災害時にプッシュ通知で避難情報が届きます。"
+      },
+      {
+        "id": "disaster-4",
+        "title": "家族の集合場所・連絡方法を決める",
+        "description": "災害時に家族が離れていた場合の合流場所と、災害用伝言ダイヤル（171）の使い方を確認します。",
+        "deadline": null,
+        "where": "家族で相談",
+        "documents": [],
+        "relatedProgram": null,
+        "tips": "災害用伝言ダイヤル（171）は毎月1日・15日に体験利用できます。家族で練習しておきましょう。"
+      },
+      {
+        "id": "disaster-5",
+        "title": "家具の転倒防止対策をする",
+        "description": "子ども部屋やリビングの家具を固定し、寝室のベッド周辺に倒れるものがないか確認します。",
+        "deadline": null,
+        "where": "自宅",
+        "documents": [],
+        "relatedProgram": null,
+        "tips": "港区では家具転倒防止器具の取付け支援を行っています（高齢者・障害者世帯等）。"
+      },
+      {
+        "id": "disaster-6",
+        "title": "水と食料を3日分備蓄する",
+        "description": "大人1人あたり1日3リットルの水、乳幼児分のミルク・離乳食も含めて最低3日分を備蓄します。",
+        "deadline": null,
+        "where": "自宅",
+        "documents": [],
+        "relatedProgram": null,
+        "tips": "ローリングストック法（普段使いの食品を多めに買い、消費した分を補充）が続けやすいです。"
+      }
+    ]
   }
 ]
