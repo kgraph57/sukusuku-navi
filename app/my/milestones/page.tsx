@@ -340,6 +340,49 @@ export default function MilestonesPage() {
     "daily",
   ];
 
+  const filterMilestone = useCallback(
+    (m: MilestoneDefinition): boolean => {
+      const isAchieved = records.some(
+        (r) => r.milestoneId === m.id && r.achievedDate != null,
+      );
+      const isInRange =
+        childAgeMonths >= m.ageMonthsRange[0] &&
+        childAgeMonths <= m.ageMonthsRange[1];
+
+      switch (filter) {
+        case "current":
+          return isInRange && !isAchieved;
+        case "achieved":
+          return isAchieved;
+        case "unachieved":
+          return !isAchieved;
+        default:
+          return true;
+      }
+    },
+    [filter, records, childAgeMonths],
+  );
+
+  const currentCount = useMemo(
+    () =>
+      milestones.filter((m) => {
+        const isAchieved = records.some(
+          (r) => r.milestoneId === m.id && r.achievedDate != null,
+        );
+        return (
+          !isAchieved &&
+          childAgeMonths >= m.ageMonthsRange[0] &&
+          childAgeMonths <= m.ageMonthsRange[1]
+        );
+      }).length,
+    [milestones, records, childAgeMonths],
+  );
+
+  const achievedCount = useMemo(
+    () => records.filter((r) => r.achievedDate != null).length,
+    [records],
+  );
+
   if (!isLoaded) {
     return (
       <div className="min-h-screen bg-ivory-50 px-4 py-12">
@@ -472,11 +515,53 @@ export default function MilestonesPage() {
             </div>
           </div>
 
+          <div className="flex flex-wrap gap-2">
+            {[
+              {
+                key: "all" as MilestoneFilter,
+                label: "すべて",
+                count: null as number | null,
+              },
+              {
+                key: "current" as MilestoneFilter,
+                label: "今月チェック",
+                count: currentCount,
+              },
+              {
+                key: "achieved" as MilestoneFilter,
+                label: "達成済み",
+                count: achievedCount,
+              },
+              {
+                key: "unachieved" as MilestoneFilter,
+                label: "未達成",
+                count: milestones.length - achievedCount,
+              },
+            ].map(({ key, label, count }) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setFilter(key)}
+                className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                  filter === key
+                    ? "bg-sage-600 text-white"
+                    : "border border-border bg-white text-muted hover:border-sage-200 hover:text-sage-700"
+                }`}
+              >
+                {label}
+                {count != null && (
+                  <span className="ml-1 opacity-70">{count}</span>
+                )}
+              </button>
+            ))}
+          </div>
+
           <div className="space-y-6">
             {categories.map((category) => {
-              const categoryMilestones = milestones.filter(
-                (m) => m.category === category,
-              );
+              const categoryMilestones = milestones
+                .filter((m) => m.category === category)
+                .filter(filterMilestone);
+              if (categoryMilestones.length === 0) return null;
               return (
                 <CategorySection
                   key={category}
@@ -488,6 +573,23 @@ export default function MilestonesPage() {
                 />
               );
             })}
+            {filter !== "all" &&
+              categories.every(
+                (cat) =>
+                  milestones
+                    .filter((m) => m.category === cat)
+                    .filter(filterMilestone).length === 0,
+              ) && (
+                <div className="rounded-xl border-2 border-dashed border-sage-200 p-8 text-center">
+                  <p className="text-sm text-muted">
+                    {filter === "current"
+                      ? "今の月齢に該当するマイルストーンはすべて達成済みです"
+                      : filter === "achieved"
+                        ? "まだ達成済みのマイルストーンはありません"
+                        : "すべてのマイルストーンが達成済みです"}
+                  </p>
+                </div>
+              )}
           </div>
         </div>
       </section>

@@ -176,7 +176,7 @@ const OFFICIAL_SOURCES = [
   {
     name: "港区保健センター（みなと保健所）",
     description: "港区内の感染症情報・保健センターからの注意喚起",
-    url: "https://www.city.minato.tokyo.jp/hokenfukushi/kenko/kansen/index.html",
+    url: "https://www.city.minato.tokyo.jp/hokenyobou/doukou/",
     domain: "www.city.minato.tokyo.jp",
     color: "sage",
   },
