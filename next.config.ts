@@ -15,8 +15,8 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   typescript: {
-    // PostHog パッケージが .ts ソースファイルを同梱しており Next.js の型チェッカーが拾うため抑制
-    // 自プロジェクトの TypeScript エラーは tsc --noEmit で別途確認済み
+    // posthog-js が @posthog/core/src/*.ts を同梱し内部 @/ パスが本プロジェクトの paths と衝突
+    // 自プロジェクトは tsc --noEmit | grep -v node_modules でエラー0件を確認済み
     ignoreBuildErrors: true,
   },
   experimental: {
