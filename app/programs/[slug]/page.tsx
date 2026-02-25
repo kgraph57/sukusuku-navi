@@ -8,6 +8,7 @@ import {
   PROGRAM_CATEGORY_LABELS,
 } from "@/lib/programs";
 import type { Program } from "@/lib/types";
+import { SITE_URL } from "@/lib/constants";
 
 interface PageProps {
   readonly params: Promise<{ slug: string }>;
@@ -89,8 +90,49 @@ export default async function ProgramDetailPage({ params }: PageProps) {
     "bg-gray-50 text-gray-600 border-gray-200";
   const iconName = CATEGORY_ICON_MAP[program.category] ?? "heart";
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "支援制度一覧",
+        item: `${SITE_URL}/programs`,
+      },
+      { "@type": "ListItem", position: 3, name: program.name },
+    ],
+  };
+
+  const faqJsonLd =
+    program.faq && program.faq.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: program.faq.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.answer,
+            },
+          })),
+        }
+      : null;
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <Link
@@ -217,7 +259,11 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           {(program.deadline ?? program.processingTime) && (
             <div className="rounded-xl border border-border bg-card p-6">
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                <WatercolorIcon name="calendar" size={20} className="text-sage-600" />
+                <WatercolorIcon
+                  name="calendar"
+                  size={20}
+                  className="text-sage-600"
+                />
                 申請期限・処理期間
               </h2>
               <div className="mt-3 space-y-3">
@@ -233,7 +279,11 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                 )}
                 {program.processingTime && (
                   <div className="flex items-start gap-3">
-                    <WatercolorIcon name="clock" size={16} className="mt-0.5   shrink-0 text-sage-500" />
+                    <WatercolorIcon
+                      name="clock"
+                      size={16}
+                      className="mt-0.5   shrink-0 text-sage-500"
+                    />
                     <span className="text-sm text-card-foreground">
                       {program.processingTime}
                     </span>
@@ -258,7 +308,11 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           {program.applicationSteps && program.applicationSteps.length > 0 && (
             <div className="rounded-xl border border-border bg-card p-6">
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                <WatercolorIcon name="star" size={20} className="text-sage-600" />
+                <WatercolorIcon
+                  name="star"
+                  size={20}
+                  className="text-sage-600"
+                />
                 申請の流れ
               </h2>
               <ol className="mt-4 space-y-4">
@@ -290,7 +344,11 @@ export default async function ProgramDetailPage({ params }: PageProps) {
             program.requiredDocuments.length > 0 && (
               <div className="rounded-xl border border-border bg-card p-6">
                 <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                  <WatercolorIcon name="star" size={20} className="text-sage-600" />
+                  <WatercolorIcon
+                    name="star"
+                    size={20}
+                    className="text-sage-600"
+                  />
                   必要書類
                 </h2>
                 <ul className="mt-4 space-y-3">
@@ -299,7 +357,11 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                       key={doc.name}
                       className="flex items-start gap-3 rounded-lg border border-border bg-ivory-50 p-3"
                     >
-                      <WatercolorIcon name="check" size={16} className="mt-0.5   shrink-0 text-sage-500" />
+                      <WatercolorIcon
+                        name="check"
+                        size={16}
+                        className="mt-0.5   shrink-0 text-sage-500"
+                      />
                       <div className="flex-1">
                         <p className="text-sm font-medium text-card-foreground">
                           {doc.name}
@@ -334,7 +396,11 @@ export default async function ProgramDetailPage({ params }: PageProps) {
             program.applicationMethods.length > 0 && (
               <div className="rounded-xl border border-border bg-card p-6">
                 <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                  <WatercolorIcon name="building" size={20} className="text-sage-600" />
+                  <WatercolorIcon
+                    name="building"
+                    size={20}
+                    className="text-sage-600"
+                  />
                   申請方法
                 </h2>
                 <div className="mt-4 space-y-3">
@@ -390,7 +456,11 @@ export default async function ProgramDetailPage({ params }: PageProps) {
           {program.faq && program.faq.length > 0 && (
             <div className="rounded-xl border border-border bg-card p-6">
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                <WatercolorIcon name="help" size={20} className="text-sage-600" />
+                <WatercolorIcon
+                  name="help"
+                  size={20}
+                  className="text-sage-600"
+                />
                 よくある質問
               </h2>
               <div className="mt-4 space-y-4">
@@ -441,7 +511,11 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                           {rp.amount.description}
                         </p>
                       </div>
-                      <WatercolorIcon name="arrow_right" size={16} className="shrink-0 text-muted" />
+                      <WatercolorIcon
+                        name="arrow_right"
+                        size={16}
+                        className="shrink-0 text-muted"
+                      />
                     </Link>
                   );
                 })}

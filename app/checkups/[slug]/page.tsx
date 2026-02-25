@@ -9,6 +9,7 @@ import {
   CHECKUP_VENUE_COLORS,
 } from "@/lib/checkups";
 import type { Checkup } from "@/lib/types";
+import { SITE_URL } from "@/lib/constants";
 
 interface PageProps {
   readonly params: Promise<{ slug: string }>;
@@ -47,8 +48,49 @@ export default async function CheckupDetailPage({ params }: PageProps) {
     ? getCheckupBySlug(checkup.nextCheckup)
     : null;
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "健診一覧",
+        item: `${SITE_URL}/checkups`,
+      },
+      { "@type": "ListItem", position: 3, name: checkup.name },
+    ],
+  };
+
+  const faqJsonLd =
+    checkup.faq.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: checkup.faq.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.answer,
+            },
+          })),
+        }
+      : null;
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
@@ -109,7 +151,11 @@ export default async function CheckupDetailPage({ params }: PageProps) {
               className="scroll-mt-20 rounded-xl border border-border bg-card p-6"
             >
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                <WatercolorIcon name="stethoscope" size={20} className="text-sage-600" />
+                <WatercolorIcon
+                  name="stethoscope"
+                  size={20}
+                  className="text-sage-600"
+                />
                 医師のチェックポイント
               </h2>
               <div className="mt-4 space-y-0 divide-y divide-border">
@@ -128,7 +174,11 @@ export default async function CheckupDetailPage({ params }: PageProps) {
                     </p>
                     <div className="mt-3 rounded-lg border border-sage-200 bg-sage-50 p-4">
                       <div className="flex items-start gap-2">
-                        <WatercolorIcon name="stethoscope" size={16} className="mt-0.5   shrink-0 text-sage-600" />
+                        <WatercolorIcon
+                          name="stethoscope"
+                          size={16}
+                          className="mt-0.5   shrink-0 text-sage-600"
+                        />
                         <div>
                           <p className="text-xs font-bold text-sage-700">
                             おかもん先生のひとこと
@@ -152,13 +202,21 @@ export default async function CheckupDetailPage({ params }: PageProps) {
               className="scroll-mt-20 rounded-xl border border-border bg-card p-6"
             >
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                <WatercolorIcon name="star" size={20} className="text-sage-600" />
+                <WatercolorIcon
+                  name="star"
+                  size={20}
+                  className="text-sage-600"
+                />
                 持ち物・準備リスト
               </h2>
               <ul className="mt-4 space-y-4">
                 {checkup.preparation.map((prep, i) => (
                   <li key={i} className="flex gap-3">
-                    <WatercolorIcon name="check" size={20} className="mt-0.5   shrink-0 text-sage-500" />
+                    <WatercolorIcon
+                      name="check"
+                      size={20}
+                      className="mt-0.5   shrink-0 text-sage-500"
+                    />
                     <div>
                       <p className="text-sm font-bold text-card-foreground">
                         {prep.item}
@@ -180,7 +238,11 @@ export default async function CheckupDetailPage({ params }: PageProps) {
               className="scroll-mt-20 rounded-xl border border-border bg-card p-6"
             >
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                <WatercolorIcon name="help" size={20} className="text-sage-600" />
+                <WatercolorIcon
+                  name="help"
+                  size={20}
+                  className="text-sage-600"
+                />
                 よくある質問
               </h2>
               <div className="mt-4 space-y-5">
@@ -214,13 +276,21 @@ export default async function CheckupDetailPage({ params }: PageProps) {
               className="scroll-mt-20 rounded-xl border border-border bg-card p-6"
             >
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-                <WatercolorIcon name="lightbulb" size={20} className="text-sage-600" />
+                <WatercolorIcon
+                  name="lightbulb"
+                  size={20}
+                  className="text-sage-600"
+                />
                 ワンポイントアドバイス
               </h2>
               <ul className="mt-4 space-y-3">
                 {checkup.tips.map((tip, i) => (
                   <li key={i} className="flex gap-3">
-                    <WatercolorIcon name="shield" size={16} className="mt-0.5   shrink-0 text-sage-500" />
+                    <WatercolorIcon
+                      name="shield"
+                      size={16}
+                      className="mt-0.5   shrink-0 text-sage-500"
+                    />
                     <p className="text-sm leading-relaxed text-card-foreground">
                       {tip}
                     </p>
@@ -247,7 +317,11 @@ export default async function CheckupDetailPage({ params }: PageProps) {
           {checkup.slug === "5year" && (
             <div className="rounded-xl border-2 border-amber-200 bg-amber-50 p-6">
               <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-amber-900">
-                <WatercolorIcon name="help" size={20} className="text-amber-600" />
+                <WatercolorIcon
+                  name="help"
+                  size={20}
+                  className="text-amber-600"
+                />
                 発達が気になったら
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-amber-800">
@@ -287,7 +361,11 @@ export default async function CheckupDetailPage({ params }: PageProps) {
                   {nextCheckupData.ageLabel}
                 </p>
               </div>
-              <WatercolorIcon name="arrow_right" size={20} className="shrink-0 text-sage-600" />
+              <WatercolorIcon
+                name="arrow_right"
+                size={20}
+                className="shrink-0 text-sage-600"
+              />
             </Link>
           )}
 

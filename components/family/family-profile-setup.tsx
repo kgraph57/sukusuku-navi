@@ -98,6 +98,7 @@ function AddChildForm({
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
             placeholder="例: たろう"
+            aria-describedby={validationError ? "form-error" : undefined}
             className="mt-1 w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-card-foreground placeholder:text-ivory-200 focus:border-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-100"
             autoFocus
           />
@@ -123,7 +124,9 @@ function AddChildForm({
       </div>
 
       {validationError && (
-        <p className="mt-3 text-sm text-blush-600">{validationError}</p>
+        <p id="form-error" role="alert" className="mt-3 text-sm text-blush-600">
+          {validationError}
+        </p>
       )}
 
       <div className="mt-5 flex gap-3">

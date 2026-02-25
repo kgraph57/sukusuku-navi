@@ -9,6 +9,7 @@ import {
 } from "@/lib/clinics";
 import type { Clinic } from "@/lib/clinics";
 import { TYPE_ICON_MAP, TYPE_COLOR_MAP } from "@/lib/clinic-constants";
+import { SITE_URL } from "@/lib/constants";
 
 interface PageProps {
   readonly params: Promise<{ slug: string }>;
@@ -66,8 +67,53 @@ export default async function ClinicDetailPage({ params }: PageProps) {
     .filter((c) => c.slug !== clinic.slug && c.type === clinic.type)
     .slice(0, 3);
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "小児科一覧",
+        item: `${SITE_URL}/clinics`,
+      },
+      { "@type": "ListItem", position: 3, name: clinic.name },
+    ],
+  };
+
+  const localBusinessJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    name: clinic.name,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: clinic.address,
+      addressLocality: "港区",
+      addressRegion: "東京都",
+      addressCountry: "JP",
+    },
+    telephone: clinic.phone,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: clinic.lat,
+      longitude: clinic.lng,
+    },
+    url: clinic.website,
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(localBusinessJsonLd),
+        }}
+      />
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <Link
@@ -127,7 +173,11 @@ export default async function ClinicDetailPage({ params }: PageProps) {
 
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-              <WatercolorIcon name="mappin" size={20} className="text-sage-600" />
+              <WatercolorIcon
+                name="mappin"
+                size={20}
+                className="text-sage-600"
+              />
               基本情報
             </h2>
             <div className="mt-4 space-y-3">
@@ -156,7 +206,11 @@ export default async function ClinicDetailPage({ params }: PageProps) {
                   最寄駅
                 </span>
                 <span className="flex items-center gap-1 text-sm text-card-foreground">
-                  <WatercolorIcon name="star" size={12} className=".5 .5 shrink-0 text-sage-600" />
+                  <WatercolorIcon
+                    name="star"
+                    size={12}
+                    className=".5 .5 shrink-0 text-sage-600"
+                  />
                   {clinic.nearestStation}
                 </span>
               </div>
@@ -165,7 +219,11 @@ export default async function ClinicDetailPage({ params }: PageProps) {
                   駐車場
                 </span>
                 <span className="flex items-center gap-1 text-sm text-card-foreground">
-                  <WatercolorIcon name="star" size={12} className=".5 .5 shrink-0 text-sage-600" />
+                  <WatercolorIcon
+                    name="star"
+                    size={12}
+                    className=".5 .5 shrink-0 text-sage-600"
+                  />
                   {clinic.parkingAvailable ? "あり" : "なし"}
                 </span>
               </div>
@@ -174,7 +232,11 @@ export default async function ClinicDetailPage({ params }: PageProps) {
 
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-              <WatercolorIcon name="clock" size={20} className="text-sage-600" />
+              <WatercolorIcon
+                name="clock"
+                size={20}
+                className="text-sage-600"
+              />
               診療時間
             </h2>
             <div className="mt-4">
@@ -212,7 +274,11 @@ export default async function ClinicDetailPage({ params }: PageProps) {
             />
             <div className="flex items-center justify-between border-t border-border bg-card px-4 py-3">
               <p className="text-sm text-muted">
-                <WatercolorIcon name="mappin" size={12} className="mr-1 inline-block .5 .5" />
+                <WatercolorIcon
+                  name="mappin"
+                  size={12}
+                  className="mr-1 inline-block .5 .5"
+                />
                 {clinic.address}
               </p>
               <a
@@ -261,7 +327,11 @@ export default async function ClinicDetailPage({ params }: PageProps) {
                     key={item}
                     className="flex items-center gap-2 text-sm text-amber-800"
                   >
-                    <WatercolorIcon name="star" size={16} className="shrink-0 text-amber-600" />
+                    <WatercolorIcon
+                      name="star"
+                      size={16}
+                      className="shrink-0 text-amber-600"
+                    />
                     {item}
                   </li>
                 ))}
@@ -304,7 +374,11 @@ export default async function ClinicDetailPage({ params }: PageProps) {
                     href={`/clinics/${related.slug}`}
                     className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-sage-200"
                   >
-                    <WatercolorIcon name="stethoscope" size={16} className="shrink-0 text-sage-600" />
+                    <WatercolorIcon
+                      name="stethoscope"
+                      size={16}
+                      className="shrink-0 text-sage-600"
+                    />
                     <div className="min-w-0">
                       <p className="text-sm font-medium text-card-foreground">
                         {related.name}

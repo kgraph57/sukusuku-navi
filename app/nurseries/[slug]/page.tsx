@@ -12,6 +12,7 @@ import {
   NURSERY_TYPE_ICON_MAP,
   NURSERY_TYPE_COLOR_MAP,
 } from "@/lib/nursery-constants";
+import { SITE_URL } from "@/lib/constants";
 
 interface PageProps {
   readonly params: Promise<{ slug: string }>;
@@ -75,8 +76,27 @@ export default async function NurseryDetailPage({ params }: PageProps) {
       ? `生後57日〜${nursery.ageMax}歳児クラス`
       : `${nursery.ageMin}歳〜${nursery.ageMax}歳児クラス`;
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "保育園一覧",
+        item: `${SITE_URL}/nurseries`,
+      },
+      { "@type": "ListItem", position: 3, name: nursery.name },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       {/* Header */}
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
@@ -131,7 +151,11 @@ export default async function NurseryDetailPage({ params }: PageProps) {
           {/* 基本情報 */}
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-              <WatercolorIcon name="mappin" size={20} className="text-sage-600" />
+              <WatercolorIcon
+                name="mappin"
+                size={20}
+                className="text-sage-600"
+              />
               基本情報
             </h2>
             <div className="mt-4 space-y-3">
@@ -152,7 +176,11 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                 label="最寄駅"
                 value={
                   <span className="flex items-center gap-1">
-                    <WatercolorIcon name="star" size={12} className=".5 .5 shrink-0 text-sage-600" />
+                    <WatercolorIcon
+                      name="star"
+                      size={12}
+                      className=".5 .5 shrink-0 text-sage-600"
+                    />
                     {nursery.nearestStation}
                   </span>
                 }
@@ -162,29 +190,32 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                 label="対象年齢"
                 value={
                   <span className="flex items-center gap-1">
-                    <WatercolorIcon name="user" size={12} className=".5 .5 shrink-0 text-sage-600" />
+                    <WatercolorIcon
+                      name="user"
+                      size={12}
+                      className=".5 .5 shrink-0 text-sage-600"
+                    />
                     {ageLabel}
                   </span>
                 }
               />
-              <InfoRow
-                label="定員"
-                value={`${nursery.capacity}名`}
-              />
+              <InfoRow label="定員" value={`${nursery.capacity}名`} />
             </div>
           </div>
 
           {/* 保育時間 */}
           <div className="rounded-xl border border-border bg-card p-6">
             <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-card-foreground">
-              <WatercolorIcon name="clock" size={20} className="text-sage-600" />
+              <WatercolorIcon
+                name="clock"
+                size={20}
+                className="text-sage-600"
+              />
               保育時間
             </h2>
             <div className="mt-4 space-y-2">
               <div className="flex items-center justify-between border-b border-border py-2">
-                <span className="text-sm font-medium text-muted">
-                  通常保育
-                </span>
+                <span className="text-sm font-medium text-muted">通常保育</span>
                 <span className="text-sm text-card-foreground">
                   {nursery.hours.standard}
                 </span>
@@ -192,7 +223,11 @@ export default async function NurseryDetailPage({ params }: PageProps) {
               {nursery.hours.extended != null && (
                 <div className="flex items-center justify-between border-b border-border py-2">
                   <span className="flex items-center gap-1 text-sm font-medium text-muted">
-                    <WatercolorIcon name="star" size={12} className=".5 .5 text-indigo-500" />
+                    <WatercolorIcon
+                      name="star"
+                      size={12}
+                      className=".5 .5 text-indigo-500"
+                    />
                     延長保育
                   </span>
                   <span className="text-sm text-card-foreground">
@@ -243,7 +278,11 @@ export default async function NurseryDetailPage({ params }: PageProps) {
             />
             <div className="flex items-center justify-between border-t border-border bg-card px-4 py-3">
               <p className="text-sm text-muted">
-                <WatercolorIcon name="mappin" size={12} className="mr-1 inline-block .5 .5" />
+                <WatercolorIcon
+                  name="mappin"
+                  size={12}
+                  className="mr-1 inline-block .5 .5"
+                />
                 {nursery.address}
               </p>
               <a
@@ -297,14 +336,17 @@ export default async function NurseryDetailPage({ params }: PageProps) {
                     href={`/nurseries/${related.slug}`}
                     className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-sage-200"
                   >
-                    <WatercolorIcon name="building" size={16} className="shrink-0 text-sage-600" />
+                    <WatercolorIcon
+                      name="building"
+                      size={16}
+                      className="shrink-0 text-sage-600"
+                    />
                     <div className="min-w-0">
                       <p className="text-sm font-medium text-card-foreground">
                         {related.name}
                       </p>
                       <p className="text-xs text-muted">
-                        {NURSERY_TYPE_LABELS[related.type]} ・{" "}
-                        {related.address}
+                        {NURSERY_TYPE_LABELS[related.type]} ・ {related.address}
                       </p>
                     </div>
                   </Link>
