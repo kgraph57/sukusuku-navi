@@ -1,0 +1,192 @@
+{
+  "lastUpdated": "2026-02-25",
+  "categories": [
+    {
+      "id": "emergency",
+      "label": "救急・医療相談",
+      "icon": "alert",
+      "color": "red",
+      "resources": [
+        {
+          "name": "救急車",
+          "number": "119",
+          "description": "意識がない、呼吸がおかしい、けいれんが止まらないなど、命に関わる緊急時",
+          "hours": "24時間"
+        },
+        {
+          "name": "救急安心センター東京",
+          "number": "#7119",
+          "description": "救急車を呼ぶか迷ったとき。24時間、看護師に電話で相談できます",
+          "hours": "24時間",
+          "url": "https://www.tfd.metro.tokyo.lg.jp/lfe/kyuu-adv/soudan-center.htm"
+        },
+        {
+          "name": "小児救急電話相談",
+          "number": "#8000",
+          "description": "子どもの急な病気・けがについて、小児科医や看護師に電話相談できます",
+          "hours": "毎日18時〜翌朝8時（休日は8時〜翌朝8時）",
+          "note": "東京都の場合"
+        }
+      ]
+    },
+    {
+      "id": "health-center",
+      "label": "保健・健康相談",
+      "icon": "stethoscope",
+      "color": "teal",
+      "resources": [
+        {
+          "name": "みなと保健所 健康推進課",
+          "number": "03-6400-0084",
+          "description": "乳幼児の健康相談、予防接種の相談、栄養相談、歯科相談など",
+          "hours": "平日 8:30〜17:00",
+          "address": "港区三田1-4-10",
+          "url": "https://www.city.minato.tokyo.jp/kenkouzoushin/"
+        },
+        {
+          "name": "芝地区総合支所 区民課保健福祉係",
+          "number": "03-3578-3161",
+          "description": "地区担当の保健師による健康相談・育児相談",
+          "hours": "平日 8:30〜17:00",
+          "address": "港区芝公園1-5-25"
+        },
+        {
+          "name": "赤坂地区総合支所 区民課保健福祉係",
+          "number": "03-5413-7015",
+          "description": "地区担当の保健師による健康相談・育児相談",
+          "hours": "平日 8:30〜17:00",
+          "address": "港区赤坂4-18-13"
+        }
+      ]
+    },
+    {
+      "id": "child-welfare",
+      "label": "子育て支援・家庭相談",
+      "icon": "heart",
+      "color": "coral",
+      "resources": [
+        {
+          "name": "港区子ども家庭支援センター",
+          "number": "03-6400-0090",
+          "description": "子育ての悩み全般、しつけ、家庭内の困りごと。18歳未満のお子さんに関するあらゆる相談",
+          "hours": "月〜土 9:00〜17:00",
+          "address": "港区浜松町1-6-7",
+          "url": "https://www.city.minato.tokyo.jp/kodomokatei/"
+        },
+        {
+          "name": "児童相談所全国共通ダイヤル",
+          "number": "189",
+          "description": "虐待の通報・相談。「いちはやく」と覚えてください",
+          "hours": "24時間",
+          "note": "虐待かもと思ったら迷わず電話してください"
+        },
+        {
+          "name": "子ども・子育て支援コンシェルジュ（港区）",
+          "number": "03-3578-2428",
+          "description": "保育園・幼稚園の選び方、子育て支援サービスの案内",
+          "hours": "平日 8:30〜17:00"
+        }
+      ]
+    },
+    {
+      "id": "development",
+      "label": "発達相談",
+      "icon": "lightbulb",
+      "color": "purple",
+      "resources": [
+        {
+          "name": "港区立障害保健福祉センター（ヒューマンぷらざ）",
+          "number": "03-5439-8048",
+          "description": "ことば・運動・社会性の発達の心配、療育の相談",
+          "hours": "平日 8:30〜17:00",
+          "address": "港区芝1-8-23"
+        },
+        {
+          "name": "東京都発達障害者支援センター（TOSCA）",
+          "number": "03-6902-2082",
+          "description": "発達障害に関する相談・情報提供・支援機関紹介",
+          "hours": "平日 10:00〜17:00（要予約）",
+          "url": "https://www.tosca-net.com/"
+        }
+      ]
+    },
+    {
+      "id": "mental-health",
+      "label": "産後うつ・メンタルヘルス",
+      "icon": "heart",
+      "color": "blush",
+      "resources": [
+        {
+          "name": "産後ケア事業（港区）",
+          "number": "03-6400-0084",
+          "description": "宿泊型・日帰り型・訪問型の産後ケア。育児疲れ、産後うつの不安がある方",
+          "hours": "平日 8:30〜17:00（みなと保健所経由）",
+          "note": "利用には事前申請が必要",
+          "url": "https://www.city.minato.tokyo.jp/kodomokatei/kenko/ninshin/sango-care.html"
+        },
+        {
+          "name": "よりそいホットライン",
+          "number": "0120-279-338",
+          "description": "どんな悩みでも24時間対応。外国語対応あり（ガイダンスで言語選択）",
+          "hours": "24時間",
+          "note": "通話料無料"
+        },
+        {
+          "name": "東京都こころの健康相談統一ダイヤル",
+          "number": "0570-064-556",
+          "description": "本人・家族のメンタルヘルスに関する相談",
+          "hours": "平日 9:00〜17:00"
+        }
+      ]
+    },
+    {
+      "id": "poison",
+      "label": "誤飲・中毒",
+      "icon": "shield",
+      "color": "amber",
+      "resources": [
+        {
+          "name": "日本中毒情報センター（大阪）",
+          "number": "072-727-2499",
+          "description": "薬品・洗剤・たばこなどの誤飲時の対応を教えてもらえます",
+          "hours": "24時間対応",
+          "url": "https://www.j-poison-ic.jp/"
+        },
+        {
+          "name": "日本中毒情報センター（つくば）",
+          "number": "029-852-9999",
+          "description": "薬品・洗剤・たばこなどの誤飲時の対応を教えてもらえます",
+          "hours": "9時〜21時"
+        }
+      ]
+    },
+    {
+      "id": "multilingual",
+      "label": "外国語対応",
+      "icon": "users",
+      "color": "blue",
+      "resources": [
+        {
+          "name": "港区国際化推進プラザ（MIA）",
+          "number": "03-6440-0233",
+          "description": "外国人住民向けの行政・子育て相談（英語・中国語・やさしい日本語等対応）",
+          "hours": "平日 9:00〜17:00",
+          "url": "https://www.minato-intl-assn.gr.jp/"
+        },
+        {
+          "name": "AMDA国際医療情報センター",
+          "number": "03-6233-9266",
+          "description": "外国語での医療相談、医療通訳の案内",
+          "hours": "平日 10:00〜16:00"
+        },
+        {
+          "name": "東京都外国人相談（TOCOS）",
+          "number": "03-6258-1227",
+          "description": "14言語で生活・行政の相談に対応",
+          "hours": "平日 10:00〜16:00",
+          "url": "https://www.tokyo-icc.jp/"
+        }
+      ]
+    }
+  ]
+}

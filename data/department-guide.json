@@ -1,0 +1,95 @@
+{
+  "doctorNote": "迷ったらまず小児科に来てください。小児科医は子どもの「総合内科医」です。専門科への紹介が必要な場合は、私たちが適切な先生をご紹介します。",
+  "situations": [
+    {
+      "id": "general-sick",
+      "trigger": "発熱・咳・鼻水・嘔吐下痢（感染症全般）",
+      "icon": "activity",
+      "department": "小児科",
+      "reason": "子どもの総合的な体調不良は小児科が最も得意です。迷ったらまず小児科へ。",
+      "triageLink": "/triage",
+      "articleLinks": []
+    },
+    {
+      "id": "fever-rash",
+      "trigger": "発熱 ＋ 発疹",
+      "icon": "activity",
+      "department": "小児科",
+      "reason": "川崎病、手足口病、突発性発疹など、小児特有の感染症の鑑別が必要です。発疹の種類と全身状態を合わせて評価します。",
+      "triageLink": "/triage/fever",
+      "articleLinks": ["/articles/kawasaki-disease-signs", "/articles/hand-foot-mouth-disease", "/articles/exanthem-subitum"]
+    },
+    {
+      "id": "ear-pain",
+      "trigger": "耳の痛み・耳だれ",
+      "icon": "stethoscope",
+      "department": "耳鼻科 または 小児科",
+      "reason": "中耳炎の治療は耳鼻科が専門ですが、高熱を伴う場合や全身状態が悪い場合はまず小児科へ。",
+      "triageLink": "/triage/ear-pain",
+      "articleLinks": ["/articles/otitis-media"]
+    },
+    {
+      "id": "skin-rash",
+      "trigger": "皮膚のトラブル（湿疹・かぶれ・じんましん）",
+      "icon": "stethoscope",
+      "department": "皮膚科 または 小児科",
+      "reason": "アトピー性皮膚炎やおむつかぶれの長期管理は皮膚科が得意。発熱を伴う発疹は感染症の可能性があるため小児科へ。",
+      "triageLink": "/triage/rash",
+      "articleLinks": ["/articles/infant-eczema-vs-atopic", "/articles/diaper-rash-vs-candida", "/articles/urticaria"]
+    },
+    {
+      "id": "eye-problem",
+      "trigger": "目の症状（目やに・充血・視力の心配）",
+      "icon": "stethoscope",
+      "department": "眼科",
+      "reason": "結膜炎の診断・点眼薬の処方、斜視・弱視のスクリーニングは眼科が専門です。",
+      "triageLink": "/triage/eye-symptoms",
+      "articleLinks": ["/articles/conjunctivitis"]
+    },
+    {
+      "id": "injury-cut",
+      "trigger": "けが・切り傷・やけど",
+      "icon": "alert",
+      "department": "外科・整形外科 または 小児科",
+      "reason": "縫合が必要な傷は外科、骨折の疑いは整形外科へ。軽症のやけどやすり傷は小児科でも対応できます。",
+      "triageLink": "/triage/burn",
+      "articleLinks": []
+    },
+    {
+      "id": "dental",
+      "trigger": "歯の痛み・口のトラブル",
+      "icon": "stethoscope",
+      "department": "小児歯科",
+      "reason": "乳歯の虫歯、歯が折れた・抜けた、口内炎がひどい場合は小児歯科へ。ヘルパンギーナなど口内炎＋発熱は小児科。",
+      "triageLink": null,
+      "articleLinks": ["/articles/herpangina"]
+    },
+    {
+      "id": "allergy",
+      "trigger": "アレルギー症状（食物アレルギー・喘息・花粉症）",
+      "icon": "alert",
+      "department": "小児科（アレルギー外来）",
+      "reason": "食物アレルギーの負荷試験や喘息の管理は小児科アレルギー外来が得意。花粉症は耳鼻科でもOKです。",
+      "triageLink": "/triage/allergic-reaction",
+      "articleLinks": ["/articles/food-allergy-testing-myths", "/articles/baby-food-allergy-prevention"]
+    },
+    {
+      "id": "development-concern",
+      "trigger": "ことば・発達・行動の心配",
+      "icon": "lightbulb",
+      "department": "小児科 → 発達専門外来",
+      "reason": "まずかかりつけ小児科に相談を。必要に応じて発達専門外来やリハビリテーション科を紹介します。港区の発達相談窓口も活用してください。",
+      "triageLink": null,
+      "articleLinks": ["/articles/tic-disorder"]
+    },
+    {
+      "id": "mental-health",
+      "trigger": "不登校・頭痛・朝起きられない",
+      "icon": "heart",
+      "department": "小児科 → 心身症外来",
+      "reason": "起立性調節障害や心身症は小児科で診断します。専門外来がある施設だとより詳しい検査・治療が受けられます。",
+      "triageLink": "/triage/headache",
+      "articleLinks": ["/articles/childhood-headache"]
+    }
+  ]
+}

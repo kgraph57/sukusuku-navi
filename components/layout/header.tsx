@@ -71,6 +71,47 @@ const NAV_GROUPS: readonly NavGroup[] = [
     ],
   },
   {
+    label: "困ったとき",
+    items: [
+      {
+        href: "/help",
+        label: "こんなときは",
+        icon: "help" as WatercolorIconName,
+        description: "症状・相談・手続き、すべての入口",
+      },
+      {
+        href: "/triage",
+        label: "受診判断ガイド",
+        icon: "stethoscope" as WatercolorIconName,
+        description: "症状チェックで緊急度を判断",
+      },
+      {
+        href: "/department-guide",
+        label: "受診科選択ガイド",
+        icon: "stethoscope" as WatercolorIconName,
+        description: "どこを受診すればいいの？",
+      },
+      {
+        href: "/consultation",
+        label: "相談窓口一覧",
+        icon: "phone" as WatercolorIconName,
+        description: "港区の子育て相談先まとめ",
+      },
+      {
+        href: "/ambulance-guide",
+        label: "救急車の呼び方",
+        icon: "alert" as WatercolorIconName,
+        description: "119番の手順と持ち物",
+      },
+      {
+        href: "/emergency",
+        label: "緊急連絡先",
+        icon: "phone" as WatercolorIconName,
+        description: "夜間・休日の救急連絡先",
+      },
+    ],
+  },
+  {
     label: "探す",
     items: [
       {
@@ -88,12 +129,6 @@ const NAV_GROUPS: readonly NavGroup[] = [
     ],
   },
 ] as const;
-
-const STANDALONE_NAV = {
-  href: "/triage",
-  label: "受診判断",
-  icon: "alert" as WatercolorIconName,
-} as const;
 
 function DropdownMenu({
   group,
@@ -370,10 +405,10 @@ export function Header() {
             />
           ))}
           <Link
-            href={STANDALONE_NAV.href}
+            href="/help"
             className="rounded-lg px-3 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 hover:text-red-700"
           >
-            {STANDALONE_NAV.label}
+            困ったとき
           </Link>
           <div className="mx-1 h-5 w-px bg-border" />
           <UserMenu />
@@ -451,12 +486,15 @@ export function Header() {
               ))}
               <div className="border-t border-border pt-4">
                 <Link
-                  href={STANDALONE_NAV.href}
+                  href="/help"
                   className="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-3 font-heading text-lg tracking-wide text-red-600 transition-colors hover:text-red-700 active:bg-red-50"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <WatercolorIcon name={STANDALONE_NAV.icon} size={16} />
-                  {STANDALONE_NAV.label}
+                  <WatercolorIcon
+                    name={"help" as WatercolorIconName}
+                    size={16}
+                  />
+                  困ったとき
                 </Link>
                 <MobileAuthLinks onClose={() => setIsMenuOpen(false)} />
               </div>

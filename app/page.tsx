@@ -13,6 +13,14 @@ import { withBasePath } from "@/lib/image-path";
 
 const FEATURES = [
   {
+    href: "/help",
+    iconName: "help" as const,
+    title: "こんなときは",
+    description:
+      "症状チェック、相談窓口、受診科選択。お子さんの状況から必要な情報へ。",
+    color: "bg-orange-50",
+  },
+  {
     href: "/articles",
     iconName: "book" as const,
     title: "記事を読む",

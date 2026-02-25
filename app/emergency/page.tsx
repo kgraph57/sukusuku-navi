@@ -257,6 +257,30 @@ export default function EmergencyPage() {
           </div>
         </div>
 
+        {/* Cross-links */}
+        <div className="mt-10 grid gap-3 sm:grid-cols-2">
+          <Link
+            href="/consultation"
+            className="flex items-center gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 transition-all hover:shadow-sm"
+          >
+            <WatercolorIcon name="heart" size={20} className="shrink-0 text-amber-600" />
+            <div>
+              <p className="text-sm font-semibold text-foreground">医療以外の相談窓口をお探しですか？</p>
+              <p className="text-xs text-muted">相談窓口一覧 →</p>
+            </div>
+          </Link>
+          <Link
+            href="/ambulance-guide"
+            className="flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 p-4 transition-all hover:shadow-sm"
+          >
+            <WatercolorIcon name="alert" size={20} className="shrink-0 text-red-500" />
+            <div>
+              <p className="text-sm font-semibold text-foreground">救急車の呼び方を確認する</p>
+              <p className="text-xs text-muted">救急車ガイド →</p>
+            </div>
+          </Link>
+        </div>
+
         {/* Useful links */}
         <div className="mt-10">
           <h2 className="font-heading text-lg font-semibold text-foreground">
