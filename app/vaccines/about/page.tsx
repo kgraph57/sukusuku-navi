@@ -4,6 +4,7 @@ import Link from "next/link";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import { ConcernItem } from "@/components/vaccination/concern-item";
 import { SpeechBubble } from "@/components/vaccination/speech-bubble";
+import { HowItWorksManga } from "@/components/vaccination/how-it-works-manga";
 import { withBasePath } from "@/lib/image-path";
 
 export const metadata: Metadata = {
@@ -78,60 +79,9 @@ export default function VaccineAboutPage() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────── */}
-      {/*  3ステップ — フルワイド、大きなアイコン                        */}
+      {/*  3ステップ — 漫画コマ風イラスト（Nano Banana生成）              */}
       {/* ─────────────────────────────────────────────────────────── */}
-      <section className="bg-ivory-100/40 px-4 py-20 sm:py-28">
-        <div className="mx-auto max-w-3xl">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted/60">
-            How it works
-          </p>
-          <h2 className="mt-3 text-center font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            ワクチンの仕組み
-          </h2>
-
-          <div className="mt-16 grid gap-12 sm:grid-cols-3 sm:gap-8">
-            {[
-              {
-                num: "01",
-                icon: "syringe" as const,
-                title: "ワクチンが入る",
-                desc: "弱くしたウイルスを体に入れる",
-              },
-              {
-                num: "02",
-                icon: "shield" as const,
-                title: "体が覚える",
-                desc: "免疫が「戦い方」を学ぶ",
-              },
-              {
-                num: "03",
-                icon: "check" as const,
-                title: "病気をブロック",
-                desc: "本物が来ても、もう大丈夫",
-              },
-            ].map((s) => (
-              <div key={s.num} className="text-center">
-                <p className="font-heading text-5xl font-extralight tracking-tight text-sage-300">
-                  {s.num}
-                </p>
-                <div className="mx-auto mt-4 flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-sm">
-                  <WatercolorIcon
-                    name={s.icon}
-                    size={24}
-                    className="text-sage-500"
-                  />
-                </div>
-                <h3 className="mt-5 font-heading text-lg font-semibold text-foreground">
-                  {s.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted/70">
-                  {s.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <HowItWorksManga />
 
       {/* ─────────────────────────────────────────────────────────── */}
       {/*  会話 — 理解                                                */}
