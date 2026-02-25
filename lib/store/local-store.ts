@@ -36,11 +36,7 @@ function readJson<T>(key: string): T | null {
 
 function writeJson<T>(key: string, value: T): void {
   if (isSSR()) return;
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch {
-    // Ignore localStorage errors
-  }
+  localStorage.setItem(key, JSON.stringify(value));
 }
 
 function getProfile(): FamilyProfile | null {

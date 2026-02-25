@@ -48,12 +48,25 @@ function AddChildForm({
 }) {
   const [nickname, setNickname] = useState("");
   const [birthDate, setBirthDate] = useState("");
+  const [validationError, setValidationError] = useState<string | null>(null);
+
+  const today = new Date().toISOString().split("T")[0];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setValidationError(null);
 
     const trimmed = nickname.trim();
-    if (!trimmed || !birthDate) {
+    if (!trimmed) {
+      setValidationError("ニックネームを入力してください。");
+      return;
+    }
+    if (!birthDate) {
+      setValidationError("生年月日を選択してください。");
+      return;
+    }
+    if (birthDate > today) {
+      setValidationError("生年月日は今日以前の日付を選択してください。");
       return;
     }
 
@@ -102,10 +115,16 @@ function AddChildForm({
             type="date"
             value={birthDate}
             onChange={(e) => setBirthDate(e.target.value)}
+            max={today}
+            required
             className="mt-1 w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-card-foreground focus:border-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-100"
           />
         </div>
       </div>
+
+      {validationError && (
+        <p className="mt-3 text-sm text-blush-600">{validationError}</p>
+      )}
 
       <div className="mt-5 flex gap-3">
         <button
@@ -156,11 +175,7 @@ function ChildCard({
               {nickname}
             </h4>
             <div className="mt-1 flex items-center gap-1.5 text-sm text-muted">
-              <WatercolorIcon
-                name="calendar"
-                size={12}
-                className=".5 .5 shrink-0"
-              />
+              <WatercolorIcon name="calendar" size={12} className="shrink-0" />
               <span>{formatDate(birthDate)}</span>
             </div>
             <p className="mt-1 text-sm font-medium text-sage-600">
@@ -176,7 +191,7 @@ function ChildCard({
             className="shrink-0 rounded-lg p-1.5 text-ivory-200 transition-colors hover:bg-ivory-50 hover:text-blush-500"
             aria-label={`${nickname}を削除`}
           >
-            <WatercolorIcon name="plus" size={16} />
+            <WatercolorIcon name="x" size={16} />
           </button>
         )}
       </div>
@@ -237,15 +252,20 @@ export function FamilyProfileSetup({
       try {
         setError(null);
         if (!profile) {
-          await store.createFamilyProfile();
+          const created = await store.createFamilyProfile();
+          setProfile(created);
         }
         const updated = await store.addChild(nickname, birthDate);
         setProfile(updated);
         setShowForm(false);
         trackChildRegistered(updated.children.length);
         onProfileChange?.();
-      } catch {
-        setError("登録に失敗しました。もう一度お試しください。");
+      } catch (err) {
+        const message =
+          err instanceof DOMException && err.name === "QuotaExceededError"
+            ? "ストレージの容量が不足しています。不要なデータを削除してください。"
+            : "登録に失敗しました。もう一度お試しください。";
+        setError(message);
       }
     },
     [profile, store, onProfileChange],

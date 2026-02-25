@@ -165,8 +165,41 @@ export default function VaccinesPage() {
         </div>
       </section>
 
+      {/* About Vaccination Banner */}
+      <section className="px-4 pt-10 pb-2">
+        <div className="mx-auto max-w-4xl">
+          <Link
+            href="/vaccines/about"
+            className="group flex items-center gap-4 rounded-xl border border-blush-200 bg-gradient-to-r from-blush-50/80 to-ivory-50 p-5 transition-all hover:border-blush-300 hover:shadow-md"
+          >
+            <Image
+              src={withBasePath(
+                "/characters/illustrations/konkon_teaching.png"
+              )}
+              alt="コンコン先生"
+              width={56}
+              height={56}
+              className="shrink-0 drop-shadow-sm"
+            />
+            <div className="min-w-0 flex-1">
+              <p className="font-heading text-sm font-semibold text-foreground sm:text-base">
+                予防接種、はじめの一歩
+              </p>
+              <p className="mt-0.5 text-xs text-muted sm:text-sm">
+                「なぜ予防接種をするの？」「不安がある」——そんな疑問にお答えします
+              </p>
+            </div>
+            <WatercolorIcon
+              name="arrow_right"
+              size={16}
+              className="shrink-0 text-blush-400 transition-transform group-hover:translate-x-0.5"
+            />
+          </Link>
+        </div>
+      </section>
+
       {/* Medical Supervision Notice */}
-      <section className="px-4 pt-10 pb-4">
+      <section className="px-4 pt-6 pb-4">
         <div className="mx-auto max-w-4xl">
           <div className="rounded-lg border border-blue-200 bg-blue-50/50 px-4 py-3">
             <p className="flex items-start gap-2 text-xs leading-relaxed text-blue-800">
