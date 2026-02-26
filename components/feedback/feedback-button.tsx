@@ -1,6 +1,4 @@
-"use client"
-
-;
+"use client";
 
 import { useState } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
@@ -29,7 +27,7 @@ export function FeedbackButton() {
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-20 right-4 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-sage-600 text-white shadow-lg transition-transform hover:scale-105 hover:bg-sage-700 sm:bottom-6"
+        className="fixed bottom-28 right-4 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-sage-600 text-white shadow-lg transition-transform hover:scale-105 hover:bg-sage-700 sm:bottom-6"
         aria-label="フィードバックを送る"
       >
         <WatercolorIcon name="message" size={20} />
@@ -38,7 +36,7 @@ export function FeedbackButton() {
   }
 
   return (
-    <div className="fixed bottom-20 right-4 z-50 w-80 rounded-2xl border border-border bg-card p-5 shadow-xl sm:bottom-6">
+    <div className="fixed bottom-28 right-4 z-50 w-80 rounded-2xl border border-border bg-card p-5 shadow-xl sm:bottom-6">
       <div className="flex items-center justify-between">
         <h3 className="font-heading text-sm font-semibold text-card-foreground">
           ご感想を聞かせてください
@@ -64,9 +62,7 @@ export function FeedbackButton() {
         </div>
       ) : (
         <>
-          <p className="mt-2 text-xs text-muted">
-            すくすくナビはいかがですか?
-          </p>
+          <p className="mt-2 text-xs text-muted">すくすくナビはいかがですか?</p>
 
           <div className="mt-3 flex justify-center gap-2">
             {[1, 2, 3, 4, 5].map((n) => (

@@ -85,7 +85,10 @@ export default function RootLayout({
           </a>
           <Header />
           <TrustBar />
-          <main id="main-content" className="min-h-screen pb-16 md:pb-0">
+          <main
+            id="main-content"
+            className="min-h-screen pb-[calc(4rem+env(safe-area-inset-bottom,0px))] md:pb-0"
+          >
             {children}
           </main>
           <Footer />

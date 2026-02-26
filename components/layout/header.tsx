@@ -424,14 +424,14 @@ export function Header() {
         <div className="flex items-center gap-1 md:hidden">
           <Link
             href="/search"
-            className="rounded-lg p-2 text-muted"
+            className="rounded-lg p-2 text-muted min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label="検索"
           >
             <WatercolorIcon name="search" size={20} />
           </Link>
           <button
             type="button"
-            className="rounded-lg p-2 text-muted"
+            className="rounded-lg p-2 text-muted min-h-[44px] min-w-[44px] flex items-center justify-center flex-shrink-0 cursor-pointer touch-manipulation hover:bg-sage-50 hover:text-sage-700 active:bg-sage-100"
             onClick={() => setIsMenuOpen((prev) => !prev)}
             aria-label={isMenuOpen ? "メニューを閉じる" : "メニューを開く"}
             aria-expanded={isMenuOpen}
@@ -446,7 +446,12 @@ export function Header() {
       </div>
 
       {isMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white/98 backdrop-blur-sm md:hidden">
+        <div
+          className="fixed inset-0 z-[100] bg-white/98 backdrop-blur-sm md:hidden"
+          aria-modal="true"
+          role="dialog"
+          aria-label="メニュー"
+        >
           <div className="flex h-full flex-col px-6 pt-6 pb-8">
             <div className="flex items-center justify-between">
               <span className="font-heading text-lg tracking-wide text-foreground">
