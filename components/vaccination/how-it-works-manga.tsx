@@ -75,13 +75,13 @@ function MangaPanel({ step, index }: { step: MangaStep; index: number }) {
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
+      className={`h-full transition-all duration-700 ease-out ${
         isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"
       }`}
       style={{ transitionDelay: `${index * 150}ms` }}
     >
       {/* 漫画コマ風カード */}
-      <div className="group relative overflow-hidden rounded-2xl border-2 border-border/60 bg-white shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-border/60 bg-white shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
         {/* ステップ番号バッジ */}
         <div
           className={`absolute left-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md`}
@@ -103,7 +103,7 @@ function MangaPanel({ step, index }: { step: MangaStep; index: number }) {
         </div>
 
         {/* テキスト部分 */}
-        <div className="px-6 pb-6 pt-4 text-center">
+        <div className="flex flex-1 flex-col items-center justify-center px-6 pb-6 pt-4 text-center">
           <h3 className="font-heading text-xl font-semibold text-foreground">
             {step.title}
           </h3>
@@ -153,7 +153,7 @@ export function HowItWorksManga() {
         </p>
 
         {/* 漫画コマグリッド */}
-        <div className="mt-12 grid gap-8 sm:grid-cols-3 sm:gap-6">
+        <div className="mt-12 grid items-stretch gap-8 sm:grid-cols-3 sm:gap-6">
           {steps.map((step, index) => (
             <MangaPanel key={step.num} step={step} index={index} />
           ))}
