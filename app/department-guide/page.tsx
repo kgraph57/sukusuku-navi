@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { SpeechBubble } from "@/components/vaccination/speech-bubble";
 import { DepartmentFlow } from "@/components/department-guide/department-flow";
 import departmentData from "@/data/department-guide.json";
+import { withBasePath } from "@/lib/image-path";
 
 export const metadata: Metadata = {
   title: "どこを受診すればいい？── 受診科選択ガイド",
@@ -24,6 +26,18 @@ export default function DepartmentGuidePage() {
           <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
             お子さんの症状・状況から、適切な受診先をご案内します。
           </p>
+
+          {/* 迷ったらまず小児科キーヴィジュアル */}
+          <div className="mt-8 overflow-hidden rounded-2xl">
+            <Image
+              src={withBasePath("/characters/illustrations/pages/department_guide_pediatrics_first.png")}
+              alt="迷ったらまず小児科へ"
+              width={800}
+              height={450}
+              className="w-full object-cover"
+              priority
+            />
+          </div>
         </div>
       </section>
 
@@ -47,6 +61,18 @@ export default function DepartmentGuidePage() {
           <SectionHeading subtitle="タップして詳しい説明とリンクを表示">
             症状・状況から探す
           </SectionHeading>
+
+          {/* 症状別ボディマップイラスト */}
+          <div className="mt-8 overflow-hidden rounded-2xl">
+            <Image
+              src={withBasePath("/characters/illustrations/pages/department_guide_body_map.png")}
+              alt="症状別受診先ボディマップ"
+              width={800}
+              height={450}
+              className="w-full object-cover"
+            />
+          </div>
+
           <div className="mt-8">
             <DepartmentFlow situations={departmentData.situations} />
           </div>

@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import type { WatercolorIconName } from "@/components/icons/watercolor-icon";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { SpeechBubble } from "@/components/vaccination/speech-bubble";
 import { ResourceCard } from "@/components/consultation/resource-card";
 import consultationData from "@/data/consultation-resources.json";
+import { withBasePath } from "@/lib/image-path";
 
 export const metadata: Metadata = {
   title: "相談窓口一覧 ── 港区の子育て相談・支援先",
@@ -50,6 +52,18 @@ export default function ConsultationPage() {
           <p className="mt-2 text-xs text-muted/70">
             掲載情報は{consultationData.lastUpdated}時点のものです
           </p>
+
+          {/* 電話相談ヒーローイラスト */}
+          <div className="mt-8 overflow-hidden rounded-2xl">
+            <Image
+              src={withBasePath("/characters/illustrations/pages/consultation_phone_hero.png")}
+              alt="夜のリビングで電話相談するシーン"
+              width={800}
+              height={450}
+              className="w-full object-cover"
+              priority
+            />
+          </div>
         </div>
       </section>
 
@@ -130,6 +144,39 @@ export default function ConsultationPage() {
           </div>
         </section>
       ))}
+
+      {/* 港区の相談窓口マップイラスト */}
+      <section className="border-t border-border px-4 py-10 sm:py-12">
+        <div className="mx-auto max-w-2xl">
+          <div className="overflow-hidden rounded-2xl">
+            <Image
+              src={withBasePath("/characters/illustrations/pages/consultation_minato_map.png")}
+              alt="港区の相談窓口マップ概観"
+              width={800}
+              height={450}
+              className="w-full object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 「一人じゃないよ」エンディングイラスト */}
+      <section className="bg-ivory-50/50 px-4 py-10 sm:py-12">
+        <div className="mx-auto max-w-2xl">
+          <div className="overflow-hidden rounded-2xl">
+            <Image
+              src={withBasePath("/characters/illustrations/pages/consultation_not_alone.png")}
+              alt="一人じゃないよ — すくすくナビのキャラクターたちが応援"
+              width={800}
+              height={450}
+              className="w-full object-cover"
+            />
+          </div>
+          <p className="mt-4 text-center text-sm font-medium text-muted">
+            一人で抱え込まないで。いつでも相談してください。
+          </p>
+        </div>
+      </section>
 
       {/* 注意事項 */}
       <section className="border-t border-border bg-ivory-50/50 px-4 py-8">

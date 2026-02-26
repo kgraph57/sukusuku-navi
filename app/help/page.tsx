@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import type { WatercolorIconName } from "@/components/icons/watercolor-icon";
 import { SectionHeading } from "@/components/shared/section-heading";
+import { withBasePath } from "@/lib/image-path";
 
 export const metadata: Metadata = {
   title: "こんなときどうする？── 子育てお助けポータル",
@@ -107,6 +109,18 @@ export default function HelpPage() {
           <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
             お子さんの状況から必要な情報にたどり着けます。
           </p>
+
+          {/* ポータルヒーローイラスト */}
+          <div className="mt-8 overflow-hidden rounded-2xl">
+            <Image
+              src={withBasePath("/characters/illustrations/pages/help_portal_hero.png")}
+              alt="こんなときどうする？ポータルヒーロー"
+              width={900}
+              height={506}
+              className="w-full object-cover"
+              priority
+            />
+          </div>
         </div>
       </section>
 
@@ -136,6 +150,17 @@ export default function HelpPage() {
           <SectionHeading subtitle="お子さんの状況に近いものを選んでください">
             状況から探す
           </SectionHeading>
+
+          {/* 4カテゴリシーンイラスト */}
+          <div className="mt-8 overflow-hidden rounded-2xl">
+            <Image
+              src={withBasePath("/characters/illustrations/pages/help_4categories_scenes.png")}
+              alt="症状・病気の知識・相談・手続きの4カテゴリシーン"
+              width={900}
+              height={506}
+              className="w-full object-cover"
+            />
+          </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {CATEGORIES.map((cat) => (
@@ -178,24 +203,37 @@ export default function HelpPage() {
         </div>
       </section>
 
-      {/* 緊急帯 */}
+      {/* 緊急帯 — イラスト付き */}
       <section className="border-t border-red-100 bg-red-50 px-4 py-8">
-        <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 sm:flex-row sm:justify-between">
-          <div>
-            <p className="text-sm font-bold text-red-700">
-              命に関わる緊急時は迷わず119
-            </p>
-            <p className="mt-1 text-xs text-red-600/70">
-              意識がない、呼吸がおかしい、けいれんが止まらない
-            </p>
+        <div className="mx-auto max-w-3xl">
+          {/* 緊急帯バナーイラスト */}
+          <div className="mb-6 overflow-hidden rounded-2xl">
+            <Image
+              src={withBasePath("/characters/illustrations/pages/help_emergency_banner.png")}
+              alt="迷ったら119 — 意識がない・呼吸がおかしい・けいれんが止まらない"
+              width={900}
+              height={506}
+              className="w-full object-cover"
+            />
           </div>
-          <a
-            href="tel:119"
-            className="inline-flex items-center gap-2 rounded-xl bg-red-600 px-6 py-3 text-lg font-bold text-white transition-colors hover:bg-red-700"
-          >
-            <WatercolorIcon name="phone" size={20} className="text-white" />
-            119
-          </a>
+
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+            <div>
+              <p className="text-sm font-bold text-red-700">
+                命に関わる緊急時は迷わず119
+              </p>
+              <p className="mt-1 text-xs text-red-600/70">
+                意識がない、呼吸がおかしい、けいれんが止まらない
+              </p>
+            </div>
+            <a
+              href="tel:119"
+              className="inline-flex items-center gap-2 rounded-xl bg-red-600 px-6 py-3 text-lg font-bold text-white transition-colors hover:bg-red-700"
+            >
+              <WatercolorIcon name="phone" size={20} className="text-white" />
+              119
+            </a>
+          </div>
         </div>
       </section>
     </main>

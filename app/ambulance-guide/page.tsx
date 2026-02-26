@@ -131,6 +131,17 @@ export default function AmbulanceGuidePage() {
             119番での伝え方
           </SectionHeading>
 
+          {/* 119番通話シーンイラスト */}
+          <div className="mt-8 overflow-hidden rounded-2xl">
+            <Image
+              src={withBasePath("/characters/illustrations/pages/ambulance_119_call_scene.png")}
+              alt="スピーカーフォンで119番に電話するシーン"
+              width={800}
+              height={450}
+              className="w-full object-cover"
+            />
+          </div>
+
           <ol className="mt-8 space-y-4">
             {WHAT_TO_TELL.map((item, i) => (
               <li
@@ -179,6 +190,16 @@ export default function AmbulanceGuidePage() {
               <p className="mt-2 text-sm leading-relaxed text-muted">
                 声をかけ続けてください。嘔吐している場合は横向き（回復体位）にします。
               </p>
+              {/* 回復体位イラスト */}
+              <div className="mt-4 overflow-hidden rounded-xl">
+                <Image
+                  src={withBasePath("/characters/illustrations/pages/ambulance_recovery_position.png")}
+                  alt="回復体位（横向き）の説明イラスト"
+                  width={800}
+                  height={450}
+                  className="w-full object-cover"
+                />
+              </div>
             </div>
 
             <div className="rounded-xl border border-border bg-white p-5">
@@ -193,6 +214,16 @@ export default function AmbulanceGuidePage() {
               <p className="mt-2 text-sm leading-relaxed text-muted">
                 オートロックの場合は解錠しておくか、家族に開けてもらうよう頼みましょう。
               </p>
+              {/* 玄関・オートロックイラスト */}
+              <div className="mt-4 overflow-hidden rounded-xl">
+                <Image
+                  src={withBasePath("/characters/illustrations/pages/ambulance_unlock_door.png")}
+                  alt="玄関の鍵・オートロック解除の説明イラスト"
+                  width={800}
+                  height={450}
+                  className="w-full object-cover"
+                />
+              </div>
             </div>
 
             <div className="rounded-xl border border-border bg-white p-5">
@@ -219,7 +250,18 @@ export default function AmbulanceGuidePage() {
             持ち物チェックリスト
           </SectionHeading>
 
-          <div className="mt-8 rounded-xl border border-border bg-white p-5">
+          {/* チェックリストイラスト */}
+          <div className="mt-8 overflow-hidden rounded-2xl">
+            <Image
+              src={withBasePath("/characters/illustrations/pages/ambulance_checklist_items.png")}
+              alt="救急時の持ち物チェックリストイラスト"
+              width={800}
+              height={450}
+              className="w-full object-cover"
+            />
+          </div>
+
+          <div className="mt-6 rounded-xl border border-border bg-white p-5">
             <ul className="space-y-3">
               {CHECKLIST_ITEMS.map((item) => (
                 <li key={item} className="flex items-center gap-3">
