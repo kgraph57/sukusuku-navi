@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import type {
   ArticleFrontmatter,
@@ -59,12 +60,26 @@ export function ArticleCard({ frontmatter }: ArticleCardProps) {
   const { slug, vol, title, description, category } = frontmatter;
   const ageGroups = frontmatter.ageGroups ?? [];
   const keyPoints = frontmatter.keyPoints ?? [];
+  const thumbnailPath = `/thumbnails/${slug}.png`;
 
   return (
     <Link
       href={`/articles/${slug}`}
-      className={`group flex flex-col rounded-xl border border-border border-l-4 bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md ${CATEGORY_ACCENT[category]}`}
+      className={`group flex flex-col rounded-xl border border-border border-l-4 bg-card overflow-hidden transition-all hover:border-sage-200 hover:shadow-md ${CATEGORY_ACCENT[category]}`}
     >
+      {/* Thumbnail */}
+      <div className="relative w-full aspect-[16/9] overflow-hidden bg-ivory-50">
+        <Image
+          src={thumbnailPath}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-col flex-1 p-5">
       {/* Header row */}
       <div className="flex flex-wrap items-center gap-2">
         <span className="rounded-full bg-sage-100 px-2.5 py-0.5 text-xs font-bold text-sage-700">
@@ -107,6 +122,7 @@ export function ArticleCard({ frontmatter }: ArticleCardProps) {
         <span className="flex items-center gap-0.5 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
           読む <WatercolorIcon name="arrow_right" size={12} />
         </span>
+      </div>
       </div>
     </Link>
   );
