@@ -20,7 +20,7 @@ const steps: MangaStep[] = [
     image: "/characters/vaccine-steps/step01_vaccine_enters.png",
     alt: "コンコン先生がうさぎさんにワクチンを注射しているイラスト",
     title: "ワクチンが入る",
-    desc: "弱くしたウイルスを体に入れる",
+    desc: "弱めたウイルスを体に入れる",
     color: "bg-sage-50",
     labelColor: "text-sage-500",
   },
