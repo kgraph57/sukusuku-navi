@@ -92,16 +92,14 @@ function MangaPanel({ step, index }: { step: MangaStep; index: number }) {
         </div>
 
         {/* イラスト部分 */}
-        <div className={`relative ${step.color} px-6 pb-2 pt-6`}>
-          <div className="relative mx-auto aspect-square w-full max-w-[240px]">
-            <Image
-              src={withBasePath(step.image)}
-              alt={step.alt}
-              fill
-              className="object-contain transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 640px) 80vw, 240px"
-            />
-          </div>
+        <div className={`relative ${step.color} overflow-hidden`} style={{ height: '240px' }}>
+          <Image
+            src={withBasePath(step.image)}
+            alt={step.alt}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 80vw, 320px"
+          />
         </div>
 
         {/* テキスト部分 */}
