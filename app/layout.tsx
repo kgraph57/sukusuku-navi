@@ -5,6 +5,7 @@ import { TrustBar } from "@/components/shared/trust-bar";
 import { Footer } from "@/components/layout/footer";
 import { BottomNav } from "@/components/layout/bottom-nav";
 import { BackToTop } from "@/components/shared/back-to-top";
+import { GoogleAnalytics } from "@/components/layout/google-analytics";
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -75,6 +76,7 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#0D9488" />
         <link rel="apple-touch-icon" href="/icon.svg" />
+        <GoogleAnalytics />
       </head>
       <body
         className={`${zenMaruGothic.variable} ${notoSansJP.variable} antialiased`}
