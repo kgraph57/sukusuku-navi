@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { withBasePath } from "@/lib/image-path";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import type {
   ArticleFrontmatter,
@@ -60,7 +61,7 @@ export function ArticleCard({ frontmatter }: ArticleCardProps) {
   const { slug, vol, title, description, category } = frontmatter;
   const ageGroups = frontmatter.ageGroups ?? [];
   const keyPoints = frontmatter.keyPoints ?? [];
-  const thumbnailPath = `/thumbnails/${slug}.png`;
+  const thumbnailPath = withBasePath(`/thumbnails/${slug}.png`);
 
   return (
     <Link
