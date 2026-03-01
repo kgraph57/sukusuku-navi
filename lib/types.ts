@@ -1,3 +1,36 @@
+export type EhonCategory =
+  | "hygiene"
+  | "body"
+  | "hospital"
+  | "safety"
+  | "lifestyle";
+
+export const EHON_CATEGORY_LABELS: Record<EhonCategory, string> = {
+  hygiene: "せいけつ",
+  body: "からだ",
+  hospital: "びょういん",
+  safety: "あんぜん",
+  lifestyle: "せいかつ",
+} as const;
+
+export interface EhonPage {
+  readonly illustration: string;
+  readonly text: string;
+  readonly bgColor: string;
+}
+
+export interface Ehon {
+  readonly slug: string;
+  readonly title: string;
+  readonly description: string;
+  readonly category: EhonCategory;
+  readonly ageGroups: readonly AgeGroup[];
+  readonly pages: readonly EhonPage[];
+  readonly coverEmoji: string;
+  readonly coverBgColor: string;
+  readonly relatedArticleSlugs: readonly string[];
+}
+
 export type AgeGroup =
   | "0-6mo"
   | "6-12mo"
@@ -16,7 +49,17 @@ export type ArticleCategory =
   | "emergency"
   | "checkup"
   | "mental-health"
-  | "municipal-service";
+  | "municipal-service"
+  | "respiratory"
+  | "gastrointestinal"
+  | "ent"
+  | "eye"
+  | "orthopedic"
+  | "urology"
+  | "heart"
+  | "endocrine"
+  | "lifestyle"
+  | "dental";
 
 export interface ArticleFrontmatter {
   readonly slug: string;
@@ -153,6 +196,16 @@ export const CATEGORY_LABELS: Record<ArticleCategory, string> = {
   checkup: "健診",
   "mental-health": "メンタルヘルス",
   "municipal-service": "行政サービス",
+  respiratory: "呼吸器",
+  gastrointestinal: "おなか",
+  ent: "耳・鼻・のど",
+  eye: "目",
+  orthopedic: "骨・関節",
+  urology: "泌尿器",
+  heart: "心臓・血管",
+  endocrine: "成長・代謝",
+  lifestyle: "生活・育児",
+  dental: "歯",
 } as const;
 
 export const AGE_GROUP_LABELS: Record<AgeGroup, string> = {

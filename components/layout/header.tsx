@@ -128,6 +128,23 @@ const NAV_GROUPS: readonly NavGroup[] = [
       },
     ],
   },
+  {
+    label: "つながる",
+    items: [
+      {
+        href: "/oyako-talk",
+        label: "おやこトークカード",
+        icon: "message" as WatercolorIconName,
+        description: "親子の会話カードゲーム",
+      },
+      {
+        href: "/ehon",
+        label: "えほん",
+        icon: "book",
+        description: "親子で読める健康えほん",
+      },
+    ],
+  },
 ] as const;
 
 function DropdownMenu({

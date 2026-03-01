@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-港区の小児科医（おかもん）が運営する子育て支援サイト。メルマガ50号分の医療コンテンツ、港区の行政サービス情報、給付金シミュレーター、受診判断トリアージを統合。
+港区の小児科医（おかもん）が運営する子育て支援サイト。メルマガ298号分の医療コンテンツ、港区の行政サービス情報、給付金シミュレーター、受診判断トリアージを統合。
 
 ## Tech Stack
 
@@ -33,7 +33,7 @@ components/
   personalization/      # Age-based recommendations
   clinic/               # Map, clinic cards
   shared/               # Reusable across features
-content/articles/       # 50+ MDX files (from newsletter)
+content/articles/       # 298 MDX files (from newsletter vol001-vol298)
 data/                   # JSON: programs, clinics, triage rules, vaccines
 lib/
   content.ts            # MDX loading & parsing
@@ -57,7 +57,8 @@ npm run lint            # ESLint
 ## Content Source
 
 メルマガ原稿: `/Users/kenokamoto/Desktop/AI MEDICINE/04_メルマガ/メルマガ/vol*.md`
-- 50号分 (vol001-vol050)
+
+- 298号分 (vol001-vol298)
 - Q&A対話形式、参考文献付き
 - MDXに変換して content/articles/ に配置
 

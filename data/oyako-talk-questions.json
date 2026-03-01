@@ -1,0 +1,1009 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "id": "q-001",
+      "level": 1,
+      "category": "daily",
+      "text": "今日いちばんおいしかったものは何？",
+      "textKids": "きょう、いちばん おいしかった ものは なぁに？",
+      "followUp": "それを食べたとき、どんな気持ちだった？",
+      "mascot": "pankun",
+      "emoji": "🍙"
+    },
+    {
+      "id": "q-002",
+      "level": 1,
+      "category": "silly",
+      "text": "もし動物になれるとしたら、何になりたい？",
+      "textKids": "もし どうぶつに なれたら、なにに なりたい？",
+      "followUp": "その動物になったら、まず何をする？",
+      "mascot": "pankun",
+      "emoji": "🐾"
+    },
+    {
+      "id": "q-003",
+      "level": 1,
+      "category": "daily",
+      "text": "好きな色は何？その色のどこが好き？",
+      "textKids": "すきな いろは なに？ どんなところが すき？",
+      "followUp": "その色のものを3つ思い浮かべてみよう",
+      "mascot": "pankun",
+      "emoji": "🌈"
+    },
+    {
+      "id": "q-004",
+      "level": 1,
+      "category": "daily",
+      "text": "今日、誰かと笑った？何がおかしかった？",
+      "textKids": "きょう、だれかと わらった？ なにが おかしかった？",
+      "followUp": "笑うと体のどこが動く？",
+      "mascot": "pankun",
+      "emoji": "😄"
+    },
+    {
+      "id": "q-005",
+      "level": 1,
+      "category": "silly",
+      "text": "もしスーパーパワーが使えたら、何がほしい？",
+      "textKids": "もし すーぱーぱわーが つかえたら、なにが ほしい？",
+      "followUp": "そのパワーで誰を助けたい？",
+      "mascot": "pankun",
+      "emoji": "⚡"
+    },
+    {
+      "id": "q-006",
+      "level": 1,
+      "category": "daily",
+      "text": "朝ごはんで毎日食べたいものは？",
+      "textKids": "あさごはんで まいにち たべたい ものは？",
+      "followUp": "じゃあ夜ごはんなら？",
+      "mascot": "pankun",
+      "emoji": "🥞"
+    },
+    {
+      "id": "q-007",
+      "level": 1,
+      "category": "daily",
+      "text": "好きなテレビや動画は何？どこが面白い？",
+      "textKids": "すきな テレビや どうがは なに？ どこが おもしろい？",
+      "followUp": "その中で一番好きなキャラクターは？",
+      "mascot": "pankun",
+      "emoji": "📺"
+    },
+    {
+      "id": "q-008",
+      "level": 1,
+      "category": "silly",
+      "text": "もし空を飛べたら、どこに行きたい？",
+      "textKids": "もし そらを とべたら、どこに いきたい？",
+      "followUp": "飛んでいるとき、何が見えると思う？",
+      "mascot": "pankun",
+      "emoji": "🦅"
+    },
+    {
+      "id": "q-009",
+      "level": 1,
+      "category": "silly",
+      "text": "今日の天気に点数をつけるなら何点？",
+      "textKids": "きょうの おてんきは なんてん？",
+      "followUp": "100点の天気って、どんな天気？",
+      "mascot": "pankun",
+      "emoji": "☀️"
+    },
+    {
+      "id": "q-010",
+      "level": 1,
+      "category": "daily",
+      "text": "お風呂と歯みがき、どっちが先がいい？",
+      "textKids": "おふろと はみがき、どっちが さきが いい？",
+      "followUp": "お風呂で一番好きなことは？",
+      "mascot": "pankun",
+      "emoji": "🛁"
+    },
+    {
+      "id": "q-011",
+      "level": 1,
+      "category": "dreams",
+      "text": "大きくなったら何になりたい？",
+      "textKids": "おおきく なったら なにに なりたい？",
+      "followUp": "それはどうして？",
+      "mascot": "pankun",
+      "emoji": "🌟"
+    },
+    {
+      "id": "q-012",
+      "level": 1,
+      "category": "silly",
+      "text": "もし透明人間になれたら、何をする？",
+      "textKids": "もし とうめいにんげんに なれたら、なにを する？",
+      "followUp": "でもバレちゃったらどうする？",
+      "mascot": "pankun",
+      "emoji": "👻"
+    },
+    {
+      "id": "q-013",
+      "level": 1,
+      "category": "daily",
+      "text": "いま一番ほしいものは何？",
+      "textKids": "いま いちばん ほしいものは なに？",
+      "followUp": "それがあったら、毎日何をしたい？",
+      "mascot": "pankun",
+      "emoji": "🎁"
+    },
+    {
+      "id": "q-014",
+      "level": 1,
+      "category": "silly",
+      "text": "もし100万円もらえたら、何に使う？",
+      "textKids": "もし おかねが いっぱい あったら、なにに つかう？",
+      "followUp": "家族にも何かプレゼントする？",
+      "mascot": "pankun",
+      "emoji": "💰"
+    },
+    {
+      "id": "q-015",
+      "level": 1,
+      "category": "daily",
+      "text": "今日の給食（ごはん）で一番好きだったおかずは？",
+      "textKids": "きょうの ごはんで いちばん すきだった おかずは？",
+      "followUp": "もし自分で作るなら、何を作りたい？",
+      "mascot": "pankun",
+      "emoji": "🍱"
+    },
+    {
+      "id": "q-016",
+      "level": 1,
+      "category": "silly",
+      "text": "今の季節で一番好きなことは？",
+      "textKids": "いまの きせつで いちばん すきな ことは？",
+      "followUp": "一番好きな季節は何？",
+      "mascot": "pankun",
+      "emoji": "🍂"
+    },
+    {
+      "id": "q-017",
+      "level": 1,
+      "category": "daily",
+      "text": "寝る前にいつも何を考える？",
+      "textKids": "ねるまえに いつも なにを かんがえる？",
+      "followUp": "どんな夢を見たい？",
+      "mascot": "pankun",
+      "emoji": "🌙"
+    },
+    {
+      "id": "q-018",
+      "level": 1,
+      "category": "silly",
+      "text": "もしタイムマシンがあったら、未来と過去どっちに行く？",
+      "textKids": "みらいと むかし、どっちに いってみたい？",
+      "followUp": "そこで何を見たい？",
+      "mascot": "pankun",
+      "emoji": "⏰"
+    },
+    {
+      "id": "q-019",
+      "level": 1,
+      "category": "daily",
+      "text": "好きな遊びベスト3を教えて！",
+      "textKids": "すきな あそび、3つ おしえて！",
+      "followUp": "その遊びの何が楽しい？",
+      "mascot": "pankun",
+      "emoji": "🎮"
+    },
+    {
+      "id": "q-020",
+      "level": 1,
+      "category": "gratitude",
+      "text": "最近「ありがとう」を言った相手は誰？",
+      "textKids": "さいきん 「ありがとう」を いった ひとは だれ？",
+      "followUp": "言ったとき、相手はどんな顔をしてた？",
+      "mascot": "pankun",
+      "emoji": "💐"
+    },
+    {
+      "id": "q-021",
+      "level": 1,
+      "category": "silly",
+      "text": "もし何でも一つ発明できるなら、何を作る？",
+      "textKids": "なんでも つくれるなら、なにを つくる？",
+      "followUp": "それを使う人はどんな気持ちになる？",
+      "mascot": "pankun",
+      "emoji": "🔧"
+    },
+    {
+      "id": "q-022",
+      "level": 1,
+      "category": "daily",
+      "text": "お休みの日の朝、最初にしたいことは？",
+      "textKids": "おやすみの あさ、さいしょに したい ことは？",
+      "followUp": "家族みんなでやるなら何がいい？",
+      "mascot": "pankun",
+      "emoji": "🌅"
+    },
+    {
+      "id": "q-023",
+      "level": 1,
+      "category": "daily",
+      "text": "好きな匂いってある？",
+      "textKids": "すきな においって ある？",
+      "followUp": "その匂いを嗅ぐとどんな気持ちになる？",
+      "mascot": "pankun",
+      "emoji": "🌸"
+    },
+    {
+      "id": "q-024",
+      "level": 1,
+      "category": "silly",
+      "text": "もし自分がロボットを作れたら、何をさせたい？",
+      "textKids": "じぶんの ロボットが いたら、なにを させたい？",
+      "followUp": "そのロボットの名前は？",
+      "mascot": "pankun",
+      "emoji": "🤖"
+    },
+    {
+      "id": "q-025",
+      "level": 1,
+      "category": "dreams",
+      "text": "行ってみたい国はどこ？",
+      "textKids": "いってみたい くには どこ？",
+      "followUp": "そこで何をしたい？",
+      "mascot": "pankun",
+      "emoji": "✈️"
+    },
+    {
+      "id": "q-026",
+      "level": 1,
+      "category": "daily",
+      "text": "今日一番がんばったことは？",
+      "textKids": "きょう いちばん がんばった ことは？",
+      "followUp": "がんばれた自分にどんな言葉をかけてあげたい？",
+      "mascot": "pankun",
+      "emoji": "💪"
+    },
+    {
+      "id": "q-027",
+      "level": 1,
+      "category": "silly",
+      "text": "もし一日だけ大人になれたら何をする？",
+      "textKids": "いちにちだけ おとなに なれたら、なにを する？",
+      "followUp": "逆に、大人が一日だけ子どもに戻れたら？",
+      "mascot": "pankun",
+      "emoji": "👔"
+    },
+    {
+      "id": "q-028",
+      "level": 1,
+      "category": "daily",
+      "text": "友達と遊ぶときと一人で遊ぶとき、どっちが好き？",
+      "textKids": "おともだちと あそぶのと ひとりで あそぶの、どっちが すき？",
+      "followUp": "それぞれ、一番楽しいことは？",
+      "mascot": "pankun",
+      "emoji": "👫"
+    },
+    {
+      "id": "q-029",
+      "level": 1,
+      "category": "gratitude",
+      "text": "家族の中で、誰が一番おもしろい？",
+      "textKids": "かぞくの なかで、だれが いちばん おもしろい？",
+      "followUp": "どんなところが面白い？",
+      "mascot": "pankun",
+      "emoji": "😂"
+    },
+    {
+      "id": "q-030",
+      "level": 1,
+      "category": "silly",
+      "text": "もし魔法が一つだけ使えるなら、何の魔法がいい？",
+      "textKids": "まほうが ひとつ つかえるなら、なんの まほう？",
+      "followUp": "その魔法を誰に使ってあげたい？",
+      "mascot": "pankun",
+      "emoji": "🪄"
+    },
+
+    {
+      "id": "q-031",
+      "level": 2,
+      "category": "daily",
+      "text": "今日、学校や保育園で一番楽しかったことは？",
+      "textKids": "きょう、いちばん たのしかった ことは？",
+      "followUp": "明日はどんなことが楽しみ？",
+      "mascot": "konkon",
+      "emoji": "🏫"
+    },
+    {
+      "id": "q-032",
+      "level": 2,
+      "category": "daily",
+      "text": "お友達とどんな遊びをした？",
+      "textKids": "おともだちと どんな あそびを した？",
+      "followUp": "新しい遊びを考えるとしたら、どんなルール？",
+      "mascot": "konkon",
+      "emoji": "🎪"
+    },
+    {
+      "id": "q-033",
+      "level": 2,
+      "category": "daily",
+      "text": "最近ハマっていることは何？",
+      "textKids": "さいきん すきで たまらない ものは？",
+      "followUp": "それにハマったきっかけは？",
+      "mascot": "konkon",
+      "emoji": "🔥"
+    },
+    {
+      "id": "q-034",
+      "level": 2,
+      "category": "daily",
+      "text": "「これ上手にできた！」と思ったことは？",
+      "textKids": "「これ じょうずに できた！」って おもった ことは？",
+      "followUp": "上手にできるまで、何回やった？",
+      "mascot": "konkon",
+      "emoji": "✨"
+    },
+    {
+      "id": "q-035",
+      "level": 2,
+      "category": "daily",
+      "text": "夕ごはんのメニューを決めていいなら何にする？",
+      "textKids": "よるごはんを きめて いいなら、なにに する？",
+      "followUp": "デザートも選べるなら？",
+      "mascot": "konkon",
+      "emoji": "🍽️"
+    },
+    {
+      "id": "q-036",
+      "level": 2,
+      "category": "daily",
+      "text": "休みの日にやりたいことベスト3は？",
+      "textKids": "おやすみの ひに やりたい こと、3つ おしえて！",
+      "followUp": "全部できる日があったらどんな気持ち？",
+      "mascot": "konkon",
+      "emoji": "📋"
+    },
+    {
+      "id": "q-037",
+      "level": 2,
+      "category": "daily",
+      "text": "最近読んだ本や聞いた話で面白かったのは？",
+      "textKids": "さいきん よんだ ほんで おもしろかった のは？",
+      "followUp": "その話の続きを自分で考えてみて！",
+      "mascot": "konkon",
+      "emoji": "📖"
+    },
+    {
+      "id": "q-038",
+      "level": 2,
+      "category": "silly",
+      "text": "苦手な食べ物、もし美味しくなる魔法があったら食べてみる？",
+      "textKids": "にがてな たべもの、おいしく なったら たべる？",
+      "followUp": "逆に好きな食べ物が苦くなったらどうする？",
+      "mascot": "konkon",
+      "emoji": "🥦"
+    },
+    {
+      "id": "q-039",
+      "level": 2,
+      "category": "daily",
+      "text": "家族の中で自分と一番似ている人は誰？",
+      "textKids": "かぞくで じぶんに いちばん にてる ひとは だれ？",
+      "followUp": "どんなところが似てると思う？",
+      "mascot": "konkon",
+      "emoji": "👨‍👩‍👧"
+    },
+    {
+      "id": "q-040",
+      "level": 2,
+      "category": "daily",
+      "text": "学校の教科で一番好きなのは？理由も教えて",
+      "textKids": "いちばん すきな べんきょうは なに？",
+      "followUp": "じゃあ一番苦手なのは？どうしたら好きになれそう？",
+      "mascot": "konkon",
+      "emoji": "📚"
+    },
+    {
+      "id": "q-041",
+      "level": 2,
+      "category": "feelings",
+      "text": "今日、ちょっとイラッとしたことはあった？",
+      "textKids": "きょう、ちょっと いやだな って おもった ことは？",
+      "followUp": "そのとき、どうやって気持ちを落ち着けた？",
+      "mascot": "konkon",
+      "emoji": "😤"
+    },
+    {
+      "id": "q-042",
+      "level": 2,
+      "category": "dreams",
+      "text": "もし自分のお店を開くなら、何のお店？",
+      "textKids": "じぶんの おみせを ひらくなら、なんの おみせ？",
+      "followUp": "お店の名前は何にする？",
+      "mascot": "konkon",
+      "emoji": "🏪"
+    },
+    {
+      "id": "q-043",
+      "level": 2,
+      "category": "daily",
+      "text": "自分の部屋（スペース）で一番のお気に入りは？",
+      "textKids": "じぶんの おへやで いちばん すきな ばしょは？",
+      "followUp": "もし模様替えできるなら、何を変えたい？",
+      "mascot": "konkon",
+      "emoji": "🏠"
+    },
+    {
+      "id": "q-044",
+      "level": 2,
+      "category": "values",
+      "text": "「かっこいいな」と思う人はいる？どんなところが？",
+      "textKids": "「かっこいいな」って おもう ひとは いる？",
+      "followUp": "自分もそうなりたいと思う？",
+      "mascot": "konkon",
+      "emoji": "😎"
+    },
+    {
+      "id": "q-045",
+      "level": 2,
+      "category": "daily",
+      "text": "雨の日に家でやるのが好きなことは？",
+      "textKids": "あめの ひに おうちで すきな ことは？",
+      "followUp": "もし一週間ずっと雨だったら何をする？",
+      "mascot": "konkon",
+      "emoji": "🌧️"
+    },
+    {
+      "id": "q-046",
+      "level": 2,
+      "category": "daily",
+      "text": "家族で出かけるならどこがいい？",
+      "textKids": "かぞくで おでかけ するなら どこが いい？",
+      "followUp": "そこで一番楽しみなことは？",
+      "mascot": "konkon",
+      "emoji": "🚗"
+    },
+    {
+      "id": "q-047",
+      "level": 2,
+      "category": "feelings",
+      "text": "「ドキドキした！」って最近思ったのはいつ？",
+      "textKids": "さいきん ドキドキ した ことは ある？",
+      "followUp": "ドキドキは好き？苦手？",
+      "mascot": "konkon",
+      "emoji": "💓"
+    },
+    {
+      "id": "q-048",
+      "level": 2,
+      "category": "daily",
+      "text": "ペットを飼えるなら（もう一匹飼えるなら）何がいい？",
+      "textKids": "ペットを かうなら、なにが いい？",
+      "followUp": "名前は何にする？",
+      "mascot": "konkon",
+      "emoji": "🐕"
+    },
+    {
+      "id": "q-049",
+      "level": 2,
+      "category": "values",
+      "text": "「やさしいな」と思う人は誰？どんなことをしてくれた？",
+      "textKids": "「やさしいな」って おもう ひとは だれ？",
+      "followUp": "自分もそういうことをしてあげたい？",
+      "mascot": "konkon",
+      "emoji": "🤗"
+    },
+    {
+      "id": "q-050",
+      "level": 2,
+      "category": "daily",
+      "text": "自分を動物に例えると何？",
+      "textKids": "じぶんを どうぶつに たとえると なに？",
+      "followUp": "家族のみんなは何の動物？",
+      "mascot": "konkon",
+      "emoji": "🦊"
+    },
+    {
+      "id": "q-051",
+      "level": 2,
+      "category": "dreams",
+      "text": "10年後の自分はどうなっていると思う？",
+      "textKids": "おおきく なった じぶんは どんな ひと？",
+      "followUp": "そのためにいま始められることはある？",
+      "mascot": "konkon",
+      "emoji": "🔮"
+    },
+    {
+      "id": "q-052",
+      "level": 2,
+      "category": "daily",
+      "text": "今まで行った場所で一番好きなところは？",
+      "textKids": "いままで いった ばしょで いちばん すきな ところは？",
+      "followUp": "もう一回行けるなら、何をしたい？",
+      "mascot": "konkon",
+      "emoji": "🗺️"
+    },
+    {
+      "id": "q-053",
+      "level": 2,
+      "category": "gratitude",
+      "text": "最近、誰かに助けてもらったことはある？",
+      "textKids": "さいきん だれかに たすけて もらった ことは ある？",
+      "followUp": "自分は誰かを助けられたことはある？",
+      "mascot": "konkon",
+      "emoji": "🤝"
+    },
+    {
+      "id": "q-054",
+      "level": 2,
+      "category": "silly",
+      "text": "もし明日から名前を変えられるなら、何にする？",
+      "textKids": "じぶんの なまえを かえられるなら、なんに する？",
+      "followUp": "どうしてその名前？",
+      "mascot": "konkon",
+      "emoji": "📛"
+    },
+    {
+      "id": "q-055",
+      "level": 2,
+      "category": "daily",
+      "text": "おうちの手伝いで意外と好きなことはある？",
+      "textKids": "おうちの おてつだいで すきな ことは ある？",
+      "followUp": "「もっとやりたい」と思うお手伝いは？",
+      "mascot": "konkon",
+      "emoji": "🧹"
+    },
+    {
+      "id": "q-056",
+      "level": 2,
+      "category": "feelings",
+      "text": "泣きそうになったとき、どうやって我慢する？",
+      "textKids": "なきそうに なったとき、どう する？",
+      "followUp": "泣いてもいいんだよ。泣いた後はどんな気持ち？",
+      "mascot": "konkon",
+      "emoji": "😢"
+    },
+    {
+      "id": "q-057",
+      "level": 2,
+      "category": "daily",
+      "text": "自分のいいところを3つ言ってみて！",
+      "textKids": "じぶんの いいところ、3つ いえる？",
+      "followUp": "ママ/パパから見た君のいいところも教えるね",
+      "mascot": "konkon",
+      "emoji": "🏆"
+    },
+    {
+      "id": "q-058",
+      "level": 2,
+      "category": "silly",
+      "text": "もし世界中の人が一つの言語しか話せなくなったら？",
+      "textKids": "せかいの ひとが みんな おなじ ことばを はなしたら？",
+      "followUp": "何語がいいと思う？新しい言葉を作ってもいいよ",
+      "mascot": "konkon",
+      "emoji": "🌍"
+    },
+    {
+      "id": "q-059",
+      "level": 2,
+      "category": "daily",
+      "text": "一週間で一番好きな曜日は？",
+      "textKids": "いちばん すきな ようびは なに？",
+      "followUp": "その曜日は何があるの？",
+      "mascot": "konkon",
+      "emoji": "📅"
+    },
+    {
+      "id": "q-060",
+      "level": 2,
+      "category": "dreams",
+      "text": "もし自分だけの秘密基地を作れるなら、どんな場所に？",
+      "textKids": "ひみつきちを つくるなら、どんな ばしょに つくる？",
+      "followUp": "そこに置きたいものベスト3は？",
+      "mascot": "konkon",
+      "emoji": "🏕️"
+    },
+
+    {
+      "id": "q-061",
+      "level": 3,
+      "category": "feelings",
+      "text": "最近「うれしいな」と思ったのはどんなとき？",
+      "textKids": "さいきん 「うれしいな」って おもった ことは？",
+      "followUp": "そのうれしさを誰かに伝えた？",
+      "mascot": "usagi",
+      "emoji": "😊"
+    },
+    {
+      "id": "q-062",
+      "level": 3,
+      "category": "feelings",
+      "text": "泣きたくなるのはどんなとき？",
+      "textKids": "なきたく なるのは どんな とき？",
+      "followUp": "そのとき、隣にいてほしい人は誰？",
+      "mascot": "usagi",
+      "emoji": "💧"
+    },
+    {
+      "id": "q-063",
+      "level": 3,
+      "category": "feelings",
+      "text": "怒ったとき、体のどこが熱くなる？",
+      "textKids": "おこった とき、からだの どこが あつく なる？",
+      "followUp": "怒りをしずめるための自分なりの方法はある？",
+      "mascot": "usagi",
+      "emoji": "🌋"
+    },
+    {
+      "id": "q-064",
+      "level": 3,
+      "category": "gratitude",
+      "text": "誰かに「ありがとう」を言いたい人はいる？",
+      "textKids": "「ありがとう」を いいたい ひとは いる？",
+      "followUp": "その人にどうして「ありがとう」？",
+      "mascot": "usagi",
+      "emoji": "🙏"
+    },
+    {
+      "id": "q-065",
+      "level": 3,
+      "category": "feelings",
+      "text": "「がんばったのに…」と悔しかったことは？",
+      "textKids": "がんばったのに うまく いかなくて くやしかった ことは？",
+      "followUp": "そのとき、どんな言葉をかけてもらいたかった？",
+      "mascot": "usagi",
+      "emoji": "😣"
+    },
+    {
+      "id": "q-066",
+      "level": 3,
+      "category": "feelings",
+      "text": "お友達と気まずくなったとき、どうする？",
+      "textKids": "おともだちと けんか したとき、どう する？",
+      "followUp": "仲直りのコツってある？",
+      "mascot": "usagi",
+      "emoji": "🤝"
+    },
+    {
+      "id": "q-067",
+      "level": 3,
+      "category": "feelings",
+      "text": "今の気持ちを天気で表すと？",
+      "textKids": "いまの きもちを おてんきで あらわすと？",
+      "followUp": "晴れの気持ちにするためにしたいことは？",
+      "mascot": "usagi",
+      "emoji": "🌤️"
+    },
+    {
+      "id": "q-068",
+      "level": 3,
+      "category": "feelings",
+      "text": "「恥ずかしい！」と思った最近の出来事は？",
+      "textKids": "「はずかしい！」って おもった ことは？",
+      "followUp": "恥ずかしいのって、悪いことかな？",
+      "mascot": "usagi",
+      "emoji": "🙈"
+    },
+    {
+      "id": "q-069",
+      "level": 3,
+      "category": "values",
+      "text": "「自分って変わったかも」と思うことはある？",
+      "textKids": "まえの じぶんと いまの じぶん、かわった ところは ある？",
+      "followUp": "その変化は良い変化？",
+      "mascot": "usagi",
+      "emoji": "🦋"
+    },
+    {
+      "id": "q-070",
+      "level": 3,
+      "category": "feelings",
+      "text": "「さみしいな」と思うのはどんなとき？",
+      "textKids": "「さみしいな」って おもう ときは ある？",
+      "followUp": "さみしいとき、どうすると元気になれる？",
+      "mascot": "usagi",
+      "emoji": "🥺"
+    },
+    {
+      "id": "q-071",
+      "level": 3,
+      "category": "values",
+      "text": "「勇気を出した！」と思えた経験はある？",
+      "textKids": "「ゆうきを だした！」って おもえた ことは ある？",
+      "followUp": "勇気を出すと、どんないいことがあった？",
+      "mascot": "usagi",
+      "emoji": "🦸"
+    },
+    {
+      "id": "q-072",
+      "level": 3,
+      "category": "feelings",
+      "text": "ママ/パパに怒られたとき、本当はどう思ってる？",
+      "textKids": "おこられた とき、ほんとうは どう おもってる？",
+      "followUp": "怒る側の気持ちも想像してみて。どう思ってるかな？",
+      "mascot": "usagi",
+      "emoji": "💭"
+    },
+    {
+      "id": "q-073",
+      "level": 3,
+      "category": "gratitude",
+      "text": "「この人がいてくれてよかった」と思う人は？",
+      "textKids": "いてくれて よかった って おもう ひとは だれ？",
+      "followUp": "その気持ち、伝えたことはある？",
+      "mascot": "usagi",
+      "emoji": "💖"
+    },
+    {
+      "id": "q-074",
+      "level": 3,
+      "category": "feelings",
+      "text": "「わかってもらえない」と感じたことはある？",
+      "textKids": "わかって もらえないなって おもった ことは？",
+      "followUp": "そのとき、どうしてほしかった？",
+      "mascot": "usagi",
+      "emoji": "😶"
+    },
+    {
+      "id": "q-075",
+      "level": 3,
+      "category": "values",
+      "text": "もし親友が困っていたら、何をしてあげたい？",
+      "textKids": "だいすきな おともだちが こまっていたら、なにを してあげる？",
+      "followUp": "自分が困ったとき、友達にしてほしいことは？",
+      "mascot": "usagi",
+      "emoji": "🫂"
+    },
+
+    {
+      "id": "q-076",
+      "level": 4,
+      "category": "memories",
+      "text": "家族で行った場所で、一番覚えているのは？",
+      "textKids": "かぞくで いった ばしょで いちばん おぼえてる ところは？",
+      "followUp": "その場所の匂いや音は覚えてる？",
+      "mascot": "tama",
+      "emoji": "🏖️"
+    },
+    {
+      "id": "q-077",
+      "level": 4,
+      "category": "memories",
+      "text": "小さい頃のことで覚えていることはある？",
+      "textKids": "ちいさい ころの ことで おぼえてる ことは ある？",
+      "followUp": "ママ/パパにも小さい頃の話を聞いてみよう",
+      "mascot": "tama",
+      "emoji": "👶"
+    },
+    {
+      "id": "q-078",
+      "level": 4,
+      "category": "memories",
+      "text": "ママ/パパに聞きたいこと、何でも1つ聞けるなら？",
+      "textKids": "ママ/パパに ひとつだけ きける なら、なにを きく？",
+      "followUp": "実際に聞いてみよう！",
+      "mascot": "tama",
+      "emoji": "❓"
+    },
+    {
+      "id": "q-079",
+      "level": 4,
+      "category": "memories",
+      "text": "今までもらったプレゼントで一番うれしかったのは？",
+      "textKids": "いままで もらった プレゼントで いちばん うれしかったのは？",
+      "followUp": "そのとき、誰にもらった？どんな気持ちだった？",
+      "mascot": "tama",
+      "emoji": "🎀"
+    },
+    {
+      "id": "q-080",
+      "level": 4,
+      "category": "memories",
+      "text": "「あの日に戻れたらな」と思う日はある？",
+      "textKids": "もう いちど やりたい ひは ある？",
+      "followUp": "戻れたら、同じことをする？違うことをする？",
+      "mascot": "tama",
+      "emoji": "⏪"
+    },
+    {
+      "id": "q-081",
+      "level": 4,
+      "category": "memories",
+      "text": "お父さん・お母さんの子どもの頃の話で聞きたいことは？",
+      "textKids": "パパ/ママの こどもの ころの はなし、きいてみたい ことは？",
+      "followUp": "親も答えてみよう！実際に話してみて",
+      "mascot": "tama",
+      "emoji": "📸"
+    },
+    {
+      "id": "q-082",
+      "level": 4,
+      "category": "values",
+      "text": "「これだけは絶対に譲れない！」ということはある？",
+      "textKids": "ぜったいに ゆずれない ことって ある？",
+      "followUp": "それはどうして大切なの？",
+      "mascot": "tama",
+      "emoji": "🛡️"
+    },
+    {
+      "id": "q-083",
+      "level": 4,
+      "category": "feelings",
+      "text": "今まで一番怖かった経験は？",
+      "textKids": "いままで いちばん こわかった ことは？",
+      "followUp": "その怖さを乗り越えられた？どうやって？",
+      "mascot": "tama",
+      "emoji": "😨"
+    },
+    {
+      "id": "q-084",
+      "level": 4,
+      "category": "memories",
+      "text": "家族と一緒に笑った一番の思い出は？",
+      "textKids": "かぞくと いっしょに わらった おもいでは ある？",
+      "followUp": "その笑いを思い出すと今も笑顔になれる？",
+      "mascot": "tama",
+      "emoji": "😆"
+    },
+    {
+      "id": "q-085",
+      "level": 4,
+      "category": "values",
+      "text": "自分が変えたい自分の癖や性格はある？",
+      "textKids": "じぶんの なおしたい ところは ある？",
+      "followUp": "でもその癖が実はいいところでもあるかも？",
+      "mascot": "tama",
+      "emoji": "🔄"
+    },
+    {
+      "id": "q-086",
+      "level": 4,
+      "category": "gratitude",
+      "text": "「ごめんね」を言えなかった相手がいる？",
+      "textKids": "「ごめんね」を いえなかった ことは ある？",
+      "followUp": "今からでも伝えられそう？",
+      "mascot": "tama",
+      "emoji": "💌"
+    },
+    {
+      "id": "q-087",
+      "level": 4,
+      "category": "memories",
+      "text": "「成長したな」と自分で思える出来事は？",
+      "textKids": "「せいちょう したな」って おもえる ことは？",
+      "followUp": "周りの人はそれに気づいてくれた？",
+      "mascot": "tama",
+      "emoji": "🌱"
+    },
+    {
+      "id": "q-088",
+      "level": 4,
+      "category": "dreams",
+      "text": "もし人生をやり直せるなら、何を変えたい？何はそのまま？",
+      "textKids": "もう いちど やりなおせるなら、なにを かえたい？",
+      "followUp": "変えたくないこともあるよね。それは何？",
+      "mascot": "tama",
+      "emoji": "🔁"
+    },
+    {
+      "id": "q-089",
+      "level": 4,
+      "category": "feelings",
+      "text": "一人でいるとき、何を考えることが多い？",
+      "textKids": "ひとりの とき、なにを かんがえる？",
+      "followUp": "一人の時間は好き？",
+      "mascot": "tama",
+      "emoji": "🧘"
+    },
+    {
+      "id": "q-090",
+      "level": 4,
+      "category": "values",
+      "text": "「大人って大変だな」と思うことはある？",
+      "textKids": "「おとなって たいへんだな」って おもう ことは ある？",
+      "followUp": "大人になって楽しみなことは何？",
+      "mascot": "tama",
+      "emoji": "🧑"
+    },
+
+    {
+      "id": "q-091",
+      "level": 5,
+      "category": "gratitude",
+      "text": "「家族でよかったな」と思うのはどんなとき？",
+      "textKids": "「この かぞくで よかったな」って おもう ときは？",
+      "followUp": "その気持ち、みんなに伝えてみよう",
+      "mascot": "kuma",
+      "emoji": "🏡"
+    },
+    {
+      "id": "q-092",
+      "level": 5,
+      "category": "dreams",
+      "text": "大人になったら、どんな家族を作りたい？",
+      "textKids": "おおきく なったら、どんな かぞくに なりたい？",
+      "followUp": "今の家族の何を受け継ぎたい？",
+      "mascot": "kuma",
+      "emoji": "🌳"
+    },
+    {
+      "id": "q-093",
+      "level": 5,
+      "category": "values",
+      "text": "自分のいちばん好きなところは？",
+      "textKids": "じぶんの いちばん すきな ところは？",
+      "followUp": "ママ/パパから見た君のいちばん好きなところも聞いてみて",
+      "mascot": "kuma",
+      "emoji": "💎"
+    },
+    {
+      "id": "q-094",
+      "level": 5,
+      "category": "gratitude",
+      "text": "「ごめんね」を言えなかったこと、ある？",
+      "textKids": "「ごめんね」を いえなかった ことは ある？",
+      "followUp": "もし目の前にその人がいたら、なんて言う？",
+      "mascot": "kuma",
+      "emoji": "🕊️"
+    },
+    {
+      "id": "q-095",
+      "level": 5,
+      "category": "gratitude",
+      "text": "パパ/ママの好きなところを3つ教えて？",
+      "textKids": "パパ/ママの すきな ところ、3つ おしえて？",
+      "followUp": "パパ/ママも子どもの好きなところ3つ言うね",
+      "mascot": "kuma",
+      "emoji": "❤️"
+    },
+    {
+      "id": "q-096",
+      "level": 5,
+      "category": "values",
+      "text": "「幸せ」ってどういうことだと思う？",
+      "textKids": "「しあわせ」って どういう こと だと おもう？",
+      "followUp": "今、幸せだと思う瞬間は？",
+      "mascot": "kuma",
+      "emoji": "🌻"
+    },
+    {
+      "id": "q-097",
+      "level": 5,
+      "category": "values",
+      "text": "生まれ変わっても、この家族がいい？",
+      "textKids": "もう いちど うまれても、この かぞくが いい？",
+      "followUp": "この家族のどこが一番好き？",
+      "mascot": "kuma",
+      "emoji": "♾️"
+    },
+    {
+      "id": "q-098",
+      "level": 5,
+      "category": "gratitude",
+      "text": "パパ/ママに「ありがとう」を言うなら、何に対して？",
+      "textKids": "パパ/ママに 「ありがとう」を いうなら、なんの こと？",
+      "followUp": "言葉にして、伝えてみよう",
+      "mascot": "kuma",
+      "emoji": "🌷"
+    },
+    {
+      "id": "q-099",
+      "level": 5,
+      "category": "dreams",
+      "text": "10年後の家族はどうなっていると思う？どうなってほしい？",
+      "textKids": "おおきく なったら、かぞくで なにを したい？",
+      "followUp": "そのために今できることは？",
+      "mascot": "kuma",
+      "emoji": "🔭"
+    },
+    {
+      "id": "q-100",
+      "level": 5,
+      "category": "values",
+      "text": "もし子どもの自分に手紙を書けるなら、何を伝える？（親向け）\n子どもから: 大人の自分に手紙を書くなら？",
+      "textKids": "おおきく なった じぶんに おてがみを かくなら？",
+      "followUp": "その手紙、実際に書いてみない？",
+      "mascot": "kuma",
+      "emoji": "✉️"
+    }
+  ]
+}

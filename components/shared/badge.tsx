@@ -1,6 +1,6 @@
-import clsx from "clsx"
-import type { ArticleCategory } from "@/lib/types"
-import { CATEGORY_LABELS } from "@/lib/types"
+import clsx from "clsx";
+import type { ArticleCategory } from "@/lib/types";
+import { CATEGORY_LABELS } from "@/lib/types";
 
 const CATEGORY_COLORS: Record<ArticleCategory, string> = {
   "infectious-disease": "bg-red-50 text-red-700 ring-red-200",
@@ -13,19 +13,29 @@ const CATEGORY_COLORS: Record<ArticleCategory, string> = {
   checkup: "bg-sage-50 text-sage-700 ring-sage-200",
   "mental-health": "bg-indigo-50 text-indigo-700 ring-indigo-200",
   "municipal-service": "bg-cyan-50 text-cyan-700 ring-cyan-200",
-} as const
+  respiratory: "bg-sky-50 text-sky-700 ring-sky-200",
+  gastrointestinal: "bg-amber-50 text-amber-700 ring-amber-200",
+  ent: "bg-teal-50 text-teal-700 ring-teal-200",
+  eye: "bg-cyan-50 text-cyan-700 ring-cyan-200",
+  orthopedic: "bg-lime-50 text-lime-700 ring-lime-200",
+  urology: "bg-violet-50 text-violet-700 ring-violet-200",
+  heart: "bg-rose-50 text-rose-700 ring-rose-200",
+  endocrine: "bg-emerald-50 text-emerald-700 ring-emerald-200",
+  lifestyle: "bg-stone-50 text-stone-700 ring-stone-200",
+  dental: "bg-fuchsia-50 text-fuchsia-700 ring-fuchsia-200",
+} as const;
 
 interface BadgeProps {
-  readonly category: ArticleCategory
-  readonly size?: "sm" | "md"
-  readonly className?: string
+  readonly category: ArticleCategory;
+  readonly size?: "sm" | "md";
+  readonly className?: string;
 }
 
 export function Badge({ category, size = "sm", className }: BadgeProps) {
   const sizeStyles = {
     sm: "px-2 py-0.5 text-xs",
     md: "px-3 py-1 text-sm",
-  } as const
+  } as const;
 
   return (
     <span
@@ -33,10 +43,10 @@ export function Badge({ category, size = "sm", className }: BadgeProps) {
         "inline-flex items-center rounded-full font-medium ring-1 ring-inset",
         sizeStyles[size],
         CATEGORY_COLORS[category],
-        className
+        className,
       )}
     >
       {CATEGORY_LABELS[category]}
     </span>
-  )
+  );
 }

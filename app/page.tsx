@@ -58,6 +58,14 @@ const FEATURES = [
     description: "出産前から入園まで、必要な手続きをチェックリストで管理。",
     color: "bg-purple-50",
   },
+  {
+    href: "/oyako-talk",
+    iconName: "message" as const,
+    title: "おやこトークカード",
+    description:
+      "1日1枚カードを引いて親子で会話。レベル別100問で深い対話が生まれます。",
+    color: "bg-blush-50",
+  },
 ];
 
 const RECOMMENDED_CATEGORIES = [

@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "books": [
+    {
+      "slug": "tearai",
+      "title": "てあらい ぴかぴか",
+      "description": "おててをあらって ばいきんバイバイ！ てあらいのじゅんばんを たのしくおぼえよう",
+      "category": "hygiene",
+      "ageGroups": ["1-3yr", "3-6yr"],
+      "coverEmoji": "🧼",
+      "coverBgColor": "from-sky-100 to-cyan-50",
+      "relatedArticleSlugs": [],
+      "pages": [
+        {
+          "illustration": "🤲",
+          "text": "おそとで いっぱい あそんだよ。\nおててに ばいきんさんが いっぱいだ！",
+          "bgColor": "bg-amber-50"
+        },
+        {
+          "illustration": "🚰",
+          "text": "おみずを だして\nおてて ぬらすよ。\nじゃーーー！",
+          "bgColor": "bg-sky-50"
+        },
+        {
+          "illustration": "🧴",
+          "text": "せっけん ぷしゅ！\nおててに のせたら\nあわあわ もこもこ。",
+          "bgColor": "bg-pink-50"
+        },
+        {
+          "illustration": "👐",
+          "text": "てのひら ごしごし。\nてのこう ごしごし。\nゆびの あいだも\nごしごしごし！",
+          "bgColor": "bg-violet-50"
+        },
+        {
+          "illustration": "👍",
+          "text": "おやゆびさんも\nくるくるくる。\nつめの なかも\nかきかきかき。",
+          "bgColor": "bg-green-50"
+        },
+        {
+          "illustration": "💧",
+          "text": "おみずで じゃぶじゃぶ\nあわを ながすよ。\nばいきんさん バイバーイ！",
+          "bgColor": "bg-cyan-50"
+        },
+        {
+          "illustration": "✨",
+          "text": "タオルで ふきふき。\nおてて ぴっかぴか！\n\nてあらい じょうずに\nできたね！",
+          "bgColor": "bg-yellow-50"
+        }
+      ]
+    },
+    {
+      "slug": "hamigaki",
+      "title": "はみがき しゅっしゅ",
+      "description": "はぶらしさんと いっしょに むしばいきんを やっつけよう！",
+      "category": "hygiene",
+      "ageGroups": ["1-3yr", "3-6yr"],
+      "coverEmoji": "🪥",
+      "coverBgColor": "from-emerald-100 to-teal-50",
+      "relatedArticleSlugs": [],
+      "pages": [
+        {
+          "illustration": "🍙",
+          "text": "ごはんを もぐもぐ\nおいしかったね。\nおくちの なかに\nたべものの かけらが いっぱいだ！",
+          "bgColor": "bg-amber-50"
+        },
+        {
+          "illustration": "🦠",
+          "text": "たべかすが だいすきな\nむしばいきんが やってくるよ。\n「おくちに すみたいな〜」",
+          "bgColor": "bg-purple-50"
+        },
+        {
+          "illustration": "🪥",
+          "text": "はぶらしさん とうじょう！\n「ぼくに まかせて！」\nはみがきこを ちょんちょん。",
+          "bgColor": "bg-green-50"
+        },
+        {
+          "illustration": "😁",
+          "text": "まえのは しゅっしゅっ。\nうえのは しゅっしゅっ。\nしたのは しゅっしゅっ。",
+          "bgColor": "bg-sky-50"
+        },
+        {
+          "illustration": "🤗",
+          "text": "おくのは こちょこちょ。\nやさしく やさしく\nちいさく うごかすよ。",
+          "bgColor": "bg-pink-50"
+        },
+        {
+          "illustration": "💫",
+          "text": "ぶくぶくぶく ぺっ！\nおみずで ぶくぶく。\nむしばいきん にげていった！",
+          "bgColor": "bg-cyan-50"
+        },
+        {
+          "illustration": "🌟",
+          "text": "はが ぴっかぴか！\nむしばいきんは もういないよ。\n\nはみがき じょうずに\nできたね！",
+          "bgColor": "bg-yellow-50"
+        }
+      ]
+    },
+    {
+      "slug": "byouin",
+      "title": "びょういんって こわくないよ",
+      "description": "おいしゃさんは みんなの みかた。びょういんで なにをするか みてみよう",
+      "category": "hospital",
+      "ageGroups": ["1-3yr", "3-6yr", "6-12yr"],
+      "coverEmoji": "🏥",
+      "coverBgColor": "from-rose-100 to-pink-50",
+      "relatedArticleSlugs": [],
+      "pages": [
+        {
+          "illustration": "🤒",
+          "text": "あれあれ？\nちょっと おねつが あるみたい。\nのども いたいな。",
+          "bgColor": "bg-amber-50"
+        },
+        {
+          "illustration": "🏥",
+          "text": "おかあさんと いっしょに\nびょういんに いこう。\nだいじょうぶ、こわくないよ。",
+          "bgColor": "bg-sky-50"
+        },
+        {
+          "illustration": "📋",
+          "text": "うけつけで おなまえを いうよ。\n「おなまえは？」\n「〇〇です！」",
+          "bgColor": "bg-green-50"
+        },
+        {
+          "illustration": "👨‍⚕️",
+          "text": "おいしゃさんが にこにこ。\n「こんにちは。\nどこが いたいかな？」",
+          "bgColor": "bg-violet-50"
+        },
+        {
+          "illustration": "🩺",
+          "text": "もしもし。\nおなかに ぽんぽん。\nおくちを あーん。\n「じょうずだね！」",
+          "bgColor": "bg-pink-50"
+        },
+        {
+          "illustration": "💊",
+          "text": "おくすりを もらったよ。\nちゃんと のんだら\nげんきに なれるんだって！",
+          "bgColor": "bg-cyan-50"
+        },
+        {
+          "illustration": "😊",
+          "text": "おいしゃさん ありがとう！\nびょういんって\nぜんぜん こわくなかったね。\n\nよく がんばったね！",
+          "bgColor": "bg-yellow-50"
+        }
+      ]
+    }
+  ]
+}

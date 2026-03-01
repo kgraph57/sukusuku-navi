@@ -209,9 +209,73 @@ h1, h2, h3, h4, h5, h6 {
   .animate-float-6 { animation: float-char 3.2s ease-in-out 1.2s infinite; }
 }
 
+/* Infection alert pulse animation */
+@keyframes alert-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.4); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-alert-pulse {
+    animation: alert-pulse 2s ease-in-out infinite;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in-up { animation: none; }
   .animate-slide-up { animation: none; }
+  .animate-alert-pulse { animation: none; }
+  .animate-card-entrance { animation: none; }
+}
+
+/* ── おやこトークカード animations ── */
+@keyframes card-entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) rotateZ(-5deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-10px) rotateZ(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateZ(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-card-entrance {
+    animation: card-entrance 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+}
+
+.talk-card-perspective {
+  perspective: 1200px;
+}
+
+.talk-card-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.talk-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.talk-card-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.talk-card-front {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .talk-card-inner {
+    transition: none;
+  }
 }
 
 /* ── Print styles — clean article output ── */

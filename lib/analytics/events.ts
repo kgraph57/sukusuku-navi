@@ -192,3 +192,35 @@ export function trackFeedbackSubmitted(rating: number, comment?: string) {
 export function trackErrorOccurred(digest?: string, message?: string) {
   capture("error_occurred", { digest, message });
 }
+
+// ---------------------------------------------------------------------------
+// Oyako Talk Card
+// ---------------------------------------------------------------------------
+
+export function trackOyakoTalkCardDrawn(
+  cardId: string,
+  level: number,
+  category: string,
+  cardsDrawnInSession: number,
+) {
+  capture("oyako_talk_card_drawn", {
+    card_id: cardId,
+    level,
+    category,
+    cards_drawn_in_session: cardsDrawnInSession,
+  });
+}
+
+export function trackOyakoTalkSessionEnded(
+  cardsDrawn: number,
+  favoriteCount: number,
+) {
+  capture("oyako_talk_session_ended", {
+    cards_drawn: cardsDrawn,
+    favorite_count: favoriteCount,
+  });
+}
+
+export function trackOyakoTalkLevelUnlocked(level: number) {
+  capture("oyako_talk_level_unlocked", { level });
+}

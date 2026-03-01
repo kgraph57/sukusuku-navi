@@ -20,6 +20,16 @@ const CATEGORY_COLORS: Record<ArticleCategory, string> = {
   checkup: "bg-sage-50 text-sage-700 border-sage-200",
   "mental-health": "bg-purple-50 text-purple-700 border-purple-200",
   "municipal-service": "bg-indigo-50 text-indigo-700 border-indigo-200",
+  respiratory: "bg-sky-50 text-sky-700 border-sky-200",
+  gastrointestinal: "bg-amber-50 text-amber-700 border-amber-200",
+  ent: "bg-teal-50 text-teal-700 border-teal-200",
+  eye: "bg-cyan-50 text-cyan-700 border-cyan-200",
+  orthopedic: "bg-lime-50 text-lime-700 border-lime-200",
+  urology: "bg-violet-50 text-violet-700 border-violet-200",
+  heart: "bg-rose-50 text-rose-700 border-rose-200",
+  endocrine: "bg-emerald-50 text-emerald-700 border-emerald-200",
+  lifestyle: "bg-stone-50 text-stone-700 border-stone-200",
+  dental: "bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200",
 } as const;
 
 const CATEGORY_ACCENT: Record<ArticleCategory, string> = {
@@ -33,6 +43,16 @@ const CATEGORY_ACCENT: Record<ArticleCategory, string> = {
   checkup: "border-l-sage-400",
   "mental-health": "border-l-purple-400",
   "municipal-service": "border-l-indigo-400",
+  respiratory: "border-l-sky-400",
+  gastrointestinal: "border-l-amber-400",
+  ent: "border-l-teal-400",
+  eye: "border-l-cyan-400",
+  orthopedic: "border-l-lime-400",
+  urology: "border-l-violet-400",
+  heart: "border-l-rose-400",
+  endocrine: "border-l-emerald-400",
+  lifestyle: "border-l-stone-400",
+  dental: "border-l-fuchsia-400",
 } as const;
 
 function CategoryBadge({ category }: { readonly category: ArticleCategory }) {
@@ -81,49 +101,51 @@ export function ArticleCard({ frontmatter }: ArticleCardProps) {
 
       {/* Content */}
       <div className="flex flex-col flex-1 p-5">
-      {/* Header row */}
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="rounded-full bg-sage-100 px-2.5 py-0.5 text-xs font-bold text-sage-700">
-          Vol.{vol}
-        </span>
-        <CategoryBadge category={category} />
-      </div>
-
-      {/* Title */}
-      <h3 className="mt-3 font-heading text-[1.05rem] font-semibold leading-snug text-card-foreground group-hover:text-sage-700">
-        {title}
-      </h3>
-
-      {/* Description */}
-      <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">
-        {description}
-      </p>
-
-      {/* Key points */}
-      {keyPoints.length > 0 && (
-        <ul className="mt-3 space-y-1.5 rounded-lg bg-ivory-100 px-3 py-2.5">
-          {keyPoints.slice(0, 2).map((point) => (
-            <li
-              key={point}
-              className="flex items-start gap-2 text-xs leading-relaxed text-muted"
-            >
-              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-sage-500" />
-              <span className="line-clamp-1">{point}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {/* Footer */}
-      <div className="mt-auto flex items-center justify-between pt-4">
-        <div className="flex items-center gap-1 text-xs text-muted">
-          <WatercolorIcon name="user" size={12} className=".5 .5" />
-          <span>{ageGroups.map((ag) => AGE_GROUP_LABELS[ag]).join("・")}</span>
+        {/* Header row */}
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="rounded-full bg-sage-100 px-2.5 py-0.5 text-xs font-bold text-sage-700">
+            Vol.{vol}
+          </span>
+          <CategoryBadge category={category} />
         </div>
-        <span className="flex items-center gap-0.5 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
-          読む <WatercolorIcon name="arrow_right" size={12} />
-        </span>
-      </div>
+
+        {/* Title */}
+        <h3 className="mt-3 font-heading text-[1.05rem] font-semibold leading-snug text-card-foreground group-hover:text-sage-700">
+          {title}
+        </h3>
+
+        {/* Description */}
+        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">
+          {description}
+        </p>
+
+        {/* Key points */}
+        {keyPoints.length > 0 && (
+          <ul className="mt-3 space-y-1.5 rounded-lg bg-ivory-100 px-3 py-2.5">
+            {keyPoints.slice(0, 2).map((point) => (
+              <li
+                key={point}
+                className="flex items-start gap-2 text-xs leading-relaxed text-muted"
+              >
+                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-sage-500" />
+                <span className="line-clamp-1">{point}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {/* Footer */}
+        <div className="mt-auto flex items-center justify-between pt-4">
+          <div className="flex items-center gap-1 text-xs text-muted">
+            <WatercolorIcon name="user" size={12} className=".5 .5" />
+            <span>
+              {ageGroups.map((ag) => AGE_GROUP_LABELS[ag]).join("・")}
+            </span>
+          </div>
+          <span className="flex items-center gap-0.5 text-xs font-medium text-sage-600 opacity-0 transition-opacity group-hover:opacity-100">
+            読む <WatercolorIcon name="arrow_right" size={12} />
+          </span>
+        </div>
       </div>
     </Link>
   );
